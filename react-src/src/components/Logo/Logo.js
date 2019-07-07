@@ -25,7 +25,11 @@ const defaultProps = {
  */
 const Container = styled("div")(props => ({
   display: "flex",
-  flexDirection: "column"
+  flexDirection: "column",
+
+  border: "1px solid",
+  padding: "1.25em",
+  margin: "1.25em"
 }));
 
 /**

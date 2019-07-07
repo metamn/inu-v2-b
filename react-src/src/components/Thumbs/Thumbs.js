@@ -2,18 +2,22 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import Logo from "../Logo";
-import Menu from "../Menu";
-
 /**
  * Defines the prop types
  */
-const propTypes = {};
+const propTypes = {
+  /**
+   * A set of thumbnails
+   */
+  thumbs: PropTypes.array
+};
 
 /**
  * Defines the default props
  */
-const defaultProps = {};
+const defaultProps = {
+  thumbs: ["Thumbs"]
+};
 
 /**
  * Styles the component container
@@ -25,28 +29,26 @@ const Container = styled("div")(props => ({
 }));
 
 /**
- * Displays the homepage
+ * Displays the component
  */
-const Home = props => {
+const Thumbs = props => {
   /**
-   * Displays a theme switcher icon
+   * Displays a set of thumbnails
    */
-  const themeSwitcherIcon = "Theme switcher icon";
+  const { thumbs } = props;
 
   return (
-    <Container className="Home">
-      Home
+    <Container className="Thumbs">
+      Thumbs
       <ul>
-        <li>{themeSwitcherIcon}</li>
+        <li>{thumbs}</li>
       </ul>
-      <Logo />
-      <Menu />
     </Container>
   );
 };
 
-Home.propTypes = propTypes;
-Home.defaultProps = defaultProps;
+Thumbs.propTypes = propTypes;
+Thumbs.defaultProps = defaultProps;
 
-export default Home;
+export default Thumbs;
 export { propTypes, defaultProps };

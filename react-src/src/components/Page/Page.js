@@ -2,18 +2,22 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import Logo from "../Logo";
-import Menu from "../Menu";
-
 /**
  * Defines the prop types
  */
-const propTypes = {};
+const propTypes = {
+  /**
+   * The page content
+   */
+  content: PropTypes.string
+};
 
 /**
  * Defines the default props
  */
-const defaultProps = {};
+const defaultProps = {
+  content: "Page content"
+};
 
 /**
  * Styles the component container
@@ -25,28 +29,26 @@ const Container = styled("div")(props => ({
 }));
 
 /**
- * Displays the homepage
+ * Displays the component
  */
-const Home = props => {
+const Page = props => {
   /**
-   * Displays a theme switcher icon
+   * Displays the page content
    */
-  const themeSwitcherIcon = "Theme switcher icon";
+  const { content } = props;
 
   return (
-    <Container className="Home">
-      Home
+    <Container className="Page">
+      Page
       <ul>
-        <li>{themeSwitcherIcon}</li>
+        <li>{content}</li>
       </ul>
-      <Logo />
-      <Menu />
     </Container>
   );
 };
 
-Home.propTypes = propTypes;
-Home.defaultProps = defaultProps;
+Page.propTypes = propTypes;
+Page.defaultProps = defaultProps;
 
-export default Home;
+export default Page;
 export { propTypes, defaultProps };
