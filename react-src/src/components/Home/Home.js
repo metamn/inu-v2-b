@@ -21,7 +21,13 @@ const defaultProps = {};
 const Container = styled("div")(props => ({
   border: "1px solid",
   padding: "1.25em",
-  margin: "1.25em"
+  margin: "1.25em",
+
+  "& ul.data li": {
+    backgroundColor: "#eee",
+    padding: ".625em",
+    marginBottom: "1px"
+  }
 }));
 
 /**

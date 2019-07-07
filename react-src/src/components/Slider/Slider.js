@@ -40,7 +40,7 @@ const Slider = props => {
   return (
     <Container className="Slider">
       Slider
-      <ul>
+      <ul class="data">
         <li>{responsiveImages}</li>
       </ul>
     </Container>

@@ -40,7 +40,7 @@ const Thumbs = props => {
   return (
     <Container className="Thumbs">
       Thumbs
-      <ul>
+      <ul class="data">
         <li>{thumbs}</li>
       </ul>
     </Container>

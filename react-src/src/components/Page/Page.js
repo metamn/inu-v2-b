@@ -40,7 +40,7 @@ const Page = props => {
   return (
     <Container className="Page">
       Page
-      <ul>
+      <ul class="data">
         <li>{content}</li>
       </ul>
     </Container>

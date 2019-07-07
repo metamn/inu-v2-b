@@ -44,7 +44,7 @@ const Logo = props => {
   return (
     <Container className="Logo">
       Logo
-      <ul>
+      <ul class="data">
         <li>{title}</li>
         <li>{description}</li>
       </ul>

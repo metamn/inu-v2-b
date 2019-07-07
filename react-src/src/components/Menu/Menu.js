@@ -18,7 +18,7 @@ const propTypes = {
  */
 const defaultProps = {
   categories: ["Categories"],
-  random: "Random",
+  random: "Random slideshow",
   contact: "Contact"
 };
 
@@ -49,12 +49,12 @@ const Menu = props => {
     <Container className="Menu">
       Menu
       <ul>
+        <li>{menuSwitcherIcon}</li>
+      </ul>
+      <ul class="data">
         <li>{categories[0]}</li>
         <li>{random}</li>
         <li>{contact}</li>
-      </ul>
-      <ul>
-        <li>{menuSwitcherIcon}</li>
       </ul>
       <Content />
     </Container>
