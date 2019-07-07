@@ -1,0 +1,55 @@
+import React from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
+
+/**
+ * Defines the prop types
+ */
+const propTypes = {
+  title: PropTypes.string,
+  url: PropTypes.string,
+  description: PropTypes.string
+};
+
+/**
+ * Defines the default props
+ */
+const defaultProps = {
+  title: "Title",
+  url: "#",
+  description: "Description"
+};
+
+/**
+ * Styles the component container
+ */
+const Container = styled("div")(props => ({
+  display: "flex",
+  flexDirection: "column"
+}));
+
+/**
+ * Displays the logo
+ */
+const Logo = props => {
+  /**
+   * Displays site title and description
+   */
+  const { title, url, description } = props;
+
+  return (
+    <Container className="Logo">
+      Logo
+      <ul>
+        <li>{title}</li>
+        <li>{description}</li>
+      </ul>
+    </Container>
+  );
+};
+
+Logo.propTypes = propTypes;
+Logo.defaultProps = defaultProps;
+
+export default Logo;
+export { propTypes, defaultProps };
