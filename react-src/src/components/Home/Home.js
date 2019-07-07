@@ -37,7 +37,7 @@ const Home = props => {
   /**
    * Displays a theme switcher icon
    */
-  const themeSwitcherIcon = "Theme switcher icon";
+  const themeSwitcherIcon = "Theme switcher icon (dark / light mode)";
 
   return (
     <Container className="Home">

@@ -43,7 +43,7 @@ const Menu = props => {
   /**
    * Displays a menu switcher icon
    */
-  const menuSwitcherIcon = "Menu switcher icon";
+  const menuSwitcherIcon = "Menu switcher icon (dropdown)";
 
   return (
     <Container className="Menu">

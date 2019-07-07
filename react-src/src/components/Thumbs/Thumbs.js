@@ -40,6 +40,13 @@ const Thumbs = props => {
   return (
     <Container className="Thumbs">
       Thumbs
+      <ul>
+        <li>Marks the active image</li>
+        <li>
+          When an image is clicked returns to Slider mode with the clicked image
+          displayed
+        </li>
+      </ul>
       <ul class="data">
         <li>{thumbs}</li>
       </ul>

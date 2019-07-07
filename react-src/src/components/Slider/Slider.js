@@ -40,6 +40,10 @@ const Slider = props => {
   return (
     <Container className="Slider">
       Slider
+      <ul>
+        <li>Slides on click (when a category is displayed)</li>
+        <li>Autoslide (when Random slideshow)</li>
+      </ul>
       <ul class="data">
         <li>{responsiveImages}</li>
       </ul>

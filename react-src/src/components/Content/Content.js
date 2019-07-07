@@ -32,13 +32,17 @@ const Content = props => {
   /**
    * Displays a content switcher icon
    */
-  const contentSwitcherIcon = "Content switcher icon";
+  const contentSwitcherIcon = "Content switcher icon (slider vs. thumb view)";
 
   return (
     <Container className="Content">
       Content
       <ul>
         <li>{contentSwitcherIcon}</li>
+        <ul>
+          <li>Active: when a category is displayed</li>
+          <li>Inactive: when the Random slideshow and Contact is displayed</li>
+        </ul>
       </ul>
       <Slider />
       <Thumbs />

@@ -4,9 +4,11 @@ A photo portfolio theme with React, WPGraphQL and Create React WPTheme.
 
 ## Development process
 
+Based on [Thinking in React](https://reactjs.org/docs/thinking-in-react.html).
+
 ### Mocks - v0.0.1
 
-1. Mocking up the component structure
+1. Mocking up the component structure and the functionality
 
 ![First iteration](./react-src/docs/mocks-1.png)
 
