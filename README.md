@@ -15,3 +15,5 @@ Based on [Thinking in React](https://reactjs.org/docs/thinking-in-react.html).
 2. Adjusting component structure to the JSON API
 
 ![Second iteration](./react-src/docs/mocks-2.png)
+
+3. Applying the single responsibility principle

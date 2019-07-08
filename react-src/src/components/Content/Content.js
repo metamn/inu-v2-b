@@ -2,10 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import Categories from "../Categories";
 import Posts from "../Posts";
 import Page from "../Page";
-import Menu from "../Menu";
+import Slider from "../Slider";
+import Thumbs from "../Thumbs";
+import Contact from "../Contact";
 
 /**
  * Defines the prop types
@@ -30,13 +31,26 @@ const Container = styled("div")(props => ({
  * Displays the component
  */
 const Content = props => {
+  /**
+   * Displays a content switcher icon
+   */
+  const contentSwitcherIcon = "Content switcher icon (slider vs. thumb view)";
+
   return (
     <Container className="Content">
       Content
-      <Categories />
-      <Menu />
       <Posts />
       <Page />
+      <ul>
+        <li>{contentSwitcherIcon}</li>
+        <ul>
+          <li>Active: when a category is displayed</li>
+          <li>Inactive: when the Random slideshow or Contact is displayed</li>
+        </ul>
+      </ul>
+      <Slider />
+      <Thumbs />
+      <Contact />
     </Container>
   );
 };
