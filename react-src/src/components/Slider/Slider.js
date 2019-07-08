@@ -16,7 +16,7 @@ const propTypes = {
  * Defines the default props
  */
 const defaultProps = {
-  responsiveImages: ["Responsive images"]
+  responsiveImages: ["Displays the featured image in a responsive way"]
 };
 
 /**
@@ -25,7 +25,8 @@ const defaultProps = {
 const Container = styled("div")(props => ({
   border: "1px solid",
   padding: "1.25em",
-  margin: "1.25em"
+  margin: "1.25em",
+  backgroundColor: "white"
 }));
 
 /**
@@ -41,11 +42,22 @@ const Slider = props => {
     <Container className="Slider">
       Slider
       <ul>
-        <li>Slides on click (when a category is displayed)</li>
-        <li>Autoslide (when Random slideshow)</li>
-      </ul>
-      <ul class="data">
         <li>{responsiveImages}</li>
+      </ul>
+      <ul>
+        <li>
+          On click: (When a category is displayed)
+          <ul>
+            <li>Slides to next image</li>
+          </ul>
+        </li>
+        <li>
+          Autoslide: (When the random slideshow is displayed)
+          <ul>
+            <li>Slides automatically to next image</li>
+            <li>When there are no more images loads more from the database</li>
+          </ul>
+        </li>
       </ul>
     </Container>
   );

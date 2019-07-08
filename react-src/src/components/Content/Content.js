@@ -2,9 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import Slider from "../Slider";
-import Thumbs from "../Thumbs";
 import Page from "../Page";
+import Posts from "../Posts";
 
 /**
  * Defines the prop types
@@ -37,15 +36,7 @@ const Content = props => {
   return (
     <Container className="Content">
       Content
-      <ul>
-        <li>{contentSwitcherIcon}</li>
-        <ul>
-          <li>Active: when a category is displayed</li>
-          <li>Inactive: when the Random slideshow and Contact is displayed</li>
-        </ul>
-      </ul>
-      <Slider />
-      <Thumbs />
+      <Posts />
       <Page />
     </Container>
   );

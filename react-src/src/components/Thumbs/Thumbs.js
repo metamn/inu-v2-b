@@ -16,7 +16,7 @@ const propTypes = {
  * Defines the default props
  */
 const defaultProps = {
-  thumbs: ["Thumbs"]
+  thumbs: ["Displays the thumbnail version of the featured images"]
 };
 
 /**
@@ -25,7 +25,8 @@ const defaultProps = {
 const Container = styled("div")(props => ({
   border: "1px solid",
   padding: "1.25em",
-  margin: "1.25em"
+  margin: "1.25em",
+  backgroundColor: "white"
 }));
 
 /**
@@ -41,14 +42,14 @@ const Thumbs = props => {
     <Container className="Thumbs">
       Thumbs
       <ul>
-        <li>Marks the active image</li>
-        <li>
-          When an image is clicked returns to Slider mode with the clicked image
-          displayed
-        </li>
-      </ul>
-      <ul class="data">
         <li>{thumbs}</li>
+        <li>Marks the active image</li>
+      </ul>
+      <ul>
+        <li>
+          On click: When an image is clicked returns to Slider mode with the
+          clicked image displayed in the Slider
+        </li>
       </ul>
     </Container>
   );

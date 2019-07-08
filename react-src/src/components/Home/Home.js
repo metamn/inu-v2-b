@@ -30,7 +30,7 @@ const Container = styled("div")(props => ({
     marginBottom: "1px"
   },
 
-  "& .Settings, & .Categories, & .Page": {
+  "& .Settings, & .Categories, & .Page, & .Posts": {
     backgroundColor: "#eee"
   }
 }));
