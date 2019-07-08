@@ -1,37 +1,57 @@
 {
-    "name": "inu-v2-b",
-    "version": "0.1.0",
-    "private": true,
-    "dependencies": {
-        "@devloco\/react-scripts-wptheme": "3.0.1-wptheme-3.0.5",
-        "react": "^16.8.6",
-        "react-dom": "^16.8.6"
-    },
-    "scripts": {
-        "crabuild": "react-scripts build",
-        "craeject": "react-scripts eject",
-        "crastart": "react-scripts start",
-        "cratest": "react-scripts test",
-        "build": "wptheme-scripts build",
-        "start": "wptheme-scripts start",
-        "wpbuild": "wptheme-scripts wpbuild",
-        "wpstart": "wptheme-scripts wpstart"
-    },
-    "eslintConfig": {
-        "extends": "react-app"
-    },
-    "browserslist": {
-        "production": [
-            ">0.2%",
-            "not dead",
-            "not op_mini all"
-        ],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ]
-    },
-    "homepage": "\/react-wp\/wp-content\/themes\/inu-v2-b",
-    "browserLaunchTo": "http:\/\/localhost\/react-wp"
+  "name": "inu-v2-b",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@devloco/react-scripts-wptheme": "3.0.1-wptheme-3.0.5",
+    "apollo-boost": "^0.4.3",
+    "graphql": "^14.4.2",
+    "graphql-tag": "^2.10.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "styled-components": "^4.3.2"
+  },
+  "scripts": {
+    "crabuild": "react-scripts build",
+    "craeject": "react-scripts eject",
+    "crastart": "react-scripts start",
+    "cratest": "react-scripts test",
+    "build": "wptheme-scripts build",
+    "start": "wptheme-scripts start",
+    "wpbuild": "wptheme-scripts wpbuild",
+    "wpstart": "wptheme-scripts wpstart",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public",
+    "doc": "scripty",
+    "docs": "scripty"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "homepage": "/react-wp/wp-content/themes/inu-v2-b",
+  "browserLaunchTo": "http://localhost/react-wp",
+  "devDependencies": {
+    "@storybook/addon-actions": "^5.1.9",
+    "@storybook/addon-console": "^1.1.1",
+    "@storybook/addon-info": "^5.1.9",
+    "@storybook/addon-links": "^5.1.9",
+    "@storybook/addon-notes": "^5.1.9",
+    "@storybook/addons": "^5.1.9",
+    "@storybook/react": "^5.1.9",
+    "babel-loader": "8.0.5",
+    "jsdoc-to-markdown": "^5.0.0",
+    "scripty": "^1.9.1"
+  }
 }

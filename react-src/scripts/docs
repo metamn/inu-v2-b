@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+# Loops through `src/components` and generates documentation for components
+
+for dir in $(find src/components/* -type d)
+do
+	folder=$(basename $dir)
+	file=$dir/$folder
+	echo $file
+    yarn run jsdoc2md --template .jsdoc2md/template.hbs $file.js | grep -v "$ " > $file.md
+done

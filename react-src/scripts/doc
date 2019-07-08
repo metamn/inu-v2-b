@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+# Generates api doc for a component
+# `grep -v "$ "` removes the command itself from the top of the generated doc
+
+yarn run jsdoc2md --template .jsdoc2md/template.hbs src/components/$1/$1.js | grep -v "$ " > src/components/$1/$1.md
