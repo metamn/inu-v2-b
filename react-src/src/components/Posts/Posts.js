@@ -25,20 +25,16 @@ const postDefaultProps = {
  * Defines the prop types
  */
 const propTypes = {
-  node: PropTypes.shape({ ...postPropType }),
-  edges: PropTypes.arrayOf(
-    PropTypes.shape({
-      ...postPropType
-    })
-  )
+  node: PropTypes.shape(postPropType),
+  edges: PropTypes.arrayOf(PropTypes.shape(postPropType))
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
-  node: { ...postDefaultProps },
-  edges: [{ ...postDefaultProps }]
+  node: postDefaultProps,
+  edges: Array(1).fill(postDefaultProps)
 };
 
 /**
