@@ -2,9 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import Categories from "../Categories";
-import Content from "../Content";
-
 /**
  * Defines the prop types
  */
@@ -49,14 +46,12 @@ const Menu = props => {
   return (
     <Container className="Menu">
       Menu
-      <Categories />
       <ul>
         <li>{menuSwitcherIcon}</li>
         <li>{categories[0]}</li>
         <li>{random}</li>
         <li>{contact}</li>
       </ul>
-      <Content />
     </Container>
   );
 };

@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import Settings from "../Settings";
 import Logo from "../Logo";
-import Menu from "../Menu";
+import Content from "../Content";
 
 /**
  * Defines the prop types
@@ -52,7 +52,7 @@ const Home = props => {
         <li>{themeSwitcherIcon}</li>
       </ul>
       <Logo />
-      <Menu />
+      <Content />
     </Container>
   );
 };
