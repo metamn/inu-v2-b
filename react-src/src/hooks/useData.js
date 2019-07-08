@@ -25,20 +25,28 @@ import { useQuery } from "./index";
  * @return Object               The data returned
  */
 const useData = (defaultValues, query, filter) => {
-  /** Queries the database */
+  /**
+   * Queries the database
+   */
   const { data, error, loading } = useQuery(query);
 
-  /** Returns default data while loading from the database */
+  /**
+   * Returns default data while loading from the database
+   */
   if (loading) {
     return defaultValues;
   }
 
-  /** Logs to console when there is an error */
+  /**
+   * Logs to console when there is an error
+   */
   if (error) {
     console.log("useQuery error");
   }
 
-  /** Returns the data */
+  /**
+   * Returns data
+   */
   return data[filter];
 };
 

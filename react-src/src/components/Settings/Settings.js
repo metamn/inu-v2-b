@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import gql from "graphql-tag";
-import { strigify } from "flatted";
+import { stringify } from "flatted";
 
 import { useData } from "../../hooks";
 
@@ -40,12 +40,11 @@ const query = gql`
  * Loads site settings from the database
  */
 const Settings = props => {
-  const data = useData(defaultProps, query, "generalSettings");
-  return data;
+  return useData(defaultProps, query, "generalSettings");
 };
 
 Settings.propTypes = propTypes;
 Settings.defaultProps = defaultProps;
 
 export default Settings;
-export { propTypes, defaultProps };
+export { propTypes as SettingsPropTypes, defaultProps as SettingsDefaultProps };
