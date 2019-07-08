@@ -4,19 +4,31 @@ import styled from "styled-components";
 import gql from "graphql-tag";
 
 /**
+ * Defines the Page prop type
+ */
+const pagePropType = {
+  id: PropTypes.string,
+  title: PropTypes.string,
+  content: PropTypes.string
+};
+
+/**
+ * Defines the Page default props
+ */
+const pageDefaultProps = {
+  id: "1",
+  title: "Page",
+  content: "Page content"
+};
+
+/**
  * Defines the prop types
  */
 const propTypes = {
-  node: PropTypes.shape({
-    id: PropTypes.string,
-    title: PropTypes.string,
-    content: PropTypes.string
-  }),
+  node: PropTypes.shape({ ...pagePropType }),
   edges: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string,
-      title: PropTypes.string,
-      content: PropTypes.string
+      ...pagePropType
     })
   )
 };
@@ -25,12 +37,8 @@ const propTypes = {
  * Defines the default props
  */
 const defaultProps = {
-  node: {
-    id: "1",
-    title: "Contact",
-    content: "Contact page content"
-  },
-  edges: [{ id: "1", title: "Contact", content: "Contact page content" }]
+  node: { ...pageDefaultProps },
+  edges: [{ ...pageDefaultProps }]
 };
 
 /**

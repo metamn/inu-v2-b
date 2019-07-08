@@ -50,11 +50,15 @@ const Container = styled("div")(props => ({
  * Displays the component
  */
 const Settings = props => {
+  const { title, description } = props;
+
   return (
     <Container className="Settings">
       Settings
       <ul>
-        <li>Loads site settings from the database</li>
+        <li>
+          Loads site settings ({title}, {description}) from the database
+        </li>
       </ul>
     </Container>
   );

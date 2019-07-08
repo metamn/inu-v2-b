@@ -5,12 +5,16 @@ import styled from "styled-components";
 /**
  * Defines the prop types
  */
-const propTypes = {};
+const propTypes = {
+  content: PropTypes.string
+};
 
 /**
  * Defines the default props
  */
-const defaultProps = {};
+const defaultProps = {
+  content: "Contact page content"
+};
 
 /**
  * Styles the component container
@@ -25,11 +29,13 @@ const Container = styled("div")(props => ({
  * Displays the component
  */
 const Contact = props => {
+  const { content } = props;
+
   return (
     <Container className="Contact">
       Contact
       <ul>
-        <li>Displays the contact page content</li>
+        <li>Displays the {content}</li>
       </ul>
     </Container>
   );

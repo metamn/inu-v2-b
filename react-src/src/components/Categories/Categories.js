@@ -72,6 +72,8 @@ const Container = styled("div")(props => ({
  * Displays the component
  */
 const Categories = props => {
+  const { edges } = props;
+
   return (
     <Container className="Categories">
       Categories

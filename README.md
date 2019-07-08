@@ -8,7 +8,14 @@ Based on [Thinking in React](https://reactjs.org/docs/thinking-in-react.html).
 
 ### Mocks - v0.0.1
 
-Note: Items with gray background represents data.
+Notes:
+
+- Items with gray background represents data.
+
+Instructions:
+
+- Don't just output plain text like `Displays site title`. Try first to create a `title` proptype and output something like `Displays {title}`. This makes sure the components are defined based on `real` data.
+- if you write nice texts a requirement specification is generated.
 
 1. Mocking up the component structure and the functionality
 
@@ -24,6 +31,6 @@ Note: Items with gray background represents data.
 
 4. Create requirement specification
 
-With a little text cleanup a requirement spec can be generated!
+With a little text cleanup the requirement specification is done!
 
 ![Fourth iteration](./react-src/docs/mocks-4.png)

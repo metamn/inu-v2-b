@@ -4,14 +4,42 @@ import styled from "styled-components";
 import gql from "graphql-tag";
 
 /**
+ * Defines the Post prop type
+ */
+const postPropType = {
+  id: PropTypes.string,
+  title: PropTypes.string,
+  featuredImage: PropTypes.string
+};
+
+/**
+ * Defines the Post default props
+ */
+const postDefaultProps = {
+  id: "1",
+  title: "Post",
+  featuredImage: "Post featured image"
+};
+
+/**
  * Defines the prop types
  */
-const propTypes = {};
+const propTypes = {
+  node: PropTypes.shape({ ...postPropType }),
+  edges: PropTypes.arrayOf(
+    PropTypes.shape({
+      ...postPropType
+    })
+  )
+};
 
 /**
  * Defines the default props
  */
-const defaultProps = {};
+const defaultProps = {
+  node: { ...postDefaultProps },
+  edges: [{ ...postDefaultProps }]
+};
 
 /**
  * Defines the database query
@@ -62,12 +90,15 @@ const Container = styled("div")(props => ({
  * Displays the component
  */
 const Posts = props => {
+  const { node } = props;
+
   return (
     <Container className="Posts">
       Posts
       <ul>
         <li>
-          Loads a list of posts associated to a category (with featured images)
+          Loads a list of posts associated to a category (with{" "}
+          {node.featuredImage})
         </li>
       </ul>
     </Container>
