@@ -1,28 +1,62 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import gql from "graphql-tag";
 
 /**
  * Defines the prop types
  */
 const propTypes = {
-  /**
-   * The page content
-   */
-  content: PropTypes.string
+  node: PropTypes.shape({
+    id: PropTypes.string,
+    title: PropTypes.string,
+    content: PropTypes.string
+  }),
+  edges: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      title: PropTypes.string,
+      content: PropTypes.string
+    })
+  )
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
-  content: "Page content"
+  node: {
+    id: "1",
+    title: "Contact",
+    content: "Contact page content"
+  },
+  edges: [{ id: "1", title: "Contact", content: "Contact page content" }]
 };
+
+/**
+ * Defines the database query
+ */
+const query = gql`
+  query page($first: Int, $where: RootQueryToPageConnectionWhereArgs!) {
+    pages(first: $first, where: $where) {
+      edges {
+        node {
+          id
+          title
+          content
+        }
+      }
+    }
+  }
+`;
 
 /**
  * Styles the component container
  */
 const Container = styled("div")(props => ({
+  display: "flex",
+  flexDirection: "column",
+
   border: "1px solid",
   padding: "1.25em",
   margin: "1.25em"
@@ -33,16 +67,13 @@ const Container = styled("div")(props => ({
  */
 const Page = props => {
   /**
-   * Displays the page content
+   * Displays the Contact page content
    */
-  const { content } = props;
+  const { node } = props;
 
   return (
     <Container className="Page">
-      Page
-      <ul class="data">
-        <li>{content}</li>
-      </ul>
+      <span>Page: {node.content}</span>
     </Container>
   );
 };

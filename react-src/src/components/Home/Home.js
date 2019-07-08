@@ -30,7 +30,7 @@ const Container = styled("div")(props => ({
     marginBottom: "1px"
   },
 
-  "& .Settings, & .Categories": {
+  "& .Settings, & .Categories, & .Page": {
     backgroundColor: "#eee"
   }
 }));
@@ -47,10 +47,10 @@ const Home = props => {
   return (
     <Container className="Home">
       Home
+      <Settings />
       <ul>
         <li>{themeSwitcherIcon}</li>
       </ul>
-      <Settings />
       <Logo />
       <Menu />
     </Container>

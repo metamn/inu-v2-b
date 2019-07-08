@@ -49,11 +49,9 @@ const Menu = props => {
   return (
     <Container className="Menu">
       Menu
-      <ul>
-        <li>{menuSwitcherIcon}</li>
-      </ul>
       <Categories />
       <ul>
+        <li>{menuSwitcherIcon}</li>
         <li>{categories[0]}</li>
         <li>{random}</li>
         <li>{contact}</li>
