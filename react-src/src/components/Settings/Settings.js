@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import gql from "graphql-tag";
 
 /**
  * Defines the prop types
@@ -21,6 +22,19 @@ const defaultProps = {
 };
 
 /**
+ * Defines the database query
+ */
+const query = gql`
+  query generalSettings {
+    generalSettings {
+      title
+      url
+      description
+    }
+  }
+`;
+
+/**
  * Styles the component container
  */
 const Container = styled("div")(props => ({
@@ -33,27 +47,23 @@ const Container = styled("div")(props => ({
 }));
 
 /**
- * Displays the logo
+ * Displays the component
  */
-const Logo = props => {
+const Settings = props => {
   /**
-   * Displays site title and description
+   * Loads site title and description from the database
    */
   const { title, url, description } = props;
 
   return (
-    <Container className="Logo">
-      Logo
-      <ul>
-        <li>{title}</li>
-        <li>{description}</li>
-      </ul>
+    <Container className="Settings">
+      <span>Settings: title, url, description</span>
     </Container>
   );
 };
 
-Logo.propTypes = propTypes;
-Logo.defaultProps = defaultProps;
+Settings.propTypes = propTypes;
+Settings.defaultProps = defaultProps;
 
-export default Logo;
+export default Settings;
 export { propTypes, defaultProps };

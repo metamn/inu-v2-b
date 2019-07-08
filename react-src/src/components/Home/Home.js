@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
+import Settings from "../Settings";
 import Logo from "../Logo";
 import Menu from "../Menu";
 
@@ -27,6 +28,10 @@ const Container = styled("div")(props => ({
     backgroundColor: "#eee",
     padding: ".625em",
     marginBottom: "1px"
+  },
+
+  "& .Settings, & .Categories": {
+    backgroundColor: "#eee"
   }
 }));
 
@@ -45,6 +50,7 @@ const Home = props => {
       <ul>
         <li>{themeSwitcherIcon}</li>
       </ul>
+      <Settings />
       <Logo />
       <Menu />
     </Container>

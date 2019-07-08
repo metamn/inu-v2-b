@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
+import Categories from "../Categories";
 import Content from "../Content";
 
 /**
@@ -51,7 +52,8 @@ const Menu = props => {
       <ul>
         <li>{menuSwitcherIcon}</li>
       </ul>
-      <ul class="data">
+      <Categories />
+      <ul>
         <li>{categories[0]}</li>
         <li>{random}</li>
         <li>{contact}</li>

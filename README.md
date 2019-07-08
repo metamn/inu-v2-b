@@ -12,4 +12,4 @@ Based on [Thinking in React](https://reactjs.org/docs/thinking-in-react.html).
 
 ![First iteration](./react-src/docs/mocks-1.png)
 
-2. Adjusting component structure based on the JSON API
+2. Adjusting component structure to the JSON API
