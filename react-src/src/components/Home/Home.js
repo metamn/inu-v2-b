@@ -19,26 +19,17 @@ const defaultProps = {};
 /**
  * Styles the component container
  */
-const Container = styled("div")(props => ({
-  border: "1px solid",
-  padding: "1.25em",
-  margin: "1.25em",
-
-  "& ul.data li": {
-    backgroundColor: "#eee",
-    padding: ".625em",
-    marginBottom: "1px"
-  },
-
-  "& .Settings, & .Categories, & .Page, & .Posts": {
-    backgroundColor: "#eee"
-  }
-}));
+const Container = styled("div")(props => ({}));
 
 /**
  * Displays the homepage
  */
 const Home = props => {
+  /**
+   * Loads site settings from the database
+   */
+  const data = Settings;
+
   /**
    * Displays a theme switcher icon
    */
@@ -48,7 +39,6 @@ const Home = props => {
   return (
     <Container className="Home">
       Home
-      <Settings />
       <ul>
         <li>{themeSwitcherIcon}</li>
       </ul>
