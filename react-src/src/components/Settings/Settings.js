@@ -17,7 +17,7 @@ const propTypes = {
  */
 const defaultProps = {
   title: "Title",
-  url: "#",
+  url: "http://inu.ro",
   description: "Description"
 };
 
@@ -50,14 +50,12 @@ const Container = styled("div")(props => ({
  * Displays the component
  */
 const Settings = props => {
-  /**
-   * Loads site title and description from the database
-   */
-  const { title, url, description } = props;
-
   return (
     <Container className="Settings">
-      <span>Settings: title, url, description</span>
+      Settings
+      <ul>
+        <li>Loads site settings from the database</li>
+      </ul>
     </Container>
   );
 };

@@ -73,7 +73,10 @@ const Page = props => {
 
   return (
     <Container className="Page">
-      <span>Page: {node.content}</span>
+      Page
+      <ul>
+        <li>Loads the {node.content}</li>
+      </ul>
     </Container>
   );
 };

@@ -21,3 +21,9 @@ Note: Items with gray background represents data.
 3. Applying the single responsibility principle
 
 ![Third iteration](./react-src/docs/mocks-3.png)
+
+4. Create requirement specification
+
+With a little text cleanup a requirement spec can be generated!
+
+![Fourth iteration](./react-src/docs/mocks-4.png)

@@ -62,7 +62,16 @@ const Container = styled("div")(props => ({
  * Displays the component
  */
 const Posts = props => {
-  return <Container className="Posts">Posts: with featured image</Container>;
+  return (
+    <Container className="Posts">
+      Posts
+      <ul>
+        <li>
+          Loads a list of posts associated to a category (with featured images)
+        </li>
+      </ul>
+    </Container>
+  );
 };
 
 Posts.propTypes = propTypes;

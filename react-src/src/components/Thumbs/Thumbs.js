@@ -47,8 +47,13 @@ const Thumbs = props => {
       </ul>
       <ul>
         <li>
-          On click: When an image is clicked returns to Slider mode with the
-          clicked image displayed in the Slider
+          On click
+          <ul>
+            <li>
+              When an image is clicked returns to Slider mode with the clicked
+              image displayed in the Slider
+            </li>
+          </ul>
         </li>
       </ul>
     </Container>

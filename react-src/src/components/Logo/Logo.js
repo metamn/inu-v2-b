@@ -36,17 +36,11 @@ const Container = styled("div")(props => ({
  * Displays the logo
  */
 const Logo = props => {
-  /**
-   * Displays site title and description
-   */
-  const { title, url, description } = props;
-
   return (
     <Container className="Logo">
       Logo
       <ul>
-        <li>{title}</li>
-        <li>{description}</li>
+        <li>Displays site title, description</li>
       </ul>
     </Container>
   );

@@ -4,21 +4,29 @@ import styled from "styled-components";
 import gql from "graphql-tag";
 
 /**
+ * Defines prop types for Category
+ */
+const categoryPropTypes = {
+  id: PropTypes.string,
+  categoryId: PropTypes.number,
+  name: PropTypes.string
+};
+
+/**
+ * Defines default props for Category
+ */
+const defaultCategoryPropTypes = {
+  id: "1",
+  categoryId: 1,
+  name: "Category"
+};
+
+/**
  * Defines the prop types
  */
 const propTypes = {
-  node: PropTypes.shape({
-    id: PropTypes.string,
-    categoryId: PropTypes.number,
-    name: PropTypes.string
-  }),
-  edges: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      categoryId: PropTypes.number,
-      name: PropTypes.string
-    })
-  )
+  node: PropTypes.shape({ ...categoryPropTypes }),
+  edges: PropTypes.arrayOf(PropTypes.shape({ ...categoryPropTypes }))
 };
 
 /**
@@ -26,11 +34,9 @@ const propTypes = {
  */
 const defaultProps = {
   node: {
-    id: "1",
-    categoryId: 1,
-    name: "Category"
+    ...defaultCategoryPropTypes
   },
-  edges: [{ id: "1", categoryId: 1, name: "Category" }]
+  edges: [{ ...defaultCategoryPropTypes }]
 };
 
 /**
@@ -66,14 +72,12 @@ const Container = styled("div")(props => ({
  * Displays the component
  */
 const Categories = props => {
-  /**
-   * Loads a list of categories from the database
-   */
-  const { edges } = props;
-
   return (
     <Container className="Categories">
-      <span>Categories: edges</span>
+      Categories
+      <ul>
+        <li>Loads categories from the database</li>
+      </ul>
     </Container>
   );
 };

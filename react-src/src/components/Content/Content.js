@@ -34,7 +34,8 @@ const Content = props => {
   /**
    * Displays a content switcher icon
    */
-  const contentSwitcherIcon = "Content switcher icon (slider vs. thumb view)";
+  const contentSwitcherIcon =
+    "Displays a content switcher icon (slider vs. thumb view)";
 
   return (
     <Container className="Content">

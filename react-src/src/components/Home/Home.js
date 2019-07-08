@@ -39,17 +39,12 @@ const Container = styled("div")(props => ({
  * Displays the homepage
  */
 const Home = props => {
-  /**
-   * Displays a theme switcher icon
-   */
-  const themeSwitcherIcon = "Theme switcher icon (dark / light mode)";
-
   return (
     <Container className="Home">
       Home
       <Settings />
       <ul>
-        <li>{themeSwitcherIcon}</li>
+        <li>Displays a theme switcher icon for dark / light mode</li>
       </ul>
       <Logo />
       <Main />
