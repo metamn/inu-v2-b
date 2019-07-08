@@ -21,7 +21,9 @@
     "wpbuild": "wptheme-scripts wpbuild",
     "wpstart": "wptheme-scripts wpstart",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "doc": "scripty",
+    "docs": "scripty"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -45,8 +47,11 @@
     "@storybook/addon-console": "^1.1.1",
     "@storybook/addon-info": "^5.1.9",
     "@storybook/addon-links": "^5.1.9",
+    "@storybook/addon-notes": "^5.1.9",
     "@storybook/addons": "^5.1.9",
     "@storybook/react": "^5.1.9",
-    "babel-loader": "8.0.5"
+    "babel-loader": "8.0.5",
+    "jsdoc-to-markdown": "^5.0.0",
+    "scripty": "^1.9.1"
   }
 }
