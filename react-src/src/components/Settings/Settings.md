@@ -19,13 +19,7 @@ The component performs the following tasks:
 </details>
 
 <details>
-	<summary>###Styles the component container
-
-</summary>
-</details>
-
-<details>
-	<summary>###Displays the component
+	<summary>###Loads site settings from the database
 
 </summary>
 </details>

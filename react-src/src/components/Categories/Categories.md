@@ -1,6 +1,18 @@
 The component performs the following tasks:
 
 <details>
+	<summary>###Defines prop types for Category
+
+</summary>
+</details>
+
+<details>
+	<summary>###Defines default props for Category
+
+</summary>
+</details>
+
+<details>
 	<summary>###Defines the prop types
 
 </summary>

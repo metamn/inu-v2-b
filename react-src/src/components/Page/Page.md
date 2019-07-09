@@ -1,6 +1,18 @@
 The component performs the following tasks:
 
 <details>
+	<summary>###Defines the Page prop type
+
+</summary>
+</details>
+
+<details>
+	<summary>###Defines the Page default props
+
+</summary>
+</details>
+
+<details>
 	<summary>###Defines the prop types
 
 </summary>

@@ -10,6 +10,14 @@ import "@storybook/addon-console";
 // Info support
 import { withInfo } from "@storybook/addon-info";
 
+// The Apollo decorator
+import { ApolloProvider } from "react-apollo-hooks";
+import apolloClient from "../src/apolloClient";
+
+addDecorator(story => (
+  <ApolloProvider client={apolloClient}>{story()}</ApolloProvider>
+));
+
 // General settings
 addParameters({
   options: {
@@ -22,7 +30,8 @@ addParameters({
 addDecorator(
   withInfo({
     inline: true,
-    source: false
+    source: false,
+    propTablesExclude: [ApolloProvider]
   })
 );
 

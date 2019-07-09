@@ -22,6 +22,8 @@ The component performs the following tasks:
 	<summary>###Displays the homepage
 
 </summary>
+* Loads site settings from the database
+
 * Displays a theme switcher icon
 
 </details>
