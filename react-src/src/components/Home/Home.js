@@ -32,7 +32,7 @@ const Home = props => {
   /**
    * Loads site settings from the database
    */
-  const data = Settings(props);
+  const siteSettings = Settings(props);
 
   /**
    * Displays a theme switcher icon
@@ -44,10 +44,9 @@ const Home = props => {
     <Container className="Home">
       Home
       <ul>
-        <li>Settings: {data.url}</li>
         <li>{themeSwitcherIcon}</li>
       </ul>
-      <Logo />
+      <Logo {...siteSettings} />
       <Main />
     </Container>
   );

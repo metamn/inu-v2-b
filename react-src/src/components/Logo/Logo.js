@@ -2,22 +2,20 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
+import { SettingsPropTypes, SettingsDefaultProps } from "../Settings";
+
 /**
  * Defines the prop types
  */
 const propTypes = {
-  title: PropTypes.string,
-  url: PropTypes.string,
-  description: PropTypes.string
+  ...SettingsPropTypes
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
-  title: "Title",
-  url: "#",
-  description: "Description"
+  ...SettingsDefaultProps
 };
 
 /**
@@ -25,27 +23,21 @@ const defaultProps = {
  */
 const Container = styled("div")(props => ({
   display: "flex",
-  flexDirection: "column",
-
-  border: "1px solid",
-  padding: "1.25em",
-  margin: "1.25em"
+  flexDirection: "column"
 }));
 
 /**
- * Displays the logo
+ * Displays site title and description
  */
 const Logo = props => {
-  const { title, description } = props;
+  const { title, url, description } = props;
 
   return (
     <Container className="Logo">
-      Logo
-      <ul>
-        <li>
-          Displays site {title}, {description}
-        </li>
-      </ul>
+      <div>
+        <a href={url}>{title}</a>
+      </div>
+      <div>{description}</div>
     </Container>
   );
 };

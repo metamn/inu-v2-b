@@ -9,8 +9,17 @@ import { useData } from "../../hooks";
  * Defines the prop types
  */
 const propTypes = {
+  /**
+   * The site title
+   */
   title: PropTypes.string,
+  /**
+   * The site url
+   */
   url: PropTypes.string,
+  /**
+   * The site description
+   */
   description: PropTypes.string
 };
 
