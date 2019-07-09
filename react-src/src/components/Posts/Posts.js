@@ -42,8 +42,12 @@ const defaultProps = {
  * Defines the database query
  */
 const query = gql`
-  query posts($first: Int) {
-    posts(first: $first) {
+  query postsFromCategory($first: Int, $category: Int) {
+    posts(first: $first, where: { categoryId: $category }) {
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
       edges {
         node {
           id
@@ -75,7 +79,15 @@ const query = gql`
  * Loads a list of posts associated to a category
  */
 const Posts = props => {
-  return useData(defaultProps, query, "posts");
+  /**
+   * Defines which category to load posts from
+   */
+  const variables = {
+    first: 1,
+    categoryId: 1
+  };
+
+  return useData(defaultProps, query, "posts", variables);
 };
 
 Posts.propTypes = propTypes;

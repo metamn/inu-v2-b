@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import Posts, { PostsPropTypes, PostsDefaultProps } from "../Posts";
-import Pages, { PagesPropTypes, PagesDefaultProps } from "../Page";
+import Pages, { PagesPropTypes, PagesDefaultProps } from "../Pages";
 import Slider from "../Slider";
 import Thumbs from "../Thumbs";
 import Contact from "../Contact";
@@ -59,7 +59,7 @@ const Content = props => {
     <Container className="Content">
       Content
       <div>Nr. of Posts: {posts.edges.length}</div>
-      <div>Nr. of Pages: </div>
+      <div>Nr. of Pages: {pages.edges.length}</div>
       <ul>
         <li>{contentSwitcherIcon}</li>
         <ul>

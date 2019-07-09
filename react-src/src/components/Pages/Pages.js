@@ -60,7 +60,7 @@ const query = gql`
  */
 const Pages = props => {
   /**
-   * Sets up query variables
+   * Loads only the `Contact` page
    */
   const variables = {
     first: 1,

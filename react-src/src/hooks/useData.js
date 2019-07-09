@@ -1,5 +1,4 @@
 import { useQuery } from "./index";
-import { stringify } from "flatted";
 
 /**
  * Loads data from database
@@ -27,7 +26,6 @@ import { stringify } from "flatted";
  * @return Object               The data returned
  */
 const useData = (defaultValues, query, filter, variables = {}) => {
-  console.log("variables:" + stringify(variables));
   /**
    * Queries the database
    */

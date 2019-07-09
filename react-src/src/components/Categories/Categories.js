@@ -59,7 +59,14 @@ const query = gql`
  * Loads categories from the database
  */
 const Categories = props => {
-  return useData(defaultProps, query, "categories");
+  /**
+   * Excludes empty categories
+   */
+  const variables = {
+    hideEmpty: true
+  };
+
+  return useData(defaultProps, query, "categories", variables);
 };
 
 Categories.propTypes = propTypes;
