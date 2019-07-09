@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
 import gql from "graphql-tag";
+
+import { useData } from "../../hooks";
 
 /**
  * Defines the Post prop type
@@ -71,34 +72,10 @@ const query = gql`
 `;
 
 /**
- * Styles the component container
- */
-const Container = styled("div")(props => ({
-  display: "flex",
-  flexDirection: "column",
-
-  border: "1px solid",
-  padding: "1.25em",
-  margin: "1.25em"
-}));
-
-/**
- * Displays the component
+ * Loads a list of posts associated to a category
  */
 const Posts = props => {
-  const { node } = props;
-
-  return (
-    <Container className="Posts">
-      Posts
-      <ul>
-        <li>
-          Loads a list of posts associated to a category (with{" "}
-          {node.featuredImage})
-        </li>
-      </ul>
-    </Container>
-  );
+  return useData(defaultProps, query, "posts");
 };
 
 Posts.propTypes = propTypes;

@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { stringify } from "flatted";
 
-import Posts from "../Posts";
+import Posts, { PostsPropTypes, PostsDefaultProps } from "../Posts";
 import Page from "../Page";
 import Slider from "../Slider";
 import Thumbs from "../Thumbs";
@@ -11,12 +12,16 @@ import Contact from "../Contact";
 /**
  * Defines the prop types
  */
-const propTypes = {};
+const propTypes = {
+  ...PostsPropTypes
+};
 
 /**
  * Defines the default props
  */
-const defaultProps = {};
+const defaultProps = {
+  ...PostsDefaultProps
+};
 
 /**
  * Styles the component container
@@ -32,6 +37,12 @@ const Container = styled("div")(props => ({
  */
 const Content = props => {
   /**
+   * Loads a list of posts associated to a category
+   */
+  const posts = Posts(props);
+  console.log("posts:" + stringify(posts));
+
+  /**
    * Displays a content switcher icon
    */
   const contentSwitcherIcon =
@@ -40,7 +51,7 @@ const Content = props => {
   return (
     <Container className="Content">
       Content
-      <Posts />
+      <div>Nr. of Posts: {posts.edges.length}</div>
       <Page />
       <ul>
         <li>{contentSwitcherIcon}</li>
