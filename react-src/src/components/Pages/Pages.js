@@ -26,15 +26,15 @@ const pageDefaultProps = {
  * Defines the prop types
  */
 const propTypes = {
-  node: PropTypes.shape(pagePropType),
-  edges: PropTypes.arrayOf({ node: pageDefaultProps })
+  edges: PropTypes.arrayOf(
+    PropTypes.shape({ node: PropTypes.shape(pagePropType) })
+  )
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
-  node: pageDefaultProps,
   edges: Array(1).fill({ node: pageDefaultProps })
 };
 
