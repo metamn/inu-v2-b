@@ -2,11 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
+import { CategoriesPropTypes, CategoriesDefaultProps } from "../Categories";
+
 /**
  * Defines the prop types
  */
 const propTypes = {
-  categories: PropTypes.array,
+  categories: PropTypes.shape(CategoriesPropTypes),
   random: PropTypes.string,
   contact: PropTypes.string
 };
@@ -15,7 +17,7 @@ const propTypes = {
  * Defines the default props
  */
 const defaultProps = {
-  categories: ["Categories"],
+  categories: PropTypes.shape(CategoriesDefaultProps),
   random: "Random slideshow",
   contact: "Contact"
 };
@@ -39,6 +41,13 @@ const Menu = props => {
   const { categories, random, contact } = props;
 
   /**
+   * Displays categories as menu items
+   */
+  const categoriesAsMenuItems = categories.edges.map(edge => {
+    return edge.node.name;
+  });
+
+  /**
    * Displays a menu switcher icon
    */
   const menuSwitcherIcon = "Displays a menu switcher icon (dropdown)";
@@ -48,7 +57,7 @@ const Menu = props => {
       Menu
       <ul>
         <li>{menuSwitcherIcon}</li>
-        <li>Displays a list of {categories[0]}</li>
+        <li>Categories: {categoriesAsMenuItems}</li>
         <li>Displays a menu item for {random}</li>
         <li>Displays a menu item for {contact}</li>
       </ul>

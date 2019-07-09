@@ -27,7 +27,7 @@ const pageDefaultProps = {
  */
 const propTypes = {
   node: PropTypes.shape(pagePropType),
-  edges: PropTypes.arrayOf(PropTypes.shape(pagePropType))
+  edges: PropTypes.arrayOf({ node: pageDefaultProps })
 };
 
 /**

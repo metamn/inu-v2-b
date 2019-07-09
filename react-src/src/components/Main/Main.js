@@ -45,8 +45,7 @@ const Main = props => {
   return (
     <Container className="Main">
       Main
-      <div>Nr. of Categories: {categories.edges.length}</div>
-      <Menu />
+      <Menu categories={categories} />
       <Content />
     </Container>
   );

@@ -26,16 +26,16 @@ const defaultCategoryPropTypes = {
  * Defines the prop types
  */
 const propTypes = {
-  node: PropTypes.shape(categoryPropTypes),
-  edges: PropTypes.arrayOf(PropTypes.shape(categoryPropTypes))
+  edges: PropTypes.arrayOf(
+    PropTypes.shape({ node: PropTypes.shape(categoryPropTypes) })
+  )
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
-  node: defaultCategoryPropTypes,
-  edges: [defaultCategoryPropTypes]
+  edges: Array(1).fill({ node: defaultCategoryPropTypes })
 };
 
 /**
@@ -73,4 +73,7 @@ Categories.propTypes = propTypes;
 Categories.defaultProps = defaultProps;
 
 export default Categories;
-export { propTypes, defaultProps };
+export {
+  propTypes as CategoriesPropTypes,
+  defaultProps as CategoriesDefaultProps
+};
