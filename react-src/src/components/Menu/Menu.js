@@ -47,8 +47,8 @@ const Menu = props => {
   /**
    * Displays categories as menu items
    */
-  const categoriesAsMenuItems = categories.edges.map(edge => {
-    return <MenuItem name={edge.node.name} />;
+  const categoriesAsMenuItems = categories.edges.map((edge, index) => {
+    return <MenuItem key={`category-${index}`} name={edge.node.name} />;
   });
 
   /**
@@ -65,8 +65,8 @@ const Menu = props => {
       <IconToggle icon1={icon1} icon2={icon2} />
       <ul>
         {categoriesAsMenuItems}
-        <MenuItem name={random} />
-        <MenuItem name={contact} />
+        <MenuItem key="random" name={random} />
+        <MenuItem key="contact" name={contact} />
       </ul>
     </Container>
   );
