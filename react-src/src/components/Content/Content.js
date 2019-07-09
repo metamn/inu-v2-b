@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { stringify } from "flatted";
 
 import Posts, { PostsPropTypes, PostsDefaultProps } from "../Posts";
 import Pages, { PagesPropTypes, PagesDefaultProps } from "../Page";
@@ -48,7 +47,7 @@ const Content = props => {
    * Loads a page from the database
    */
   const pages = Pages(props);
-  console.log("pages:" + stringify(pages));
+  //console.log("pages:" + stringify(pages));
 
   /**
    * Displays a content switcher icon
@@ -60,7 +59,7 @@ const Content = props => {
     <Container className="Content">
       Content
       <div>Nr. of Posts: {posts.edges.length}</div>
-      <div>Nr. of Pages: {pages.edges.length}</div>
+      <div>Nr. of Pages: </div>
       <ul>
         <li>{contentSwitcherIcon}</li>
         <ul>

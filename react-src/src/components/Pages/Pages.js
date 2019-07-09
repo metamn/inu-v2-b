@@ -18,8 +18,8 @@ const pagePropType = {
  */
 const pageDefaultProps = {
   id: "1",
-  title: "Page",
-  content: "Page content"
+  title: "Contact",
+  content: "Contact page content"
 };
 
 /**
@@ -59,7 +59,17 @@ const query = gql`
  * Loads a page from the database
  */
 const Pages = props => {
-  return useData(defaultProps, query, "pages");
+  /**
+   * Sets up query variables
+   */
+  const variables = {
+    first: 1,
+    where: {
+      title: "Contact"
+    }
+  };
+
+  return useData(defaultProps, query, "pages", variables);
 };
 
 Pages.propTypes = propTypes;

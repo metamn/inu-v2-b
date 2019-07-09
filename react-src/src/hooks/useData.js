@@ -1,4 +1,5 @@
 import { useQuery } from "./index";
+import { stringify } from "flatted";
 
 /**
  * Loads data from database
@@ -22,13 +23,15 @@ import { useQuery } from "./index";
  * @param  Object defaultValues The default values to return while loading data from the DB
  * @param  Object query         The GraphQL query to execute
  * @param  String filter        The part of the data to return
+ * @param  Array  variables     The query variable
  * @return Object               The data returned
  */
-const useData = (defaultValues, query, filter) => {
+const useData = (defaultValues, query, filter, variables = {}) => {
+  console.log("variables:" + stringify(variables));
   /**
    * Queries the database
    */
-  const { data, error, loading } = useQuery(query);
+  const { data, error, loading } = useQuery(query, variables);
 
   /**
    * Returns default data while loading from the database
