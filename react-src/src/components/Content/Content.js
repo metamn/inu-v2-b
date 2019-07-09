@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { stringify } from "flatted";
 
 import Posts, { PostsPropTypes, PostsDefaultProps } from "../Posts";
-import Page from "../Page";
+import Pages, { PagesPropTypes, PagesDefaultProps } from "../Page";
 import Slider from "../Slider";
 import Thumbs from "../Thumbs";
 import Contact from "../Contact";
@@ -13,14 +13,16 @@ import Contact from "../Contact";
  * Defines the prop types
  */
 const propTypes = {
-  ...PostsPropTypes
+  ...PostsPropTypes,
+  ...PagesPropTypes
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
-  ...PostsDefaultProps
+  ...PostsDefaultProps,
+  ...PagesDefaultProps
 };
 
 /**
@@ -40,7 +42,13 @@ const Content = props => {
    * Loads a list of posts associated to a category
    */
   const posts = Posts(props);
-  console.log("posts:" + stringify(posts));
+  //console.log("posts:" + stringify(posts));
+
+  /**
+   * Loads a page from the database
+   */
+  const pages = Pages(props);
+  console.log("pages:" + stringify(pages));
 
   /**
    * Displays a content switcher icon
@@ -52,7 +60,7 @@ const Content = props => {
     <Container className="Content">
       Content
       <div>Nr. of Posts: {posts.edges.length}</div>
-      <Page />
+      <div>Nr. of Pages: {pages.edges.length}</div>
       <ul>
         <li>{contentSwitcherIcon}</li>
         <ul>

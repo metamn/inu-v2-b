@@ -58,12 +58,12 @@ const query = gql`
 /**
  * Loads a page from the database
  */
-const Page = props => {
+const Pages = props => {
   return useData(defaultProps, query, "pages");
 };
 
-Page.propTypes = propTypes;
-Page.defaultProps = defaultProps;
+Pages.propTypes = propTypes;
+Pages.defaultProps = defaultProps;
 
-export default Page;
+export default Pages;
 export { propTypes, defaultProps };

@@ -41,7 +41,7 @@ const useData = (defaultValues, query, filter) => {
    * Logs to console when there is an error
    */
   if (error) {
-    console.log("useQuery error");
+    console.log("useQuery error:" + error);
   }
 
   /**

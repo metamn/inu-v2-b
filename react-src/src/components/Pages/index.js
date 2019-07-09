@@ -1,5 +1,5 @@
-export { default } from "./Page";
+export { default } from "./Pages";
 export {
   propTypes as PagesPropTypes,
   defaultProps as PagesDefaultProps
-} from "./Page";
+} from "./Pages";
