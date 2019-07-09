@@ -2,8 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { useTheme } from "../../hooks";
-
 /**
  * Defines the prop types
  */
@@ -20,7 +18,15 @@ const propTypes = {
   /**
    * The icon itself. Preferably in SVG format.
    */
-  children: PropTypes.any.isRequired
+  children: PropTypes.any.isRequired,
+  theme: PropTypes.shape({
+    size: PropTypes.number,
+    status: PropTypes.oneOf[("active", "hidden", "invisible")],
+    colorPairs: PropTypes.shape({
+      default: PropTypes.any,
+      inactive: PropTypes.any
+    })
+  })
 };
 
 /**
@@ -29,7 +35,15 @@ const propTypes = {
 const defaultProps = {
   size: 1.5,
   status: "active",
-  children: "SVG"
+  children: "Icon",
+  theme: {
+    size: 1,
+    status: "active",
+    colorPairs: {
+      default: null,
+      inactive: null
+    }
+  }
 };
 
 /**
@@ -57,8 +71,7 @@ const Container = styled("div")(props => ({
  * Displays an icon
  */
 const Icon = props => {
-  const { children } = props;
-  const { theme } = useTheme();
+  const { children, theme } = props;
 
   return (
     <Container className="icon" theme={theme} {...props}>

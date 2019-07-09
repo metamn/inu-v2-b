@@ -2,8 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { useTheme } from "./../../hooks";
-
 import { CategoriesPropTypes, CategoriesDefaultProps } from "../Categories";
 import MenuItem from "../MenuItem";
 import IconToggle from "../IconToggle";
@@ -14,7 +12,9 @@ import IconToggle from "../IconToggle";
 const propTypes = {
   categories: PropTypes.shape(CategoriesPropTypes),
   random: PropTypes.string,
-  contact: PropTypes.string
+  contact: PropTypes.string,
+  toggleIconDown: PropTypes.string,
+  toggleIconUp: PropTypes.string
 };
 
 /**
@@ -23,7 +23,9 @@ const propTypes = {
 const defaultProps = {
   categories: PropTypes.shape(CategoriesDefaultProps),
   random: "Random slideshow",
-  contact: "Contact"
+  contact: "Contact",
+  toggleIconDown: "Toggle icon down",
+  toggleIconUp: "Toggle icon up"
 };
 
 /**
@@ -54,15 +56,12 @@ const Menu = props => {
   /**
    * Displays a menu switcher icon
    */
-  const { theme } = useTheme();
-  const { icons } = theme;
-  const icon1 = theme.icons.chevronDown;
-  const icon2 = theme.icons.chevronUp;
+  const { toggleIconUp, toggleIconDown } = props;
 
   return (
     <Container className="Menu">
       Menu
-      <IconToggle icon1={icon1} icon2={icon2} />
+      <IconToggle icon1={toggleIconDown} icon2={toggleIconUp} />
       <ul>
         {categoriesAsMenuItems}
         <MenuItem key="random" name={random} />

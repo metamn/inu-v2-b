@@ -2,8 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { useTheme } from "./../../hooks";
-
 import Posts, { PostsPropTypes, PostsDefaultProps } from "../Posts";
 import Pages, { PagesPropTypes, PagesDefaultProps } from "../Pages";
 import Slider from "../Slider";
@@ -16,7 +14,8 @@ import Icon from "../Icon";
  */
 const propTypes = {
   ...PostsPropTypes,
-  ...PagesPropTypes
+  ...PagesPropTypes,
+  contentSwitcherIcon: PropTypes.string
 };
 
 /**
@@ -24,7 +23,8 @@ const propTypes = {
  */
 const defaultProps = {
   ...PostsDefaultProps,
-  ...PagesDefaultProps
+  ...PagesDefaultProps,
+  contentSwitcherIcon: "Contet switcher icon"
 };
 
 /**
@@ -54,17 +54,13 @@ const Content = props => {
   /**
    * Displays a content switcher icon
    */
-  const { theme } = useTheme();
-  const { icons } = theme;
-  const gridIcon = theme.icons.grid;
+  const { contentSwitcherIcon } = props;
 
   return (
     <Container className="Content">
       Content
-      <div>Nr. of Posts: {posts.edges.length}</div>
-      <div>Nr. of Pages: {pages.edges.length}</div>
       <ul>
-        <Icon>{gridIcon}</Icon>
+        <Icon>{contentSwitcherIcon}</Icon>
         <ul>
           <li>Active: when a category is displayed</li>
           <li>Inactive: when the Random slideshow or Contact is displayed</li>

@@ -11,9 +11,10 @@ Based on [Thinking in React](https://reactjs.org/docs/thinking-in-react.html).
 - Start building up every component.
 - From bottom to top starting with standalone components.
 - Focus on props only, default values and _skip states_.
-- Skip the UI/UX design part. Leave it as it is.
-- Create additional components when necessary. Like `MenuItem` for `Menu`
+- Skip the UI/UX design part. Leave it as it is. Don't do theming. Default props should work.
 - Check components also in Storybook.
 - Leave no warnings in the console logs.
 
 1. Start with data components.
+2. Continue with (presentational) components.
+3. Create additional components when necessary. Like `MenuItem` for `Menu`.
