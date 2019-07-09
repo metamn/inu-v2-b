@@ -35,7 +35,7 @@ const propTypes = {
  */
 const defaultProps = {
   node: pageDefaultProps,
-  edges: [pageDefaultProps]
+  edges: Array(1).fill({ node: pageDefaultProps })
 };
 
 /**

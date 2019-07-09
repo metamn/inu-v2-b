@@ -6,6 +6,9 @@ import styled from "styled-components";
  * Defines the prop types
  */
 const propTypes = {
+  /**
+   * The Contact page content in HTML
+   */
   content: PropTypes.string
 };
 
@@ -26,18 +29,17 @@ const Container = styled("div")(props => ({
 }));
 
 /**
- * Displays the component
+ * Displays the Contact page content
  */
 const Contact = props => {
   const { content } = props;
 
   return (
-    <Container className="Contact">
-      Contact
-      <ul>
-        <li>Displays the {content}</li>
-      </ul>
-    </Container>
+    <Container
+      className="Contact"
+      dangerouslySetInnerHTML={{ __html: content }}
+      {...props}
+    />
   );
 };
 

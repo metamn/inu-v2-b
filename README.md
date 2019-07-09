@@ -8,14 +8,11 @@ Based on [Thinking in React](https://reactjs.org/docs/thinking-in-react.html).
 
 ### Static content - v0.0.2
 
-1. Build up every component except the state. Do it in a bottom-up fashion.
+- Start building up every component.
+- From bottom to top starting with standalone components.
+- Focus on props only, default values and _skip states_.
+- Skip the UI/UX design part. Leave it as it is.
+- Check components also in Storybook.
+- Leave no warnings in the console logs.
 
-### Mocks - v0.0.1
-
-1. Mocking up the component structure and the functionality
-
-2. Adjusting component structure to the WP GraphQL API
-
-3. Applying the single responsibility principle
-
-4. Create requirement specification
+1. Start with data components.

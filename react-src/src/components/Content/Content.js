@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { stringify } from "flatted";
 
 import Posts, { PostsPropTypes, PostsDefaultProps } from "../Posts";
 import Pages, { PagesPropTypes, PagesDefaultProps } from "../Pages";
@@ -41,13 +42,12 @@ const Content = props => {
    * Loads a list of posts associated to a category
    */
   const posts = Posts(props);
-  //console.log("posts:" + stringify(posts));
 
   /**
-   * Loads a page from the database
+   * Loads the Contact page from the database
    */
   const pages = Pages(props);
-  //console.log("pages:" + stringify(pages));
+  const contactPageContent = pages.edges[0].node.content;
 
   /**
    * Displays a content switcher icon
@@ -69,7 +69,7 @@ const Content = props => {
       </ul>
       <Slider />
       <Thumbs />
-      <Contact />
+      <Contact content={contactPageContent} />
     </Container>
   );
 };
