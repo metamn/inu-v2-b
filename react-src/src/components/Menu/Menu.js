@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import { CategoriesPropTypes, CategoriesDefaultProps } from "../Categories";
+import MenuItem from "../MenuItem";
 
 /**
  * Defines the prop types
@@ -44,7 +45,7 @@ const Menu = props => {
    * Displays categories as menu items
    */
   const categoriesAsMenuItems = categories.edges.map(edge => {
-    return edge.node.name;
+    return <MenuItem name={edge.node.name} />;
   });
 
   /**
@@ -57,9 +58,11 @@ const Menu = props => {
       Menu
       <ul>
         <li>{menuSwitcherIcon}</li>
-        <li>Categories: {categoriesAsMenuItems}</li>
-        <li>Displays a menu item for {random}</li>
-        <li>Displays a menu item for {contact}</li>
+      </ul>
+      <ul>
+        {categoriesAsMenuItems}
+        <MenuItem name={random} />
+        <MenuItem name={contact} />
       </ul>
     </Container>
   );
