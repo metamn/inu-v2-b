@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+//import { stringify } from "flatted";
 
 import Settings, { SettingsPropTypes, SettingsDefaultProps } from "../Settings";
 import Logo from "../Logo";

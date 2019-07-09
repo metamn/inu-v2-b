@@ -1,20 +1,28 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { stringify } from "flatted";
 
-import Categories from "../Categories";
+import Categories, {
+  CategoriesPropTypes,
+  CategoriesDefaultProps
+} from "../Categories";
 import Menu from "../Menu";
 import Content from "../Content";
 
 /**
  * Defines the prop types
  */
-const propTypes = {};
+const propTypes = {
+  ...CategoriesPropTypes
+};
 
 /**
  * Defines the default props
  */
-const defaultProps = {};
+const defaultProps = {
+  ...CategoriesDefaultProps
+};
 
 /**
  * Styles the component container
@@ -29,10 +37,15 @@ const Container = styled("div")(props => ({
  * Displays the component
  */
 const Main = props => {
+  /**
+   * Loads categories from the database
+   */
+  const categories = Categories(props);
+
   return (
     <Container className="Main">
       Main
-      <Categories />
+      <div>Nr. of Categories: {categories.edges.length}</div>
       <Menu />
       <Content />
     </Container>

@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import gql from "graphql-tag";
-import { stringify } from "flatted";
 
 import { useData } from "../../hooks";
 
