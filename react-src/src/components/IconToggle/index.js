@@ -1,2 +1,2 @@
 export { default } from "./IconToggle";
-export { propTypes, defaultProps } from "./IconToggle";
+export { IconTogglePropTypes, IconToggleDefaultProps } from "./IconToggle";

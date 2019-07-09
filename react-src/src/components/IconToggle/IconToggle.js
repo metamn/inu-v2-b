@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
@@ -11,11 +11,11 @@ const propTypes = {
   /**
    * The first, active by default icon
    */
-  icon1: PropTypes.element.isRequired,
+  icon1: PropTypes.any.isRequired,
   /**
    * The second, inactive by default icon
    */
-  icon2: PropTypes.element.isRequired,
+  icon2: PropTypes.any.isRequired,
   /**
    * The component status
    */
