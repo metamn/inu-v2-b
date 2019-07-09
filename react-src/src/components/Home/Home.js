@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 //import { stringify } from "flatted";
 
+import { useTheme } from "./../../hooks";
+
 import Settings, { SettingsPropTypes, SettingsDefaultProps } from "../Settings";
 import Logo from "../Logo";
 import Main from "../Main";
@@ -31,6 +33,11 @@ const Container = styled("div")(props => ({}));
  */
 const Home = props => {
   /**
+   * Sets up theming
+   */
+  const { currentTheme, switchTheme, ThemeContext } = useTheme();
+
+  /**
    * Loads site settings from the database
    */
   const siteSettings = Settings(props);
@@ -42,14 +49,16 @@ const Home = props => {
     "Displays a theme switcher icon for dark / light mode";
 
   return (
-    <Container className="Home">
-      Home
-      <ul>
-        <li>{themeSwitcherIcon}</li>
-      </ul>
-      <Logo {...siteSettings} />
-      <Main />
-    </Container>
+    <ThemeContext.Provider value={currentTheme}>
+      <Container className="Home">
+        Home
+        <ul>
+          <li>{themeSwitcherIcon}</li>
+        </ul>
+        <Logo {...siteSettings} />
+        <Main />
+      </Container>
+    </ThemeContext.Provider>
   );
 };
 

@@ -12,6 +12,7 @@ Based on [Thinking in React](https://reactjs.org/docs/thinking-in-react.html).
 - From bottom to top starting with standalone components.
 - Focus on props only, default values and _skip states_.
 - Skip the UI/UX design part. Leave it as it is.
+- Create additional components when necessary. Like `MenuItem` for `Menu`
 - Check components also in Storybook.
 - Leave no warnings in the console logs.
 

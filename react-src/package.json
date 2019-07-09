@@ -11,6 +11,8 @@
     "react": "^16.8.6",
     "react-apollo-hooks": "^0.4.5",
     "react-dom": "^16.8.6",
+    "react-icons": "^3.7.0",
+    "react-responsive": "^7.0.0",
     "styled-components": "^4.3.2"
   },
   "scripts": {

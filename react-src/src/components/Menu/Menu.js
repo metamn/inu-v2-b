@@ -2,8 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
+import { useTheme } from "./../../hooks";
+
 import { CategoriesPropTypes, CategoriesDefaultProps } from "../Categories";
 import MenuItem from "../MenuItem";
+import IconToggle from "../IconToggle";
 
 /**
  * Defines the prop types
@@ -51,14 +54,15 @@ const Menu = props => {
   /**
    * Displays a menu switcher icon
    */
-  const menuSwitcherIcon = "Displays a menu switcher icon (dropdown)";
+  const { theme } = useTheme();
+  const { icons } = theme;
+  const icon1 = theme.icons.chevronDown;
+  const icon2 = theme.icons.chevronUp;
 
   return (
     <Container className="Menu">
       Menu
-      <ul>
-        <li>{menuSwitcherIcon}</li>
-      </ul>
+      <IconToggle icon1={icon1} icon2={icon2} />
       <ul>
         {categoriesAsMenuItems}
         <MenuItem name={random} />
