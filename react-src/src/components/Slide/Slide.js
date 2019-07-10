@@ -9,14 +9,19 @@ const propTypes = {
   /**
    * The content of the slide
    */
-  children: PropTypes.any
+  children: PropTypes.any,
+  /**
+   * If the slide is active
+   */
+  isActive: PropTypes.bool
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
-  children: "Slide"
+  children: "Slide",
+  isActive: true
 };
 
 /**
@@ -34,7 +39,7 @@ const Container = styled("div")(props => ({
     transition: "all 500ms"
   },
 
-  "& .active": {
+  "&.active": {
     "& article": {
       opacity: "1",
       transform: "translateX(0px)"
@@ -62,9 +67,14 @@ const Container = styled("div")(props => ({
  * @see https://reactjs.org/docs/forwarding-refs.html
  */
 const Slide = React.forwardRef((props, ref) => {
-  const { children } = props;
+  const { children, isActive } = props;
+  const active = isActive ? "active" : "";
 
-  return <Container ref={ref}>{children}</Container>;
+  return (
+    <Container isActive={isActive} className={`Slide ${active}`} ref={ref}>
+      {children}
+    </Container>
+  );
 });
 
 Slide.propTypes = propTypes;

@@ -49,7 +49,7 @@ const Posts = props => {
    * Defines which category to load posts from
    */
   const variables = {
-    first: 1,
+    first: 10,
     categoryId: 1
   };
 

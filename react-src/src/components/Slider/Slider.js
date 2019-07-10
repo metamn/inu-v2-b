@@ -12,14 +12,19 @@ const propTypes = {
   /**
    * A set of slides
    */
-  slides: PropTypes.array
+  slides: PropTypes.array,
+  /**
+   * Which slide is active
+   */
+  activeSlide: PropTypes.number
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
-  slides: ["Displays the featured image in a responsive way"]
+  slides: ["Displays the featured image in a responsive way"],
+  activeSlide: 1
 };
 
 /**
@@ -39,7 +44,7 @@ const Slider = props => {
   /**
    * Loads the slides
    */
-  const { slides } = props;
+  const { slides, activeSlide } = props;
 
   /**
    * Prepares an array to hold the slide refs
@@ -53,8 +58,11 @@ const Slider = props => {
     const ref = React.createRef();
     refs[index] = ref;
 
+    const isActive = index === activeSlide;
+    console.log("isActive:" + isActive);
+
     return (
-      <Slide key={`slide-${index}`} ref={ref}>
+      <Slide isActive={isActive} key={`slide-${index}`} ref={ref}>
         <Post />
       </Slide>
     );
@@ -63,7 +71,7 @@ const Slider = props => {
   return (
     <Container className="Slider">
       Slider
-      <Slides>{slidesPrepared}</Slides>
+      <Slides className="Slides">{slidesPrepared}</Slides>
       <ul>
         <li>
           On click
