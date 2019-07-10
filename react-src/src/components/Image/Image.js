@@ -91,7 +91,10 @@ const createPlaceholderImage = props => {
 };
 
 /**
- * Displays the component
+ * Displays an image
+ *
+ * @see https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images
+ * @see https://github.com/FormidableLabs/react-progressive-image
  */
 const Image = props => {
   /**
@@ -151,6 +154,7 @@ const Image = props => {
       alt={alt}
       width={width}
       height={height}
+      isLoading={isLoading}
     />
   );
 };
