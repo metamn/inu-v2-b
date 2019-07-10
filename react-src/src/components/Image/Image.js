@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-//import ProgressiveImage from "react-progressive-image";
+import ProgressiveImage from "react-progressive-image";
 
 /**
  * Defines the prop types
@@ -33,7 +33,15 @@ const propTypes = {
     text: PropTypes.string,
     width: PropTypes.string,
     height: PropTypes.string
-  }
+  },
+  /**
+   * To use ProgressiveImage?
+   */
+  isProgressive: PropTypes.bool,
+  /**
+   * Is it still loading?
+   */
+  isLoading: PropTypes.bool
 };
 
 /**
@@ -51,13 +59,17 @@ const defaultProps = {
     text: "image",
     width: "300",
     height: "300"
-  }
+  },
+  isProgressive: false,
+  isLoading: false
 };
 
 /**
  * Styles the image
  */
-const Img = styled("img")(props => ({}));
+const Img = styled("img")(props => ({
+  opacity: props.isLoading ? "0.5" : "1"
+}));
 
 /**
  * Creates a placeholder image with `https://placeholder.pics`
@@ -75,16 +87,35 @@ const Image = props => {
   /**
    * Loads image properties
    */
-  const { src, alt, width, height, placeholder } = props;
+  const { src, alt, width, height, placeholder, isProgressive } = props;
+
+  /**
+   * Creates a placeholder image.
+   */
+  const placeholderImage = createPlaceholderImage(placeholder);
 
   /**
    * Returns a placeholder if the image is missing
    */
-  const nonEmptySrc = src !== "" ? src : createPlaceholderImage(placeholder);
+  const nonEmptySrc = src !== "" ? src : placeholderImage;
 
-  return (
+  /**
+   * Returns a ProgressiveImage if requested
+   */
+  return isProgressive ? (
+    <ProgressiveImage src={nonEmptySrc} placeholder={placeholderImage}>
+      {(src, loading) => (
+        <Img
+          className="progressive-image"
+          src={nonEmptySrc}
+          alt={alt}
+          isLoading={loading}
+        />
+      )}
+    </ProgressiveImage>
+  ) : (
     <Img
-      className="Image"
+      className="image"
       src={nonEmptySrc}
       alt={alt}
       width={width}

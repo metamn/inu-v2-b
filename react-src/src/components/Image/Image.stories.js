@@ -16,4 +16,19 @@ storiesOf("Image", module)
     {
       notes: { markdown: description }
     }
+  )
+  .add("Progressive, with empty props", () => <Image isProgressive={true} />, {
+    notes: { markdown: description }
+  })
+  .add(
+    "Progressive, with a real URL",
+    () => (
+      <Image
+        src="http://metamn.io/assets/images/avatar-kubist_desktop.png"
+        isProgressive={true}
+      />
+    ),
+    {
+      notes: { markdown: description }
+    }
   );
