@@ -16,40 +16,80 @@ const propTypes = {
    */
   alt: PropTypes.string,
   /**
-   * The image width
+   * The image width in px
    */
   width: PropTypes.string,
   /**
-   * The image height
+   * The image height in px
    */
-  height: PropTypes.string
+  height: PropTypes.string,
+  /**
+   * The image placeholder
+   */
+  placeholder: {
+    url: PropTypes.string,
+    backgroundColor: PropTypes.string,
+    color: PropTypes.string,
+    text: PropTypes.string,
+    width: PropTypes.string,
+    height: PropTypes.string
+  }
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
-  src: "https://placeholder.pics/svg/300/FFFFFF/000000/image",
+  src: "",
   alt: "image",
-  width: "100%",
-  height: "auto"
+  width: "",
+  height: "",
+  placeholder: {
+    url: "https://placeholder.pics/svg",
+    backgroundColor: "FFFFFF",
+    color: "000000",
+    text: "image",
+    width: "300",
+    height: "300"
+  }
 };
 
 /**
- * Styles the component container
+ * Styles the image
  */
-const Container = styled("div")(props => ({}));
+const Img = styled("img")(props => ({}));
+
+/**
+ * Creates a placeholder image with `https://placeholder.pics`
+ */
+const createPlaceholderImage = props => {
+  const { url, backgroundColor, color, text, width, height } = props;
+
+  return `${url}/${width}x${height}/${backgroundColor}/${color}/${text}`;
+};
 
 /**
  * Displays the component
  */
 const Image = props => {
-  const { src, alt } = props;
+  /**
+   * Loads image properties
+   */
+  const { src, alt, width, height, placeholder } = props;
+
+  /**
+   * Returns a placeholder if the image is missing
+   */
+  const nonEmptySrc = src !== "" ? src : createPlaceholderImage(placeholder);
 
   return (
-    <Container className="Image">
-      <img src={src} alt={alt} />
-    </Container>
+    <Img
+      className="Image"
+      src={nonEmptySrc}
+      alt={alt}
+      width={width}
+      height={height}
+    />
   );
 };
 
