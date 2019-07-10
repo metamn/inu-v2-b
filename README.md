@@ -16,5 +16,6 @@ Based on [Thinking in React](https://reactjs.org/docs/thinking-in-react.html).
 - Leave no warnings in the console logs.
 
 1. Start with data components.
-2. Continue with (presentational) components.
+2. Continue with other (presentational) components.
 3. Create additional components when necessary. Like `MenuItem` for `Menu`.
+4. Don't fully implement the component. Create to-dos or Github Issues with would-be-nice features.

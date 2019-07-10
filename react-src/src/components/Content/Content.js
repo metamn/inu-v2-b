@@ -46,6 +46,11 @@ const Content = props => {
   const posts = Posts(props);
 
   /**
+   * Collects featured images from posts
+   */
+  const featuredImages = posts.edges.filter(edge => edge.node.featuredImage);
+
+  /**
    * Loads the Contact page from the database
    */
   const pages = Pages(props);
@@ -66,7 +71,7 @@ const Content = props => {
           <li>Inactive: when the Random slideshow or Contact is displayed</li>
         </ul>
       </ul>
-      <Slider />
+      <Slider images={featuredImages} />
       <Thumbs />
       <Contact content={contactPageContent} />
     </Container>

@@ -9,14 +9,14 @@ const propTypes = {
   /**
    * A set of responsive images
    */
-  responsiveImages: PropTypes.array
+  images: PropTypes.array
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
-  responsiveImages: ["Displays the featured image in a responsive way"]
+  images: ["Displays the featured image in a responsive way"]
 };
 
 /**
@@ -30,20 +30,42 @@ const Container = styled("div")(props => ({
 }));
 
 /**
+ * Styles the slides container
+ */
+const Slides = styled("div")(props => ({}));
+
+/**
+ * Styles the slide container
+ */
+const Slide = styled("div")(props => ({}));
+
+/**
  * Displays the slider
  */
 const Slider = props => {
   /**
    * Displays a set of responsive images
    */
-  const { responsiveImages } = props;
+  const { images } = props;
+
+  /**
+   * Prepares the slides
+   */
+  const slides = images.map((image, index) => {
+    const ref = React.createRef();
+    //refs[index] = ref;
+
+    return (
+      <Slide key={`slide-${index}`} ref={ref}>
+        {image}
+      </Slide>
+    );
+  });
 
   return (
     <Container className="Slider">
       Slider
-      <ul>
-        <li>{responsiveImages}</li>
-      </ul>
+      <Slides>{slides}</Slides>
       <ul>
         <li>
           On click

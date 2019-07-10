@@ -6,7 +6,7 @@ import { useData } from "../../hooks";
 /**
  * Defines the Post prop type
  */
-const postPropType = {
+const postPropTypes = {
   id: PropTypes.string,
   title: PropTypes.string,
   featuredImage: PropTypes.string
@@ -25,16 +25,16 @@ const postDefaultProps = {
  * Defines the prop types
  */
 const propTypes = {
-  node: PropTypes.shape(postPropType),
-  edges: PropTypes.arrayOf(PropTypes.shape(postPropType))
+  edges: PropTypes.arrayOf(
+    PropTypes.shape({ node: PropTypes.shape(postPropTypes) })
+  )
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
-  node: postDefaultProps,
-  edges: Array(1).fill(postDefaultProps)
+  edges: Array(1).fill({ node: postDefaultProps })
 };
 
 /**
