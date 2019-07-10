@@ -3,30 +3,14 @@ import gql from "graphql-tag";
 
 import { useData } from "../../hooks";
 
-/**
- * Defines the Post prop type
- */
-const postPropTypes = {
-  id: PropTypes.string,
-  title: PropTypes.string,
-  featuredImage: PropTypes.string
-};
-
-/**
- * Defines the Post default props
- */
-const postDefaultProps = {
-  id: "1",
-  title: "Post",
-  featuredImage: "Post featured image"
-};
+import Post, { PostPropTypes, PostDefaultProps } from "../Post";
 
 /**
  * Defines the prop types
  */
 const propTypes = {
   edges: PropTypes.arrayOf(
-    PropTypes.shape({ node: PropTypes.shape(postPropTypes) })
+    PropTypes.shape({ node: PropTypes.shape(PostPropTypes) })
   )
 };
 
@@ -34,7 +18,7 @@ const propTypes = {
  * Defines the default props
  */
 const defaultProps = {
-  edges: Array(1).fill({ node: postDefaultProps })
+  edges: Array(1).fill({ node: PostDefaultProps })
 };
 
 /**
@@ -49,29 +33,12 @@ const query = gql`
       }
       edges {
         node {
-          id
-          title
-          featuredImage {
-            id
-            sourceUrl
-            mediaDetails {
-              file
-              height
-              width
-              sizes {
-                file
-                height
-                mimeType
-                name
-                sourceUrl
-                width
-              }
-            }
-          }
+          ...PostNode
         }
       }
     }
   }
+  ${Post.fragments.node}
 `;
 
 /**

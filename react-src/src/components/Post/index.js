@@ -1,2 +1,2 @@
 export { default } from "./Post";
-export { propTypes, defaultProps } from "./Post";
+export { PostPropTypes, PostDefaultProps } from "./Post";

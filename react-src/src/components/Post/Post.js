@@ -1,24 +1,46 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import gql from "graphql-tag";
 
+import PostFeaturedImage, {
+  PostFeaturedImagePropTypes,
+  PostFeaturedImageDefaultProps
+} from "../PostFeaturedImage";
 import { Article as _Article } from "../SemanticHTML";
-import Image from "../Image";
 
 /**
  * Defines the prop types
  */
 const propTypes = {
+  id: PropTypes.string,
   title: PropTypes.string,
-  imageSrc: PropTypes.string
+  featuredImage: PropTypes.shape(PostFeaturedImagePropTypes)
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
-  title: "Article",
-  imageSrc: "The URL of the image"
+  id: "1",
+  title: "Post",
+  featuredImage: PostFeaturedImageDefaultProps
+};
+
+/**
+ * Defines the query fragment needed by the component
+ */
+const queryFragment = {
+  node: gql`
+    fragment PostNode on Post {
+      id
+      title
+      featuredImage {
+        ...FeaturedImageNode
+      }
+    }
+    ${PostFeaturedImage.fragments.node}
+  `
 };
 
 /**
@@ -30,17 +52,18 @@ const Article = styled(_Article)(props => ({}));
  * Displays the component
  */
 const Post = props => {
-  const { title, imageSrc } = props;
+  const { title, featuredImage } = props;
 
   return (
     <Article className="Post" title={title}>
-      <Image src={imageSrc} title={title} />
+      <PostFeaturedImage />
     </Article>
   );
 };
 
 Post.propTypes = propTypes;
 Post.defaultProps = defaultProps;
+Post.fragments = queryFragment;
 
 export default Post;
-export { propTypes, defaultProps };
+export { propTypes as PostPropTypes, defaultProps as PostDefaultProps };
