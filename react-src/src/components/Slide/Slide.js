@@ -71,7 +71,7 @@ const Slide = React.forwardRef((props, ref) => {
   const active = isActive ? "active" : "";
 
   return (
-    <Container isActive={isActive} className={`Slide ${active}`} ref={ref}>
+    <Container className={`Slide ${active}`} ref={ref}>
       {children}
     </Container>
   );

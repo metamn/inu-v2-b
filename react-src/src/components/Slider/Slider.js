@@ -10,9 +10,9 @@ import Post from "../Post";
  */
 const propTypes = {
   /**
-   * A set of slides
+   * Raw data to set up slides
    */
-  slides: PropTypes.array,
+  rawData: PropTypes.any,
   /**
    * Which slide is active
    */
@@ -23,7 +23,7 @@ const propTypes = {
  * Defines the default props
  */
 const defaultProps = {
-  slides: ["Displays the featured image in a responsive way"],
+  rawData: "rawData",
   activeSlide: 1
 };
 
@@ -42,9 +42,9 @@ const Slides = styled("div")(props => ({}));
  */
 const Slider = props => {
   /**
-   * Loads the slides
+   * Loads the raw data
    */
-  const { slides, activeSlide } = props;
+  const { rawData, activeSlide } = props;
 
   /**
    * Prepares an array to hold the slide refs
@@ -54,16 +54,15 @@ const Slider = props => {
   /**
    * Prepares the slides
    */
-  const slidesPrepared = slides.map((slide, index) => {
+  const slides = rawData.map((data, index) => {
     const ref = React.createRef();
     refs[index] = ref;
 
     const isActive = index === activeSlide;
-    console.log("isActive:" + isActive);
 
     return (
       <Slide isActive={isActive} key={`slide-${index}`} ref={ref}>
-        <Post />
+        <Post {...data.node} />
       </Slide>
     );
   });
@@ -71,7 +70,7 @@ const Slider = props => {
   return (
     <Container className="Slider">
       Slider
-      <Slides className="Slides">{slidesPrepared}</Slides>
+      <Slides className="Slides">{slides}</Slides>
       <ul>
         <li>
           On click

@@ -73,7 +73,7 @@ const Content = props => {
           <li>Inactive: when the Random slideshow or Contact is displayed</li>
         </ul>
       </ul>
-      <Slider slides={postsWithFeaturedImage} />
+      <Slider rawData={postsWithFeaturedImage} />
       <Thumbs />
       <Contact content={contactPageContent} />
     </Container>

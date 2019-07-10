@@ -146,6 +146,8 @@ const Image = props => {
     delay
   } = props;
 
+  console.log("src:" + src);
+
   /**
    * Creates a placeholder image.
    */

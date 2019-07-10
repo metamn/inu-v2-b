@@ -56,7 +56,7 @@ const Post = props => {
 
   return (
     <Article className="Post" title={title}>
-      <PostFeaturedImage />
+      <PostFeaturedImage alt={title} {...featuredImage} />
     </Article>
   );
 };

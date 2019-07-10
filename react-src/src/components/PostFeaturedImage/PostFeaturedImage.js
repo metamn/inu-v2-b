@@ -11,6 +11,7 @@ import Image from "../Image";
 const propTypes = {
   id: PropTypes.string,
   sourceUrl: PropTypes.string,
+  alt: PropTypes.string,
   mediaDetails: PropTypes.shape({
     file: PropTypes.string,
     height: PropTypes.number,
@@ -34,6 +35,7 @@ const propTypes = {
 const defaultProps = {
   id: "cG9zdDoxMQ==",
   title: "Bg",
+  alt: "Bg image",
   featuredImage: {
     id: "YXR0YWNobWVudDoxMg==",
     sourceUrl: "http://localhost/react-wp/wp-content/uploads/2019/05/Bg.jpeg",
@@ -117,9 +119,11 @@ const Container = styled("div")(props => ({}));
  * Displays the component
  */
 const PostFeaturedImage = props => {
+  const { alt, sourceUrl } = props;
+
   return (
     <Container className="PostFeaturedImage">
-      <Image />
+      <Image src={sourceUrl} alt={alt} />
     </Container>
   );
 };
