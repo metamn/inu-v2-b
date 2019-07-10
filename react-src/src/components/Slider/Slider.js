@@ -2,32 +2,30 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
+import Slide, { SlideDefaultProps, SlidePropTypes } from "../Slide";
+import Post from "../Post";
+
 /**
  * Defines the prop types
  */
 const propTypes = {
   /**
-   * A set of responsive images
+   * A set of slides
    */
-  images: PropTypes.array
+  slides: PropTypes.array
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
-  images: ["Displays the featured image in a responsive way"]
+  slides: ["Displays the featured image in a responsive way"]
 };
 
 /**
  * Styles the component container
  */
-const Container = styled("div")(props => ({
-  border: "1px solid",
-  padding: "1.25em",
-  margin: "1.25em",
-  backgroundColor: "white"
-}));
+const Container = styled("div")(props => ({}));
 
 /**
  * Styles the slides container
@@ -35,29 +33,29 @@ const Container = styled("div")(props => ({
 const Slides = styled("div")(props => ({}));
 
 /**
- * Styles the slide container
- */
-const Slide = styled("div")(props => ({}));
-
-/**
  * Displays the slider
  */
 const Slider = props => {
   /**
-   * Displays a set of responsive images
+   * Loads the slides
    */
-  const { images } = props;
+  const { slides } = props;
+
+  /**
+   * Prepares an array to hold the slide refs
+   */
+  let refs = [];
 
   /**
    * Prepares the slides
    */
-  const slides = images.map((image, index) => {
+  const slidesPrepared = slides.map((slide, index) => {
     const ref = React.createRef();
-    //refs[index] = ref;
+    refs[index] = ref;
 
     return (
       <Slide key={`slide-${index}`} ref={ref}>
-        Slide
+        <Post />
       </Slide>
     );
   });
@@ -65,7 +63,7 @@ const Slider = props => {
   return (
     <Container className="Slider">
       Slider
-      <Slides>{slides}</Slides>
+      <Slides>{slidesPrepared}</Slides>
       <ul>
         <li>
           On click
