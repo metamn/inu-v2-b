@@ -11,6 +11,7 @@
     "react": "^16.8.6",
     "react-apollo-hooks": "^0.4.5",
     "react-dom": "^16.8.6",
+    "react-progressive-image": "^0.6.0",
     "styled-components": "^4.3.2"
   },
   "scripts": {

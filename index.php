@@ -49,5 +49,5 @@
         To begin the development, run `npm run wpstart` or `yarn wpstart`.
         To create a production bundle, use `npm run wpbuild` or `yarn wpbuild`.
     -->
-    <script src="/react-wp/wp-content/themes/inu-v2-b/static/js/runtime~main.ad097248.js"></script><script src="/react-wp/wp-content/themes/inu-v2-b/static/js/1.2a5de895.chunk.js"></script><script src="/react-wp/wp-content/themes/inu-v2-b/static/js/main.d174bc4b.chunk.js"></script></body>
+    <script src="/react-wp/wp-content/themes/inu-v2-b/static/js/runtime~main.ad097248.js"></script><script src="/react-wp/wp-content/themes/inu-v2-b/static/js/0.318a3d6e.chunk.js"></script><script src="/react-wp/wp-content/themes/inu-v2-b/static/js/main.396d11ae.chunk.js"></script></body>
 </html>

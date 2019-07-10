@@ -57,7 +57,7 @@ const Slider = props => {
 
     return (
       <Slide key={`slide-${index}`} ref={ref}>
-        {image}
+        Slide
       </Slide>
     );
   });
