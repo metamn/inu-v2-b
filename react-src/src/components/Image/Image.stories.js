@@ -29,6 +29,19 @@ storiesOf("Image", module)
       notes: { markdown: description }
     }
   )
+  .add(
+    "With srcset and width",
+    () => (
+      <Image
+        src="http://metamn.io/assets/images/beat-home-mobile_laptop.png"
+        srcset="http://metamn.io/assets/images/beat-home-mobile_mobile.png 306w, http://metamn.io/assets/images/beat-home-mobile_tablet.png 535w, http://metamn.io/assets/images/beat-home-mobile_laptop.png 622w, http://metamn.io/assets/images/beat-home-mobile_desktop.png 898w"
+        width="600"
+      />
+    ),
+    {
+      notes: { markdown: description }
+    }
+  )
   .add("Progressive, with empty props", () => <Image isProgressive={true} />, {
     notes: { markdown: description }
   })
@@ -51,6 +64,35 @@ storiesOf("Image", module)
         src="http://metamn.io/assets/images/beat-home-mobile_laptop.png"
         srcset="http://metamn.io/assets/images/beat-home-mobile_mobile.png 306w, http://metamn.io/assets/images/beat-home-mobile_tablet.png 535w, http://metamn.io/assets/images/beat-home-mobile_laptop.png 622w, http://metamn.io/assets/images/beat-home-mobile_desktop.png 898w"
         isProgressive={true}
+      />
+    ),
+    {
+      notes: { markdown: description }
+    }
+  )
+  .add(
+    "Progressive, with srcset and delay",
+    () => (
+      <Image
+        src="http://metamn.io/assets/images/beat-home-mobile_laptop.png"
+        srcset="http://metamn.io/assets/images/beat-home-mobile_mobile.png 306w, http://metamn.io/assets/images/beat-home-mobile_tablet.png 535w, http://metamn.io/assets/images/beat-home-mobile_laptop.png 622w, http://metamn.io/assets/images/beat-home-mobile_desktop.png 898w"
+        isProgressive={true}
+        delay={3000}
+      />
+    ),
+    {
+      notes: { markdown: description }
+    }
+  )
+  .add(
+    "Progressive, with srcset, delay, width and sizes",
+    () => (
+      <Image
+        src="http://metamn.io/assets/images/beat-home-mobile_laptop.png"
+        srcset="http://metamn.io/assets/images/beat-home-mobile_mobile.png 306w, http://metamn.io/assets/images/beat-home-mobile_tablet.png 535w, http://metamn.io/assets/images/beat-home-mobile_laptop.png 622w, http://metamn.io/assets/images/beat-home-mobile_desktop.png 898w"
+        isProgressive={true}
+        delay={3000}
+        sizes="(max-width: 767px) 306px, (max-width: 1024px) 535px, (max-width:1600px) 622px, 898px"
       />
     ),
     {

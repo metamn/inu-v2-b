@@ -49,7 +49,11 @@ const propTypes = {
   /**
    * Is it still loading?
    */
-  isLoading: PropTypes.bool
+  isLoading: PropTypes.bool,
+  /**
+   * Delay the loading of the image in miliseconds
+   */
+  delay: PropTypes.number
 };
 
 /**
@@ -71,7 +75,8 @@ const defaultProps = {
     height: "300"
   },
   isProgressive: false,
-  isLoading: false
+  isLoading: false,
+  delay: 0
 };
 
 /**
@@ -109,7 +114,8 @@ const Image = props => {
     height,
     placeholder,
     isProgressive,
-    isLoading
+    isLoading,
+    delay
   } = props;
 
   /**
@@ -133,6 +139,7 @@ const Image = props => {
         sizes: sizes
       }}
       placeholder={placeholderImage}
+      delay={delay}
     >
       {(src, loading, srcSetData) => (
         <Img
