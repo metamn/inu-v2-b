@@ -83,7 +83,7 @@ const defaultProps = {
  * Styles the image
  */
 const Img = styled("img")(props => ({
-  opacity: props.isLoading ? "0.5" : "1"
+  opacity: props.isLoading ? "0.3" : "1"
 }));
 
 /**
