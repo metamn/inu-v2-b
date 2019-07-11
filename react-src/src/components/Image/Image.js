@@ -128,19 +128,19 @@ const createMaxWidths = props => {
 
   return {
     [`${Media.mobile}`]: {
-      maxWidth: normalizedWidths[0]
+      maxWidth: `${normalizedWidths[0]}px`
     },
 
     [`${Media.tablet}`]: {
-      maxWidth: normalizedWidths[1]
+      maxWidth: `${normalizedWidths[1]}px`
     },
 
     [`${Media.laptop}`]: {
-      maxWidth: normalizedWidths[2]
+      maxWidth: `${normalizedWidths[2]}px`
     },
 
     [`${Media.desktop}`]: {
-      maxWidth: normalizedWidths[3]
+      maxWidth: `${normalizedWidths[3]}px`
     }
   };
 };
