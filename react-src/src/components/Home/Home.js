@@ -13,7 +13,13 @@ import Icon from "../Icon";
  * Defines the prop types
  */
 const propTypes = {
+  /**
+   * The site settings
+   */
   ...SettingsPropTypes,
+  /**
+   * The theme switcher icon
+   */
   themeSwitcherIcon: PropTypes.string
 };
 

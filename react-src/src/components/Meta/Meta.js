@@ -8,6 +8,9 @@ import { SettingsPropTypes, SettingsDefaultProps } from "../Settings";
  * Defines the prop types
  */
 const propTypes = {
+  /**
+   * The site settings
+   */
   ...SettingsPropTypes
 };
 

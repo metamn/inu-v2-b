@@ -7,6 +7,9 @@ import { SettingsPropTypes, SettingsDefaultProps } from "../Settings";
  * Defines the prop types
  */
 const propTypes = {
+  /**
+   * The site settings
+   */
   ...SettingsPropTypes
 };
 
@@ -20,10 +23,20 @@ const defaultProps = {
 /**
  * Styles the component container
  */
-const Container = styled("div")(props => ({
+const Header = styled("header")(props => ({
   display: "flex",
   flexDirection: "column"
 }));
+
+/**
+ * Styles the title
+ */
+const Title = styled("h1")(props => ({}));
+
+/**
+ * Styles the description
+ */
+const Description = styled("h2")(props => ({}));
 
 /**
  * Displays site title and description
@@ -32,12 +45,14 @@ const Logo = props => {
   const { title, url, description } = props;
 
   return (
-    <Container className="Logo">
-      <div>
-        <a href={url}>{title}</a>
-      </div>
-      <div>{description}</div>
-    </Container>
+    <Header className="Logo">
+      <Title className="Title">
+        <a href={url} title={title}>
+          {title}
+        </a>
+      </Title>
+      <Description className="Description">{description}</Description>
+    </Header>
   );
 };
 
