@@ -34,54 +34,50 @@ const propTypes = {
  */
 const defaultProps = {
   id: "cG9zdDoxMQ==",
-  title: "Bg",
+  sourceUrl: "http://localhost/react-wp/wp-content/uploads/2019/05/Bg.jpeg",
   alt: "Bg image",
-  featuredImage: {
-    id: "YXR0YWNobWVudDoxMg==",
-    sourceUrl: "http://localhost/react-wp/wp-content/uploads/2019/05/Bg.jpeg",
-    mediaDetails: {
-      file: "2019/05/Bg.jpeg",
-      height: 1152,
-      width: 2048,
-      sizes: [
-        {
-          file: "Bg-150x150.jpeg",
-          height: "150",
-          mimeType: "image/jpeg",
-          name: "thumbnail",
-          sourceUrl:
-            "http://localhost/react-wp/wp-content/uploads/2019/05/Bg-150x150.jpeg",
-          width: "150"
-        },
-        {
-          file: "Bg-300x169.jpeg",
-          height: "169",
-          mimeType: "image/jpeg",
-          name: "medium",
-          sourceUrl:
-            "http://localhost/react-wp/wp-content/uploads/2019/05/Bg-300x169.jpeg",
-          width: "300"
-        },
-        {
-          file: "Bg-768x432.jpeg",
-          height: "432",
-          mimeType: "image/jpeg",
-          name: "medium_large",
-          sourceUrl:
-            "http://localhost/react-wp/wp-content/uploads/2019/05/Bg-768x432.jpeg",
-          width: "768"
-        },
-        {
-          file: "Bg-1024x576.jpeg",
-          height: "576",
-          mimeType: "image/jpeg",
-          name: "large",
-          sourceUrl:
-            "http://localhost/react-wp/wp-content/uploads/2019/05/Bg-1024x576.jpeg",
-          width: "1024"
-        }
-      ]
-    }
+  mediaDetails: {
+    file: "2019/05/Bg.jpeg",
+    height: 1152,
+    width: 2048,
+    sizes: [
+      {
+        file: "Bg-150x150.jpeg",
+        height: "150",
+        mimeType: "image/jpeg",
+        name: "thumbnail",
+        sourceUrl:
+          "http://localhost/react-wp/wp-content/uploads/2019/05/Bg-150x150.jpeg",
+        width: "150"
+      },
+      {
+        file: "Bg-300x169.jpeg",
+        height: "169",
+        mimeType: "image/jpeg",
+        name: "medium",
+        sourceUrl:
+          "http://localhost/react-wp/wp-content/uploads/2019/05/Bg-300x169.jpeg",
+        width: "300"
+      },
+      {
+        file: "Bg-768x432.jpeg",
+        height: "432",
+        mimeType: "image/jpeg",
+        name: "medium_large",
+        sourceUrl:
+          "http://localhost/react-wp/wp-content/uploads/2019/05/Bg-768x432.jpeg",
+        width: "768"
+      },
+      {
+        file: "Bg-1024x576.jpeg",
+        height: "576",
+        mimeType: "image/jpeg",
+        name: "large",
+        sourceUrl:
+          "http://localhost/react-wp/wp-content/uploads/2019/05/Bg-1024x576.jpeg",
+        width: "1024"
+      }
+    ]
   }
 };
 
@@ -116,14 +112,29 @@ const queryFragment = {
 const Container = styled("div")(props => ({}));
 
 /**
- * Displays the component
+ * Displays the post featured image
  */
 const PostFeaturedImage = props => {
-  const { alt, sourceUrl } = props;
+  const { alt, sourceUrl, mediaDetails } = props;
+  const { sizes } = mediaDetails;
+
+  /**
+   * Prepares the responsive image
+   */
+  let srcSet = sizes.map(item => `${item.sourceUrl} ${item.width}w`);
+  srcSet.push(`${sourceUrl} ${mediaDetails.width}w`);
+
+  let srcSetWidths = sizes.map(item => item.width);
+  srcSetWidths.push(mediaDetails.width);
 
   return (
     <Container className="PostFeaturedImage">
-      <Image src={sourceUrl} alt={alt} />
+      <Image
+        src={sourceUrl}
+        alt={alt}
+        srcSet={srcSet}
+        srcSetWidths={srcSetWidths}
+      />
     </Container>
   );
 };

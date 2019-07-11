@@ -16,7 +16,7 @@ const propTypes = {
   /**
    * A set of image sources
    */
-  srcset: PropTypes.string,
+  srcSet: PropTypes.string,
   /**
    * A set of source sizes
    */
@@ -36,14 +36,14 @@ const propTypes = {
   /**
    * The image placeholder
    */
-  placeholder: {
+  placeholder: PropTypes.shape({
     url: PropTypes.string,
     backgroundColor: PropTypes.string,
     color: PropTypes.string,
     text: PropTypes.string,
     width: PropTypes.string,
     height: PropTypes.string
-  },
+  }),
   /**
    * To use ProgressiveImage?
    */
@@ -55,7 +55,12 @@ const propTypes = {
   /**
    * Delay the loading of the image in miliseconds
    */
-  delay: PropTypes.number
+  delay: PropTypes.number,
+  /**
+   * The widths used in the srcSet.
+   * Useful to avoid image flicks on loading with CSS media queries
+   */
+  srcSetWidths: PropTypes.arrayOf(PropTypes.string)
 };
 
 /**
@@ -63,7 +68,7 @@ const propTypes = {
  */
 const defaultProps = {
   src: "",
-  srcset: "",
+  srcSet: "",
   sizes: "",
   alt: "image",
   width: "",
@@ -76,9 +81,10 @@ const defaultProps = {
     width: "300",
     height: "300"
   },
-  isProgressive: false,
+  isProgressive: true,
   isLoading: false,
-  delay: 0
+  delay: 0,
+  srcSetWidths: [""]
 };
 
 /**
@@ -135,7 +141,8 @@ const Image = props => {
    */
   const {
     src,
-    srcset,
+    srcSet,
+    srcSetWidths,
     sizes,
     alt,
     width,
@@ -145,8 +152,6 @@ const Image = props => {
     isLoading,
     delay
   } = props;
-
-  console.log("src:" + src);
 
   /**
    * Creates a placeholder image.
@@ -158,6 +163,8 @@ const Image = props => {
    */
   const nonEmptySrc = src !== "" ? src : placeholderImage;
 
+  console.log("srcSetWidths:" + srcSetWidths);
+
   /**
    * Returns a ProgressiveImage if requested. Otherwise a simple HTML image
    */
@@ -165,7 +172,7 @@ const Image = props => {
     <ProgressiveImage
       src={nonEmptySrc}
       srcSetData={{
-        srcSet: srcset,
+        srcSet: srcSet,
         sizes: sizes
       }}
       placeholder={placeholderImage}
@@ -175,9 +182,9 @@ const Image = props => {
         <Img
           className="progressive-image"
           src={nonEmptySrc}
-          srcSet={srcSetData.srcSet}
-          sizes={srcSetData.sizes}
           alt={alt}
+          srcSet={srcSetData.srcSet !== "" ? srcSetData.srcSet : null}
+          sizes={srcSetData.sizes !== "" ? srcSetData.sizes : null}
           isLoading={loading}
         />
       )}
@@ -186,11 +193,11 @@ const Image = props => {
     <Img
       className="image"
       src={nonEmptySrc}
-      srcset={srcset}
-      sizes={sizes}
       alt={alt}
-      width={width}
-      height={height}
+      srcSet={srcSet !== "" ? srcSet : null}
+      sizes={sizes !== "" ? sizes : null}
+      width={width !== "" ? width : null}
+      height={height !== "" ? height : null}
       isLoading={isLoading}
     />
   );
