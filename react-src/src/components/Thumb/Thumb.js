@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import Post, { PostPropTypes, PostsDefaultProps } from "../Post";
+import Post, { PostPropTypes, PostDefaultProps } from "../Post";
 
 /**
  * Defines the prop types
@@ -26,7 +26,7 @@ const propTypes = {
  * Defines the default props
  */
 const defaultProps = {
-  post: PostsDefaultProps,
+  post: PostDefaultProps,
   isActive: false,
   featuredImageType: "thumbnail"
 };
@@ -47,7 +47,7 @@ const Thumb = props => {
   const { isActive, post, featuredImageType } = props;
 
   return (
-    <Container className="Thumb">
+    <Container className="Thumb" isActive={isActive}>
       <Post {...post} featuredImageType={featuredImageType} />
     </Container>
   );

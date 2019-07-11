@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-import Categories from "../Categories";
 import Menu from "../Menu";
 import Content from "../Content";
 

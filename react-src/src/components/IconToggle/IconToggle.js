@@ -67,6 +67,7 @@ const IconToggle = props => {
     <Container
       className="icon-toggle"
       onClick={() => toggleIconClickHandler()}
+      status={status}
       {...props}
     >
       <Icon status={icon1Status}>{icon1}</Icon>

@@ -165,8 +165,6 @@ const thumbnailImage = props => {
  */
 const PostFeaturedImage = props => {
   const { featuredImage, featuredImageType } = props;
-  const { alt, sourceUrl, mediaDetails } = featuredImage;
-  const { sizes } = mediaDetails;
 
   const image =
     featuredImageType === "slider"
