@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { Helmet } from "react-helmet";
 //import { stringify } from "flatted";
 
 import Settings, { SettingsPropTypes, SettingsDefaultProps } from "../Settings";
+import Meta from "../Meta";
 import Logo from "../Logo";
 import Main from "../Main";
 import Icon from "../Icon";
@@ -44,24 +44,13 @@ const Home = props => {
   const siteSettings = Settings(props);
 
   /**
-   * Sets up the document `<head>`
-   */
-  const meta = (
-    <Helmet>
-      <meta name="title" content={siteSettings.title} />
-      <meta name="description" content={siteSettings.description} />
-      <meta name="viewport" content="width=device-width" />
-    </Helmet>
-  );
-
-  /**
    * Displays a theme switcher icon
    */
   const { themeSwitcherIcon } = props;
 
   return (
     <>
-      {meta}
+      <Meta {...siteSettings} />
       <Container className="Home">
         Home
         <Icon>{themeSwitcherIcon}</Icon>
