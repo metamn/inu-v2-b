@@ -2,21 +2,28 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
+import Post from "../Post";
+
 /**
  * Defines the prop types
  */
 const propTypes = {
   /**
-   * A set of thumbnails
+   * Raw data to set up thumbs
    */
-  thumbs: PropTypes.array
+  rawData: PropTypes.any,
+  /**
+   * Which thumb is active
+   */
+  activeThumb: PropTypes.number
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
-  thumbs: ["Displays the thumbnail version of the featured images"]
+  rawData: "rawData",
+  activeThumb: 3
 };
 
 /**
@@ -26,25 +33,46 @@ const Container = styled("div")(props => ({
   border: "1px solid",
   padding: "1.25em",
   margin: "1.25em",
-  backgroundColor: "white"
+  backgroundColor: "white",
+  display: "flex",
+  flexWrap: "wrap"
 }));
 
 /**
- * Displays the component
+ * Styles the thumb container
+ */
+const Thumb = styled("div")(props => ({
+  border: props.isActive ? "1px solid" : "1px transparent",
+  padding: "1.25em",
+  margin: "1.25em"
+}));
+
+/**
+ * Displays a set of thumbnails
  */
 const Thumbs = props => {
   /**
-   * Displays a set of thumbnails
+   * Loads the raw data
    */
-  const { thumbs } = props;
+  const { rawData, activeThumb } = props;
+
+  /**
+   * Prepares the thumbs
+   */
+  const thumbs = rawData.map((data, index) => {
+    const isActive = index === activeThumb;
+
+    return (
+      <Thumb isActive={isActive} key={`thumb-${index}`}>
+        <Post {...data.node} />
+      </Thumb>
+    );
+  });
 
   return (
     <Container className="Thumbs">
       Thumbs
-      <ul>
-        <li>{thumbs}</li>
-        <li>Marks the active image</li>
-      </ul>
+      {thumbs}
       <ul>
         <li>
           On click

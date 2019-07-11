@@ -75,7 +75,7 @@ const Content = props => {
         </ul>
       </ul>
       <Slider rawData={postsWithFeaturedImage} />
-      <Thumbs />
+      <Thumbs rawData={postsWithFeaturedImage} />
       <Contact content={contactPageContent} />
     </Container>
   );
