@@ -1,29 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 
-import Categories, {
-  CategoriesPropTypes,
-  CategoriesDefaultProps
-} from "../Categories";
+import Categories from "../Categories";
 import Menu from "../Menu";
 import Content from "../Content";
 
 /**
  * Defines the prop types
  */
-const propTypes = {
-  /**
-   * Categories
-   */
-  ...CategoriesPropTypes
-};
+const propTypes = {};
 
 /**
  * Defines the default props
  */
-const defaultProps = {
-  ...CategoriesDefaultProps
-};
+const defaultProps = {};
 
 /**
  * Styles the component container
@@ -38,15 +28,10 @@ const Container = styled("div")(props => ({
  * Displays the component
  */
 const Main = props => {
-  /**
-   * Loads categories from the database
-   */
-  const categories = Categories(props);
-
   return (
     <Container className="Main">
       Main
-      <Menu categories={categories} />
+      <Menu />
       <Content />
     </Container>
   );

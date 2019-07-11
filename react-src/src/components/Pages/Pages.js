@@ -40,7 +40,7 @@ const query = gql`
 /**
  * Loads a page from the database
  */
-const Pages = props => {
+const Pages = () => {
   /**
    * Loads only the `Contact` page
    */

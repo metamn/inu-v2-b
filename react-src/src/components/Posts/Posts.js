@@ -44,7 +44,7 @@ const query = gql`
 /**
  * Loads a list of posts associated to a category
  */
-const Posts = props => {
+const Posts = () => {
   /**
    * Defines which category to load posts from
    */

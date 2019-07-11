@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import {
+import Categories, {
   CategoriesPropTypes,
   CategoriesDefaultProps,
   ConvertCategoriesToMenuItems
@@ -17,7 +17,7 @@ const propTypes = {
   /**
    * Categories
    */
-  categories: PropTypes.shape(CategoriesPropTypes),
+  ...CategoriesPropTypes,
   /**
    * The `Random` menu item
    */
@@ -40,7 +40,7 @@ const propTypes = {
  * Defines the default props
  */
 const defaultProps = {
-  categories: PropTypes.shape(CategoriesDefaultProps),
+  ...CategoriesDefaultProps,
   random: "Random slideshow",
   contact: "Contact",
   toggleIconDown: "Toggle icon down",
@@ -61,9 +61,14 @@ const Container = styled("div")(props => ({
  */
 const Menu = props => {
   /**
-   * Loads categories, `Random`, and `Contact` menu items
+   * Loads categories
    */
-  const { categories, random, contact } = props;
+  const categories = Categories();
+
+  /**
+   * Loads `Random`, and `Contact` menu items
+   */
+  const { random, contact } = props;
 
   /**
    * Displays categories as menu items

@@ -53,7 +53,7 @@ const Content = props => {
   /**
    * Loads a list of posts associated to a category
    */
-  const posts = Posts(props);
+  const posts = Posts();
 
   /**
    * Filters posts having a featured image set
@@ -65,7 +65,7 @@ const Content = props => {
   /**
    * Loads the Contact page from the database
    */
-  const pages = Pages(props);
+  const pages = Pages();
   const contactPageContent = pages.edges[0].node.content;
 
   /**
