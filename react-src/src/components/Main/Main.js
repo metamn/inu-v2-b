@@ -12,6 +12,9 @@ import Content from "../Content";
  * Defines the prop types
  */
 const propTypes = {
+  /**
+   * Categories
+   */
   ...CategoriesPropTypes
 };
 
