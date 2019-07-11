@@ -121,7 +121,7 @@ storiesOf("Image", module)
         srcSet="http://metamn.io/assets/images/beat-home-mobile_mobile.png 306w, http://metamn.io/assets/images/beat-home-mobile_tablet.png 535w, http://metamn.io/assets/images/beat-home-mobile_laptop.png 622w, http://metamn.io/assets/images/beat-home-mobile_desktop.png 898w"
         isProgressive={true}
         delay={3000}
-        srcSetWidths={["306", "525", "622", "898"]}
+        srcSetWidths={["150", "306", "525", "622", "898"]}
       />
     ),
     {

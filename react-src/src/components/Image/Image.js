@@ -92,7 +92,7 @@ const defaultProps = {
  */
 const Img = styled("img")(props => ({
   opacity: props.isLoading ? "0.3" : "1",
-  ...props.maxWidths
+  ...props.widths
 }));
 
 /**
@@ -109,13 +109,13 @@ const Img = styled("img")(props => ({
  * Let's say on tablet initially the `beat-home-mobile_desktop.png` of 622px width is loaded since it's in the `src` attribute. Then it will be replaced by `home-mobile_tablet.png` which is 535px wide. This causes a flick.
  *
  */
-const createMaxWidths = props => {
+const createWidths = props => {
   const { breakpoints } = props;
   let { widths } = props;
 
   /**
    * `breakpoints` are like: [320,768,1280,1440]
-   * `widths` are like: [150,300,768,1024,1181] or [150, 200, 572]
+   * `widths` are like: [150,300,768,1024,1181] or [150, 200, 572] or [306, 525, 622, 898]
    * `maxWidths` should be like: [320:300, 768:768, 1280:1024, 1440:1181] or [320:200, 768:572, 1280:572, 1440:572]
    */
 
@@ -128,19 +128,19 @@ const createMaxWidths = props => {
 
   return {
     [`${Media.mobile}`]: {
-      maxWidth: `${normalizedWidths[0]}px`
+      width: `${normalizedWidths[0]}px`
     },
 
     [`${Media.tablet}`]: {
-      maxWidth: `${normalizedWidths[1]}px`
+      width: `${normalizedWidths[1]}px`
     },
 
     [`${Media.laptop}`]: {
-      maxWidth: `${normalizedWidths[2]}px`
+      width: `${normalizedWidths[2]}px`
     },
 
     [`${Media.desktop}`]: {
-      maxWidth: `${normalizedWidths[3]}px`
+      width: `${normalizedWidths[3]}px`
     }
   };
 };
@@ -190,9 +190,9 @@ const Image = props => {
   const nonEmptySrc = src !== "" ? src : placeholderImage;
 
   /**
-   * Sets a responsive max-width for each breakpoint to avoid image flicking
+   * Sets a responsive width for each breakpoint to avoid image flicking
    */
-  const maxWidths = createMaxWidths({
+  const widths = createWidths({
     widths: srcSetWidths,
     breakpoints: Breakpoints
   });
@@ -218,7 +218,7 @@ const Image = props => {
           srcSet={srcSetData.srcSet !== "" ? srcSetData.srcSet : null}
           sizes={srcSetData.sizes !== "" ? srcSetData.sizes : null}
           isLoading={loading}
-          maxWidths={maxWidths}
+          widths={widths}
         />
       )}
     </ProgressiveImage>
@@ -232,7 +232,7 @@ const Image = props => {
       width={width !== "" ? width : null}
       height={height !== "" ? height : null}
       isLoading={isLoading}
-      maxWidths={maxWidths}
+      widths={widths}
     />
   );
 };

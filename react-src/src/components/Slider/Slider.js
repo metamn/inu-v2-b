@@ -30,12 +30,17 @@ const defaultProps = {
 /**
  * Styles the component container
  */
-const Container = styled("div")(props => ({}));
+const Container = styled("div")(props => ({
+  position: "relative",
+  height: "70vh"
+}));
 
 /**
  * Styles the slides container
  */
-const Slides = styled("div")(props => ({}));
+const Slides = styled("div")(props => ({
+  position: "relative"
+}));
 
 /**
  * Displays the slider
