@@ -3,30 +3,14 @@ import gql from "graphql-tag";
 
 import { useData } from "../../hooks";
 
-/**
- * Defines the Page prop type
- */
-const pagePropType = {
-  id: PropTypes.string,
-  title: PropTypes.string,
-  content: PropTypes.string
-};
-
-/**
- * Defines the Page default props
- */
-const pageDefaultProps = {
-  id: "1",
-  title: "Contact",
-  content: "Contact page content"
-};
+import Page, { PageDefaultProps, PagePropTypes } from "../Page";
 
 /**
  * Defines the prop types
  */
 const propTypes = {
   edges: PropTypes.arrayOf(
-    PropTypes.shape({ node: PropTypes.shape(pagePropType) })
+    PropTypes.shape({ node: PropTypes.shape(PagePropTypes) })
   )
 };
 
@@ -34,7 +18,7 @@ const propTypes = {
  * Defines the default props
  */
 const defaultProps = {
-  edges: Array(1).fill({ node: pageDefaultProps })
+  edges: Array(1).fill({ node: PageDefaultProps })
 };
 
 /**
@@ -45,13 +29,12 @@ const query = gql`
     pages(first: $first, where: $where) {
       edges {
         node {
-          id
-          title
-          content
+          ...PageNode
         }
       }
     }
   }
+  ${Page.fragments.node}
 `;
 
 /**
