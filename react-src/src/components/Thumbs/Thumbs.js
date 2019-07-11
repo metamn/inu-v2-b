@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import Post from "../Post";
+import Thumb from "../Thumb";
 
 /**
  * Defines the prop types
@@ -39,15 +39,6 @@ const Container = styled("div")(props => ({
 }));
 
 /**
- * Styles the thumb container
- */
-const Thumb = styled("div")(props => ({
-  border: props.isActive ? "1px solid" : "1px transparent",
-  padding: "1.25em",
-  margin: "1.25em"
-}));
-
-/**
  * Displays a set of thumbnails
  */
 const Thumbs = props => {
@@ -63,9 +54,7 @@ const Thumbs = props => {
     const isActive = index === activeThumb;
 
     return (
-      <Thumb isActive={isActive} key={`thumb-${index}`}>
-        <Post {...data.node} featuredImageType="thumbnail" />
-      </Thumb>
+      <Thumb isActive={isActive} key={`thumb-${index}`} post={data.node} />
     );
   });
 
