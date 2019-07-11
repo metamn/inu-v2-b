@@ -24,7 +24,7 @@ const propTypes = {
  */
 const defaultProps = {
   rawData: "rawData",
-  activeSlide: 1
+  activeSlide: 3
 };
 
 /**

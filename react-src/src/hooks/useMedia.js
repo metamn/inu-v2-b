@@ -57,4 +57,4 @@ const useMedia = breakpoint => {
   });
 };
 
-export { Media, useMedia };
+export { Breakpoints, Media, useMedia };

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import ProgressiveImage from "react-progressive-image";
 
-import { Media } from "../../hooks";
+import { Breakpoints, Media } from "../../hooks";
 
 /**
  * Defines the prop types
@@ -89,6 +89,16 @@ const defaultProps = {
 
 /**
  * Styles the image
+ */
+const Img = styled("img")(props => ({
+  opacity: props.isLoading ? "0.3" : "1",
+  ...props.maxWidths
+}));
+
+/**
+ * Creates `max-width:`s for various CSS breakpoints.
+ *
+ * Used to prevent image flicking on load.
  *
  * When `srcset`, `sizes` is used the image has to be made responsive also in CSS. Otherwise after the responsive image is loaded it will flick because the preloader image in `src` has a single size instead of the same responsive sizes.
  *
@@ -99,25 +109,41 @@ const defaultProps = {
  * Let's say on tablet initially the `beat-home-mobile_desktop.png` of 622px width is loaded since it's in the `src` attribute. Then it will be replaced by `home-mobile_tablet.png` which is 535px wide. This causes a flick.
  *
  */
-const Img = styled("img")(props => ({
-  opacity: props.isLoading ? "0.3" : "1",
+const createMaxWidths = props => {
+  const { breakpoints } = props;
+  let { widths } = props;
 
-  [`${Media.mobile}`]: {
-    maxWidth: "306px"
-  },
+  /**
+   * `breakpoints` are like: [320,768,1280,1440]
+   * `widths` are like: [150,300,768,1024,1181] or [150, 200, 572]
+   * `maxWidths` should be like: [320:300, 768:768, 1280:1024, 1440:1181] or [320:200, 768:572, 1280:572, 1440:572]
+   */
 
-  [`${Media.tablet}`]: {
-    maxWidth: "535px"
-  },
+  widths.shift();
+  const wlength = widths.length;
+  const wlast = widths[wlength - 1];
+  const normalizedWidths = Object.keys(breakpoints).map((breakpoint, index) =>
+    index < wlength ? widths[index] : wlast
+  );
 
-  [`${Media.laptop}`]: {
-    maxWidth: "622px"
-  },
+  return {
+    [`${Media.mobile}`]: {
+      maxWidth: normalizedWidths[0]
+    },
 
-  [`${Media.desktop}`]: {
-    maxWidth: "898px"
-  }
-}));
+    [`${Media.tablet}`]: {
+      maxWidth: normalizedWidths[1]
+    },
+
+    [`${Media.laptop}`]: {
+      maxWidth: normalizedWidths[2]
+    },
+
+    [`${Media.desktop}`]: {
+      maxWidth: normalizedWidths[3]
+    }
+  };
+};
 
 /**
  * Creates a placeholder image with `https://placeholder.pics`
@@ -163,7 +189,13 @@ const Image = props => {
    */
   const nonEmptySrc = src !== "" ? src : placeholderImage;
 
-  console.log("srcSetWidths:" + srcSetWidths);
+  /**
+   * Sets a responsive max-width for each breakpoint to avoid image flicking
+   */
+  const maxWidths = createMaxWidths({
+    widths: srcSetWidths,
+    breakpoints: Breakpoints
+  });
 
   /**
    * Returns a ProgressiveImage if requested. Otherwise a simple HTML image
@@ -186,6 +218,7 @@ const Image = props => {
           srcSet={srcSetData.srcSet !== "" ? srcSetData.srcSet : null}
           sizes={srcSetData.sizes !== "" ? srcSetData.sizes : null}
           isLoading={loading}
+          maxWidths={maxWidths}
         />
       )}
     </ProgressiveImage>
@@ -199,6 +232,7 @@ const Image = props => {
       width={width !== "" ? width : null}
       height={height !== "" ? height : null}
       isLoading={isLoading}
+      maxWidths={maxWidths}
     />
   );
 };
