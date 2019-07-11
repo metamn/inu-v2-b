@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import ProgressiveImage from "react-progressive-image";
+import { stringify } from "flatted";
 
 import { Breakpoints, Media } from "../../hooks";
 
@@ -84,7 +85,7 @@ const defaultProps = {
   isProgressive: true,
   isLoading: false,
   delay: 0,
-  srcSetWidths: [""]
+  srcSetWidths: null
 };
 
 /**
@@ -189,13 +190,18 @@ const Image = props => {
    */
   const nonEmptySrc = src !== "" ? src : placeholderImage;
 
+  //console.log("srcSetWidths:" + stringify(srcSetWidths));
+
   /**
    * Sets a responsive width for each breakpoint to avoid image flicking
    */
-  const widths = createWidths({
-    widths: srcSetWidths,
-    breakpoints: Breakpoints
-  });
+  const widths =
+    srcSetWidths === null
+      ? null
+      : createWidths({
+          widths: srcSetWidths,
+          breakpoints: Breakpoints
+        });
 
   /**
    * Returns a ProgressiveImage if requested. Otherwise a simple HTML image
@@ -218,7 +224,7 @@ const Image = props => {
           srcSet={srcSetData.srcSet !== "" ? srcSetData.srcSet : null}
           sizes={srcSetData.sizes !== "" ? srcSetData.sizes : null}
           isLoading={loading}
-          widths={widths}
+          widths={widths !== null ? widths : null}
         />
       )}
     </ProgressiveImage>
@@ -232,7 +238,7 @@ const Image = props => {
       width={width !== "" ? width : null}
       height={height !== "" ? height : null}
       isLoading={isLoading}
-      widths={widths}
+      widths={widths !== null ? widths : null}
     />
   );
 };

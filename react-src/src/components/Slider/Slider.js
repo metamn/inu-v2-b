@@ -32,7 +32,8 @@ const defaultProps = {
  */
 const Container = styled("div")(props => ({
   position: "relative",
-  height: "70vh"
+  height: "70vh",
+  overflow: "hidden"
 }));
 
 /**

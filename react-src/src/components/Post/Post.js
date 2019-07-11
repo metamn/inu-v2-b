@@ -15,7 +15,7 @@ import { Article as _Article } from "../SemanticHTML";
 const propTypes = {
   id: PropTypes.string,
   title: PropTypes.string,
-  featuredImage: PropTypes.shape(PostFeaturedImagePropTypes)
+  ...PostFeaturedImagePropTypes
 };
 
 /**
@@ -24,7 +24,7 @@ const propTypes = {
 const defaultProps = {
   id: "1",
   title: "Post",
-  featuredImage: PostFeaturedImageDefaultProps
+  ...PostFeaturedImageDefaultProps
 };
 
 /**
@@ -52,11 +52,11 @@ const Article = styled(_Article)(props => ({}));
  * Displays the component
  */
 const Post = props => {
-  const { title, featuredImage } = props;
+  const { title } = props;
 
   return (
     <Article className="Post" title={title}>
-      <PostFeaturedImage alt={title} {...featuredImage} />
+      <PostFeaturedImage alt={title} {...props} />
     </Article>
   );
 };

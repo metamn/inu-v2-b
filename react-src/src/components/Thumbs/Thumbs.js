@@ -64,7 +64,7 @@ const Thumbs = props => {
 
     return (
       <Thumb isActive={isActive} key={`thumb-${index}`}>
-        <Post {...data.node} />
+        <Post {...data.node} featuredImageType="thumbnail" />
       </Thumb>
     );
   });
