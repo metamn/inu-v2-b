@@ -13,8 +13,17 @@ import Icon from "../Icon";
  * Defines the prop types
  */
 const propTypes = {
+  /**
+   * Posts
+   */
   ...PostsPropTypes,
+  /**
+   * Pages
+   */
   ...PagesPropTypes,
+  /**
+   * The content switcher icon
+   */
   contentSwitcherIcon: PropTypes.string
 };
 
