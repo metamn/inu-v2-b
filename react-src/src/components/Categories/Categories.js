@@ -1,7 +1,10 @@
+import React from "react";
 import PropTypes from "prop-types";
 import gql from "graphql-tag";
 
 import { useData } from "../../hooks";
+
+import MenuItem from "../MenuItem";
 
 /**
  * Defines prop types for Category
@@ -55,6 +58,17 @@ const query = gql`
 `;
 
 /**
+ * Converts categories to menu items
+ */
+const convertCategoriesToMenuItems = props => {
+  const { categories } = props;
+
+  return categories.edges.map((edge, index) => {
+    return <MenuItem key={`category-${index}`} name={edge.node.name} />;
+  });
+};
+
+/**
  * Loads categories from the database
  */
 const Categories = props => {
@@ -74,5 +88,6 @@ Categories.defaultProps = defaultProps;
 export default Categories;
 export {
   propTypes as CategoriesPropTypes,
-  defaultProps as CategoriesDefaultProps
+  defaultProps as CategoriesDefaultProps,
+  convertCategoriesToMenuItems as ConvertCategoriesToMenuItems
 };

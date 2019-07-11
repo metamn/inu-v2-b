@@ -2,7 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { CategoriesPropTypes, CategoriesDefaultProps } from "../Categories";
+import {
+  CategoriesPropTypes,
+  CategoriesDefaultProps,
+  ConvertCategoriesToMenuItems
+} from "../Categories";
 import MenuItem from "../MenuItem";
 import IconToggle from "../IconToggle";
 
@@ -10,10 +14,25 @@ import IconToggle from "../IconToggle";
  * Defines the prop types
  */
 const propTypes = {
+  /**
+   * Categories
+   */
   categories: PropTypes.shape(CategoriesPropTypes),
+  /**
+   * The `Random` menu item
+   */
   random: PropTypes.string,
+  /**
+   * The `Contact` menu item
+   */
   contact: PropTypes.string,
+  /**
+   * The toggle down icon
+   */
   toggleIconDown: PropTypes.string,
+  /**
+   * The toggle up icon
+   */
   toggleIconUp: PropTypes.string
 };
 
@@ -42,15 +61,15 @@ const Container = styled("div")(props => ({
  */
 const Menu = props => {
   /**
-   * Displays categories, and `Random`, `Contact` menu items
+   * Loads categories, `Random`, and `Contact` menu items
    */
   const { categories, random, contact } = props;
 
   /**
    * Displays categories as menu items
    */
-  const categoriesAsMenuItems = categories.edges.map((edge, index) => {
-    return <MenuItem key={`category-${index}`} name={edge.node.name} />;
+  const categoriesAsMenuItems = ConvertCategoriesToMenuItems({
+    categories: categories
   });
 
   /**
