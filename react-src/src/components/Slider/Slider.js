@@ -2,29 +2,23 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import Slide, { SlideDefaultProps, SlidePropTypes } from "../Slide";
-import Post from "../Post";
+import Slides, { SlidesDefaultProps, SlidesPropTypes } from "../Slides";
 
 /**
  * Defines the prop types
  */
 const propTypes = {
   /**
-   * Raw data to set up slides
+   * Slides
    */
-  rawData: PropTypes.any,
-  /**
-   * Which slide is active
-   */
-  activeSlide: PropTypes.number
+  ...SlidesPropTypes
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
-  rawData: "rawData",
-  activeSlide: 3
+  ...SlidesDefaultProps
 };
 
 /**
@@ -37,46 +31,18 @@ const Container = styled("div")(props => ({
 }));
 
 /**
- * Styles the slides container
- */
-const Slides = styled("div")(props => ({
-  position: "relative"
-}));
-
-/**
  * Displays the slider
  */
 const Slider = props => {
   /**
-   * Loads the raw data
+   * Loads the slides
    */
-  const { rawData, activeSlide } = props;
-
-  /**
-   * Prepares an array to hold the slide refs
-   */
-  let refs = [];
-
-  /**
-   * Prepares the slides
-   */
-  const slides = rawData.map((data, index) => {
-    const ref = React.createRef();
-    refs[index] = ref;
-
-    const isActive = index === activeSlide;
-
-    return (
-      <Slide isActive={isActive} key={`slide-${index}`} ref={ref}>
-        <Post {...data.node} />
-      </Slide>
-    );
-  });
+  const [refs, slidesRendered] = Slides(props);
 
   return (
     <Container className="Slider">
       Slider
-      <Slides className="Slides">{slides}</Slides>
+      {slidesRendered}
       <ul>
         <li>
           On click
