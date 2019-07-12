@@ -20,7 +20,7 @@ const propTypes = {
  * Defines the default props
  */
 const defaultProps = {
-  children: "Slide",
+  children: "Slide content",
   isActive: true
 };
 

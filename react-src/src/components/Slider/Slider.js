@@ -12,14 +12,19 @@ const propTypes = {
   /**
    * Slides
    */
-  ...PostsPropTypes
+  ...PostsPropTypes,
+  /**
+   * The active slide
+   */
+  activeSlide: PropTypes.number
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
-  ...PostsDefaultProps
+  ...PostsDefaultProps,
+  activeSlide: 1
 };
 
 /**
@@ -69,4 +74,4 @@ Slider.propTypes = propTypes;
 Slider.defaultProps = defaultProps;
 
 export default Slider;
-export { propTypes, defaultProps };
+export { propTypes as SliderPropTypes, defaultProps as SliderDefaultProps };

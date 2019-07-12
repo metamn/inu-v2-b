@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import gql from "graphql-tag";
-import { stringify } from "flatted";
 
 import Image from "../Image";
 
@@ -170,8 +169,7 @@ const thumbnailImage = props => {
  * Displays the post featured image
  */
 const PostFeaturedImage = props => {
-  const { title, featuredImage, featuredImageType } = props;
-  //console.log("props:" + stringify(props));
+  const { featuredImage, featuredImageType } = props;
 
   const image = featuredImage
     ? featuredImageType === "responsive"

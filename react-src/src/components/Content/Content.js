@@ -1,10 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { stringify } from "flatted";
 
-import Posts, { PostsPropTypes, PostsDefaultProps } from "../Posts";
-import Pages, { PagesPropTypes, PagesDefaultProps } from "../Pages";
+import Posts from "../Posts";
+import Pages from "../Pages";
 import Slider from "../Slider";
 import Thumbs from "../Thumbs";
 import Contact from "../Contact";
@@ -42,7 +41,6 @@ const Content = props => {
    * Loads a list of posts associated to a category
    */
   const posts = Posts();
-  //console.log("posts:" + stringify(posts));
 
   /**
    * Filters posts having a featured image set
@@ -50,8 +48,6 @@ const Content = props => {
   const postsWithFeaturedImage = posts.edges.filter(
     edge => edge.node.featuredImage
   );
-
-  //console.log("posts wfi:" + stringify(postsWithFeaturedImage));
 
   /**
    * Loads the Contact page from the database

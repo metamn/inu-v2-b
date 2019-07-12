@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { stringify } from "flatted";
 
 import Thumb from "../Thumb";
 import { PostsPropTypes, PostsDefaultProps } from "../Posts";
@@ -48,7 +47,6 @@ const Thumbs = props => {
    * Loads the raw data
    */
   const { edges, activeThumb } = props;
-  //console.log("edges thumbs:" + stringify(edges));
 
   /**
    * Prepares the thumbs

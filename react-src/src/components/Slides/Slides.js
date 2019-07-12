@@ -1,10 +1,10 @@
 import React from "react";
-import PropTypes from "prop-types";
+
 import styled from "styled-components";
 
 import Slide from "../Slide";
 import Post from "../Post";
-import Posts, { PostsPropTypes, PostsDefaultProps } from "../Posts";
+import { PostsPropTypes, PostsDefaultProps } from "../Posts";
 
 /**
  * Defines the prop types
@@ -13,19 +13,14 @@ const propTypes = {
   /**
    * Raw data to set up slides
    */
-  ...PostsPropTypes,
-  /**
-   * The active slide
-   */
-  activeSlide: PropTypes.number
+  ...PostsPropTypes
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
-  ...PostsDefaultProps,
-  activeSlide: 3
+  ...PostsDefaultProps
 };
 
 /**
@@ -53,7 +48,7 @@ const Slides = props => {
     const ref = React.createRef();
     refs[index] = ref;
 
-    const isActive = index === 3;
+    const isActive = index === activeSlide;
 
     return (
       <Slide isActive={isActive} key={`slide-${index}`} ref={ref}>
