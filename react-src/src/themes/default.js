@@ -1,14 +1,13 @@
 import React from "react";
 import { modularScale } from "polished";
-import { FiSun, FiMenu, FiX, FiChevronUp, FiChevronDown } from "react-icons/fi";
+import { FiSun, FiGrid, FiChevronUp, FiChevronDown } from "react-icons/fi";
 
 /**
  * Icons
  */
 const icons = {
   sun: <FiSun />,
-  menu: <FiMenu />,
-  close: <FiX />,
+  grid: <FiGrid />,
   chevronUp: <FiChevronUp />,
   chevronDown: <FiChevronDown />
 };

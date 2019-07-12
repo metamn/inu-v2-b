@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+
+import { useTheme } from "./../../hooks";
 
 import Posts from "../Posts";
 import Pages from "../Pages";
@@ -13,14 +15,22 @@ import Icon from "../Icon";
  * Defines the prop types
  */
 const propTypes = {
-  contentSwitcherIcon: PropTypes.string
+  /**
+   * The content switcher icon
+   */
+  contentSwitcherIcon: PropTypes.string,
+  /**
+   * The types of content displayed
+   */
+  contentDisplayType: PropTypes.oneOf(["blank", "slider", "thumbs", "content"])
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
-  contentSwitcherIcon: "Contet switcher icon"
+  contentSwitcherIcon: "Contet switcher icon",
+  contentDisplayType: "slider"
 };
 
 /**
@@ -37,6 +47,28 @@ const Container = styled("div")(props => ({
  * Displays the component
  */
 const Content = props => {
+  const { contentDisplayType } = props;
+
+  /**
+   * Displays a content switcher icon
+   */
+  const { theme } = useTheme();
+  const { icons } = theme;
+  const contentSwitcherIcon = icons.grid;
+
+  /**
+   * Sets up state for the content switcher icon
+   */
+  const [contentDisplayed, setContentDisplayed] = useState(contentDisplayType);
+
+  /**
+   * Manages the click on the menu switcher icon
+   */
+  const contentSwitcherClickHandler = () => {
+    const newDisplay = contentDisplayed === "slider" ? "thumbs" : "slider";
+    setContentDisplayed(newDisplay);
+  };
+
   /**
    * Loads a list of posts associated to a category
    */
@@ -56,23 +88,35 @@ const Content = props => {
   const contactPageContent = pages.edges[0].node.content;
 
   /**
-   * Displays a content switcher icon
+   * Decides which content to be displayed
    */
-  const { contentSwitcherIcon } = props;
+  const DisplayContent = () => {
+    switch (contentDisplayed) {
+      case "blank":
+        return null;
+      case "content":
+        return <Contact content={contactPageContent} />;
+      case "thumbs":
+        return <Thumbs edges={edgesWithFeaturedImage} />;
+      case "slider":
+      default:
+        return <Slider edges={edgesWithFeaturedImage} />;
+    }
+  };
 
   return (
     <Container className="Content">
       Content
       <ul>
-        <Icon>{contentSwitcherIcon}</Icon>
+        <Icon onClick={() => contentSwitcherClickHandler()}>
+          {contentSwitcherIcon}
+        </Icon>
         <ul>
           <li>Active: when a category is displayed</li>
           <li>Inactive: when the Random slideshow or Contact is displayed</li>
         </ul>
       </ul>
-      <Slider edges={edgesWithFeaturedImage} />
-      <Thumbs edges={edgesWithFeaturedImage} />
-      <Contact content={contactPageContent} />
+      <DisplayContent />
     </Container>
   );
 };
