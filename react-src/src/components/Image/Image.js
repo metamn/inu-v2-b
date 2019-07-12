@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import ProgressiveImage from "react-progressive-image";
 
 import { Breakpoints, Media } from "../../hooks";
+import { SliderContext } from "../Slider";
 
 /**
  * Defines the prop types
@@ -177,7 +178,7 @@ const Image = props => {
     isProgressive,
     isLoading,
     delay,
-    slideClickHandler
+    index
   } = props;
 
   /**
@@ -190,8 +191,6 @@ const Image = props => {
    */
   const nonEmptySrc = src !== "" ? src : placeholderImage;
 
-  //console.log("srcSetWidths:" + stringify(srcSetWidths));
-
   /**
    * Sets a responsive width for each breakpoint to avoid image flicking
    */
@@ -202,6 +201,8 @@ const Image = props => {
           widths: srcSetWidths,
           breakpoints: Breakpoints
         });
+
+  const slideClickHandler = useContext(SliderContext);
 
   /**
    * Returns a ProgressiveImage if requested. Otherwise a simple HTML image
@@ -225,7 +226,7 @@ const Image = props => {
           sizes={srcSetData.sizes !== "" ? srcSetData.sizes : null}
           isLoading={loading}
           widths={widths !== null ? widths : null}
-          onClick={() => slideClickHandler(1, 10)}
+          onClick={() => slideClickHandler(index)}
         />
       )}
     </ProgressiveImage>

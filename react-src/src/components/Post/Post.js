@@ -52,11 +52,11 @@ const Article = styled(_Article)(props => ({}));
  * Displays the component
  */
 const Post = props => {
-  const { title, slideClickHandler } = props;
+  const { title } = props;
 
   return (
     <Article className="Post" title={title}>
-      <PostFeaturedImage {...props} slideClickHandler={slideClickHandler} />
+      <PostFeaturedImage {...props} />
     </Article>
   );
 };

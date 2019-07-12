@@ -35,6 +35,13 @@ const Container = styled("div")(props => ({
 }));
 
 /**
+ * Creates a context for handling the clicks on the image.
+ *
+ * Clicks must be handled on the lowest level (... to my current knowledge)
+ */
+const SliderContext = React.createContext({});
+
+/**
  * Displays the slider
  */
 const Slider = props => {
@@ -44,9 +51,15 @@ const Slider = props => {
   const [activeSlide, setActiveSlide] = useState(0);
 
   /**
+   * Counts the slides
+   */
+  const { edges } = props;
+  const numberOfSlides = edges.length;
+
+  /**
    * Manages the click on a slide
    */
-  const slideClickHandler = useCallback((index, numberOfSlides) => {
+  const slideClickHandler = useCallback(index => {
     // No clicks on `Random`
     //if (category === -1) return;
 
@@ -64,15 +77,25 @@ const Slider = props => {
    */
   const { refs, slidesRendered } = Slides({
     activeSlide: activeSlide,
-    slideClickHandler: slideClickHandler,
     ...props
   });
 
-  return <Container className="Slider">{slidesRendered}</Container>;
+  return (
+    <Container className="Slider">
+      <SliderContext.Provider value={slideClickHandler}>
+        {" "}
+        {slidesRendered}
+      </SliderContext.Provider>
+    </Container>
+  );
 };
 
 Slider.propTypes = propTypes;
 Slider.defaultProps = defaultProps;
 
 export default Slider;
-export { propTypes as SliderPropTypes, defaultProps as SliderDefaultProps };
+export {
+  propTypes as SliderPropTypes,
+  defaultProps as SliderDefaultProps,
+  SliderContext
+};

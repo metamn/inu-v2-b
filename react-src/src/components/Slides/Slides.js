@@ -58,17 +58,12 @@ const Container = styled("div")(props => ({
  * Displays the component
  */
 const Slides = props => {
-  const { edges, activeSlide, slideClickHandler } = props;
+  const { edges, activeSlide } = props;
 
   /**
    * Prepares an array to hold the refs to each slide
    */
   let refs = [];
-
-  /**
-   * Counts the slides
-   */
-  const numberOfSlides = edges.length;
 
   /**
    * Prepares the slides
@@ -81,7 +76,7 @@ const Slides = props => {
 
     return (
       <Slide isActive={isActive} key={`slide-${index}`} ref={ref}>
-        <Post {...data.node} slideClickHandler={slideClickHandler} />
+        <Post {...data.node} index={index} />
       </Slide>
     );
   });
