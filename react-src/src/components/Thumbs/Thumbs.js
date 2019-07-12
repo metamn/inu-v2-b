@@ -24,7 +24,7 @@ const propTypes = {
  */
 const defaultProps = {
   ...PostsDefaultProps,
-  activeThumb: 3
+  activeThumb: 1
 };
 
 /**

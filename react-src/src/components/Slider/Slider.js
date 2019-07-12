@@ -32,8 +32,13 @@ const defaultProps = {
  */
 const Container = styled("div")(props => ({
   position: "relative",
-  height: "70vh",
-  overflow: "hidden"
+  height: "90vh",
+  overflow: "hidden",
+
+  border: "1px solid",
+  padding: "1.25em",
+  margin: "1.25em",
+  backgroundColor: "white"
 }));
 
 /**
@@ -48,7 +53,6 @@ const Slider = props => {
   return (
     <Container className="Slider">
       Slider
-      {slidesRendered}
       <ul>
         <li>
           On click
@@ -66,6 +70,7 @@ const Slider = props => {
           </ul>
         </li>
       </ul>
+      {slidesRendered}
     </Container>
   );
 };
