@@ -45,7 +45,7 @@ const Content = props => {
   /**
    * Filters posts having a featured image set
    */
-  const postsWithFeaturedImage = posts.edges.filter(
+  const edgesWithFeaturedImage = posts.edges.filter(
     edge => edge.node.featuredImage
   );
 
@@ -70,8 +70,8 @@ const Content = props => {
           <li>Inactive: when the Random slideshow or Contact is displayed</li>
         </ul>
       </ul>
-      <Slider {...posts} />
-      <Thumbs {...posts} />
+      <Slider edges={edgesWithFeaturedImage} />
+      <Thumbs edges={edgesWithFeaturedImage} />
       <Contact content={contactPageContent} />
     </Container>
   );
