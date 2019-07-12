@@ -71,7 +71,6 @@ const Thumbs = props => {
    * Manages the click on a thumb
    */
   const thumbClickHandler = useCallback(index => {
-    console.log("index:" + index);
     setActiveImage(index);
     setContentDisplayed("slider");
   });

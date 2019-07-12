@@ -5,3 +5,4 @@ export { default as useTheme } from "./useTheme";
 export { default as useMatchMedia } from "./useMatchMedia";
 export { default as usePrefersDarkMode } from "./usePrefersDarkMode";
 export { default as useLocalStorage } from "./useLocalStorage";
+export { default as useEventListener } from "./useEventListener";

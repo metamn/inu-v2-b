@@ -1,6 +1,8 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+
+import { useEventListener } from "../../hooks";
 
 import Slides from "../Slides";
 import { PostsPropTypes, PostsDefaultProps } from "../Posts";
@@ -65,13 +67,36 @@ const Slider = props => {
   const numberOfSlides = edges.length;
 
   /**
+   * Loads the slides
+   */
+  const { refs, slidesRendered } = Slides({
+    activeImage: activeImage,
+    ...props
+  });
+
+  /**
+   * Scrolls the active slide into the view
+   */
+  useEffect(
+    () => {
+      if (refs && refs[activeImage] && refs[activeImage].current) {
+        refs[activeImage].current.className += " active";
+        refs[activeImage].current.scrollIntoView({
+          behavior: "auto",
+          block: "start",
+          inline: "nearest"
+        });
+      }
+    },
+    [activeImage, refs]
+  );
+
+  /**
    * Manages the click on a slide
    */
   const slideClickHandler = useCallback(index => {
     // No clicks on `Random`
     //if (category === -1) return;
-
-    console.log("index:" + index);
 
     if (index + 1 < numberOfSlides) {
       setActiveImage(index + 1);
@@ -80,13 +105,27 @@ const Slider = props => {
     }
   });
 
-  /**
-   * Loads the slides
-   */
-  const { refs, slidesRendered } = Slides({
-    activeSlide: activeImage,
-    ...props
-  });
+  // Touch scroll event handler
+  const touchScrollHandler = useCallback(
+    () => {
+      const visibleRef = refs.findIndex(ref => {
+        const left = ref.current.getBoundingClientRect().left;
+        const right = ref.current.getBoundingClientRect().right;
+        return (
+          left >= -window.innerWidth / 2 &&
+          left <= window.innerWidth &&
+          right > 0 &&
+          right <= window.innerWidth * 1.5
+        );
+      });
+
+      setActiveImage(visibleRef);
+    },
+    [refs, setActiveImage]
+  );
+
+  // The touch event listener hook
+  useEventListener("touchend", touchScrollHandler);
 
   return (
     <Container className="Slider">
