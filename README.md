@@ -6,16 +6,11 @@ A photo portfolio theme with React, WPGraphQL and Create React WPTheme.
 
 Based on [Thinking in React](https://reactjs.org/docs/thinking-in-react.html).
 
+### Interaction - v0.0.3
+
+1. Identify states
+
 ### Mocks - v0.0.1
-
-Notes:
-
-- Items with gray background represents data.
-
-Instructions:
-
-- Don't just output plain text like `Displays site title`. Try first to create a `title` proptype and output something like `Displays {title}`. This makes sure the components are defined based on `real` data.
-- if you write nice texts a requirement specification is generated.
 
 1. Mocking up the component structure and the functionality
 

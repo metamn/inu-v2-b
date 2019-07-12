@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 //import { stringify } from "flatted";
 
+import { useTheme } from "./../../hooks";
+
 import Settings, { SettingsPropTypes, SettingsDefaultProps } from "../Settings";
 import Meta from "../Meta";
 import Logo from "../Logo";
@@ -16,25 +18,21 @@ const propTypes = {
   /**
    * The site settings
    */
-  ...SettingsPropTypes,
-  /**
-   * The theme switcher icon
-   */
-  themeSwitcherIcon: PropTypes.string
+  ...SettingsPropTypes
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
-  ...SettingsDefaultProps,
-  themeSwitcherIcon: "Theme switcher icon"
+  ...SettingsDefaultProps
 };
 
 /**
  * Styles the component container
  */
 const Container = styled("div")(props => ({
+  ...props.theme.colorPairs.default,
   border: "1px solid",
   padding: "1.25em",
   margin: "1.25em"
@@ -45,24 +43,33 @@ const Container = styled("div")(props => ({
  */
 const Home = props => {
   /**
-   * Loads site settings from the database
+   * Sets up theming
    */
-  const siteSettings = Settings(props);
+  const { currentTheme, switchTheme, ThemeContext } = useTheme();
 
   /**
    * Displays a theme switcher icon
    */
-  const { themeSwitcherIcon } = props;
+  const { theme } = currentTheme;
+  const { icons } = theme;
+  const sunIcon = icons.sun;
+
+  /**
+   * Loads site settings from the database
+   */
+  const siteSettings = Settings(props);
 
   return (
     <>
       <Meta {...siteSettings} />
-      <Container className="Home">
-        Home
-        <Icon>{themeSwitcherIcon}</Icon>
-        <Logo {...siteSettings} />
-        <Main />
-      </Container>
+      <ThemeContext.Provider value={currentTheme}>
+        <Container className="Home" theme={currentTheme.theme}>
+          Home
+          <Icon onClick={() => switchTheme()}>{sunIcon}</Icon>
+          <Logo {...siteSettings} />
+          <Main />
+        </Container>
+      </ThemeContext.Provider>
     </>
   );
 };

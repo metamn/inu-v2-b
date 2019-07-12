@@ -12,6 +12,7 @@
     "react-apollo-hooks": "^0.4.5",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
+    "react-icons": "^3.7.0",
     "react-progressive-image": "^0.6.0",
     "react-responsive": "^7.0.0",
     "styled-components": "^4.3.2"
