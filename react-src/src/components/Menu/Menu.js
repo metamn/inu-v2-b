@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+
+import { useTheme } from "./../../hooks";
 
 import Categories, { ConvertCategoriesToMenuItems } from "../Categories";
 import MenuItem from "../MenuItem";
@@ -25,7 +27,11 @@ const propTypes = {
   /**
    * The toggle up icon
    */
-  toggleIconUp: PropTypes.string
+  toggleIconUp: PropTypes.string,
+  /**
+   * The initial icon toggle status
+   */
+  toggled: PropTypes.bool
 };
 
 /**
@@ -35,7 +41,8 @@ const defaultProps = {
   random: "Random slideshow",
   contact: "Contact",
   toggleIconDown: "Toggle icon down",
-  toggleIconUp: "Toggle icon up"
+  toggleIconUp: "Toggle icon up",
+  toggled: false
 };
 
 /**
@@ -51,6 +58,28 @@ const Container = styled("div")(props => ({
  * Displays the menu
  */
 const Menu = props => {
+  const { toggled } = props;
+
+  /**
+   * Displays a menu switcher icon
+   */
+  const { theme } = useTheme();
+  const { icons } = theme;
+  const toggleIconUp = icons.chevronUp;
+  const toggleIconDown = icons.chevronDown;
+
+  /**
+   * Sets up state for the menu switcher icon
+   */
+  const [menuSwitcherIcon, setMenuSwitcherIcon] = useState(toggled);
+
+  /**
+   * Manages the click on the menu switcher icon
+   */
+  const menuSwitcherClickHandler = () => {
+    setMenuSwitcherIcon(!menuSwitcherIcon);
+  };
+
   /**
    * Loads categories
    */
@@ -68,15 +97,15 @@ const Menu = props => {
     categories: categories
   });
 
-  /**
-   * Displays a menu switcher icon
-   */
-  const { toggleIconUp, toggleIconDown } = props;
-
   return (
     <Container className="Menu">
       Menu
-      <IconToggle icon1={toggleIconDown} icon2={toggleIconUp} />
+      <IconToggle
+        icon1={toggleIconDown}
+        icon2={toggleIconUp}
+        toggled={menuSwitcherIcon}
+        toggleIconClickHandler={menuSwitcherClickHandler}
+      />
       <ul>
         {categoriesAsMenuItems}
         <MenuItem key="random" name={random} />
