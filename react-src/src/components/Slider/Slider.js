@@ -2,27 +2,39 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
+import Slides from "../Slides";
+import { PostsPropTypes, PostsDefaultProps } from "../Posts";
+
 /**
  * Defines the prop types
  */
 const propTypes = {
   /**
-   * A set of responsive images
+   * Slides
    */
-  responsiveImages: PropTypes.array
+  ...PostsPropTypes,
+  /**
+   * The active slide
+   */
+  activeSlide: PropTypes.number
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
-  responsiveImages: ["Displays the featured image in a responsive way"]
+  ...PostsDefaultProps,
+  activeSlide: 1
 };
 
 /**
  * Styles the component container
  */
 const Container = styled("div")(props => ({
+  position: "relative",
+  height: "90vh",
+  overflow: "hidden",
+
   border: "1px solid",
   padding: "1.25em",
   margin: "1.25em",
@@ -34,16 +46,13 @@ const Container = styled("div")(props => ({
  */
 const Slider = props => {
   /**
-   * Displays a set of responsive images
+   * Loads the slides
    */
-  const { responsiveImages } = props;
+  const [refs, slidesRendered] = Slides(props);
 
   return (
     <Container className="Slider">
       Slider
-      <ul>
-        <li>{responsiveImages}</li>
-      </ul>
       <ul>
         <li>
           On click
@@ -61,6 +70,7 @@ const Slider = props => {
           </ul>
         </li>
       </ul>
+      {slidesRendered}
     </Container>
   );
 };
@@ -69,4 +79,4 @@ Slider.propTypes = propTypes;
 Slider.defaultProps = defaultProps;
 
 export default Slider;
-export { propTypes, defaultProps };
+export { propTypes as SliderPropTypes, defaultProps as SliderDefaultProps };

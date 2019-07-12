@@ -3,20 +3,25 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import Posts from "../Posts";
-import Page from "../Page";
+import Pages from "../Pages";
 import Slider from "../Slider";
 import Thumbs from "../Thumbs";
 import Contact from "../Contact";
+import Icon from "../Icon";
 
 /**
  * Defines the prop types
  */
-const propTypes = {};
+const propTypes = {
+  contentSwitcherIcon: PropTypes.string
+};
 
 /**
  * Defines the default props
  */
-const defaultProps = {};
+const defaultProps = {
+  contentSwitcherIcon: "Contet switcher icon"
+};
 
 /**
  * Styles the component container
@@ -24,7 +29,8 @@ const defaultProps = {};
 const Container = styled("div")(props => ({
   border: "1px solid",
   padding: "1.25em",
-  margin: "1.25em"
+  margin: "1.25em",
+  position: "relative"
 }));
 
 /**
@@ -32,26 +38,41 @@ const Container = styled("div")(props => ({
  */
 const Content = props => {
   /**
+   * Loads a list of posts associated to a category
+   */
+  const posts = Posts();
+
+  /**
+   * Filters posts having a featured image set
+   */
+  const edgesWithFeaturedImage = posts.edges.filter(
+    edge => edge.node.featuredImage
+  );
+
+  /**
+   * Loads the Contact page from the database
+   */
+  const pages = Pages();
+  const contactPageContent = pages.edges[0].node.content;
+
+  /**
    * Displays a content switcher icon
    */
-  const contentSwitcherIcon =
-    "Displays a content switcher icon (slider vs. thumb view)";
+  const { contentSwitcherIcon } = props;
 
   return (
     <Container className="Content">
       Content
-      <Posts />
-      <Page />
       <ul>
-        <li>{contentSwitcherIcon}</li>
+        <Icon>{contentSwitcherIcon}</Icon>
         <ul>
           <li>Active: when a category is displayed</li>
           <li>Inactive: when the Random slideshow or Contact is displayed</li>
         </ul>
       </ul>
-      <Slider />
-      <Thumbs />
-      <Contact />
+      <Slider edges={edgesWithFeaturedImage} />
+      <Thumbs edges={edgesWithFeaturedImage} />
+      <Contact content={contactPageContent} />
     </Container>
   );
 };

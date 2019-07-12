@@ -1,40 +1,26 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
 import gql from "graphql-tag";
 
-/**
- * Defines prop types for Category
- */
-const categoryPropTypes = {
-  id: PropTypes.string,
-  categoryId: PropTypes.number,
-  name: PropTypes.string
-};
+import { useData } from "../../hooks";
 
-/**
- * Defines default props for Category
- */
-const defaultCategoryPropTypes = {
-  id: "1",
-  categoryId: 1,
-  name: "Category"
-};
+import Category, { CategoryPropTypes, CategoryDefaultProps } from "../Category";
+import MenuItem from "../MenuItem";
 
 /**
  * Defines the prop types
  */
 const propTypes = {
-  node: PropTypes.shape(categoryPropTypes),
-  edges: PropTypes.arrayOf(PropTypes.shape(categoryPropTypes))
+  edges: PropTypes.arrayOf(
+    PropTypes.shape({ node: PropTypes.shape(CategoryPropTypes) })
+  )
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
-  node: defaultCategoryPropTypes,
-  edges: [defaultCategoryPropTypes]
+  edges: Array(1).fill({ node: CategoryDefaultProps })
 };
 
 /**
@@ -45,45 +31,45 @@ const query = gql`
     categories(where: { hideEmpty: $hideEmpty, orderby: TERM_ORDER }) {
       edges {
         node {
-          id
-          categoryId
-          name
+          ...CategoryNode
         }
       }
     }
   }
+  ${Category.fragments.node}
 `;
 
 /**
- * Styles the component container
+ * Converts categories to menu items
  */
-const Container = styled("div")(props => ({
-  display: "flex",
-  flexDirection: "column",
+const convertCategoriesToMenuItems = props => {
+  const { categories } = props;
 
-  border: "1px solid",
-  padding: "1.25em",
-  margin: "1.25em"
-}));
+  return categories.edges.map((edge, index) => {
+    return <MenuItem key={`category-${index}`} name={edge.node.name} />;
+  });
+};
 
 /**
- * Displays the component
+ * Loads categories from the database
  */
-const Categories = props => {
-  const { edges } = props;
+const Categories = () => {
+  /**
+   * Excludes empty categories
+   */
+  const variables = {
+    hideEmpty: true
+  };
 
-  return (
-    <Container className="Categories">
-      Categories
-      <ul>
-        <li>Loads categories from the database</li>
-      </ul>
-    </Container>
-  );
+  return useData(defaultProps, query, "categories", variables);
 };
 
 Categories.propTypes = propTypes;
 Categories.defaultProps = defaultProps;
 
 export default Categories;
-export { propTypes, defaultProps };
+export {
+  propTypes as CategoriesPropTypes,
+  defaultProps as CategoriesDefaultProps,
+  convertCategoriesToMenuItems as ConvertCategoriesToMenuItems
+};

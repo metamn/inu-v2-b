@@ -4,89 +4,60 @@ import styled from "styled-components";
 import gql from "graphql-tag";
 
 /**
- * Defines the Page prop type
- */
-const pagePropType = {
-  id: PropTypes.string,
-  title: PropTypes.string,
-  content: PropTypes.string
-};
-
-/**
- * Defines the Page default props
- */
-const pageDefaultProps = {
-  id: "1",
-  title: "Page",
-  content: "Page content"
-};
-
-/**
  * Defines the prop types
  */
 const propTypes = {
-  node: PropTypes.shape(pagePropType),
-  edges: PropTypes.arrayOf(PropTypes.shape(pagePropType))
+  /**
+   * The page id
+   */
+  id: PropTypes.string,
+  /**
+   * The page title
+   */
+  title: PropTypes.string,
+  /**
+   * The page content
+   */
+  content: PropTypes.string
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
-  node: pageDefaultProps,
-  edges: [pageDefaultProps]
+  id: "1",
+  title: "Contact",
+  content: "Contact page content"
 };
 
 /**
- * Defines the database query
+ * Defines the query fragment needed by the component
  */
-const query = gql`
-  query page($first: Int, $where: RootQueryToPageConnectionWhereArgs!) {
-    pages(first: $first, where: $where) {
-      edges {
-        node {
-          id
-          title
-          content
-        }
-      }
+const queryFragment = {
+  node: gql`
+    fragment PageNode on Page {
+      id
+      title
+      content
     }
-  }
-`;
+  `
+};
 
 /**
  * Styles the component container
  */
-const Container = styled("div")(props => ({
-  display: "flex",
-  flexDirection: "column",
-
-  border: "1px solid",
-  padding: "1.25em",
-  margin: "1.25em"
-}));
+const Container = styled("div")(props => ({}));
 
 /**
  * Displays the component
  */
 const Page = props => {
-  /**
-   * Displays the Contact page content
-   */
-  const { node } = props;
-
-  return (
-    <Container className="Page">
-      Page
-      <ul>
-        <li>Loads the {node.content}</li>
-      </ul>
-    </Container>
-  );
+  return <Container className="Page">Page</Container>;
 };
 
 Page.propTypes = propTypes;
 Page.defaultProps = defaultProps;
+Page.fragments = queryFragment;
 
 export default Page;
-export { propTypes, defaultProps };
+export { propTypes as PagePropTypes, defaultProps as PageDefaultProps };

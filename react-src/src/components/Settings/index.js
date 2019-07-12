@@ -1,2 +1,2 @@
 export { default } from "./Settings";
-export { propTypes, defaultProps } from "./Settings";
+export { SettingsPropTypes, SettingsDefaultProps } from "./Settings";

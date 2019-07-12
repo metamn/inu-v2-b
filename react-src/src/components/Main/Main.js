@@ -1,8 +1,6 @@
 import React from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import Categories from "../Categories";
 import Menu from "../Menu";
 import Content from "../Content";
 
@@ -32,7 +30,6 @@ const Main = props => {
   return (
     <Container className="Main">
       Main
-      <Categories />
       <Menu />
       <Content />
     </Container>

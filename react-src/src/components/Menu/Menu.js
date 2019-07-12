@@ -2,22 +2,40 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
+import Categories, { ConvertCategoriesToMenuItems } from "../Categories";
+import MenuItem from "../MenuItem";
+import IconToggle from "../IconToggle";
+
 /**
  * Defines the prop types
  */
 const propTypes = {
-  categories: PropTypes.array,
+  /**
+   * The `Random` menu item
+   */
   random: PropTypes.string,
-  contact: PropTypes.string
+  /**
+   * The `Contact` menu item
+   */
+  contact: PropTypes.string,
+  /**
+   * The toggle down icon
+   */
+  toggleIconDown: PropTypes.string,
+  /**
+   * The toggle up icon
+   */
+  toggleIconUp: PropTypes.string
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
-  categories: ["Categories"],
   random: "Random slideshow",
-  contact: "Contact"
+  contact: "Contact",
+  toggleIconDown: "Toggle icon down",
+  toggleIconUp: "Toggle icon up"
 };
 
 /**
@@ -34,23 +52,35 @@ const Container = styled("div")(props => ({
  */
 const Menu = props => {
   /**
-   * Displays categories, and `Random`, `Contact` menu items
+   * Loads categories
    */
-  const { categories, random, contact } = props;
+  const categories = Categories();
+
+  /**
+   * Loads `Random`, and `Contact` menu items
+   */
+  const { random, contact } = props;
+
+  /**
+   * Displays categories as menu items
+   */
+  const categoriesAsMenuItems = ConvertCategoriesToMenuItems({
+    categories: categories
+  });
 
   /**
    * Displays a menu switcher icon
    */
-  const menuSwitcherIcon = "Displays a menu switcher icon (dropdown)";
+  const { toggleIconUp, toggleIconDown } = props;
 
   return (
     <Container className="Menu">
       Menu
+      <IconToggle icon1={toggleIconDown} icon2={toggleIconUp} />
       <ul>
-        <li>{menuSwitcherIcon}</li>
-        <li>Displays a list of {categories[0]}</li>
-        <li>Displays a menu item for {random}</li>
-        <li>Displays a menu item for {contact}</li>
+        {categoriesAsMenuItems}
+        <MenuItem key="random" name={random} />
+        <MenuItem key="contact" name={contact} />
       </ul>
     </Container>
   );

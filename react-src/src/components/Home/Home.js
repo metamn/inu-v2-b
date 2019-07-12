@@ -1,20 +1,35 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+//import { stringify } from "flatted";
 
-import Settings from "../Settings";
+import Settings, { SettingsPropTypes, SettingsDefaultProps } from "../Settings";
+import Meta from "../Meta";
 import Logo from "../Logo";
 import Main from "../Main";
+import Icon from "../Icon";
 
 /**
  * Defines the prop types
  */
-const propTypes = {};
+const propTypes = {
+  /**
+   * The site settings
+   */
+  ...SettingsPropTypes,
+  /**
+   * The theme switcher icon
+   */
+  themeSwitcherIcon: PropTypes.string
+};
 
 /**
  * Defines the default props
  */
-const defaultProps = {};
+const defaultProps = {
+  ...SettingsDefaultProps,
+  themeSwitcherIcon: "Theme switcher icon"
+};
 
 /**
  * Styles the component container
@@ -22,17 +37,7 @@ const defaultProps = {};
 const Container = styled("div")(props => ({
   border: "1px solid",
   padding: "1.25em",
-  margin: "1.25em",
-
-  "& ul.data li": {
-    backgroundColor: "#eee",
-    padding: ".625em",
-    marginBottom: "1px"
-  },
-
-  "& .Settings, & .Categories, & .Page, & .Posts": {
-    backgroundColor: "#eee"
-  }
+  margin: "1.25em"
 }));
 
 /**
@@ -40,21 +45,25 @@ const Container = styled("div")(props => ({
  */
 const Home = props => {
   /**
+   * Loads site settings from the database
+   */
+  const siteSettings = Settings(props);
+
+  /**
    * Displays a theme switcher icon
    */
-  const themeSwitcherIcon =
-    "Displays a theme switcher icon for dark / light mode";
+  const { themeSwitcherIcon } = props;
 
   return (
-    <Container className="Home">
-      Home
-      <Settings />
-      <ul>
-        <li>{themeSwitcherIcon}</li>
-      </ul>
-      <Logo />
-      <Main />
-    </Container>
+    <>
+      <Meta {...siteSettings} />
+      <Container className="Home">
+        Home
+        <Icon>{themeSwitcherIcon}</Icon>
+        <Logo {...siteSettings} />
+        <Main />
+      </Container>
+    </>
   );
 };
 

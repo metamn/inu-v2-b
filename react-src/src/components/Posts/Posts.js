@@ -1,104 +1,59 @@
-import React from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
 import gql from "graphql-tag";
 
-/**
- * Defines the Post prop type
- */
-const postPropType = {
-  id: PropTypes.string,
-  title: PropTypes.string,
-  featuredImage: PropTypes.string
-};
+import { useData } from "../../hooks";
 
-/**
- * Defines the Post default props
- */
-const postDefaultProps = {
-  id: "1",
-  title: "Post",
-  featuredImage: "Post featured image"
-};
+import Post, { PostPropTypes, PostDefaultProps } from "../Post";
 
 /**
  * Defines the prop types
  */
 const propTypes = {
-  node: PropTypes.shape(postPropType),
-  edges: PropTypes.arrayOf(PropTypes.shape(postPropType))
+  edges: PropTypes.arrayOf(
+    PropTypes.shape({ node: PropTypes.shape(PostPropTypes) })
+  )
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
-  node: postDefaultProps,
-  edges: Array(1).fill(postDefaultProps)
+  edges: Array(1).fill({ node: PostDefaultProps })
 };
 
 /**
  * Defines the database query
  */
 const query = gql`
-  query posts($first: Int) {
-    posts(first: $first) {
+  query postsFromCategory($first: Int, $category: Int) {
+    posts(first: $first, where: { categoryId: $category }) {
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
       edges {
         node {
-          id
-          title
-          featuredImage {
-            id
-            sourceUrl
-            mediaDetails {
-              file
-              height
-              width
-              sizes {
-                file
-                height
-                mimeType
-                name
-                sourceUrl
-                width
-              }
-            }
-          }
+          ...PostNode
         }
       }
     }
   }
+  ${Post.fragments.node}
 `;
 
 /**
- * Styles the component container
+ * Loads a list of posts associated to a category
  */
-const Container = styled("div")(props => ({
-  display: "flex",
-  flexDirection: "column",
+const Posts = () => {
+  /**
+   * Defines which category to load posts from
+   */
+  const variables = {
+    first: 10,
+    categoryId: 1
+  };
 
-  border: "1px solid",
-  padding: "1.25em",
-  margin: "1.25em"
-}));
-
-/**
- * Displays the component
- */
-const Posts = props => {
-  const { node } = props;
-
-  return (
-    <Container className="Posts">
-      Posts
-      <ul>
-        <li>
-          Loads a list of posts associated to a category (with{" "}
-          {node.featuredImage})
-        </li>
-      </ul>
-    </Container>
-  );
+  return useData(defaultProps, query, "posts", variables);
 };
 
 Posts.propTypes = propTypes;

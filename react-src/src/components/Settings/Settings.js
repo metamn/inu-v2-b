@@ -1,14 +1,23 @@
-import React from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
 import gql from "graphql-tag";
+
+import { useData } from "../../hooks";
 
 /**
  * Defines the prop types
  */
 const propTypes = {
+  /**
+   * The site title
+   */
   title: PropTypes.string,
+  /**
+   * The site url
+   */
   url: PropTypes.string,
+  /**
+   * The site description
+   */
   description: PropTypes.string
 };
 
@@ -16,9 +25,9 @@ const propTypes = {
  * Defines the default props
  */
 const defaultProps = {
-  title: "Title",
+  title: "Inu Chivu",
   url: "http://inu.ro",
-  description: "Description"
+  description: "Photo traveler"
 };
 
 /**
@@ -35,37 +44,14 @@ const query = gql`
 `;
 
 /**
- * Styles the component container
- */
-const Container = styled("div")(props => ({
-  display: "flex",
-  flexDirection: "column",
-
-  border: "1px solid",
-  padding: "1.25em",
-  margin: "1.25em"
-}));
-
-/**
- * Displays the component
+ * Loads site settings from the database
  */
 const Settings = props => {
-  const { title, description } = props;
-
-  return (
-    <Container className="Settings">
-      Settings
-      <ul>
-        <li>
-          Loads site settings ({title}, {description}) from the database
-        </li>
-      </ul>
-    </Container>
-  );
+  return useData(defaultProps, query, "generalSettings");
 };
 
 Settings.propTypes = propTypes;
 Settings.defaultProps = defaultProps;
 
 export default Settings;
-export { propTypes, defaultProps };
+export { propTypes as SettingsPropTypes, defaultProps as SettingsDefaultProps };

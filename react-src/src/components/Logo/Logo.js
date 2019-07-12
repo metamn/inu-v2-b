@@ -1,52 +1,58 @@
 import React from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
+
+import { SettingsPropTypes, SettingsDefaultProps } from "../Settings";
 
 /**
  * Defines the prop types
  */
 const propTypes = {
-  title: PropTypes.string,
-  url: PropTypes.string,
-  description: PropTypes.string
+  /**
+   * The site settings
+   */
+  ...SettingsPropTypes
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
-  title: "Title",
-  url: "#",
-  description: "Description"
+  ...SettingsDefaultProps
 };
 
 /**
  * Styles the component container
  */
-const Container = styled("div")(props => ({
+const Header = styled("header")(props => ({
   display: "flex",
-  flexDirection: "column",
-
-  border: "1px solid",
-  padding: "1.25em",
-  margin: "1.25em"
+  flexDirection: "column"
 }));
 
 /**
- * Displays the logo
+ * Styles the title
+ */
+const Title = styled("h1")(props => ({}));
+
+/**
+ * Styles the description
+ */
+const Description = styled("h2")(props => ({}));
+
+/**
+ * Displays site title and description
  */
 const Logo = props => {
-  const { title, description } = props;
+  const { title, url, description } = props;
 
   return (
-    <Container className="Logo">
-      Logo
-      <ul>
-        <li>
-          Displays site {title}, {description}
-        </li>
-      </ul>
-    </Container>
+    <Header className="Logo">
+      <Title className="Title">
+        <a href={url} title={title}>
+          {title}
+        </a>
+      </Title>
+      <Description className="Description">{description}</Description>
+    </Header>
   );
 };
 

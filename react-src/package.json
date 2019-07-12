@@ -5,10 +5,15 @@
   "dependencies": {
     "@devloco/react-scripts-wptheme": "3.0.1-wptheme-3.0.5",
     "apollo-boost": "^0.4.3",
+    "flatted": "^2.0.1",
     "graphql": "^14.4.2",
     "graphql-tag": "^2.10.1",
     "react": "^16.8.6",
+    "react-apollo-hooks": "^0.4.5",
     "react-dom": "^16.8.6",
+    "react-helmet": "^5.2.1",
+    "react-progressive-image": "^0.6.0",
+    "react-responsive": "^7.0.0",
     "styled-components": "^4.3.2"
   },
   "scripts": {
@@ -48,6 +53,7 @@
     "@storybook/addon-info": "^5.1.9",
     "@storybook/addon-links": "^5.1.9",
     "@storybook/addon-notes": "^5.1.9",
+    "@storybook/addon-viewport": "^5.1.9",
     "@storybook/addons": "^5.1.9",
     "@storybook/react": "^5.1.9",
     "babel-loader": "8.0.5",

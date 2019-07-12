@@ -2,21 +2,29 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
+import Thumb from "../Thumb";
+import { PostsPropTypes, PostsDefaultProps } from "../Posts";
+
 /**
  * Defines the prop types
  */
 const propTypes = {
   /**
-   * A set of thumbnails
+   * Posts
    */
-  thumbs: PropTypes.array
+  ...PostsPropTypes,
+  /**
+   * Which thumb is active
+   */
+  activeThumb: PropTypes.number
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
-  thumbs: ["Displays the thumbnail version of the featured images"]
+  ...PostsDefaultProps,
+  activeThumb: 1
 };
 
 /**
@@ -26,25 +34,35 @@ const Container = styled("div")(props => ({
   border: "1px solid",
   padding: "1.25em",
   margin: "1.25em",
-  backgroundColor: "white"
+  backgroundColor: "white",
+  display: "flex",
+  flexWrap: "wrap"
 }));
 
 /**
- * Displays the component
+ * Displays a set of thumbnails
  */
 const Thumbs = props => {
   /**
-   * Displays a set of thumbnails
+   * Loads the raw data
    */
-  const { thumbs } = props;
+  const { edges, activeThumb } = props;
+
+  /**
+   * Prepares the thumbs
+   */
+  const thumbs = edges.map((data, index) => {
+    const isActive = index === activeThumb;
+
+    return (
+      <Thumb isActive={isActive} key={`thumb-${index}`} post={data.node} />
+    );
+  });
 
   return (
     <Container className="Thumbs">
       Thumbs
-      <ul>
-        <li>{thumbs}</li>
-        <li>Marks the active image</li>
-      </ul>
+      {thumbs}
       <ul>
         <li>
           On click
