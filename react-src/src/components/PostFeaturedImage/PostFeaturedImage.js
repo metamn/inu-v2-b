@@ -123,7 +123,7 @@ const Container = styled("div")(props => ({}));
  * Returns a responsive image
  */
 const responsiveImage = props => {
-  const { title, featuredImage } = props;
+  const { title, featuredImage, slideClickHandler } = props;
   const { sourceUrl, mediaDetails } = featuredImage;
   const { sizes } = mediaDetails;
   const { width } = mediaDetails;
@@ -140,6 +140,7 @@ const responsiveImage = props => {
       alt={title}
       srcSet={srcSet.toString()}
       srcSetWidths={srcSetWidths}
+      slideClickHandler={slideClickHandler}
     />
   );
 };

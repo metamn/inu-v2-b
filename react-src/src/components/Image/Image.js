@@ -176,7 +176,8 @@ const Image = props => {
     placeholder,
     isProgressive,
     isLoading,
-    delay
+    delay,
+    slideClickHandler
   } = props;
 
   /**
@@ -224,6 +225,7 @@ const Image = props => {
           sizes={srcSetData.sizes !== "" ? srcSetData.sizes : null}
           isLoading={loading}
           widths={widths !== null ? widths : null}
+          onClick={() => slideClickHandler(1, 10)}
         />
       )}
     </ProgressiveImage>

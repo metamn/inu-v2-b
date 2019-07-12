@@ -57,12 +57,15 @@ const Content = props => {
   const contentSwitcherIcon = icons.grid;
 
   /**
-   * Sets up state for the content switcher icon
+   * Sets up state for the display type.
+   *
+   * Display type is (partially) managed by the content switcher icon.
+   * The `Menu` can also control the display type like displaying the `Content` page for example.
    */
   const [contentDisplayed, setContentDisplayed] = useState(contentDisplayType);
 
   /**
-   * Manages the click on the menu switcher icon
+   * Manages the click on the content switcher icon
    */
   const contentSwitcherClickHandler = () => {
     const newDisplay = contentDisplayed === "slider" ? "thumbs" : "slider";

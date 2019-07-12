@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useCallback } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
@@ -12,28 +12,21 @@ const propTypes = {
   /**
    * Slides
    */
-  ...PostsPropTypes,
-  /**
-   * The active slide
-   */
-  activeSlide: PropTypes.number
+  ...PostsPropTypes
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
-  ...PostsDefaultProps,
-  activeSlide: 1
+  ...PostsDefaultProps
 };
 
 /**
  * Styles the component container
  */
 const Container = styled("div")(props => ({
-  position: "relative",
-  height: "90vh",
-  overflow: "hidden",
+  width: "80vw",
 
   border: "1px solid",
   padding: "1.25em",
@@ -46,33 +39,36 @@ const Container = styled("div")(props => ({
  */
 const Slider = props => {
   /**
+   * Sets up state to mark the active slide
+   */
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  /**
+   * Manages the click on a slide
+   */
+  const slideClickHandler = useCallback((index, numberOfSlides) => {
+    // No clicks on `Random`
+    //if (category === -1) return;
+
+    console.log("index:" + index);
+
+    if (index + 1 < numberOfSlides) {
+      setActiveSlide(index + 1);
+    } else {
+      setActiveSlide(0);
+    }
+  });
+
+  /**
    * Loads the slides
    */
-  const [refs, slidesRendered] = Slides(props);
+  const { refs, slidesRendered } = Slides({
+    activeSlide: activeSlide,
+    slideClickHandler: slideClickHandler,
+    ...props
+  });
 
-  return (
-    <Container className="Slider">
-      Slider
-      <ul>
-        <li>
-          On click
-          <ul>
-            <li>When a category is displayed</li>
-            <li>Slides to next image</li>
-          </ul>
-        </li>
-        <li>
-          Autoslide
-          <ul>
-            <li>When the random slideshow is displayed</li>
-            <li>Slides automatically to next image</li>
-            <li>When there are no more images loads more from the database</li>
-          </ul>
-        </li>
-      </ul>
-      {slidesRendered}
-    </Container>
-  );
+  return <Container className="Slider">{slidesRendered}</Container>;
 };
 
 Slider.propTypes = propTypes;
