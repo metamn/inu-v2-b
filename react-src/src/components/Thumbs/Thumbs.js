@@ -44,7 +44,7 @@ const Container = styled("div")(props => ({
  */
 const Thumbs = props => {
   /**
-   * Loads the raw data
+   * Loads the posts
    */
   const { edges, activeThumb } = props;
 

@@ -9,6 +9,7 @@ Based on [Thinking in React](https://reactjs.org/docs/thinking-in-react.html).
 ### Interaction - v0.0.3
 
 1. Go through each component which is handling interactive elements and implement their functionality with states.
+   1. Try to use `useContext` to pass variables needed to state management instead of changing the props.
 2. Lift states to assure the whole app is working in sync.
 
 ### Mocks - v0.0.1

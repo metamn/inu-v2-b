@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
@@ -42,6 +42,11 @@ const Container = styled("div")(props => ({
   margin: "1.25em",
   position: "relative"
 }));
+
+/**
+ * Creates a context for the display mode
+ */
+const ContentContext = React.createContext({});
 
 /**
  * Displays the component
@@ -109,17 +114,12 @@ const Content = props => {
 
   return (
     <Container className="Content">
-      Content
-      <ul>
-        <Icon onClick={() => contentSwitcherClickHandler()}>
-          {contentSwitcherIcon}
-        </Icon>
-        <ul>
-          <li>Active: when a category is displayed</li>
-          <li>Inactive: when the Random slideshow or Contact is displayed</li>
-        </ul>
-      </ul>
-      <DisplayContent />
+      <Icon onClick={() => contentSwitcherClickHandler()}>
+        {contentSwitcherIcon}
+      </Icon>
+      <ContentContext.Provider value={contentDisplayed}>
+        <DisplayContent />
+      </ContentContext.Provider>
     </Container>
   );
 };
@@ -128,4 +128,4 @@ Content.propTypes = propTypes;
 Content.defaultProps = defaultProps;
 
 export default Content;
-export { propTypes, defaultProps };
+export { propTypes, defaultProps, ContentContext };
