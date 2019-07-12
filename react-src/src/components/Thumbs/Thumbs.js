@@ -59,23 +59,7 @@ const Thumbs = props => {
     );
   });
 
-  return (
-    <Container className="Thumbs">
-      Thumbs
-      {thumbs}
-      <ul>
-        <li>
-          On click
-          <ul>
-            <li>
-              When an image is clicked returns to Slider mode with the clicked
-              image displayed in the Slider
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </Container>
-  );
+  return <Container className="Thumbs">{thumbs}</Container>;
 };
 
 Thumbs.propTypes = propTypes;

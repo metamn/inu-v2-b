@@ -22,7 +22,11 @@ const propTypes = {
   /**
    * The types of content displayed
    */
-  contentDisplayType: PropTypes.oneOf(["blank", "slider", "thumbs", "content"])
+  contentDisplayType: PropTypes.oneOf(["blank", "slider", "thumbs", "content"]),
+  /**
+   * The active image (slide or thumb)
+   */
+  currentImage: PropTypes.number
 };
 
 /**
@@ -30,7 +34,8 @@ const propTypes = {
  */
 const defaultProps = {
   contentSwitcherIcon: "Contet switcher icon",
-  contentDisplayType: "slider"
+  contentDisplayType: "slider",
+  currentImage: 1
 };
 
 /**
@@ -52,7 +57,7 @@ const ContentContext = React.createContext({});
  * Displays the component
  */
 const Content = props => {
-  const { contentDisplayType } = props;
+  const { contentDisplayType, currentImage } = props;
 
   /**
    * Displays a content switcher icon
@@ -76,6 +81,11 @@ const Content = props => {
     const newDisplay = contentDisplayed === "slider" ? "thumbs" : "slider";
     setContentDisplayed(newDisplay);
   };
+
+  /**
+   * Sets up state to mark the active image (thumb, or slide)
+   */
+  const [activeImage, setActiveImage] = useState(currentImage);
 
   /**
    * Loads a list of posts associated to a category
@@ -105,15 +115,28 @@ const Content = props => {
       case "content":
         return <Contact content={contactPageContent} />;
       case "thumbs":
-        return <Thumbs edges={edgesWithFeaturedImage} />;
+        return (
+          <Thumbs
+            edges={edgesWithFeaturedImage}
+            activeImage={activeImage}
+            setActiveImage={setActiveImage}
+          />
+        );
       case "slider":
       default:
-        return <Slider edges={edgesWithFeaturedImage} />;
+        return (
+          <Slider
+            edges={edgesWithFeaturedImage}
+            activeImage={activeImage}
+            setActiveImage={setActiveImage}
+          />
+        );
     }
   };
 
   return (
     <Container className="Content">
+      Content
       <Icon onClick={() => contentSwitcherClickHandler()}>
         {contentSwitcherIcon}
       </Icon>

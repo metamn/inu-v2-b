@@ -12,14 +12,26 @@ const propTypes = {
   /**
    * Slides
    */
-  ...PostsPropTypes
+  ...PostsPropTypes,
+  /**
+   * The active image
+   */
+  activeImage: PropTypes.number,
+  /**
+   * The active image setter function
+   */
+  setActiveImage: PropTypes.func
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
-  ...PostsDefaultProps
+  ...PostsDefaultProps,
+  activeImage: 1,
+  setActiveImage: () => {
+    console.log("Active image setter");
+  }
 };
 
 /**
@@ -45,15 +57,11 @@ const SliderContext = React.createContext({});
  * Displays the slider
  */
 const Slider = props => {
-  /**
-   * Sets up state to mark the active slide
-   */
-  const [activeSlide, setActiveSlide] = useState(0);
+  const { edges, activeImage, setActiveImage } = props;
 
   /**
    * Counts the slides
    */
-  const { edges } = props;
   const numberOfSlides = edges.length;
 
   /**
@@ -66,9 +74,9 @@ const Slider = props => {
     console.log("index:" + index);
 
     if (index + 1 < numberOfSlides) {
-      setActiveSlide(index + 1);
+      setActiveImage(index + 1);
     } else {
-      setActiveSlide(0);
+      setActiveImage(0);
     }
   });
 
@@ -76,7 +84,7 @@ const Slider = props => {
    * Loads the slides
    */
   const { refs, slidesRendered } = Slides({
-    activeSlide: activeSlide,
+    activeSlide: activeImage,
     ...props
   });
 
