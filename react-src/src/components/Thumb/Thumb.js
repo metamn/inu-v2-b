@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { stringify } from "flatted";
 
 import Post, { PostPropTypes, PostDefaultProps } from "../Post";
 
@@ -45,6 +46,7 @@ const Container = styled("div")(props => ({
  */
 const Thumb = props => {
   const { isActive, post, featuredImageType } = props;
+  //console.log("post:" + stringify(post));
 
   return (
     <Container className="Thumb" isActive={isActive}>
@@ -57,4 +59,4 @@ Thumb.propTypes = propTypes;
 Thumb.defaultProps = defaultProps;
 
 export default Thumb;
-export { propTypes, defaultProps };
+export { propTypes as ThumbPropTypes, defaultProps as ThumbDefaultProps };

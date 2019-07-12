@@ -1,7 +1,9 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import Slides, { SlidesDefaultProps, SlidesPropTypes } from "../Slides";
+import Slides from "../Slides";
+import { PostsPropTypes, PostsDefaultProps } from "../Posts";
 
 /**
  * Defines the prop types
@@ -10,14 +12,14 @@ const propTypes = {
   /**
    * Slides
    */
-  ...SlidesPropTypes
+  ...PostsPropTypes
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
-  ...SlidesDefaultProps
+  ...PostsDefaultProps
 };
 
 /**

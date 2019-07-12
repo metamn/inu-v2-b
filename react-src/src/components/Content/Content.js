@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { stringify } from "flatted";
 
 import Posts, { PostsPropTypes, PostsDefaultProps } from "../Posts";
 import Pages, { PagesPropTypes, PagesDefaultProps } from "../Pages";
@@ -13,17 +14,6 @@ import Icon from "../Icon";
  * Defines the prop types
  */
 const propTypes = {
-  /**
-   * Posts
-   */
-  ...PostsPropTypes,
-  /**
-   * Pages
-   */
-  ...PagesPropTypes,
-  /**
-   * The content switcher icon
-   */
   contentSwitcherIcon: PropTypes.string
 };
 
@@ -31,8 +21,6 @@ const propTypes = {
  * Defines the default props
  */
 const defaultProps = {
-  ...PostsDefaultProps,
-  ...PagesDefaultProps,
   contentSwitcherIcon: "Contet switcher icon"
 };
 
@@ -54,6 +42,7 @@ const Content = props => {
    * Loads a list of posts associated to a category
    */
   const posts = Posts();
+  //console.log("posts:" + stringify(posts));
 
   /**
    * Filters posts having a featured image set
@@ -61,6 +50,8 @@ const Content = props => {
   const postsWithFeaturedImage = posts.edges.filter(
     edge => edge.node.featuredImage
   );
+
+  //console.log("posts wfi:" + stringify(postsWithFeaturedImage));
 
   /**
    * Loads the Contact page from the database
@@ -83,8 +74,8 @@ const Content = props => {
           <li>Inactive: when the Random slideshow or Contact is displayed</li>
         </ul>
       </ul>
-      <Slider rawData={postsWithFeaturedImage} />
-      <Thumbs rawData={postsWithFeaturedImage} />
+      <Slider {...posts} />
+      <Thumbs {...posts} />
       <Contact content={contactPageContent} />
     </Container>
   );

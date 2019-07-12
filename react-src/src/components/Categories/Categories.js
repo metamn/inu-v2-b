@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import gql from "graphql-tag";
-import { stringify } from "flatted";
 
 import { useData } from "../../hooks";
 
@@ -45,8 +44,6 @@ const query = gql`
  */
 const convertCategoriesToMenuItems = props => {
   const { categories } = props;
-
-  console.log("categories:" + stringify(categories));
 
   return categories.edges.map((edge, index) => {
     return <MenuItem key={`category-${index}`} name={edge.node.name} />;

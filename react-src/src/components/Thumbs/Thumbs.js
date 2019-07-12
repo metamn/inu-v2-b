@@ -1,17 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { stringify } from "flatted";
 
 import Thumb from "../Thumb";
+import { PostsPropTypes, PostsDefaultProps } from "../Posts";
 
 /**
  * Defines the prop types
  */
 const propTypes = {
   /**
-   * Raw data to set up thumbs
+   * Posts
    */
-  rawData: PropTypes.any,
+  ...PostsPropTypes,
   /**
    * Which thumb is active
    */
@@ -22,7 +24,7 @@ const propTypes = {
  * Defines the default props
  */
 const defaultProps = {
-  rawData: "rawData",
+  ...PostsDefaultProps,
   activeThumb: 3
 };
 
@@ -45,12 +47,13 @@ const Thumbs = props => {
   /**
    * Loads the raw data
    */
-  const { rawData, activeThumb } = props;
+  const { edges, activeThumb } = props;
+  //console.log("edges thumbs:" + stringify(edges));
 
   /**
    * Prepares the thumbs
    */
-  const thumbs = rawData.map((data, index) => {
+  const thumbs = edges.map((data, index) => {
     const isActive = index === activeThumb;
 
     return (

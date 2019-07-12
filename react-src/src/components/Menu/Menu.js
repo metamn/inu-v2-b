@@ -2,11 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import Categories, {
-  CategoriesPropTypes,
-  CategoriesDefaultProps,
-  ConvertCategoriesToMenuItems
-} from "../Categories";
+import Categories, { ConvertCategoriesToMenuItems } from "../Categories";
 import MenuItem from "../MenuItem";
 import IconToggle from "../IconToggle";
 
@@ -14,10 +10,6 @@ import IconToggle from "../IconToggle";
  * Defines the prop types
  */
 const propTypes = {
-  /**
-   * Categories
-   */
-  ...CategoriesPropTypes,
   /**
    * The `Random` menu item
    */
@@ -40,7 +32,6 @@ const propTypes = {
  * Defines the default props
  */
 const defaultProps = {
-  ...CategoriesDefaultProps,
   random: "Random slideshow",
   contact: "Contact",
   toggleIconDown: "Toggle icon down",

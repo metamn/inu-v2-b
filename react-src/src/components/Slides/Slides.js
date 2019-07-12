@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import Slide from "../Slide";
 import Post from "../Post";
+import Posts, { PostsPropTypes, PostsDefaultProps } from "../Posts";
 
 /**
  * Defines the prop types
@@ -12,7 +13,7 @@ const propTypes = {
   /**
    * Raw data to set up slides
    */
-  rawData: PropTypes.any,
+  ...PostsPropTypes,
   /**
    * The active slide
    */
@@ -23,7 +24,7 @@ const propTypes = {
  * Defines the default props
  */
 const defaultProps = {
-  rawData: "Raw data",
+  ...PostsDefaultProps,
   activeSlide: 3
 };
 
@@ -38,7 +39,7 @@ const Container = styled("div")(props => ({
  * Displays the component
  */
 const Slides = props => {
-  const { rawData, activeSlide } = props;
+  const { edges, activeSlide } = props;
 
   /**
    * Prepares an array to hold the refs to each slide
@@ -48,11 +49,11 @@ const Slides = props => {
   /**
    * Prepares the slides
    */
-  const slides = rawData.map((data, index) => {
+  const slides = edges.map((data, index) => {
     const ref = React.createRef();
     refs[index] = ref;
 
-    const isActive = index === activeSlide;
+    const isActive = index === 3;
 
     return (
       <Slide isActive={isActive} key={`slide-${index}`} ref={ref}>
