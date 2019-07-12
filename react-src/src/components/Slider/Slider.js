@@ -91,7 +91,6 @@ const Slider = props => {
   return (
     <Container className="Slider">
       <SliderContext.Provider value={slideClickHandler}>
-        {" "}
         {slidesRendered}
       </SliderContext.Provider>
     </Container>

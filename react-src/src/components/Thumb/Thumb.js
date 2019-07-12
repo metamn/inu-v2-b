@@ -44,11 +44,11 @@ const Container = styled("div")(props => ({
  * Displays the component
  */
 const Thumb = props => {
-  const { isActive, post, featuredImageType } = props;
+  const { isActive, post, featuredImageType, index } = props;
 
   return (
     <Container className="Thumb" isActive={isActive}>
-      <Post {...post} featuredImageType={featuredImageType} />
+      <Post {...post} featuredImageType={featuredImageType} index={index} />
     </Container>
   );
 };

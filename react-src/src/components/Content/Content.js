@@ -120,6 +120,7 @@ const Content = props => {
             edges={edgesWithFeaturedImage}
             activeImage={activeImage}
             setActiveImage={setActiveImage}
+            setContentDisplayed={setContentDisplayed}
           />
         );
       case "slider":

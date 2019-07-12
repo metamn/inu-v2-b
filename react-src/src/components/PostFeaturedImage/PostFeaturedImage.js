@@ -149,7 +149,7 @@ const responsiveImage = props => {
  * Returns a thumbnail image
  */
 const thumbnailImage = props => {
-  const { title, featuredImage } = props;
+  const { title, featuredImage, index } = props;
   const { mediaDetails } = featuredImage;
   const { sizes } = mediaDetails;
   const thumbnail = sizes.filter(size => size.name === "thumbnail");
@@ -162,6 +162,7 @@ const thumbnailImage = props => {
       alt={title}
       width={width}
       height={height}
+      index={index}
     />
   );
 };

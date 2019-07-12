@@ -5,6 +5,7 @@ import ProgressiveImage from "react-progressive-image";
 
 import { Breakpoints, Media } from "../../hooks";
 import { SliderContext } from "../Slider";
+import { ThumbsContext } from "../Thumbs";
 import { ContentContext } from "../Content";
 
 /**
@@ -218,8 +219,9 @@ const Image = props => {
    */
   const contentDisplayed = useContext(ContentContext);
   const slideClickHandler = useContext(SliderContext);
+  const thumbClickHandler = useContext(ThumbsContext);
   const imageClickHandler =
-    contentDisplayed === "slider" ? slideClickHandler : clickHandler;
+    contentDisplayed === "slider" ? slideClickHandler : thumbClickHandler;
 
   /**
    * Returns a ProgressiveImage if requested. Otherwise a simple HTML image
@@ -258,6 +260,7 @@ const Image = props => {
       height={height !== "" ? height : null}
       isLoading={isLoading}
       widths={widths !== null ? widths : null}
+      onClick={() => imageClickHandler(index)}
     />
   );
 };
