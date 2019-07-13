@@ -4,8 +4,9 @@ import styled from "styled-components";
 
 import { useTheme } from "./../../hooks";
 
-import Categories, { ConvertCategoriesToMenuItems } from "../Categories";
-import MenuItem from "../MenuItem";
+import Categories from "../Categories";
+import { categoryToMenuItem } from "../Category";
+import { MenuItemPropTypes, createMenuItems } from "../MenuItem";
 import IconToggle from "../IconToggle";
 
 /**
@@ -15,11 +16,11 @@ const propTypes = {
   /**
    * The `Random` menu item
    */
-  random: PropTypes.string,
+  random: PropTypes.shape(MenuItemPropTypes),
   /**
    * The `Contact` menu item
    */
-  contact: PropTypes.string,
+  contact: PropTypes.shape(MenuItemPropTypes),
   /**
    * The toggle down icon
    */
@@ -38,8 +39,14 @@ const propTypes = {
  * Defines the default props
  */
 const defaultProps = {
-  random: "Random slideshow",
-  contact: "Contact",
+  random: {
+    name: "Random slideshow",
+    id: "-1"
+  },
+  contact: {
+    name: "Contact",
+    id: "-2"
+  },
   toggleIconDown: "Toggle icon down",
   toggleIconUp: "Toggle icon up",
   toggled: false
@@ -86,16 +93,21 @@ const Menu = props => {
   const categories = Categories();
 
   /**
-   * Loads `Random`, and `Contact` menu items
+   * Displays categories as menu items
+   */
+  const categoriesAsMenuItems = createMenuItems(
+    categories.edges.map(edge => categoryToMenuItem(edge.node))
+  );
+
+  /**
+   * Loads `Random` and `Contact` menu items
    */
   const { random, contact } = props;
 
   /**
-   * Displays categories as menu items
+   * Displays  `Random` and `Contact` menu items
    */
-  const categoriesAsMenuItems = ConvertCategoriesToMenuItems({
-    categories: categories
-  });
+  const customMenuItems = createMenuItems([random, contact]);
 
   return (
     <Container className="Menu">
@@ -108,8 +120,7 @@ const Menu = props => {
       />
       <ul>
         {categoriesAsMenuItems}
-        <MenuItem key="random" name={random} />
-        <MenuItem key="contact" name={contact} />
+        {customMenuItems}
       </ul>
     </Container>
   );
