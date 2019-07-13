@@ -63,7 +63,7 @@ const Posts = props => {
      * 100 is hard coded in WPGraphQL
      */
     first: 100,
-    categoryId: categoryId
+    category: categoryId
   };
 
   return useData(defaultProps, query, "posts", variables);
