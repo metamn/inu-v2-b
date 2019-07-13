@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
@@ -58,7 +58,12 @@ const defaultProps = {
 const Container = styled("div")(props => ({
   border: "1px solid",
   padding: "1.25em",
-  margin: "1.25em"
+  margin: "1.25em",
+
+  "& ul": {
+    display: "flex",
+    flexWrap: "wrap"
+  }
 }));
 
 /**

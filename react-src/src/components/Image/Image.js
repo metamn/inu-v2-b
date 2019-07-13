@@ -102,7 +102,8 @@ const defaultProps = {
  */
 const Img = styled("img")(props => ({
   opacity: props.isLoading ? "0.3" : "1",
-  ...props.widths
+  ...props.widths,
+  maxWidth: "10em"
 }));
 
 /**

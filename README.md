@@ -12,6 +12,9 @@ Based on [Thinking in React](https://reactjs.org/docs/thinking-in-react.html).
    1. Try to `useContext` to pass variables needed for state management instead of props.
 2. Lift states to assure the whole app is working in sync.
 3. Check the performance.
+   1. Display a log message when a data component is rendered.
+   2. If there are more than two renders (first with default props, then with real data) the case should be investigated.
+   3. Add `useWhyDidYouUpdate` to all data components to tell what needs to be memoized
 
 ### Mocks - v0.0.1
 
