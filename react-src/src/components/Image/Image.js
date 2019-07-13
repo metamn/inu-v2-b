@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import ProgressiveImage from "react-progressive-image";
 
 import { Breakpoints, Media } from "../../hooks";
+import { SliderContext } from "../Slider";
+import { ThumbsContext } from "../Thumbs";
+import { ContentContext } from "../Content";
 
 /**
  * Defines the prop types
@@ -60,7 +63,11 @@ const propTypes = {
    * The widths used in the srcSet.
    * Useful to avoid image flicks on loading with CSS media queries
    */
-  srcSetWidths: PropTypes.arrayOf(PropTypes.string)
+  srcSetWidths: PropTypes.arrayOf(PropTypes.string),
+  /**
+   * The image click handler.
+   */
+  clickHandler: PropTypes.func
 };
 
 /**
@@ -84,7 +91,10 @@ const defaultProps = {
   isProgressive: true,
   isLoading: false,
   delay: 0,
-  srcSetWidths: null
+  srcSetWidths: null,
+  clickHandler: () => {
+    console.log("Image clicked");
+  }
 };
 
 /**
@@ -92,7 +102,8 @@ const defaultProps = {
  */
 const Img = styled("img")(props => ({
   opacity: props.isLoading ? "0.3" : "1",
-  ...props.widths
+  ...props.widths,
+  maxWidth: "10em"
 }));
 
 /**
@@ -176,7 +187,9 @@ const Image = props => {
     placeholder,
     isProgressive,
     isLoading,
-    delay
+    delay,
+    index,
+    clickHandler
   } = props;
 
   /**
@@ -189,8 +202,6 @@ const Image = props => {
    */
   const nonEmptySrc = src !== "" ? src : placeholderImage;
 
-  //console.log("srcSetWidths:" + stringify(srcSetWidths));
-
   /**
    * Sets a responsive width for each breakpoint to avoid image flicking
    */
@@ -201,6 +212,17 @@ const Image = props => {
           widths: srcSetWidths,
           breakpoints: Breakpoints
         });
+
+  /**
+   * Sets up an image click handler
+   *
+   * For thumbs ans slider there is a different handler
+   */
+  const contentDisplayed = useContext(ContentContext);
+  const slideClickHandler = useContext(SliderContext);
+  const thumbClickHandler = useContext(ThumbsContext);
+  const imageClickHandler =
+    contentDisplayed === "slider" ? slideClickHandler : thumbClickHandler;
 
   /**
    * Returns a ProgressiveImage if requested. Otherwise a simple HTML image
@@ -224,6 +246,7 @@ const Image = props => {
           sizes={srcSetData.sizes !== "" ? srcSetData.sizes : null}
           isLoading={loading}
           widths={widths !== null ? widths : null}
+          onClick={() => imageClickHandler(index)}
         />
       )}
     </ProgressiveImage>
@@ -238,6 +261,7 @@ const Image = props => {
       height={height !== "" ? height : null}
       isLoading={isLoading}
       widths={widths !== null ? widths : null}
+      onClick={() => imageClickHandler(index)}
     />
   );
 };

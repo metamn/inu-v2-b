@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
@@ -14,9 +14,17 @@ const propTypes = {
    */
   ...PostsPropTypes,
   /**
-   * Which thumb is active
+   * The active image
    */
-  activeThumb: PropTypes.number
+  activeImage: PropTypes.number,
+  /**
+   * The active image setter function
+   */
+  setActiveImage: PropTypes.func,
+  /**
+   * The display mode setter function
+   */
+  setContentDisplayed: PropTypes.func
 };
 
 /**
@@ -24,7 +32,13 @@ const propTypes = {
  */
 const defaultProps = {
   ...PostsDefaultProps,
-  activeThumb: 1
+  activeImage: 1,
+  setActiveImage: () => {
+    console.log("Active image setter");
+  },
+  setContentDisplayed: () => {
+    console.log("Display mode setter");
+  }
 };
 
 /**
@@ -40,40 +54,48 @@ const Container = styled("div")(props => ({
 }));
 
 /**
+ * Creates a context for handling the clicks on the image.
+ */
+const ThumbsContext = React.createContext({});
+
+/**
  * Displays a set of thumbnails
  */
 const Thumbs = props => {
   /**
-   * Loads the raw data
+   * Loads the posts
    */
-  const { edges, activeThumb } = props;
+  const { edges, activeImage, setActiveImage, setContentDisplayed } = props;
+
+  /**
+   * Manages the click on a thumb
+   */
+  const thumbClickHandler = useCallback(index => {
+    setActiveImage(index);
+    setContentDisplayed("slider");
+  });
 
   /**
    * Prepares the thumbs
    */
   const thumbs = edges.map((data, index) => {
-    const isActive = index === activeThumb;
+    const isActive = index === activeImage;
 
     return (
-      <Thumb isActive={isActive} key={`thumb-${index}`} post={data.node} />
+      <Thumb
+        isActive={isActive}
+        key={`thumb-${index}`}
+        post={data.node}
+        index={index}
+      />
     );
   });
 
   return (
     <Container className="Thumbs">
-      Thumbs
-      {thumbs}
-      <ul>
-        <li>
-          On click
-          <ul>
-            <li>
-              When an image is clicked returns to Slider mode with the clicked
-              image displayed in the Slider
-            </li>
-          </ul>
-        </li>
-      </ul>
+      <ThumbsContext.Provider value={thumbClickHandler}>
+        {thumbs}
+      </ThumbsContext.Provider>
     </Container>
   );
 };
@@ -82,4 +104,4 @@ Thumbs.propTypes = propTypes;
 Thumbs.defaultProps = defaultProps;
 
 export default Thumbs;
-export { propTypes, defaultProps };
+export { propTypes, defaultProps, ThumbsContext };

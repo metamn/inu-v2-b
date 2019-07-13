@@ -40,17 +40,6 @@ const query = gql`
 `;
 
 /**
- * Converts categories to menu items
- */
-const convertCategoriesToMenuItems = props => {
-  const { categories } = props;
-
-  return categories.edges.map((edge, index) => {
-    return <MenuItem key={`category-${index}`} name={edge.node.name} />;
-  });
-};
-
-/**
  * Loads categories from the database
  */
 const Categories = () => {
@@ -70,6 +59,5 @@ Categories.defaultProps = defaultProps;
 export default Categories;
 export {
   propTypes as CategoriesPropTypes,
-  defaultProps as CategoriesDefaultProps,
-  convertCategoriesToMenuItems as ConvertCategoriesToMenuItems
+  defaultProps as CategoriesDefaultProps
 };

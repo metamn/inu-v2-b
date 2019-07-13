@@ -29,7 +29,6 @@ const defaultProps = {
  */
 const Container = styled("div")(props => ({
   width: "100%",
-  position: "absolute",
 
   "& article": {
     opacity: "0",

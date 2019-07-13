@@ -6,16 +6,17 @@ A photo portfolio theme with React, WPGraphQL and Create React WPTheme.
 
 Based on [Thinking in React](https://reactjs.org/docs/thinking-in-react.html).
 
+### Interaction - v0.0.3
+
+1. Go through each component which is handling interactive elements and implement their functionality with states.
+   1. Try to `useContext` to pass variables needed for state management instead of props.
+2. Lift states to assure the whole app is working in sync.
+3. Check the performance.
+   1. Display a log message when a data component is rendered.
+   2. If there are more than two renders (first with default props, then with real data) the case should be investigated.
+   3. Add `useWhyDidYouUpdate` to all data components to tell what needs to be memoized
+
 ### Mocks - v0.0.1
-
-Notes:
-
-- Items with gray background represents data.
-
-Instructions:
-
-- Don't just output plain text like `Displays site title`. Try first to create a `title` proptype and output something like `Displays {title}`. This makes sure the components are defined based on `real` data.
-- if you write nice texts a requirement specification is generated.
 
 1. Mocking up the component structure and the functionality
 

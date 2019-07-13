@@ -49,6 +49,14 @@ const queryFragment = {
 const Container = styled("div")(props => ({}));
 
 /**
+ * Converts a category to a menu item
+ */
+const categoryToMenuItem = category => {
+  const { categoryId, name } = category;
+  return { name: name, id: categoryId.toString() };
+};
+
+/**
  * Displays the component
  */
 const Category = props => {
@@ -60,4 +68,8 @@ Category.defaultProps = defaultProps;
 Category.fragments = queryFragment;
 
 export default Category;
-export { propTypes as CategoryPropTypes, defaultProps as CategoryDefaultProps };
+export {
+  propTypes as CategoryPropTypes,
+  defaultProps as CategoryDefaultProps,
+  categoryToMenuItem
+};

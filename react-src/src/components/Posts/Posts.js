@@ -9,16 +9,24 @@ import Post, { PostPropTypes, PostDefaultProps } from "../Post";
  * Defines the prop types
  */
 const propTypes = {
+  /**
+   * The posts
+   */
   edges: PropTypes.arrayOf(
     PropTypes.shape({ node: PropTypes.shape(PostPropTypes) })
-  )
+  ),
+  /**
+   * The category from where the posts are loaded
+   */
+  categoryId: PropTypes.number
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
-  edges: Array(1).fill({ node: PostDefaultProps })
+  edges: Array(1).fill({ node: PostDefaultProps }),
+  categoryId: 1
 };
 
 /**
@@ -44,13 +52,18 @@ const query = gql`
 /**
  * Loads a list of posts associated to a category
  */
-const Posts = () => {
+const Posts = props => {
+  const { categoryId } = props;
+
   /**
    * Defines which category to load posts from
    */
   const variables = {
-    first: 10,
-    categoryId: 1
+    /**
+     * 100 is hard coded in WPGraphQL
+     */
+    first: 100,
+    category: categoryId
   };
 
   return useData(defaultProps, query, "posts", variables);

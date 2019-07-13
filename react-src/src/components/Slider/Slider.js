@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+
+import { useEventListener } from "../../hooks";
 
 import Slides from "../Slides";
 import { PostsPropTypes, PostsDefaultProps } from "../Posts";
@@ -14,9 +16,13 @@ const propTypes = {
    */
   ...PostsPropTypes,
   /**
-   * The active slide
+   * The active image
    */
-  activeSlide: PropTypes.number
+  activeImage: PropTypes.number,
+  /**
+   * The active image setter function
+   */
+  setActiveImage: PropTypes.func
 };
 
 /**
@@ -24,16 +30,17 @@ const propTypes = {
  */
 const defaultProps = {
   ...PostsDefaultProps,
-  activeSlide: 1
+  activeImage: 1,
+  setActiveImage: () => {
+    console.log("Active image setter");
+  }
 };
 
 /**
  * Styles the component container
  */
 const Container = styled("div")(props => ({
-  position: "relative",
-  height: "90vh",
-  overflow: "hidden",
+  width: "80vw",
 
   border: "1px solid",
   padding: "1.25em",
@@ -42,35 +49,89 @@ const Container = styled("div")(props => ({
 }));
 
 /**
+ * Creates a context for handling the clicks on the image.
+ *
+ * Clicks must be handled on the lowest level (... to my current knowledge)
+ */
+const SliderContext = React.createContext({});
+
+/**
  * Displays the slider
  */
 const Slider = props => {
+  const { edges, activeImage, setActiveImage } = props;
+
+  /**
+   * Counts the slides
+   */
+  const numberOfSlides = edges.length;
+
   /**
    * Loads the slides
    */
-  const [refs, slidesRendered] = Slides(props);
+  const { refs, slidesRendered } = Slides({
+    activeImage: activeImage,
+    ...props
+  });
+
+  /**
+   * Scrolls the active slide into the view
+   */
+  useEffect(
+    () => {
+      if (refs && refs[activeImage] && refs[activeImage].current) {
+        refs[activeImage].current.className += " active";
+        refs[activeImage].current.scrollIntoView({
+          behavior: "auto",
+          block: "start",
+          inline: "nearest"
+        });
+      }
+    },
+    [activeImage, refs]
+  );
+
+  /**
+   * Manages the click on a slide
+   */
+  const slideClickHandler = useCallback(index => {
+    // No clicks on `Random`
+    //if (category === -1) return;
+
+    if (index + 1 < numberOfSlides) {
+      setActiveImage(index + 1);
+    } else {
+      setActiveImage(0);
+    }
+  });
+
+  // Touch scroll event handler
+  const touchScrollHandler = useCallback(
+    () => {
+      const visibleRef = refs.findIndex(ref => {
+        const left = ref.current.getBoundingClientRect().left;
+        const right = ref.current.getBoundingClientRect().right;
+        return (
+          left >= -window.innerWidth / 2 &&
+          left <= window.innerWidth &&
+          right > 0 &&
+          right <= window.innerWidth * 1.5
+        );
+      });
+
+      setActiveImage(visibleRef);
+    },
+    [refs, setActiveImage]
+  );
+
+  // The touch event listener hook
+  useEventListener("touchend", touchScrollHandler);
 
   return (
     <Container className="Slider">
-      Slider
-      <ul>
-        <li>
-          On click
-          <ul>
-            <li>When a category is displayed</li>
-            <li>Slides to next image</li>
-          </ul>
-        </li>
-        <li>
-          Autoslide
-          <ul>
-            <li>When the random slideshow is displayed</li>
-            <li>Slides automatically to next image</li>
-            <li>When there are no more images loads more from the database</li>
-          </ul>
-        </li>
-      </ul>
-      {slidesRendered}
+      <SliderContext.Provider value={slideClickHandler}>
+        {slidesRendered}
+      </SliderContext.Provider>
     </Container>
   );
 };
@@ -79,4 +140,8 @@ Slider.propTypes = propTypes;
 Slider.defaultProps = defaultProps;
 
 export default Slider;
-export { propTypes as SliderPropTypes, defaultProps as SliderDefaultProps };
+export {
+  propTypes as SliderPropTypes,
+  defaultProps as SliderDefaultProps,
+  SliderContext
+};

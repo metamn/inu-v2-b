@@ -27,7 +27,31 @@ const defaultProps = {
  * Styles the component container
  */
 const Container = styled("div")(props => ({
-  position: "relative"
+  width: "100%",
+
+  display: "flex",
+  alignItems: "center",
+
+  overflowX: "auto",
+  overflowY: "hidden",
+
+  scrollbarWidth: "none",
+  "-ms-overflow-style": "none",
+  "-webkit-overflow-scrolling": "touch",
+
+  "& ::-webkit-scrollbar": {
+    display: "none"
+  },
+
+  "& @supports (scroll-snap-align: start)": {
+    scrollSnapType: "x mandatory"
+  },
+
+  "& @supports not (scroll-snap-align: start)": {
+    scrollSnapType: "mandatory",
+    scrollSnapDestination: "0% center",
+    scrollSnapPointsX: "repeat(100%)"
+  }
 }));
 
 /**
@@ -52,7 +76,7 @@ const Slides = props => {
 
     return (
       <Slide isActive={isActive} key={`slide-${index}`} ref={ref}>
-        <Post {...data.node} />
+        <Post {...data.node} index={index} />
       </Slide>
     );
   });
@@ -62,7 +86,10 @@ const Slides = props => {
    */
   const slidesRendered = <Container className="Slides">{slides}</Container>;
 
-  return [refs, slidesRendered];
+  return {
+    refs: refs,
+    slidesRendered: slidesRendered
+  };
 };
 
 Slides.propTypes = propTypes;
