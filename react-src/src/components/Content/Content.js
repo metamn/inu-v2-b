@@ -26,7 +26,11 @@ const propTypes = {
   /**
    * The active image (slide or thumb)
    */
-  currentImage: PropTypes.number
+  currentImage: PropTypes.number,
+  /**
+   * The active menu item id
+   */
+  activeMenuItem: PropTypes.string
 };
 
 /**
@@ -35,7 +39,8 @@ const propTypes = {
 const defaultProps = {
   contentSwitcherIcon: "Contet switcher icon",
   contentDisplayType: "slider",
-  currentImage: 1
+  currentImage: 1,
+  activeMenuItem: 1
 };
 
 /**
@@ -57,7 +62,7 @@ const ContentContext = React.createContext({});
  * Displays the component
  */
 const Content = props => {
-  const { contentDisplayType, currentImage } = props;
+  const { contentDisplayType, currentImage, activeMenuItem } = props;
 
   /**
    * Displays a content switcher icon
@@ -90,7 +95,7 @@ const Content = props => {
   /**
    * Loads a list of posts associated to a category
    */
-  const posts = Posts();
+  const posts = Posts({ categoryId: activeMenuItem });
 
   /**
    * Filters posts having a featured image set

@@ -17,6 +17,10 @@ const propTypes = {
    */
   id: PropTypes.string,
   /**
+   * The menu item status
+   */
+  status: PropTypes.oneOf(["active", "inactive", "hidden"]),
+  /**
    * The menu item click handler
    */
   menuItemClickHandler: PropTypes.func
@@ -28,6 +32,7 @@ const propTypes = {
 const defaultProps = {
   name: "Menu item",
   id: "1",
+  status: "inactive",
   menuItemClickHandler: () => {
     console.log("Menu item clicked");
   }
@@ -36,7 +41,11 @@ const defaultProps = {
 /**
  * Styles the component container
  */
-const Container = styled("li")(props => ({}));
+const Container = styled("li")(props => ({
+  textDecoration: props.status === "active" ? "line-through" : "none",
+  display: props.status === "hidden" ? "none" : "flex",
+  cursor: "pointer"
+}));
 
 /**
  * Creates menu items
@@ -51,11 +60,22 @@ const createMenuItems = menuItems => {
  * Displays the component
  */
 const MenuItem = props => {
-  const { name, id } = props;
+  const { name, id, status } = props;
   const { activeMenuItem, menuItemClickHandler } = useContext(MainContext);
 
+  const currentStatus =
+    status === "hidden"
+      ? "hidden"
+      : activeMenuItem === id
+      ? "active"
+      : "inactive";
+
   return (
-    <Container className="MenuItem" onClick={() => menuItemClickHandler(id)}>
+    <Container
+      className="MenuItem"
+      status={currentStatus}
+      onClick={() => menuItemClickHandler(id)}
+    >
       {name}
     </Container>
   );

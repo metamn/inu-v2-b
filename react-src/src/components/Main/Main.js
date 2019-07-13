@@ -58,7 +58,8 @@ const Main = props => {
    * Manages the click on a menu item
    */
   const menuItemClickHandler = index => {
-    console.log("index:" + index);
+    if (index === activeMenuItem) return;
+
     setActiveMenuItem(index);
   };
 
@@ -72,7 +73,7 @@ const Main = props => {
         }}
       >
         <Menu />
-        <Content />
+        <Content activeMenuItem={activeMenuItem} />
       </MainContext.Provider>
     </Container>
   );
