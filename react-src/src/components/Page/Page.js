@@ -44,7 +44,9 @@ const queryFragment = {
 /**
  * Does nothing. Usied only for its propTypes (and methods).
  */
-const Page = props => {};
+const Page = props => {
+  return null;
+};
 
 Page.propTypes = propTypes;
 Page.defaultProps = defaultProps;

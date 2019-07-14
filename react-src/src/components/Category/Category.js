@@ -52,7 +52,9 @@ const categoryToMenuItem = category => {
 /**
  * Does nothing. Usied only for its propTypes (and methods).
  */
-const Category = props => {};
+const Category = props => {
+  return null;
+};
 
 Category.propTypes = propTypes;
 Category.defaultProps = defaultProps;
