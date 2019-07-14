@@ -65,14 +65,19 @@ const Thumbs = props => {
   /**
    * Loads the posts
    */
-  const { edges, activeImage, setActiveImage, setContentDisplayed } = props;
+  const {
+    edges,
+    activeImage,
+    setActiveImage,
+    setActiveContentDisplayMode
+  } = props;
 
   /**
    * Manages the click on a thumb
    */
   const thumbClickHandler = useCallback(index => {
     setActiveImage(index);
-    setContentDisplayed("slider");
+    setActiveContentDisplayMode("slider");
   });
 
   /**

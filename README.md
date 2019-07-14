@@ -10,25 +10,26 @@ Based on [Thinking in React](https://reactjs.org/docs/thinking-in-react.html).
 
 1.  Go through each component which is handling interactive elements and implement their functionality. Usually with states.
 
-    1.  Try to `useContext` to pass variables needed for state management instead of props.
+    1.  To check if something is a state [answer these questions](https://reactjs.org/docs/thinking-in-react.html) and fill the table below. All answers must be `No` to make a candidate a state:
+
+    ```
+    | State candidate          | Props | Unchanged | Computable |
+    -------------------------------------------------------------
+    | activeTheme              | No    | No        | No         |
+    | activeMenuItem           | No    | No        | No         |
+    | menuSwitcherIconState    | No    | No        | No         |
+    | activeContentDisplayMode | No    | No        | No         |
+    | activeImage              | No    | No        | No         |
+    ```
+
     2.  Try to maintain some naming conventions. Like:
 
               1. `active` should mark a state. Ex.: `activeTheme`, `activeImage`, `activeMenuItem`. `current` should not mark a state.
               2. 'State' suffix should be used where appropriate. Like `menuSwitcherIconState`.
 
-2.  To check if something is a state [answer the questions](https://reactjs.org/docs/thinking-in-react.html) and fill the table below. All answers must be `No` to make a candidate a state:
+    3.  Try to `useContext` to pass state down deeper in the tree.
 
-```
-| State candidate          | Props | Unchanged | Computable |
--------------------------------------------------------------
-| activeTheme              | No    | No        | No         |
-| activeMenuItem           | No    | No        | No         |
-| menuSwitcherIconState    | No    | No        | No         |
-| activeContentDisplayMode | No    | No        | No         |
-| activeImage              | No    | No        | No         |
-```
-
-3. Lift state up. Find the component which best owns a state.
+2.  Lift state up. Find the component which best owns a state.
 
 ```
 | State                    | Home component | Other comps using the state | Common owner above |

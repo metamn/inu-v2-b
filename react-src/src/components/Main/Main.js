@@ -20,7 +20,17 @@ const propTypes = {
   /**
    * The initial state of the menu switcher icon
    */
-  menuSwitcherIconToggled: PropTypes.bool
+  menuSwitcherIconToggled: PropTypes.bool,
+  /**
+   * The display modes:
+   *
+   * `blank` - When the menu is visible
+   * `slider` - When a category or Random slideshow is displayed
+   * `thumbs` - When a category is displayd`
+   * `page` - When the Contact page is displayed
+   * ``
+   */
+  contentDisplayMode: PropTypes.oneOf(["blank", "slider", "thumbs", "page"])
 };
 
 /**
@@ -31,7 +41,8 @@ const defaultProps = {
   menuItemClickHandler: () => {
     console.log("Menu item clicked");
   },
-  menuSwitcherIconToggled: false
+  menuSwitcherIconToggled: false,
+  contentDisplayMode: "slider"
 };
 
 /**
@@ -52,7 +63,11 @@ const MainContext = React.createContext({});
  * Displays the component
  */
 const Main = props => {
-  const { currentMenuItem, menuSwitcherIconToggled } = props;
+  const {
+    currentMenuItem,
+    menuSwitcherIconToggled,
+    contentDisplayMode
+  } = props;
 
   /**
    * Sets up state for the active menu item
@@ -67,6 +82,13 @@ const Main = props => {
   );
 
   /**
+   * Sets up state to manage the display mode.
+   */
+  const [activeContentDisplayMode, setActiveContentDisplayMode] = useState(
+    contentDisplayMode
+  );
+
+  /**
    * Manages the click on a menu item
    */
   const menuItemClickHandler = index => {
@@ -74,6 +96,14 @@ const Main = props => {
 
     setActiveMenuItem(index);
     setMenuSwitcherIconState(!menuSwitcherIconState);
+
+    switch (index) {
+      case "-2":
+        setActiveContentDisplayMode("page");
+        break;
+      default:
+        setActiveContentDisplayMode("slider");
+    }
   };
 
   /**
@@ -81,6 +111,19 @@ const Main = props => {
    */
   const menuSwitcherClickHandler = () => {
     setMenuSwitcherIconState(!menuSwitcherIconState);
+
+    if (menuSwitcherIconState) {
+      setActiveContentDisplayMode("blank");
+    }
+  };
+
+  /**
+   * Manages the click on the content switcher icon
+   */
+  const contentSwitcherClickHandler = () => {
+    const newDisplay =
+      activeContentDisplayMode === "slider" ? "thumbs" : "slider";
+    setActiveContentDisplayMode(newDisplay);
   };
 
   return (
@@ -95,7 +138,11 @@ const Main = props => {
         }}
       >
         <Menu />
-        <Content activeMenuItem={activeMenuItem} />
+        <Content
+          activeContentDisplayMode={activeContentDisplayMode}
+          setActiveContentDisplayMode={setActiveContentDisplayMode}
+          contentSwitcherClickHandler={contentSwitcherClickHandler}
+        />
       </MainContext.Provider>
     </Container>
   );

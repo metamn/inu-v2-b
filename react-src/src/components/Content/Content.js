@@ -20,23 +20,18 @@ const propTypes = {
    */
   contentSwitcherIcon: PropTypes.string,
   /**
-   * The display modes:
-   *
-   * `blank` - When the menu is visible
-   * `slider` - When a category or Random slideshow is displayed
-   * `thumbs` - When a category is displayd`
-   * `page` - When the Contact page is displayed
-   * ``
-   */
-  contentDisplayMode: PropTypes.oneOf(["blank", "slider", "thumbs", "page"]),
-  /**
    * The active image (slide or thumb)
    */
   currentImage: PropTypes.number,
   /**
-   * The active menu item id
+   * The active display mode
    */
-  activeMenuItem: PropTypes.string
+  activeContentDisplayMode: PropTypes.oneOf([
+    "blank",
+    "slider",
+    "thumbs",
+    "page"
+  ])
 };
 
 /**
@@ -46,7 +41,8 @@ const defaultProps = {
   contentSwitcherIcon: "Contet switcher icon",
   contentDisplayMode: "slider",
   currentImage: 1,
-  activeMenuItem: 1
+  activeMenuItem: 1,
+  activeContentDisplayMode: "slider"
 };
 
 /**
@@ -68,7 +64,13 @@ const ContentContext = React.createContext({});
  * Displays the component
  */
 const Content = props => {
-  const { contentDisplayMode, currentImage, activeMenuItem } = props;
+  const {
+    activeContentDisplayMode,
+    setActiveContentDisplayMode,
+    currentImage,
+    activeMenuItem,
+    contentSwitcherClickHandler
+  } = props;
 
   /**
    * Displays a content switcher icon
@@ -76,22 +78,6 @@ const Content = props => {
   const { theme } = useTheme();
   const { icons } = theme;
   const contentSwitcherIcon = icons.grid;
-
-  /**
-   * Sets up state to manage the display mode.
-   */
-  const [activeContentDisplayMode, setActiveContentDisplayMode] = useState(
-    contentDisplayMode
-  );
-
-  /**
-   * Manages the click on the content switcher icon
-   */
-  const contentSwitcherClickHandler = () => {
-    const newDisplay =
-      activeContentDisplayMode === "slider" ? "thumbs" : "slider";
-    setActiveContentDisplayMode(newDisplay);
-  };
 
   /**
    * Sets up state to mark the active image (thumb, or slide)
