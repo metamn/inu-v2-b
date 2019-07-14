@@ -20,9 +20,15 @@ const propTypes = {
    */
   contentSwitcherIcon: PropTypes.string,
   /**
-   * The types of content displayed
+   * The display modes:
+   *
+   * `blank` - When the menu is visible
+   * `slider` - When a category or Random slideshow is displayed
+   * `thumbs` - When a category is displayd`
+   * `page` - When the Contact page is displayed
+   * ``
    */
-  contentDisplayType: PropTypes.oneOf(["blank", "slider", "thumbs", "content"]),
+  contentDisplayMode: PropTypes.oneOf(["blank", "slider", "thumbs", "page"]),
   /**
    * The active image (slide or thumb)
    */
@@ -38,7 +44,7 @@ const propTypes = {
  */
 const defaultProps = {
   contentSwitcherIcon: "Contet switcher icon",
-  contentDisplayType: "slider",
+  contentDisplayMode: "slider",
   currentImage: 1,
   activeMenuItem: 1
 };
@@ -62,7 +68,7 @@ const ContentContext = React.createContext({});
  * Displays the component
  */
 const Content = props => {
-  const { contentDisplayType, currentImage, activeMenuItem } = props;
+  const { contentDisplayMode, currentImage, activeMenuItem } = props;
 
   /**
    * Displays a content switcher icon
@@ -72,19 +78,19 @@ const Content = props => {
   const contentSwitcherIcon = icons.grid;
 
   /**
-   * Sets up state for the display type.
-   *
-   * Display type is (partially) managed by the content switcher icon.
-   * The `Menu` can also control the display type like displaying the `Content` page for example.
+   * Sets up state to manage the display mode.
    */
-  const [contentDisplayed, setContentDisplayed] = useState(contentDisplayType);
+  const [activeContentDisplayMode, setActiveContentDisplayMode] = useState(
+    contentDisplayMode
+  );
 
   /**
    * Manages the click on the content switcher icon
    */
   const contentSwitcherClickHandler = () => {
-    const newDisplay = contentDisplayed === "slider" ? "thumbs" : "slider";
-    setContentDisplayed(newDisplay);
+    const newDisplay =
+      activeContentDisplayMode === "slider" ? "thumbs" : "slider";
+    setActiveContentDisplayMode(newDisplay);
   };
 
   /**
@@ -114,10 +120,10 @@ const Content = props => {
    * Decides which content to be displayed
    */
   const DisplayContent = () => {
-    switch (contentDisplayed) {
+    switch (activeContentDisplayMode) {
       case "blank":
         return null;
-      case "content":
+      case "page":
         return <Contact content={contactPageContent} />;
       case "thumbs":
         return (
@@ -125,7 +131,7 @@ const Content = props => {
             edges={edgesWithFeaturedImage}
             activeImage={activeImage}
             setActiveImage={setActiveImage}
-            setContentDisplayed={setContentDisplayed}
+            setActiveContentDisplayMode={setActiveContentDisplayMode}
           />
         );
       case "slider":
@@ -146,7 +152,7 @@ const Content = props => {
       <Icon onClick={() => contentSwitcherClickHandler()}>
         {contentSwitcherIcon}
       </Icon>
-      <ContentContext.Provider value={contentDisplayed}>
+      <ContentContext.Provider value={activeContentDisplayMode}>
         <DisplayContent />
       </ContentContext.Provider>
     </Container>

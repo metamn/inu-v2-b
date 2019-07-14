@@ -83,13 +83,13 @@ const Menu = props => {
   /**
    * Sets up state for the menu switcher icon
    */
-  const [menuSwitcherIcon, setMenuSwitcherIcon] = useState(toggled);
+  const [menuSwitcherIconState, setMenuSwitcherIconState] = useState(toggled);
 
   /**
    * Manages the click on the menu switcher icon
    */
   const menuSwitcherClickHandler = () => {
-    setMenuSwitcherIcon(!menuSwitcherIcon);
+    setMenuSwitcherIconState(!menuSwitcherIconState);
   };
 
   /**
@@ -120,7 +120,7 @@ const Menu = props => {
       <IconToggle
         icon1={toggleIconDown}
         icon2={toggleIconUp}
-        toggled={menuSwitcherIcon}
+        toggled={menuSwitcherIconState}
         toggleIconClickHandler={menuSwitcherClickHandler}
       />
       <ul>

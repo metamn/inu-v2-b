@@ -8,24 +8,36 @@ Based on [Thinking in React](https://reactjs.org/docs/thinking-in-react.html).
 
 ### Interaction - v0.0.3
 
-1. Go through each component which is handling interactive elements and implement their functionality. Usually with states.
-   1. Try to `useContext` to pass variables needed for state management instead of props.
-   2. Try to maintain some naming conventions. Like:
-      - `active` should mark a state. Ex.: `activeTheme`, `activeImage`, `activeMenuItem`. `current` should not mark a state.
-2. To check if something is a state or not fill the table below. All answers must be `No` to make a candidate a state:
+1.  Go through each component which is handling interactive elements and implement their functionality. Usually with states.
+
+    1.  Try to `useContext` to pass variables needed for state management instead of props.
+    2.  Try to maintain some naming conventions. Like:
+
+              1. `active` should mark a state. Ex.: `activeTheme`, `activeImage`, `activeMenuItem`. `current` should not mark a state.
+              2. 'State' suffix should be used where appropriate. Like `menuSwitcherIconState`.
+
+2.  To check if something is a state [answer the questions](https://reactjs.org/docs/thinking-in-react.html) and fill the table below. All answers must be `No` to make a candidate a state:
 
 ```
-| State candidate | Props | Unchanged | Computable |
-----------------------------------------------------
-|                 | No    | No        | No         |
+| State candidate          | Props | Unchanged | Computable |
+-------------------------------------------------------------
+| activeTheme              | No    | No        | No         |
+| activeMenuItem           | No    | No        | No         |
+| menuSwitcherIconState    | No    | No        | No         |
+| activeContentDisplayMode | No    | No        | No         |
+| activeImage              | No    | No        | No         |
 ```
 
 3. Lift state up. Find the component which best owns a state.
 
 ```
-| State           | Home component | Other comps using the state |
-------------------------------------------------------------------
-
+| State                    | Home component | Other comps using the state | Common owner above |
+------------------------------------------------------------------------------------------------
+| activeTheme              | Home           | Many, with `useContext`     | n/a                |
+| activeMenuItem           | Main           | Content, MenuItem           | n/a                |
+| menuSwitcherIconState    | Menu           | n/a                         | n/a                |
+| activeContentDisplayMode | Content        | Thumbs                      | n/a                |
+| activeImage              | Content        | Thumbs, Slider              | n/a                |
 ```
 
 ### Mocks - v0.0.1
