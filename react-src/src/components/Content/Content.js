@@ -94,6 +94,12 @@ const Content = props => {
     : "inactive";
 
   /**
+   * Removes the click handler when the content switcher icon is inactive
+   */
+  const clickHandler =
+    iconStatus === "active" ? contentSwitcherClickHandler : () => {};
+
+  /**
    * Sets up state to mark the active image (thumb, or slide)
    */
   const [activeImage, setActiveImage] = useState(currentImage);
@@ -150,7 +156,7 @@ const Content = props => {
   return (
     <Container className="Content">
       Content
-      <Icon status={iconStatus} onClick={() => contentSwitcherClickHandler()}>
+      <Icon status={iconStatus} onClick={() => clickHandler()}>
         {contentSwitcherIcon}
       </Icon>
       <ContentContext.Provider value={activeContentDisplayMode}>
