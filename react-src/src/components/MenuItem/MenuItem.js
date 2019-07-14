@@ -50,10 +50,37 @@ const Container = styled("li")(props => ({
 /**
  * Creates menu items
  */
-const createMenuItems = menuItems => {
-  return menuItems.map((menuItem, index) => (
-    <MenuItem key={`MenuItem-${index}`} {...menuItem} />
-  ));
+const createMenuItems = props => {
+  const { menuItems, menuSwitcherIconState, setStatus } = props;
+  const { activeMenuItem } = useContext(MainContext);
+
+  return menuItems.map((menuItem, index) => {
+    const { id, name } = menuItem;
+
+    return (
+      <MenuItem
+        key={`MenuItem-${index}`}
+        id={id}
+        name={name}
+        status={setStatus({
+          id: id,
+          activeMenuItem: activeMenuItem,
+          menuSwitcherIconState: menuSwitcherIconState
+        })}
+      />
+    );
+  });
+};
+
+const setMenuItemStatus = props => {
+  const { status, index } = props;
+  const { activeMenuItem } = useContext(MainContext);
+
+  return status === "hidden"
+    ? activeMenuItem === index
+      ? "active"
+      : "hidden"
+    : status;
 };
 
 /**
@@ -61,19 +88,12 @@ const createMenuItems = menuItems => {
  */
 const MenuItem = props => {
   const { name, id, status } = props;
-  const { activeMenuItem, menuItemClickHandler } = useContext(MainContext);
-
-  const currentStatus =
-    status === "hidden"
-      ? "hidden"
-      : activeMenuItem === id
-      ? "active"
-      : "inactive";
+  const { menuItemClickHandler } = useContext(MainContext);
 
   return (
     <Container
       className="MenuItem"
-      status={currentStatus}
+      status={status}
       onClick={() => menuItemClickHandler(id)}
     >
       {name}

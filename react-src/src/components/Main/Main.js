@@ -16,7 +16,11 @@ const propTypes = {
   /**
    * The menu item click handler
    */
-  menuItemClickHandler: PropTypes.func
+  menuItemClickHandler: PropTypes.func,
+  /**
+   * The initial state of the menu switcher icon
+   */
+  menuSwitcherIconToggled: PropTypes.bool
 };
 
 /**
@@ -26,7 +30,8 @@ const defaultProps = {
   currentMenuItem: "1",
   menuItemClickHandler: () => {
     console.log("Menu item clicked");
-  }
+  },
+  menuSwitcherIconToggled: false
 };
 
 /**
@@ -47,12 +52,19 @@ const MainContext = React.createContext({});
  * Displays the component
  */
 const Main = props => {
-  const { currentMenuItem } = props;
+  const { currentMenuItem, menuSwitcherIconToggled } = props;
 
   /**
    * Sets up state for the active menu item
    */
   const [activeMenuItem, setActiveMenuItem] = useState(currentMenuItem);
+
+  /**
+   * Sets up state for the menu switcher icon
+   */
+  const [menuSwitcherIconState, setMenuSwitcherIconState] = useState(
+    menuSwitcherIconToggled
+  );
 
   /**
    * Manages the click on a menu item
@@ -61,6 +73,14 @@ const Main = props => {
     if (index === activeMenuItem) return;
 
     setActiveMenuItem(index);
+    setMenuSwitcherIconState(!menuSwitcherIconState);
+  };
+
+  /**
+   * Manages the click on the menu switcher icon
+   */
+  const menuSwitcherClickHandler = () => {
+    setMenuSwitcherIconState(!menuSwitcherIconState);
   };
 
   return (
@@ -69,7 +89,9 @@ const Main = props => {
       <MainContext.Provider
         value={{
           activeMenuItem: activeMenuItem,
-          menuItemClickHandler: menuItemClickHandler
+          menuItemClickHandler: menuItemClickHandler,
+          menuSwitcherIconState: menuSwitcherIconState,
+          menuSwitcherClickHandler: menuSwitcherClickHandler
         }}
       >
         <Menu />

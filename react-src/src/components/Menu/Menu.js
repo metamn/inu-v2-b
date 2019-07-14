@@ -1,13 +1,17 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useContext } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import { useTheme } from "./../../hooks";
-
+import { MainContext } from "../Main";
 import Categories from "../Categories";
 import { categoryToMenuItem } from "../Category";
 import { MenuItemPropTypes, createMenuItems } from "../MenuItem";
-import IconToggle from "../IconToggle";
+import MenuDropdown, {
+  MenuDropdownPropTypes,
+  MenuDropdownDefaultProps,
+  setMenuDropdownItemStatus
+} from "../MenuDropdown";
 
 /**
  * Defines the prop types
@@ -22,17 +26,9 @@ const propTypes = {
    */
   contact: PropTypes.shape(MenuItemPropTypes),
   /**
-   * The toggle down icon
+   * The drowpdown menu
    */
-  toggleIconDown: PropTypes.string,
-  /**
-   * The toggle up icon
-   */
-  toggleIconUp: PropTypes.string,
-  /**
-   * The initial icon toggle status
-   */
-  toggled: PropTypes.bool
+  ...MenuDropdownPropTypes
 };
 
 /**
@@ -47,9 +43,7 @@ const defaultProps = {
     name: "Contact",
     id: "-2"
   },
-  toggleIconDown: "Toggle icon down",
-  toggleIconUp: "Toggle icon up",
-  toggled: false
+  ...MenuDropdownDefaultProps
 };
 
 /**
@@ -58,39 +52,16 @@ const defaultProps = {
 const Container = styled("div")(props => ({
   border: "1px solid",
   padding: "1.25em",
-  margin: "1.25em",
-
-  "& ul": {
-    display: "flex",
-    flexWrap: "wrap"
-  }
+  margin: "1.25em"
 }));
 
 /**
  * Displays the menu
  */
 const Menu = props => {
-  const { toggled } = props;
-
-  /**
-   * Displays a menu switcher icon
-   */
-  const { theme } = useTheme();
-  const { icons } = theme;
-  const toggleIconUp = icons.chevronUp;
-  const toggleIconDown = icons.chevronDown;
-
-  /**
-   * Sets up state for the menu switcher icon
-   */
-  const [menuSwitcherIconState, setMenuSwitcherIconState] = useState(toggled);
-
-  /**
-   * Manages the click on the menu switcher icon
-   */
-  const menuSwitcherClickHandler = () => {
-    setMenuSwitcherIconState(!menuSwitcherIconState);
-  };
+  const { menuSwitcherIconState, menuSwitcherClickHandler } = useContext(
+    MainContext
+  );
 
   /**
    * Loads categories
@@ -100,9 +71,11 @@ const Menu = props => {
   /**
    * Displays categories as menu items
    */
-  const categoriesAsMenuItems = createMenuItems(
-    categories.edges.map(edge => categoryToMenuItem(edge.node))
-  );
+  const categoriesAsMenuItems = createMenuItems({
+    menuItems: categories.edges.map(edge => categoryToMenuItem(edge.node)),
+    setStatus: setMenuDropdownItemStatus,
+    menuSwitcherIconState: menuSwitcherIconState
+  });
 
   /**
    * Loads `Random` and `Contact` menu items
@@ -112,21 +85,22 @@ const Menu = props => {
   /**
    * Displays  `Random` and `Contact` menu items
    */
-  const customMenuItems = createMenuItems([random, contact]);
+  const customMenuItems = createMenuItems({
+    menuItems: [random, contact],
+    setStatus: setMenuDropdownItemStatus,
+    menuSwitcherIconState: menuSwitcherIconState
+  });
 
   return (
     <Container className="Menu">
       Menu
-      <IconToggle
-        icon1={toggleIconDown}
-        icon2={toggleIconUp}
+      <MenuDropdown
         toggled={menuSwitcherIconState}
         toggleIconClickHandler={menuSwitcherClickHandler}
-      />
-      <ul>
+      >
         {categoriesAsMenuItems}
         {customMenuItems}
-      </ul>
+      </MenuDropdown>
     </Container>
   );
 };
