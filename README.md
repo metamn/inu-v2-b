@@ -8,13 +8,25 @@ Based on [Thinking in React](https://reactjs.org/docs/thinking-in-react.html).
 
 ### Interaction - v0.0.3
 
-1. Go through each component which is handling interactive elements and implement their functionality with states.
+1. Go through each component which is handling interactive elements and implement their functionality. Usually with states.
    1. Try to `useContext` to pass variables needed for state management instead of props.
-2. Lift states to assure the whole app is working in sync.
-3. Check the performance.
-   1. Display a log message when a data component is rendered.
-   2. If there are more than two renders (first with default props, then with real data) the case should be investigated.
-   3. Add `useWhyDidYouUpdate` to all data components to tell what needs to be memoized
+   2. Try to maintain some naming conventions. Like:
+      - `active` should mark a state. Ex.: `activeTheme`, `activeImage`, `activeMenuItem`. `current` should not mark a state.
+2. To check if something is a state or not fill the table below. All answers must be `No` to make a candidate a state:
+
+```
+| State candidate | Props | Unchanged | Computable |
+----------------------------------------------------
+|                 | No    | No        | No         |
+```
+
+3. Lift state up. Find the component which best owns a state.
+
+```
+| State           | Home component | Other comps using the state |
+------------------------------------------------------------------
+
+```
 
 ### Mocks - v0.0.1
 

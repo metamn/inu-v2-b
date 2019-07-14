@@ -44,8 +44,7 @@ const Container = styled("div")(props => ({
 
   border: "1px solid",
   padding: "1.25em",
-  margin: "1.25em",
-  backgroundColor: "white"
+  margin: "1.25em"
 }));
 
 /**
