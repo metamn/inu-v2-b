@@ -50,7 +50,7 @@ const query = gql`
 `;
 
 /**
- * Loads a list of posts associated to a category
+ * Loads a list of posts associated to a category (with featured images)
  */
 const Posts = props => {
   const { categoryId } = props;

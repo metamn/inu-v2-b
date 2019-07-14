@@ -67,7 +67,7 @@ const getDisplayMode = activeMenuItem => {
 };
 
 /**
- * Displays the component
+ * Displays and manages the interactions of the menu and the content
  */
 const Main = props => {
   const {

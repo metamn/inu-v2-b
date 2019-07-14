@@ -61,7 +61,7 @@ const Container = styled("div")(props => ({
 const ContentContext = React.createContext({});
 
 /**
- * Displays the component
+ * Displays various content types
  */
 const Content = props => {
   const {
@@ -86,6 +86,10 @@ const Content = props => {
 
   /**
    * Sets the status of the content switcher icon
+   *
+   * Active - when a category is displayed
+   * Hidden - When there is a Slideshow
+   * Inactive - Otherwise ...
    */
   const iconStatus = isSlideShowActive
     ? "hidden"

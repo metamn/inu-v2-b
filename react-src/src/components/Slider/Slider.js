@@ -54,8 +54,6 @@ const Container = styled("div")(props => ({
 
 /**
  * Creates a context for handling the clicks on the image.
- *
- * Clicks must be handled on the lowest level (... to my current knowledge)
  */
 const SliderContext = React.createContext({});
 
@@ -136,7 +134,9 @@ const Slider = props => {
   useEventListener("touchend", touchScrollHandler);
 
   /**
-   * Autoslides the images
+   * Autoslides the images.
+   *
+   * Images are randomized during the autoslide.
    */
   useEffect(
     () => {

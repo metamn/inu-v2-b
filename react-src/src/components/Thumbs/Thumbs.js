@@ -73,7 +73,10 @@ const Thumbs = props => {
   } = props;
 
   /**
-   * Manages the click on a thumb
+   * Manages the click on a thumb.
+   *
+   * Marks the active image.
+   * Changes the display mode to `slider`
    */
   const thumbClickHandler = index => {
     setActiveImage(index);

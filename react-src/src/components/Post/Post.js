@@ -49,7 +49,7 @@ const queryFragment = {
 const Article = styled(_Article)(props => ({}));
 
 /**
- * Displays the component
+ * Displays the post.
  */
 const Post = props => {
   const { title } = props;

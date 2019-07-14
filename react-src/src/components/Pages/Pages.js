@@ -38,7 +38,7 @@ const query = gql`
 `;
 
 /**
- * Loads a page from the database
+ * Loads the Contact page from the database
  */
 const Pages = () => {
   /**

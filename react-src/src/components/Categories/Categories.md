@@ -1,18 +1,6 @@
 The component performs the following tasks:
 
 <details>
-	<summary>###Defines prop types for Category
-
-</summary>
-</details>
-
-<details>
-	<summary>###Defines default props for Category
-
-</summary>
-</details>
-
-<details>
 	<summary>###Defines the prop types
 
 </summary>
@@ -31,14 +19,10 @@ The component performs the following tasks:
 </details>
 
 <details>
-	<summary>###Styles the component container
+	<summary>###Loads categories from the database
 
 </summary>
-</details>
+* Excludes empty categories
 
-<details>
-	<summary>###Displays the component
-
-</summary>
 </details>
 
