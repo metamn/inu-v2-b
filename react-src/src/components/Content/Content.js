@@ -78,8 +78,20 @@ const Content = props => {
   const { theme } = useTheme();
   const { icons } = theme;
   const contentSwitcherIcon = icons.grid;
-  const iconStatus =
-    activeContentDisplayMode === "slider" ? "active" : "inactive";
+
+  /**
+   * Decides if there is a slideshow
+   */
+  const isSlideShowActive = activeMenuItem === "-1";
+
+  /**
+   * Sets the status of the content switcher icon
+   */
+  const iconStatus = isSlideShowActive
+    ? "hidden"
+    : activeContentDisplayMode === "slider"
+    ? "active"
+    : "inactive";
 
   /**
    * Sets up state to mark the active image (thumb, or slide)
@@ -129,6 +141,7 @@ const Content = props => {
             edges={edgesWithFeaturedImage}
             activeImage={activeImage}
             setActiveImage={setActiveImage}
+            isSlideShowActive={isSlideShowActive}
           />
         );
     }
