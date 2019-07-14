@@ -15,21 +15,38 @@ Based on [Thinking in React](https://reactjs.org/docs/thinking-in-react.html).
     ```
     | State candidate          | Props | Unchanged | Computable |
     -------------------------------------------------------------
-    | activeTheme              | No    | No        | No         |
-    | activeMenuItem           | No    | No        | No         |
-    | menuSwitcherIconState    | No    | No        | No         |
-    | activeContentDisplayMode | No    | No        | No         |
-    | activeImage              | No    | No        | No         |
+    | state                    | No    | No        | No         |
+    | ....                     | No    | No        | No         |
     ```
 
-    2.  Try to maintain some naming conventions. Like:
+    2.  When adding state try to maintain some naming conventions. Like:
 
               1. `active` should mark a state. Ex.: `activeTheme`, `activeImage`, `activeMenuItem`. `current` should not mark a state.
-              2. 'State' suffix should be used where appropriate. Like `menuSwitcherIconState`.
+              2. `State` suffix should be used where appropriate. Like `menuSwitcherIconState`.
 
     3.  Try to `useContext` to pass state down deeper in the tree.
 
-2.  Lift state up. Find the component which best owns a state.
+2.  Connect states together. One state change might trigger another state changes. Connecting states usually changes the owner component of a state. To find the component which best owns a state (lifting state) this table can help:
+
+```
+| State                    | Home component | Other comps using the state | Common owner above |
+------------------------------------------------------------------------------------------------
+| state                    |                |                             |                    |
+```
+
+#### Example
+
+After implementing states (1.) we had:
+
+```
+| State candidate          | Props | Unchanged | Computable |
+-------------------------------------------------------------
+| activeTheme              | No    | No        | No         |
+| activeMenuItem           | No    | No        | No         |
+| menuSwitcherIconState    | No    | No        | No         |
+| activeContentDisplayMode | No    | No        | No         |
+| activeImage              | No    | No        | No         |
+```
 
 ```
 | State                    | Home component | Other comps using the state | Common owner above |
@@ -38,6 +55,18 @@ Based on [Thinking in React](https://reactjs.org/docs/thinking-in-react.html).
 | activeMenuItem           | Main           | Content, MenuItem           | n/a                |
 | menuSwitcherIconState    | Menu           | n/a                         | n/a                |
 | activeContentDisplayMode | Content        | Thumbs                      | n/a                |
+| activeImage              | Content        | Thumbs, Slider              | n/a                |
+```
+
+After connecting states (2.) we had:
+
+```
+| State                    | Home component | Other comps using the state | Common owner above |
+------------------------------------------------------------------------------------------------
+| activeTheme              | Home           | Many, with `useContext`     | n/a                |
+| activeMenuItem           | Main           | Content, MenuItem           | n/a                |
+| menuSwitcherIconState    | Main           | n/a                         | n/a                |
+| activeContentDisplayMode | Main           | Thumbs                      | n/a                |
 | activeImage              | Content        | Thumbs, Slider              | n/a                |
 ```
 
