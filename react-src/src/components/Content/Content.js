@@ -78,6 +78,8 @@ const Content = props => {
   const { theme } = useTheme();
   const { icons } = theme;
   const contentSwitcherIcon = icons.grid;
+  const iconStatus =
+    activeContentDisplayMode === "slider" ? "active" : "inactive";
 
   /**
    * Sets up state to mark the active image (thumb, or slide)
@@ -135,7 +137,7 @@ const Content = props => {
   return (
     <Container className="Content">
       Content
-      <Icon onClick={() => contentSwitcherClickHandler()}>
+      <Icon status={iconStatus} onClick={() => contentSwitcherClickHandler()}>
         {contentSwitcherIcon}
       </Icon>
       <ContentContext.Provider value={activeContentDisplayMode}>

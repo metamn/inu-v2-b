@@ -40,8 +40,8 @@ const defaultProps = {
     size: 1,
     status: "active",
     colorPairs: {
-      default: null,
-      inactive: null
+      default: "black",
+      inactive: "gray"
     }
   }
 };

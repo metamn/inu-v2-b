@@ -60,6 +60,13 @@ const Container = styled("div")(props => ({
 const MainContext = React.createContext({});
 
 /**
+ * Gets the display mode
+ */
+const getDisplayMode = activeMenuItem => {
+  return activeMenuItem === "-2" ? "page" : "slider";
+};
+
+/**
  * Displays the component
  */
 const Main = props => {
@@ -95,15 +102,8 @@ const Main = props => {
     if (index === activeMenuItem) return;
 
     setActiveMenuItem(index);
+    setActiveContentDisplayMode(getDisplayMode(index));
     setMenuSwitcherIconState(!menuSwitcherIconState);
-
-    switch (index) {
-      case "-2":
-        setActiveContentDisplayMode("page");
-        break;
-      default:
-        setActiveContentDisplayMode("slider");
-    }
   };
 
   /**
@@ -112,9 +112,9 @@ const Main = props => {
   const menuSwitcherClickHandler = () => {
     setMenuSwitcherIconState(!menuSwitcherIconState);
 
-    if (menuSwitcherIconState) {
-      setActiveContentDisplayMode("blank");
-    }
+    setActiveContentDisplayMode(
+      menuSwitcherIconState ? getDisplayMode(activeMenuItem) : "blank"
+    );
   };
 
   /**
@@ -139,6 +139,7 @@ const Main = props => {
       >
         <Menu />
         <Content
+          activeMenuItem={activeMenuItem}
           activeContentDisplayMode={activeContentDisplayMode}
           setActiveContentDisplayMode={setActiveContentDisplayMode}
           contentSwitcherClickHandler={contentSwitcherClickHandler}

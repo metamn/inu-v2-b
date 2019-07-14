@@ -54,12 +54,12 @@ const createMenuItems = props => {
   const { menuItems, menuSwitcherIconState, setStatus } = props;
   const { activeMenuItem } = useContext(MainContext);
 
-  return menuItems.map((menuItem, index) => {
+  return menuItems.map(menuItem => {
     const { id, name } = menuItem;
 
     return (
       <MenuItem
-        key={`MenuItem-${index}`}
+        key={`MenuItem-${id}`}
         id={id}
         name={name}
         status={setStatus({
