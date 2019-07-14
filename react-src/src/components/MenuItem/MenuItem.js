@@ -51,8 +51,7 @@ const Container = styled("li")(props => ({
  * Creates menu items
  */
 const createMenuItems = props => {
-  const { menuItems, menuSwitcherIconState, setStatus } = props;
-  const { activeMenuItem } = useContext(MainContext);
+  const { menuItems, menuSwitcherIconState, setStatus, activeMenuItem } = props;
 
   return menuItems.map(menuItem => {
     const { id, name } = menuItem;
@@ -70,17 +69,6 @@ const createMenuItems = props => {
       />
     );
   });
-};
-
-const setMenuItemStatus = props => {
-  const { status, index } = props;
-  const { activeMenuItem } = useContext(MainContext);
-
-  return status === "hidden"
-    ? activeMenuItem === index
-      ? "active"
-      : "hidden"
-    : status;
 };
 
 /**

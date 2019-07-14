@@ -222,7 +222,13 @@ const Image = props => {
   const slideClickHandler = useContext(SliderContext);
   const thumbClickHandler = useContext(ThumbsContext);
   const imageClickHandler =
-    contentDisplayed === "slider" ? slideClickHandler : thumbClickHandler;
+    contentDisplayed === "slider"
+      ? slideClickHandler
+        ? slideClickHandler
+        : clickHandler
+      : thumbClickHandler
+      ? thumbClickHandler
+      : clickHandler;
 
   /**
    * Returns a ProgressiveImage if requested. Otherwise a simple HTML image

@@ -1,8 +1,7 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { useTheme } from "./../../hooks";
 import { MainContext } from "../Main";
 import Categories from "../Categories";
 import { categoryToMenuItem } from "../Category";
@@ -59,9 +58,11 @@ const Container = styled("div")(props => ({
  * Displays the menu
  */
 const Menu = props => {
-  const { menuSwitcherIconState, menuSwitcherClickHandler } = useContext(
-    MainContext
-  );
+  const {
+    menuSwitcherIconState,
+    menuSwitcherClickHandler,
+    activeMenuItem
+  } = useContext(MainContext);
 
   /**
    * Loads categories
@@ -74,7 +75,8 @@ const Menu = props => {
   const categoriesAsMenuItems = createMenuItems({
     menuItems: categories.edges.map(edge => categoryToMenuItem(edge.node)),
     setStatus: setMenuDropdownItemStatus,
-    menuSwitcherIconState: menuSwitcherIconState
+    menuSwitcherIconState: menuSwitcherIconState,
+    activeMenuItem: activeMenuItem
   });
 
   /**
@@ -88,7 +90,8 @@ const Menu = props => {
   const customMenuItems = createMenuItems({
     menuItems: [random, contact],
     setStatus: setMenuDropdownItemStatus,
-    menuSwitcherIconState: menuSwitcherIconState
+    menuSwitcherIconState: menuSwitcherIconState,
+    activeMenuItem: activeMenuItem
   });
 
   return (

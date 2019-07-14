@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
@@ -75,10 +75,10 @@ const Thumbs = props => {
   /**
    * Manages the click on a thumb
    */
-  const thumbClickHandler = useCallback(index => {
+  const thumbClickHandler = index => {
     setActiveImage(index);
     setActiveContentDisplayMode("slider");
-  });
+  };
 
   /**
    * Prepares the thumbs

@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
@@ -98,7 +98,7 @@ const Slider = props => {
   /**
    * Manages the click on a slide
    */
-  const slideClickHandler = useCallback(index => {
+  const slideClickHandler = index => {
     // No clicks on `Random slideshow`
     if (isSlideShowActive) return;
 
@@ -107,7 +107,7 @@ const Slider = props => {
     } else {
       setActiveImage(0);
     }
-  });
+  };
 
   /**
    * Handles the touch scroll event
