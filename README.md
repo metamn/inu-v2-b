@@ -24,7 +24,7 @@ Based on [Thinking in React](https://reactjs.org/docs/thinking-in-react.html).
               1. `active` should mark a state. Ex.: `activeTheme`, `activeImage`, `activeMenuItem`. `current` should not mark a state.
               2. `State` suffix should be used where appropriate. Like `menuSwitcherIconState`.
 
-    3.  Try to `useContext` to pass state down deeper in the tree.
+    3.  Try to `useContext` to pass state when it will be consumed down deep in the tree.
 
 2.  Connect states together. One state change might trigger another state changes. Connecting states usually changes the owner component of a state. To find the component which best owns a state (lifting state) this table can help:
 
