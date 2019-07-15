@@ -1,8 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { MainContext } from "../Main";
 import Categories from "../Categories";
 import { categoryToMenuItem } from "../Category";
 import { MenuItemPropTypes, createMenuItems } from "../MenuItem";
@@ -16,6 +15,18 @@ import MenuDropdown, {
  * Defines the prop types
  */
 const propTypes = {
+  /**
+   * The active menu item
+   */
+  activeMenuItem: PropTypes.sting,
+  /**
+   * The state of the menu switcher icon
+   */
+  menuSwitcherIconState: PropTypes.bool,
+  /**
+   * The menu switcher click handler
+   */
+  menuSwitcherClickHandler: PropTypes.func,
   /**
    * The `Random` menu item
    */
@@ -34,6 +45,11 @@ const propTypes = {
  * Defines the default props
  */
 const defaultProps = {
+  activeMenuItem: "1",
+  menuSwitcherIconState: false,
+  menuSwitcherClickHandler: () => {
+    console.log("Menu switcher clicked");
+  },
   random: {
     name: "Random slideshow",
     id: "-1"
@@ -62,7 +78,7 @@ const Menu = props => {
     menuSwitcherIconState,
     menuSwitcherClickHandler,
     activeMenuItem
-  } = useContext(MainContext);
+  } = props;
 
   /**
    * Loads categories

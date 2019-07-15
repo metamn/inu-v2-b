@@ -51,22 +51,23 @@ const Container = styled("li")(props => ({
  * Creates menu items
  */
 const createMenuItems = props => {
+  /**
+   * Retrieves props.
+   *
+   * Context cannot be used since this is not a hook
+   */
   const { menuItems, menuSwitcherIconState, setStatus, activeMenuItem } = props;
 
   return menuItems.map(menuItem => {
     const { id, name } = menuItem;
+    const newStatus = setStatus({
+      id: id,
+      activeMenuItem: activeMenuItem,
+      menuSwitcherIconState: menuSwitcherIconState
+    });
 
     return (
-      <MenuItem
-        key={`MenuItem-${id}`}
-        id={id}
-        name={name}
-        status={setStatus({
-          id: id,
-          activeMenuItem: activeMenuItem,
-          menuSwitcherIconState: menuSwitcherIconState
-        })}
-      />
+      <MenuItem key={`MenuItem-${id}`} id={id} name={name} status={newStatus} />
     );
   });
 };
