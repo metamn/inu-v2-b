@@ -34,7 +34,7 @@ Based on [Thinking in React](https://reactjs.org/docs/thinking-in-react.html).
 | state                    |                |                             |                    |
 ```
 
-3. The generated docs should include implementations of every feature / requirement specification declared in previous stages.
+3. The generated docs should include implementations of every feature / requirement specification declared in previous stages. More, if tests were used from beginning this task now would be obvious.
 
 #### Example
 

@@ -169,7 +169,7 @@ const thumbnailImage = props => {
  * Displays the post featured image
  */
 const PostFeaturedImage = props => {
-  const { featuredImage, featuredImageType } = props;
+  const { featuredImageType } = props;
 
   const image =
     featuredImageType === "responsive"

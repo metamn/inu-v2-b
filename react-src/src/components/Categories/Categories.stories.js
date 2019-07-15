@@ -9,7 +9,15 @@ import description from "./Categories.md";
 
 const CategoriesForStory = () => {
   const data = Categories();
-  return <p>Loads Categories from the database.</p>;
+  const code = JSON.stringify(data, null, 2);
+  return (
+    <>
+      <p>Loads Categories from the database</p>
+      <pre>
+        <code>{code}</code>
+      </pre>
+    </>
+  );
 };
 
 CategoriesForStory.propTypes = CategoriesPropTypes;

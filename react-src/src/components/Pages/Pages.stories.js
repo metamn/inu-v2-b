@@ -6,7 +6,15 @@ import description from "./Pages.md";
 
 const PagesForStory = () => {
   const data = Pages();
-  return <p>Loads Pages from the database.</p>;
+  const code = JSON.stringify(data, null, 2);
+  return (
+    <>
+      <p>Loads Pages from the database</p>
+      <pre>
+        <code>{code}</code>
+      </pre>
+    </>
+  );
 };
 
 PagesForStory.propTypes = PagesPropTypes;
