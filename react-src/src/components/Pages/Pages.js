@@ -58,4 +58,4 @@ Pages.propTypes = propTypes;
 Pages.defaultProps = defaultProps;
 
 export default Pages;
-export { propTypes, defaultProps };
+export { propTypes as PagesPropTypes, defaultProps as PagesDefaultProps };

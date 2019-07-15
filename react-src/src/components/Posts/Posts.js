@@ -73,4 +73,4 @@ Posts.propTypes = propTypes;
 Posts.defaultProps = defaultProps;
 
 export default Posts;
-export { propTypes, defaultProps };
+export { propTypes as PostsPropTypes, defaultProps as PostsDefaultProps };

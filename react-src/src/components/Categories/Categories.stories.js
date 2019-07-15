@@ -1,16 +1,20 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 
-import Categories from "./Categories";
+import Categories, {
+  CategoriesPropTypes,
+  CategoriesDefaultProps
+} from "./Categories";
 import description from "./Categories.md";
 
-storiesOf("Categories", module).add(
-  "Overview",
-  () => {
-    const data = Categories;
-    return <p>Loads Categories from the database: {data}</p>;
-  },
-  {
-    notes: { markdown: description }
-  }
-);
+const CategoriesForStory = () => {
+  const data = Categories();
+  return <p>Loads Categories from the database.</p>;
+};
+
+CategoriesForStory.propTypes = CategoriesPropTypes;
+CategoriesForStory.defaultProps = CategoriesDefaultProps;
+
+storiesOf("Categories", module).add("Overview", () => <CategoriesForStory />, {
+  notes: { markdown: description }
+});
