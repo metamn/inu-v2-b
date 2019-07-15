@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
+import { MainContext } from "../Main";
 import Thumb from "../Thumb";
 import { PostsPropTypes, PostsDefaultProps } from "../Posts";
 
@@ -20,11 +21,7 @@ const propTypes = {
   /**
    * The active image setter function
    */
-  setActiveImage: PropTypes.func,
-  /**
-   * The display mode setter function
-   */
-  setContentDisplayed: PropTypes.func
+  setActiveImage: PropTypes.func
 };
 
 /**
@@ -35,9 +32,6 @@ const defaultProps = {
   activeImage: 1,
   setActiveImage: () => {
     console.log("Active image setter");
-  },
-  setContentDisplayed: () => {
-    console.log("Display mode setter");
   }
 };
 
@@ -65,12 +59,9 @@ const Thumbs = props => {
   /**
    * Loads the posts
    */
-  const {
-    edges,
-    activeImage,
-    setActiveImage,
-    setActiveContentDisplayMode
-  } = props;
+  const { edges, activeImage, setActiveImage } = props;
+
+  const { setActiveContentDisplayMode } = useContext(MainContext);
 
   /**
    * Manages the click on a thumb.

@@ -134,6 +134,10 @@ const Main = props => {
            */
           activeContentDisplayMode: activeContentDisplayMode,
           /**
+           * Used in <Thumbs>
+           */
+          setActiveContentDisplayMode: setActiveContentDisplayMode,
+          /**
            * Used in <MenuItem>
            */
           menuItemClickHandler: menuItemClickHandler
@@ -147,7 +151,6 @@ const Main = props => {
         <Content
           activeMenuItem={activeMenuItem}
           activeContentDisplayMode={activeContentDisplayMode}
-          setActiveContentDisplayMode={setActiveContentDisplayMode}
           contentSwitcherClickHandler={contentSwitcherClickHandler}
         />
       </MainContext.Provider>

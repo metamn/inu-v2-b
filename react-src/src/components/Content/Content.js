@@ -16,13 +16,9 @@ import Icon from "../Icon";
  */
 const propTypes = {
   /**
-   * The content switcher icon
+   * The active menu item
    */
-  contentSwitcherIcon: PropTypes.string,
-  /**
-   * The active image (slide or thumb)
-   */
-  currentImage: PropTypes.number,
+  activeMenuItem: PropTypes.string,
   /**
    * The active display mode
    */
@@ -31,18 +27,32 @@ const propTypes = {
     "slider",
     "thumbs",
     "page"
-  ])
+  ]),
+  /**
+   * The default content switcher icon
+   */
+  defaultContentSwitcherIcon: PropTypes.string,
+  /**
+   * The content switcher click handler
+   */
+  contentSwitcherClickHandler: PropTypes.func,
+  /**
+   * The default active image (slide and thumb)
+   */
+  defaultImage: PropTypes.number
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
-  contentSwitcherIcon: "Contet switcher icon",
-  contentDisplayMode: "slider",
-  currentImage: 1,
-  activeMenuItem: 1,
-  activeContentDisplayMode: "slider"
+  activeMenuItem: "1",
+  activeContentDisplayMode: "slider",
+  defaultContentSwitcherIcon: "Contet switcher icon",
+  contentSwitcherClickHandler: () => {
+    console.log("Contet switcher clicked");
+  },
+  defaultImage: 1
 };
 
 /**
@@ -56,19 +66,14 @@ const Container = styled("div")(props => ({
 }));
 
 /**
- * Creates a context for the display mode
- */
-const ContentContext = React.createContext({});
-
-/**
  * Displays various content types
  */
 const Content = props => {
   const {
-    activeContentDisplayMode,
-    setActiveContentDisplayMode,
-    currentImage,
     activeMenuItem,
+    activeContentDisplayMode,
+    defaultContentSwitcherIcon,
+    defaultImage,
     contentSwitcherClickHandler
   } = props;
 
@@ -77,7 +82,9 @@ const Content = props => {
    */
   const { theme } = useTheme();
   const { icons } = theme;
-  const contentSwitcherIcon = icons.grid;
+  const contentSwitcherIcon = icons.grid
+    ? icons.grid
+    : defaultContentSwitcherIcon;
 
   /**
    * Decides if there is a slideshow
@@ -106,7 +113,7 @@ const Content = props => {
   /**
    * Sets up state to mark the active image (thumb, or slide)
    */
-  const [activeImage, setActiveImage] = useState(currentImage);
+  const [activeImage, setActiveImage] = useState(defaultImage);
 
   /**
    * Loads a list of posts associated to a category
@@ -141,7 +148,6 @@ const Content = props => {
             edges={edgesWithFeaturedImage}
             activeImage={activeImage}
             setActiveImage={setActiveImage}
-            setActiveContentDisplayMode={setActiveContentDisplayMode}
           />
         );
       case "slider":
@@ -163,9 +169,7 @@ const Content = props => {
       <Icon status={iconStatus} onClick={() => clickHandler()}>
         {contentSwitcherIcon}
       </Icon>
-      <ContentContext.Provider value={activeContentDisplayMode}>
-        <DisplayContent />
-      </ContentContext.Provider>
+      <DisplayContent />
     </Container>
   );
 };
@@ -174,4 +178,4 @@ Content.propTypes = propTypes;
 Content.defaultProps = defaultProps;
 
 export default Content;
-export { propTypes, defaultProps, ContentContext };
+export { propTypes, defaultProps };

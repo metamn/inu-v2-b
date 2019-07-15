@@ -6,7 +6,7 @@ import ProgressiveImage from "react-progressive-image";
 import { Breakpoints, Media } from "../../hooks";
 import { SliderContext } from "../Slider";
 import { ThumbsContext } from "../Thumbs";
-import { ContentContext } from "../Content";
+import { MainContext } from "../Main";
 
 /**
  * Defines the prop types
@@ -216,13 +216,13 @@ const Image = props => {
   /**
    * Sets up an image click handler
    *
-   * For thumbs ans slider there is a different handler
+   * For thumbs and slider there is a different handler
    */
-  const contentDisplayed = useContext(ContentContext);
+  const activeContentDisplayMode = useContext(MainContext);
   const slideClickHandler = useContext(SliderContext);
   const thumbClickHandler = useContext(ThumbsContext);
   const imageClickHandler =
-    contentDisplayed === "slider"
+    activeContentDisplayMode === "slider"
       ? slideClickHandler
         ? slideClickHandler
         : clickHandler
