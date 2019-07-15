@@ -61,6 +61,9 @@ const Thumbs = props => {
    */
   const { edges, activeImage, setActiveImage } = props;
 
+  /**
+   * Loads context from <Main>
+   */
   const { setActiveContentDisplayMode } = useContext(MainContext);
 
   /**

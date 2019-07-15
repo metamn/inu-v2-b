@@ -1,5 +1,5 @@
 import React from "react";
-
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import Slide from "../Slide";
@@ -13,14 +13,19 @@ const propTypes = {
   /**
    * Raw data to set up slides
    */
-  ...PostsPropTypes
+  ...PostsPropTypes,
+  /**
+   * The active image
+   */
+  activeImage: PropTypes.number
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
-  ...PostsDefaultProps
+  ...PostsDefaultProps,
+  activeImage: 1
 };
 
 /**
@@ -58,7 +63,7 @@ const Container = styled("div")(props => ({
  * Displays the component
  */
 const Slides = props => {
-  const { edges, activeSlide } = props;
+  const { edges, activeImage } = props;
 
   /**
    * Prepares an array to hold the refs to each slide
@@ -72,7 +77,7 @@ const Slides = props => {
     const ref = React.createRef();
     refs[index] = ref;
 
-    const isActive = index === activeSlide;
+    const isActive = index === activeImage;
 
     return (
       <Slide isActive={isActive} key={`slide-${index}`} ref={ref}>

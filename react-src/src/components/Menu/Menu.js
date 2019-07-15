@@ -18,7 +18,7 @@ const propTypes = {
   /**
    * The active menu item
    */
-  activeMenuItem: PropTypes.sting,
+  activeMenuItem: PropTypes.string,
   /**
    * The state of the menu switcher icon
    */

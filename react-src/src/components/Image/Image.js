@@ -218,7 +218,7 @@ const Image = props => {
    *
    * For thumbs and slider there is a different handler
    */
-  const activeContentDisplayMode = useContext(MainContext);
+  const { activeContentDisplayMode } = useContext(MainContext);
   const slideClickHandler = useContext(SliderContext);
   const thumbClickHandler = useContext(ThumbsContext);
   const imageClickHandler =

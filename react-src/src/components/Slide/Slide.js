@@ -7,21 +7,21 @@ import styled from "styled-components";
  */
 const propTypes = {
   /**
-   * The content of the slide
-   */
-  children: PropTypes.any,
-  /**
    * If the slide is active
    */
-  isActive: PropTypes.bool
+  isActive: PropTypes.bool,
+  /**
+   * The content of the slide
+   */
+  children: PropTypes.any
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
-  children: "Slide content",
-  isActive: true
+  isActive: true,
+  children: "Slide content"
 };
 
 /**
