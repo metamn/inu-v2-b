@@ -16,9 +16,9 @@ The component performs the following tasks:
 	<summary>###Defines the prop types
 
 </summary>
-* The content of the slide
-
 * If the slide is active
+
+* The content of the slide
 
 </details>
 

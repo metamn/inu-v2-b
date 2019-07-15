@@ -4,6 +4,8 @@ The component performs the following tasks:
 	<summary>###Defines the prop types
 
 </summary>
+* The active image
+
 </details>
 
 <details>

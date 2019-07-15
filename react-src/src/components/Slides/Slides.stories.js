@@ -9,9 +9,8 @@ import { PostsDefaultProps } from "../Posts";
 storiesOf("Slides", module).add(
   "Overview",
   () => {
-    const [ref, slidesRendered] = Slides({
+    const { refs, slidesRendered } = Slides({
       activeImage: 1,
-      ...SliderDefaultProps,
       ...PostsDefaultProps
     });
     return <>{slidesRendered}</>;

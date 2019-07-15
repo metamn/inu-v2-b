@@ -1,12 +1,28 @@
 The component performs the following tasks:
 
 <details>
+	<summary>###Used in <Image>
+
+</summary>
+</details>
+
+<details>
+	<summary>###Used in <Thumbs>
+
+</summary>
+</details>
+
+<details>
+	<summary>###Used in <MenuItem>
+
+</summary>
+</details>
+
+<details>
 	<summary>###Defines the prop types
 
 </summary>
-* The ID of current menu item
-
-* The menu item click handler
+* The ID of default menu item
 
 * The initial state of the menu switcher icon
 
@@ -33,13 +49,13 @@ The component performs the following tasks:
 </details>
 
 <details>
-	<summary>###Creates a context for the menu state
+	<summary>###Creates a context for the component.
 
 </summary>
 </details>
 
 <details>
-	<summary>###Gets the display mode
+	<summary>###Gets the display mode.
 
 </summary>
 </details>

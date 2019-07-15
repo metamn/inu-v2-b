@@ -8,8 +8,6 @@ The component performs the following tasks:
 
 * The active image setter function
 
-* The display mode setter function
-
 </details>
 
 <details>

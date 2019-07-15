@@ -4,11 +4,15 @@ The component performs the following tasks:
 	<summary>###Defines the prop types
 
 </summary>
-* The content switcher icon
-
-* The active image (slide or thumb)
+* The active menu item
 
 * The active display mode
+
+* The default content switcher icon
+
+* The content switcher click handler
+
+* The default active image (slide and thumb)
 
 </details>
 
@@ -20,12 +24,6 @@ The component performs the following tasks:
 
 <details>
 	<summary>###Styles the component container
-
-</summary>
-</details>
-
-<details>
-	<summary>###Creates a context for the display mode
 
 </summary>
 </details>

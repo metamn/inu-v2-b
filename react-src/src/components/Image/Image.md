@@ -75,9 +75,5 @@ Let's say on tablet initially the `beat-home-mobile_desktop.png` of 622px width 
 
 * Sets a responsive width for each breakpoint to avoid image flicking
 
-* Sets up an image click handler
-
-For thumbs ans slider there is a different handler
-
 </details>
 

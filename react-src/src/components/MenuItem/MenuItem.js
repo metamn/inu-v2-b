@@ -23,7 +23,7 @@ const propTypes = {
   /**
    * The menu item click handler
    */
-  menuItemClickHandler: PropTypes.func
+  defaultMenuItemClickHandler: PropTypes.func
 };
 
 /**
@@ -33,7 +33,7 @@ const defaultProps = {
   name: "Menu item",
   id: "1",
   status: "inactive",
-  menuItemClickHandler: () => {
+  defaultMenuItemClickHandler: () => {
     console.log("Menu item clicked");
   }
 };
@@ -60,6 +60,7 @@ const createMenuItems = props => {
 
   return menuItems.map(menuItem => {
     const { id, name } = menuItem;
+
     const newStatus = setStatus({
       id: id,
       activeMenuItem: activeMenuItem,
@@ -76,14 +77,18 @@ const createMenuItems = props => {
  * Displays the component
  */
 const MenuItem = props => {
-  const { name, id, status } = props;
+  const { name, id, status, defaultMenuItemClickHandler } = props;
   const { menuItemClickHandler } = useContext(MainContext);
+
+  const clickHandler = menuItemClickHandler
+    ? menuItemClickHandler
+    : defaultMenuItemClickHandler;
 
   return (
     <Container
       className="MenuItem"
       status={status}
-      onClick={() => menuItemClickHandler(id)}
+      onClick={() => clickHandler(id)}
     >
       {name}
     </Container>
