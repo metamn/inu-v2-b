@@ -4,6 +4,10 @@ The component performs the following tasks:
 	<summary>###Defines the prop types
 
 </summary>
+* The post ID
+
+* The post title
+
 </details>
 
 <details>

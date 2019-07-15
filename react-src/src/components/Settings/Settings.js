@@ -25,7 +25,7 @@ const propTypes = {
  * Defines the default props
  */
 const defaultProps = {
-  title: "Inu Chivu",
+  title: "Ioan Chivu",
   url: "http://inu.ro",
   description: "Photo traveler"
 };

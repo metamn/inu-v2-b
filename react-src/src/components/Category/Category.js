@@ -46,11 +46,12 @@ const queryFragment = {
  */
 const categoryToMenuItem = category => {
   const { categoryId, name } = category;
+
   return { name: name, id: categoryId.toString() };
 };
 
 /**
- * Does nothing. Usied only for its propTypes (and methods).
+ * Returns nothing. Used only for its propTypes (and methods).
  */
 const Category = props => {
   return null;

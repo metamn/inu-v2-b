@@ -9,11 +9,11 @@ import Image from "../Image";
  * Defines the prop types
  */
 const propTypes = {
-  title: PropTypes.string,
+  featuredImageTitle: PropTypes.string,
+  featuredImageType: PropTypes.oneOf(["responsive", "thumbnail"]),
   featuredImage: PropTypes.shape({
     id: PropTypes.string,
     sourceUrl: PropTypes.string,
-    alt: PropTypes.string,
     mediaDetails: PropTypes.shape({
       file: PropTypes.string,
       height: PropTypes.number,
@@ -29,19 +29,18 @@ const propTypes = {
         })
       )
     })
-  }),
-  featuredImageType: PropTypes.oneOf(["responsive", "thumbnail"])
+  })
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
-  title: "Featured image",
+  featuredImageTitle: "Featured image",
+  featuredImageType: "responsive",
   featuredImage: {
     id: "cG9zdDoxMQ==",
     sourceUrl: "http://localhost/react-wp/wp-content/uploads/2019/05/Bg.jpeg",
-    alt: "Bg image",
     mediaDetails: {
       file: "2019/05/Bg.jpeg",
       height: 1152,
@@ -85,8 +84,7 @@ const defaultProps = {
         }
       ]
     }
-  },
-  featuredImageType: "responsive"
+  }
 };
 
 /**
@@ -123,7 +121,7 @@ const Container = styled("div")(props => ({}));
  * Returns a responsive image
  */
 const responsiveImage = props => {
-  const { title, featuredImage, index } = props;
+  const { featuredImageTitle, featuredImage, index } = props;
   const { sourceUrl, mediaDetails } = featuredImage;
   const { sizes } = mediaDetails;
   const { width } = mediaDetails;
@@ -137,10 +135,10 @@ const responsiveImage = props => {
   return (
     <Image
       src={sourceUrl}
-      alt={title}
       srcSet={srcSet.toString()}
       srcSetWidths={srcSetWidths}
       index={index}
+      alt={featuredImageTitle}
     />
   );
 };
@@ -149,7 +147,7 @@ const responsiveImage = props => {
  * Returns a thumbnail image
  */
 const thumbnailImage = props => {
-  const { title, featuredImage, index } = props;
+  const { featuredImageTitle, featuredImage, index } = props;
   const { mediaDetails } = featuredImage;
   const { sizes } = mediaDetails;
   const thumbnail = sizes.filter(size => size.name === "thumbnail");
@@ -159,7 +157,7 @@ const thumbnailImage = props => {
     <Image
       isProgressive={false}
       src={sourceUrl}
-      alt={title}
+      alt={featuredImageTitle}
       width={width}
       height={height}
       index={index}
@@ -173,11 +171,10 @@ const thumbnailImage = props => {
 const PostFeaturedImage = props => {
   const { featuredImage, featuredImageType } = props;
 
-  const image = featuredImage
-    ? featuredImageType === "responsive"
+  const image =
+    featuredImageType === "responsive"
       ? responsiveImage(props)
-      : thumbnailImage(props)
-    : "x";
+      : thumbnailImage(props);
 
   return <Container className="PostFeaturedImage">{image}</Container>;
 };

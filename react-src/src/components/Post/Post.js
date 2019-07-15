@@ -13,8 +13,17 @@ import { Article as _Article } from "../SemanticHTML";
  * Defines the prop types
  */
 const propTypes = {
+  /**
+   * The post ID
+   */
   id: PropTypes.string,
+  /**
+   * The post title
+   */
   title: PropTypes.string,
+  /**
+   * The post featured image
+   */
   ...PostFeaturedImagePropTypes
 };
 
@@ -56,7 +65,7 @@ const Post = props => {
 
   return (
     <Article className="Post" title={title}>
-      <PostFeaturedImage {...props} />
+      <PostFeaturedImage {...props} featuredImageTitle={title} />
     </Article>
   );
 };

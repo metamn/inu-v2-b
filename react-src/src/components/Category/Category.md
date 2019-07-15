@@ -31,7 +31,7 @@ The component performs the following tasks:
 </details>
 
 <details>
-	<summary>###Does nothing. Usied only for its propTypes (and methods).
+	<summary>###Returns nothing. Used only for its propTypes (and methods).
 
 </summary>
 </details>

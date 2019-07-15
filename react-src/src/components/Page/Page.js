@@ -42,7 +42,7 @@ const queryFragment = {
 };
 
 /**
- * Does nothing. Usied only for its propTypes (and methods).
+ * Returns nothing. Used only for its propTypes (and methods).
  */
 const Page = props => {
   return null;
