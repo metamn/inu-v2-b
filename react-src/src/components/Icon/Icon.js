@@ -21,7 +21,7 @@ const propTypes = {
   children: PropTypes.any.isRequired,
   theme: PropTypes.shape({
     size: PropTypes.number,
-    status: PropTypes.oneOf[("active", "hidden", "invisible")],
+    status: PropTypes.oneOf(["active", "inactive", "hidden", "invisible"]),
     colorPairs: PropTypes.shape({
       default: PropTypes.any,
       inactive: PropTypes.any
@@ -40,8 +40,8 @@ const defaultProps = {
     size: 1,
     status: "active",
     colorPairs: {
-      default: null,
-      inactive: null
+      default: "black",
+      inactive: "gray"
     }
   }
 };
@@ -84,3 +84,4 @@ Icon.propTypes = propTypes;
 Icon.defaultProps = defaultProps;
 
 export default Icon;
+export { propTypes as IconPropTypes, defaultProps as IconDefaultProps };

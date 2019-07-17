@@ -50,7 +50,7 @@ const query = gql`
 `;
 
 /**
- * Loads a list of posts associated to a category
+ * Loads a list of posts associated to a category (with featured images)
  */
 const Posts = props => {
   const { categoryId } = props;
@@ -73,4 +73,4 @@ Posts.propTypes = propTypes;
 Posts.defaultProps = defaultProps;
 
 export default Posts;
-export { propTypes, defaultProps };
+export { propTypes as PostsPropTypes, defaultProps as PostsDefaultProps };

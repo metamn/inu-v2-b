@@ -23,7 +23,7 @@ const propTypes = {
   /**
    * The menu item click handler
    */
-  menuItemClickHandler: PropTypes.func
+  defaultMenuItemClickHandler: PropTypes.func
 };
 
 /**
@@ -33,7 +33,7 @@ const defaultProps = {
   name: "Menu item",
   id: "1",
   status: "inactive",
-  menuItemClickHandler: () => {
+  defaultMenuItemClickHandler: () => {
     console.log("Menu item clicked");
   }
 };
@@ -50,31 +50,45 @@ const Container = styled("li")(props => ({
 /**
  * Creates menu items
  */
-const createMenuItems = menuItems => {
-  return menuItems.map((menuItem, index) => (
-    <MenuItem key={`MenuItem-${index}`} {...menuItem} />
-  ));
+const createMenuItems = props => {
+  /**
+   * Retrieves props.
+   *
+   * Context cannot be used since this is not a hook
+   */
+  const { menuItems, menuSwitcherIconState, setStatus, activeMenuItem } = props;
+
+  return menuItems.map(menuItem => {
+    const { id, name } = menuItem;
+
+    const newStatus = setStatus({
+      id: id,
+      activeMenuItem: activeMenuItem,
+      menuSwitcherIconState: menuSwitcherIconState
+    });
+
+    return (
+      <MenuItem key={`MenuItem-${id}`} id={id} name={name} status={newStatus} />
+    );
+  });
 };
 
 /**
  * Displays the component
  */
 const MenuItem = props => {
-  const { name, id, status } = props;
-  const { activeMenuItem, menuItemClickHandler } = useContext(MainContext);
+  const { name, id, status, defaultMenuItemClickHandler } = props;
+  const { menuItemClickHandler } = useContext(MainContext);
 
-  const currentStatus =
-    status === "hidden"
-      ? "hidden"
-      : activeMenuItem === id
-      ? "active"
-      : "inactive";
+  const clickHandler = menuItemClickHandler
+    ? menuItemClickHandler
+    : defaultMenuItemClickHandler;
 
   return (
     <Container
       className="MenuItem"
-      status={currentStatus}
-      onClick={() => menuItemClickHandler(id)}
+      status={status}
+      onClick={() => clickHandler(id)}
     >
       {name}
     </Container>

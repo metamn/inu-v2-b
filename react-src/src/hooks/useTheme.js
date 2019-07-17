@@ -42,7 +42,7 @@ const useTheme = colorScheme => {
   themeContext = switchThemeTo(starterColorScheme);
 
   /** Saves theme into a state so it can be switched during a session */
-  const [currentTheme, setCurrentTheme] = useState(themeContext);
+  const [activeTheme, setActiveTheme] = useState(themeContext);
 
   /**
    * Switches theme
@@ -50,8 +50,8 @@ const useTheme = colorScheme => {
    * @return {[type]} [description]
    */
   const switchTheme = () => {
-    const newTheme = switchThemeFrom(currentTheme.colorScheme);
-    setCurrentTheme(newTheme);
+    const newTheme = switchThemeFrom(activeTheme.colorScheme);
+    setActiveTheme(newTheme);
     setCurrentThemeSaved(newTheme.colorScheme);
   };
 
@@ -60,7 +60,7 @@ const useTheme = colorScheme => {
      * Used by the main component where theme is set and switched
      * @type Object
      */
-    currentTheme: currentTheme,
+    activeTheme: activeTheme,
     /**
      * The theme switch method
      * @type Function

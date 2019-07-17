@@ -4,6 +4,8 @@ The component performs the following tasks:
 	<summary>###Defines the prop types
 
 </summary>
+* The rendered menu items
+
 </details>
 
 <details>
@@ -19,10 +21,14 @@ The component performs the following tasks:
 </details>
 
 <details>
-	<summary>###Displays the homepage
+	<summary>###Sets the dropdown menu item status
 
 </summary>
-* Loads site settings from the database
+</details>
 
+<details>
+	<summary>###Displays the component
+
+</summary>
 </details>
 

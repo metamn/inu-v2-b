@@ -4,6 +4,8 @@ The component performs the following tasks:
 	<summary>###Defines the prop types
 
 </summary>
+* The Contact page content in HTML
+
 </details>
 
 <details>
@@ -19,7 +21,7 @@ The component performs the following tasks:
 </details>
 
 <details>
-	<summary>###Displays the component
+	<summary>###Displays the Contact page content
 
 </summary>
 </details>

@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
@@ -22,7 +22,11 @@ const propTypes = {
   /**
    * The active image setter function
    */
-  setActiveImage: PropTypes.func
+  setActiveImage: PropTypes.func,
+  /**
+   * Is the slideshow active?
+   */
+  isSlideShowActive: PropTypes.bool
 };
 
 /**
@@ -33,7 +37,8 @@ const defaultProps = {
   activeImage: 1,
   setActiveImage: () => {
     console.log("Active image setter");
-  }
+  },
+  isSlideShowActive: false
 };
 
 /**
@@ -44,14 +49,11 @@ const Container = styled("div")(props => ({
 
   border: "1px solid",
   padding: "1.25em",
-  margin: "1.25em",
-  backgroundColor: "white"
+  margin: "1.25em"
 }));
 
 /**
  * Creates a context for handling the clicks on the image.
- *
- * Clicks must be handled on the lowest level (... to my current knowledge)
  */
 const SliderContext = React.createContext({});
 
@@ -59,7 +61,7 @@ const SliderContext = React.createContext({});
  * Displays the slider
  */
 const Slider = props => {
-  const { edges, activeImage, setActiveImage } = props;
+  const { edges, activeImage, setActiveImage, isSlideShowActive } = props;
 
   /**
    * Counts the slides
@@ -94,18 +96,20 @@ const Slider = props => {
   /**
    * Manages the click on a slide
    */
-  const slideClickHandler = useCallback(index => {
-    // No clicks on `Random`
-    //if (category === -1) return;
+  const slideClickHandler = index => {
+    // No clicks on `Random slideshow`
+    if (isSlideShowActive) return;
 
     if (index + 1 < numberOfSlides) {
       setActiveImage(index + 1);
     } else {
       setActiveImage(0);
     }
-  });
+  };
 
-  // Touch scroll event handler
+  /**
+   * Handles the touch scroll event
+   */
   const touchScrollHandler = useCallback(
     () => {
       const visibleRef = refs.findIndex(ref => {
@@ -124,8 +128,43 @@ const Slider = props => {
     [refs, setActiveImage]
   );
 
-  // The touch event listener hook
+  /**
+   * Listens for the touch event
+   */
   useEventListener("touchend", touchScrollHandler);
+
+  /**
+   * Autoslides the images.
+   *
+   * Images are randomized during the autoslide.
+   */
+  useEffect(
+    () => {
+      let interval = null;
+
+      if (isSlideShowActive) {
+        interval = setInterval(() => {
+          const slideNumbers = Array.from(Array(numberOfSlides).keys()).filter(
+            i => i !== activeImage
+          );
+          const random =
+            slideNumbers[Math.floor(Math.random() * slideNumbers.length)];
+
+          console.log("random:" + random);
+          setActiveImage(random);
+
+          if (random === 0) {
+            //loadMore();
+          }
+        }, 2500);
+      } else {
+        clearInterval(interval);
+      }
+
+      return () => clearInterval(interval);
+    },
+    [activeImage, isSlideShowActive, numberOfSlides, setActiveImage]
+  );
 
   return (
     <Container className="Slider">

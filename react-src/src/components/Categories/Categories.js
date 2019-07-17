@@ -1,11 +1,9 @@
-import React from "react";
 import PropTypes from "prop-types";
 import gql from "graphql-tag";
 
 import { useData } from "../../hooks";
 
 import Category, { CategoryPropTypes, CategoryDefaultProps } from "../Category";
-import MenuItem from "../MenuItem";
 
 /**
  * Defines the prop types

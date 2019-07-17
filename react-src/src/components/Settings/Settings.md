@@ -4,6 +4,12 @@ The component performs the following tasks:
 	<summary>###Defines the prop types
 
 </summary>
+* The site title
+
+* The site url
+
+* The site description
+
 </details>
 
 <details>

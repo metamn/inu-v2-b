@@ -4,7 +4,9 @@ The component performs the following tasks:
 	<summary>###Defines the prop types
 
 </summary>
-* A set of thumbnails
+* The active image
+
+* The active image setter function
 
 </details>
 
@@ -21,8 +23,21 @@ The component performs the following tasks:
 </details>
 
 <details>
-	<summary>###Displays the component
+	<summary>###Creates a context for handling the clicks on the image.
 
 </summary>
+</details>
+
+<details>
+	<summary>###Displays a set of thumbnails
+
+</summary>
+* Prepares the thumbs
+
+* Manages the click on a thumb.
+
+Marks the active image.
+Changes the display mode to `slider`
+
 </details>
 
