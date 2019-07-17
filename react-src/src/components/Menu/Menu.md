@@ -4,6 +4,16 @@ The component performs the following tasks:
 	<summary>###Defines the prop types
 
 </summary>
+* The active menu item
+
+* The state of the menu switcher icon
+
+* The menu switcher click handler
+
+* The `Random` menu item
+
+* The `Contact` menu item
+
 </details>
 
 <details>
@@ -22,7 +32,11 @@ The component performs the following tasks:
 	<summary>###Displays the menu
 
 </summary>
-* Displays a menu switcher icon
+* Loads categories
+
+* Displays categories as menu items
+
+* Displays  `Random` and `Contact` menu items
 
 </details>
 

@@ -7,3 +7,4 @@ export { default as usePrefersDarkMode } from "./usePrefersDarkMode";
 export { default as useLocalStorage } from "./useLocalStorage";
 export { default as useEventListener } from "./useEventListener";
 export { default as useWhyDidYouUpdate } from "./useWhyDidYouUpdate";
+export { default as useRandomizedArray } from "./useRandomizedArray";

@@ -4,6 +4,16 @@ The component performs the following tasks:
 	<summary>###Defines the prop types
 
 </summary>
+* The active menu item
+
+* The active display mode
+
+* The default content switcher icon
+
+* The content switcher click handler
+
+* The default active image (slide and thumb)
+
 </details>
 
 <details>
@@ -19,10 +29,26 @@ The component performs the following tasks:
 </details>
 
 <details>
-	<summary>###Displays the component
+	<summary>###Displays various content types
 
 </summary>
-* Displays a content switcher icon
+* Decides if there is a slideshow
+
+* Sets the status of the content switcher icon
+
+Active - when a category is displayed
+Hidden - When there is a Slideshow
+Inactive - Otherwise ...
+
+* Removes the click handler when the content switcher icon is inactive
+
+* Loads a list of posts associated to a category
+
+* Filters posts having a featured image set
+
+* Loads the Contact page from the database
+
+* Decides which content to be displayed
 
 </details>
 

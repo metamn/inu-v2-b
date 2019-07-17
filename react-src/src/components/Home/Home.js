@@ -1,5 +1,4 @@
-import React, { useMemo } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 import styled from "styled-components";
 //import { stringify } from "flatted";
 
@@ -35,7 +34,8 @@ const Container = styled("div")(props => ({
   ...props.theme.colorPairs.default,
   border: "1px solid",
   padding: "1.25em",
-  margin: "1.25em"
+  margin: "1.25em",
+  minHeight: "100vh"
 }));
 
 /**
@@ -45,12 +45,12 @@ const Home = props => {
   /**
    * Sets up theming
    */
-  const { currentTheme, switchTheme, ThemeContext } = useTheme();
+  const { activeTheme, switchTheme, ThemeContext } = useTheme();
 
   /**
    * Displays a theme switcher icon
    */
-  const { theme } = currentTheme;
+  const { theme } = activeTheme;
   const { icons } = theme;
   const sunIcon = icons.sun;
 
@@ -62,8 +62,8 @@ const Home = props => {
   return (
     <>
       <Meta {...siteSettings} />
-      <ThemeContext.Provider value={currentTheme}>
-        <Container className="Home" theme={currentTheme.theme}>
+      <ThemeContext.Provider value={activeTheme}>
+        <Container className="Home" theme={activeTheme.theme}>
           Home
           <Icon onClick={() => switchTheme()}>{sunIcon}</Icon>
           <Logo {...siteSettings} />

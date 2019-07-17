@@ -6,39 +6,80 @@ A photo portfolio theme with React, WPGraphQL and Create React WPTheme.
 
 Based on [Thinking in React](https://reactjs.org/docs/thinking-in-react.html).
 
+### Interaction - v0.0.3
+
+1.  Go through each component which is handling interactive elements and implement their functionality. Usually with states.
+
+    1.  To check if something is a state [answer these questions](https://reactjs.org/docs/thinking-in-react.html) and fill the table below. All answers must be `No` to make a candidate a state:
 ### Mocks - v0.0.1
 
-1. Mocking up the component structure and the functionality
+    ```
+    | State candidate          | Props | Unchanged | Computable |
+    -------------------------------------------------------------
+    | state                    | No    | No        | No         |
+    | ....                     | No    | No        | No         |
+    ```
 
-![First iteration](./react-src/docs/mocks-1.png)
+    2.  When adding state try to maintain some naming conventions. Like:
 
-2. Adjusting component structure to the WP GraphQL API
+              1. `active` should mark a state. Ex.: `activeTheme`, `activeImage`, `activeMenuItem`. `current` should not mark a state.
+              2. `State` suffix should be used where appropriate. Like `menuSwitcherIconState`.
 
-![Second iteration](./react-src/docs/mocks-2.png)
+    3.  Try to `useContext` to pass state when it will be consumed down deep in the tree.
 
-3. Applying the single responsibility principle
+2.  Connect states together. One state change might trigger another state changes. Connecting states usually changes the owner component of a state. To find the component which best owns a state (lifting state) this table can help:
 
-![Third iteration](./react-src/docs/mocks-3.png)
+```
+| State                    | Home component | Other comps using the state | Common owner above |
+------------------------------------------------------------------------------------------------
+| state                    |                |                             |                    |
+```
 
-4. Create requirement specification
+3. The generated docs should include implementations of every feature / requirement specification declared in previous stages. More, if tests were used from beginning this task now would be obvious.
 
-With a little text cleanup the requirement specification is done!
+#### Example
 
-![Fourth iteration](./react-src/docs/mocks-4.png)
+After implementing states (1.) we had:
 
-### Static content (a.k.a data)- v0.0.2
+```
+| State candidate          | Props | Unchanged | Computable |
+-------------------------------------------------------------
+| activeTheme              | No    | No        | No         |
+| activeMenuItem           | No    | No        | No         |
+| menuSwitcherIconState    | No    | No        | No         |
+| activeContentDisplayMode | No    | No        | No         |
+| activeImage              | No    | No        | No         |
+```
 
-- Start building up every component.
-- From bottom to top starting with standalone components.
-- Focus on props only, default values and _skip states_.
-- Skip the UI/UX design part. Leave it as it is. Don't do theming. Default props should work.
-- Check components also in Storybook.
-- Leave no warnings in the console log.
+```
+| State                    | Home component | Other comps using the state | Common owner above |
+------------------------------------------------------------------------------------------------
+| activeTheme              | Home           | Many, with `useContext`     | n/a                |
+| activeMenuItem           | Main           | Content, MenuItem           | n/a                |
+| menuSwitcherIconState    | Menu           | n/a                         | n/a                |
+| activeContentDisplayMode | Content        | Thumbs                      | n/a                |
+| activeImage              | Content        | Thumbs, Slider              | n/a                |
+```
 
-1. Start with data components.
-2. Continue with other (presentational) components.
-3. Create additional components when necessary. Like `MenuItem` for `Menu`.
-4. Don't fully implement all the features at this stage. Instead create Github Issues for later reuse.
+After connecting states (2.) we had:
+
+```
+| State                    | Home component | Other comps using the state | Common owner above |
+------------------------------------------------------------------------------------------------
+| activeTheme              | Home           | Many, with `useContext`     | n/a                |
+| activeMenuItem           | Main           | Content, MenuItem           | n/a                |
+| menuSwitcherIconState    | Main           | n/a                         | n/a                |
+| activeContentDisplayMode | Main           | Thumbs                      | n/a                |
+| activeImage              | Content        | Thumbs, Slider              | n/a                |
+```
+
+### Screenshots
+
+![The menu](./react-src/docs/interaction-1.png)
+
+![The slider](./react-src/docs/interaction-2.png)
+
+![Thumbs](./react-src/docs/interaction-3.png)
 
 ![The final screenshot](./react-src/docs/data-1.png)
 

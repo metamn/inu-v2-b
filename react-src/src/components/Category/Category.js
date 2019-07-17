@@ -1,6 +1,4 @@
-import React from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
 import gql from "graphql-tag";
 
 /**
@@ -44,23 +42,19 @@ const queryFragment = {
 };
 
 /**
- * Styles the component container
- */
-const Container = styled("div")(props => ({}));
-
-/**
  * Converts a category to a menu item
  */
 const categoryToMenuItem = category => {
   const { categoryId, name } = category;
+
   return { name: name, id: categoryId.toString() };
 };
 
 /**
- * Displays the component
+ * Returns nothing. Used only for its propTypes (and methods).
  */
 const Category = props => {
-  return <Container className="Category">Category</Container>;
+  return null;
 };
 
 Category.propTypes = propTypes;

@@ -19,7 +19,19 @@ The component performs the following tasks:
 </details>
 
 <details>
-	<summary>###Displays the logo
+	<summary>###Styles the title
+
+</summary>
+</details>
+
+<details>
+	<summary>###Styles the description
+
+</summary>
+</details>
+
+<details>
+	<summary>###Displays site title and description
 
 </summary>
 </details>

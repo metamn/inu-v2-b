@@ -1,21 +1,13 @@
 The component performs the following tasks:
 
 <details>
-	<summary>###Defines the Post prop type
-
-</summary>
-</details>
-
-<details>
-	<summary>###Defines the Post default props
-
-</summary>
-</details>
-
-<details>
 	<summary>###Defines the prop types
 
 </summary>
+* The posts
+
+* The category from where the posts are loaded
+
 </details>
 
 <details>
@@ -31,14 +23,10 @@ The component performs the following tasks:
 </details>
 
 <details>
-	<summary>###Styles the component container
+	<summary>###Loads a list of posts associated to a category (with featured images)
 
 </summary>
-</details>
+* Defines which category to load posts from
 
-<details>
-	<summary>###Displays the component
-
-</summary>
 </details>
 

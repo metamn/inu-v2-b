@@ -1,18 +1,32 @@
-import React, { useState, useMemo } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-
-import { useTheme } from "./../../hooks";
 
 import Categories from "../Categories";
 import { categoryToMenuItem } from "../Category";
 import { MenuItemPropTypes, createMenuItems } from "../MenuItem";
-import IconToggle from "../IconToggle";
+import MenuDropdown, {
+  MenuDropdownPropTypes,
+  MenuDropdownDefaultProps,
+  setMenuDropdownItemStatus
+} from "../MenuDropdown";
 
 /**
  * Defines the prop types
  */
 const propTypes = {
+  /**
+   * The active menu item
+   */
+  activeMenuItem: PropTypes.string,
+  /**
+   * The state of the menu switcher icon
+   */
+  menuSwitcherIconState: PropTypes.bool,
+  /**
+   * The menu switcher click handler
+   */
+  menuSwitcherClickHandler: PropTypes.func,
   /**
    * The `Random` menu item
    */
@@ -22,23 +36,20 @@ const propTypes = {
    */
   contact: PropTypes.shape(MenuItemPropTypes),
   /**
-   * The toggle down icon
+   * The drowpdown menu
    */
-  toggleIconDown: PropTypes.string,
-  /**
-   * The toggle up icon
-   */
-  toggleIconUp: PropTypes.string,
-  /**
-   * The initial icon toggle status
-   */
-  toggled: PropTypes.bool
+  ...MenuDropdownPropTypes
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
+  activeMenuItem: "1",
+  menuSwitcherIconState: false,
+  menuSwitcherClickHandler: () => {
+    console.log("Menu switcher clicked");
+  },
   random: {
     name: "Random slideshow",
     id: "-1"
@@ -47,9 +58,7 @@ const defaultProps = {
     name: "Contact",
     id: "-2"
   },
-  toggleIconDown: "Toggle icon down",
-  toggleIconUp: "Toggle icon up",
-  toggled: false
+  ...MenuDropdownDefaultProps
 };
 
 /**
@@ -58,39 +67,18 @@ const defaultProps = {
 const Container = styled("div")(props => ({
   border: "1px solid",
   padding: "1.25em",
-  margin: "1.25em",
-
-  "& ul": {
-    display: "flex",
-    flexWrap: "wrap"
-  }
+  margin: "1.25em"
 }));
 
 /**
  * Displays the menu
  */
 const Menu = props => {
-  const { toggled } = props;
-
-  /**
-   * Displays a menu switcher icon
-   */
-  const { theme } = useTheme();
-  const { icons } = theme;
-  const toggleIconUp = icons.chevronUp;
-  const toggleIconDown = icons.chevronDown;
-
-  /**
-   * Sets up state for the menu switcher icon
-   */
-  const [menuSwitcherIcon, setMenuSwitcherIcon] = useState(toggled);
-
-  /**
-   * Manages the click on the menu switcher icon
-   */
-  const menuSwitcherClickHandler = () => {
-    setMenuSwitcherIcon(!menuSwitcherIcon);
-  };
+  const {
+    menuSwitcherIconState,
+    menuSwitcherClickHandler,
+    activeMenuItem
+  } = props;
 
   /**
    * Loads categories
@@ -100,9 +88,12 @@ const Menu = props => {
   /**
    * Displays categories as menu items
    */
-  const categoriesAsMenuItems = createMenuItems(
-    categories.edges.map(edge => categoryToMenuItem(edge.node))
-  );
+  const categoriesAsMenuItems = createMenuItems({
+    menuItems: categories.edges.map(edge => categoryToMenuItem(edge.node)),
+    setStatus: setMenuDropdownItemStatus,
+    menuSwitcherIconState: menuSwitcherIconState,
+    activeMenuItem: activeMenuItem
+  });
 
   /**
    * Loads `Random` and `Contact` menu items
@@ -112,21 +103,23 @@ const Menu = props => {
   /**
    * Displays  `Random` and `Contact` menu items
    */
-  const customMenuItems = createMenuItems([random, contact]);
+  const customMenuItems = createMenuItems({
+    menuItems: [random, contact],
+    setStatus: setMenuDropdownItemStatus,
+    menuSwitcherIconState: menuSwitcherIconState,
+    activeMenuItem: activeMenuItem
+  });
 
   return (
     <Container className="Menu">
       Menu
-      <IconToggle
-        icon1={toggleIconDown}
-        icon2={toggleIconUp}
-        toggled={menuSwitcherIcon}
+      <MenuDropdown
+        toggled={menuSwitcherIconState}
         toggleIconClickHandler={menuSwitcherClickHandler}
-      />
-      <ul>
+      >
         {categoriesAsMenuItems}
         {customMenuItems}
-      </ul>
+      </MenuDropdown>
     </Container>
   );
 };

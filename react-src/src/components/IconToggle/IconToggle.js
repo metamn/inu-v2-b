@@ -11,11 +11,11 @@ const propTypes = {
   /**
    * The first, active by default icon
    */
-  icon1: PropTypes.any.isRequired,
+  icon1: PropTypes.node.isRequired,
   /**
    * The second, inactive by default icon
    */
-  icon2: PropTypes.any.isRequired,
+  icon2: PropTypes.node.isRequired,
   /**
    * The component status
    */
@@ -34,8 +34,8 @@ const propTypes = {
  * Defines the default props
  */
 const defaultProps = {
-  icon1: <div>icon1</div>,
-  icon2: <div>icon2</div>,
+  icon1: "icon1",
+  icon2: "icon2",
   status: "active",
   toggled: false,
   toggleIconClickHandler: () => {

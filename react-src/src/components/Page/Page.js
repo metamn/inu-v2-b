@@ -1,6 +1,4 @@
-import React from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
 import gql from "graphql-tag";
 
 /**
@@ -44,15 +42,10 @@ const queryFragment = {
 };
 
 /**
- * Styles the component container
- */
-const Container = styled("div")(props => ({}));
-
-/**
- * Displays the component
+ * Returns nothing. Used only for its propTypes (and methods).
  */
 const Page = props => {
-  return <Container className="Page">Page</Container>;
+  return null;
 };
 
 Page.propTypes = propTypes;

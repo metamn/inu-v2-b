@@ -10,23 +10,37 @@ import Content from "../Content";
  */
 const propTypes = {
   /**
-   * The ID of current menu item
+   * The ID of default menu item
    */
-  currentMenuItem: PropTypes.string,
+  defaultMenuItem: PropTypes.string,
   /**
-   * The menu item click handler
+   * The initial state of the menu switcher icon
    */
-  menuItemClickHandler: PropTypes.func
+  defaultMenuSwitcherIconState: PropTypes.bool,
+  /**
+   * The display modes:
+   *
+   * `blank` - When the menu is visible
+   * `slider` - When a category or Random slideshow is displayed
+   * `thumbs` - When a category is displayd`
+   * `page` - When the Contact page is displayed
+   * ``
+   */
+  defaultContentDisplayMode: PropTypes.oneOf([
+    "blank",
+    "slider",
+    "thumbs",
+    "page"
+  ])
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
-  currentMenuItem: "1",
-  menuItemClickHandler: () => {
-    console.log("Menu item clicked");
-  }
+  defaultMenuItem: "1",
+  defaultMenuSwitcherIconState: false,
+  defaultContentDisplayMode: "slider"
 };
 
 /**
@@ -39,20 +53,45 @@ const Container = styled("div")(props => ({
 }));
 
 /**
- * Creates a context for the menu state
+ * Creates a context for the component.
  */
 const MainContext = React.createContext({});
 
 /**
- * Displays the component
+ * Gets the display mode.
+ */
+const getDisplayMode = activeMenuItem => {
+  return activeMenuItem === "-2" ? "page" : "slider";
+};
+
+/**
+ * Displays and manages the interactions of the menu and the content
  */
 const Main = props => {
-  const { currentMenuItem } = props;
+  const {
+    defaultMenuItem,
+    defaultMenuSwitcherIconState,
+    defaultContentDisplayMode
+  } = props;
 
   /**
    * Sets up state for the active menu item
    */
-  const [activeMenuItem, setActiveMenuItem] = useState(currentMenuItem);
+  const [activeMenuItem, setActiveMenuItem] = useState(defaultMenuItem);
+
+  /**
+   * Sets up state for the menu switcher icon
+   */
+  const [menuSwitcherIconState, setMenuSwitcherIconState] = useState(
+    defaultMenuSwitcherIconState
+  );
+
+  /**
+   * Sets up state to manage the display mode.
+   */
+  const [activeContentDisplayMode, setActiveContentDisplayMode] = useState(
+    defaultContentDisplayMode
+  );
 
   /**
    * Manages the click on a menu item
@@ -61,6 +100,28 @@ const Main = props => {
     if (index === activeMenuItem) return;
 
     setActiveMenuItem(index);
+    setActiveContentDisplayMode(getDisplayMode(index));
+    setMenuSwitcherIconState(!menuSwitcherIconState);
+  };
+
+  /**
+   * Manages the click on the menu switcher icon
+   */
+  const menuSwitcherClickHandler = () => {
+    setMenuSwitcherIconState(!menuSwitcherIconState);
+
+    setActiveContentDisplayMode(
+      menuSwitcherIconState ? getDisplayMode(activeMenuItem) : "blank"
+    );
+  };
+
+  /**
+   * Manages the click on the content switcher icon
+   */
+  const contentSwitcherClickHandler = () => {
+    const newDisplay =
+      activeContentDisplayMode === "slider" ? "thumbs" : "slider";
+    setActiveContentDisplayMode(newDisplay);
   };
 
   return (
@@ -68,12 +129,30 @@ const Main = props => {
       Main
       <MainContext.Provider
         value={{
-          activeMenuItem: activeMenuItem,
+          /**
+           * Used in <Image>
+           */
+          activeContentDisplayMode: activeContentDisplayMode,
+          /**
+           * Used in <Thumbs>
+           */
+          setActiveContentDisplayMode: setActiveContentDisplayMode,
+          /**
+           * Used in <MenuItem>
+           */
           menuItemClickHandler: menuItemClickHandler
         }}
       >
-        <Menu />
-        <Content activeMenuItem={activeMenuItem} />
+        <Menu
+          activeMenuItem={activeMenuItem}
+          menuSwitcherIconState={menuSwitcherIconState}
+          menuSwitcherClickHandler={menuSwitcherClickHandler}
+        />
+        <Content
+          activeMenuItem={activeMenuItem}
+          activeContentDisplayMode={activeContentDisplayMode}
+          contentSwitcherClickHandler={contentSwitcherClickHandler}
+        />
       </MainContext.Provider>
     </Container>
   );

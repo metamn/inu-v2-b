@@ -1,17 +1,17 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 
-import Slides from "./Slides";
-import { SliderDefaultProps } from "../Slider";
+import Slides, { SlidesPropTypes, SlidesDefaultProps } from "./Slides";
 import description from "./Slides.md";
 
-storiesOf("Slides", module).add(
-  "Overview",
-  () => {
-    const [ref, slidesRendered] = Slides(SliderDefaultProps);
-    return <>{slidesRendered}</>;
-  },
-  {
-    notes: { markdown: description }
-  }
-);
+const SlidesForStory = () => {
+  const { slidesRendered } = Slides({ edges: [] });
+  return <>{slidesRendered}</>;
+};
+
+SlidesForStory.propTypes = SlidesPropTypes;
+SlidesForStory.defaultProps = SlidesDefaultProps;
+
+storiesOf("Slides", module).add("Overview", () => <SlidesForStory />, {
+  notes: { markdown: description }
+});
