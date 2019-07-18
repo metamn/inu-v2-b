@@ -2,7 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import Categories from "../Categories";
+import Categories, {
+  CategoriesPropTypes,
+  CategoriesDefaultProps
+} from "../Categories";
 import { categoryToMenuItem } from "../Category";
 import { MenuItemPropTypes, createMenuItems } from "../MenuItem";
 import MenuDropdown, {
@@ -38,7 +41,11 @@ const propTypes = {
   /**
    * The drowpdown menu
    */
-  ...MenuDropdownPropTypes
+  ...MenuDropdownPropTypes,
+  /**
+   * The default category query
+   */
+  defaultCategoriesQuery: CategoriesPropTypes.variables
 };
 
 /**
@@ -58,7 +65,8 @@ const defaultProps = {
     name: "Contact",
     id: "-2"
   },
-  ...MenuDropdownDefaultProps
+  ...MenuDropdownDefaultProps,
+  defaultCategoriesQuery: CategoriesDefaultProps.variables
 };
 
 /**
@@ -77,13 +85,14 @@ const Menu = props => {
   const {
     menuSwitcherIconState,
     menuSwitcherClickHandler,
-    activeMenuItem
+    activeMenuItem,
+    defaultCategoriesQuery
   } = props;
 
   /**
    * Loads categories
    */
-  const categories = Categories();
+  const categories = Categories({ variables: defaultCategoriesQuery });
 
   /**
    * Displays categories as menu items

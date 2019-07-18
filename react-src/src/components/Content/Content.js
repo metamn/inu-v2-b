@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { useTheme } from "./../../hooks";
 
 import Posts from "../Posts";
-import Pages from "../Pages";
+import Pages, { PagesPropTypes, PagesDefaultProps } from "../Pages";
 import Slider from "../Slider";
 import Thumbs from "../Thumbs";
 import Contact from "../Contact";
@@ -39,7 +39,11 @@ const propTypes = {
   /**
    * The default active image (slide and thumb)
    */
-  defaultImage: PropTypes.number
+  defaultImage: PropTypes.number,
+  /**
+   * The default page query
+   */
+  defaultPageQuery: PagesPropTypes.variables
 };
 
 /**
@@ -52,7 +56,8 @@ const defaultProps = {
   contentSwitcherClickHandler: () => {
     console.log("Contet switcher clicked");
   },
-  defaultImage: 1
+  defaultImage: 1,
+  defaultPageQuery: PagesDefaultProps.variables
 };
 
 /**
@@ -74,7 +79,8 @@ const Content = props => {
     activeContentDisplayMode,
     defaultContentSwitcherIcon,
     defaultImage,
-    contentSwitcherClickHandler
+    contentSwitcherClickHandler,
+    defaultPageQuery
   } = props;
 
   /**
@@ -130,7 +136,7 @@ const Content = props => {
   /**
    * Loads the Contact page from the database
    */
-  const pages = Pages();
+  const pages = Pages({ variables: defaultPageQuery });
   const contactPageContent = pages.edges[0].node.content;
 
   /**

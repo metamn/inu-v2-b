@@ -5,7 +5,7 @@ import Pages, { PagesPropTypes, PagesDefaultProps } from "./Pages";
 import description from "./Pages.md";
 
 const PagesForStory = () => {
-  const data = Pages();
+  const data = Pages({});
   const code = JSON.stringify(data, null, 2);
   return (
     <>

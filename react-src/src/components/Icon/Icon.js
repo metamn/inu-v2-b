@@ -8,7 +8,7 @@ import styled from "styled-components";
 const propTypes = {
   /**
    * The size multiplier.
-   * The width and height of the icon will be `var(--lem) * size`.
+   * The width and height of the icon will be `line-height * size`.
    */
   size: PropTypes.number,
   /**
@@ -19,9 +19,10 @@ const propTypes = {
    * The icon itself. Preferably in SVG format.
    */
   children: PropTypes.any.isRequired,
+  /**
+   * Props used for styling
+   */
   theme: PropTypes.shape({
-    size: PropTypes.number,
-    status: PropTypes.oneOf(["active", "inactive", "hidden", "invisible"]),
     colorPairs: PropTypes.shape({
       default: PropTypes.any,
       inactive: PropTypes.any
@@ -37,8 +38,6 @@ const defaultProps = {
   status: "active",
   children: "Icon",
   theme: {
-    size: 1,
-    status: "active",
     colorPairs: {
       default: "black",
       inactive: "gray"

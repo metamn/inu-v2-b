@@ -9,16 +9,28 @@ import Category, { CategoryPropTypes, CategoryDefaultProps } from "../Category";
  * Defines the prop types
  */
 const propTypes = {
+  /**
+   * The categories
+   */
   edges: PropTypes.arrayOf(
     PropTypes.shape({ node: PropTypes.shape(CategoryPropTypes) })
-  )
+  ),
+  /**
+   * The query variables
+   */
+  variables: PropTypes.shape({
+    hideEmpty: PropTypes.bool
+  })
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
-  edges: Array(1).fill({ node: CategoryDefaultProps })
+  edges: Array(1).fill({ node: CategoryDefaultProps }),
+  variables: {
+    hideEmpty: true
+  }
 };
 
 /**
@@ -40,13 +52,8 @@ const query = gql`
 /**
  * Loads categories from the database
  */
-const Categories = () => {
-  /**
-   * Excludes empty categories
-   */
-  const variables = {
-    hideEmpty: true
-  };
+const Categories = props => {
+  const { variables } = props;
 
   return useData(defaultProps, query, "categories", variables);
 };
