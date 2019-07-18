@@ -47,8 +47,9 @@ const defaultProps = {
  * Styles the IconToggle container
  */
 const Container = styled("div")(props => ({
+  cursor: props.status === "active" ? "pointer" : "default",
   display: props.status === "hidden" ? "none" : "flex",
-  cursor: "pointer"
+  visibility: props.status === "invisible" ? "hidden" : "visible"
 }));
 
 /**

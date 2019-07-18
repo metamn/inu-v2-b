@@ -4,6 +4,7 @@ import styled from "styled-components";
 import gql from "graphql-tag";
 
 import Image from "../Image";
+import ImageResponsive from "../ImageResponsive";
 
 /**
  * Defines the prop types
@@ -133,12 +134,12 @@ const responsiveImage = props => {
   srcSetWidths.push(width.toString());
 
   return (
-    <Image
+    <ImageResponsive
       src={sourceUrl}
       srcSet={srcSet.toString()}
       srcSetWidths={srcSetWidths}
-      index={index}
       alt={featuredImageTitle}
+      index={index}
     />
   );
 };
@@ -155,7 +156,6 @@ const thumbnailImage = props => {
 
   return (
     <Image
-      isProgressive={false}
       src={sourceUrl}
       alt={featuredImageTitle}
       width={width}
