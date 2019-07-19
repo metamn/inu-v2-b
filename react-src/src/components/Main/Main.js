@@ -108,6 +108,7 @@ const Main = props => {
    * Manages the click on the menu switcher icon
    */
   const menuSwitcherClickHandler = () => {
+    console.log("menuSwitcherClickHandler");
     setMenuSwitcherIconState(!menuSwitcherIconState);
 
     setActiveContentDisplayMode(

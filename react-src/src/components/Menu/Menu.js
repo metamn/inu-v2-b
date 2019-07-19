@@ -111,6 +111,11 @@ const categoryToMenuItem = category => {
 };
 
 /**
+ * Creates a context for the icon and menu item click.
+ */
+const MenuContext = React.createContext({});
+
+/**
  * Displays the menu
  */
 const Menu = props => {
@@ -154,13 +159,12 @@ const Menu = props => {
   return (
     <Container className="Menu">
       Menu
-      <MenuDropdown
-        toggled={menuSwitcherIconState}
-        toggleIconClickHandler={menuSwitcherClickHandler}
-      >
-        {categoriesAsMenuItems}
-        {customMenuItems}
-      </MenuDropdown>
+      <MenuContext.Provider value={menuSwitcherClickHandler}>
+        <MenuDropdown toggled={menuSwitcherIconState}>
+          {categoriesAsMenuItems}
+          {customMenuItems}
+        </MenuDropdown>
+      </MenuContext.Provider>
     </Container>
   );
 };
@@ -169,4 +173,4 @@ Menu.propTypes = propTypes;
 Menu.defaultProps = defaultProps;
 
 export default Menu;
-export { propTypes, defaultProps };
+export { propTypes, defaultProps, MenuContext };
