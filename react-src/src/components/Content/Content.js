@@ -29,6 +29,10 @@ const propTypes = {
     "page"
   ]),
   /**
+   * Sets the active display mode`
+   */
+  setActiveContentDisplayMode: PropTypes.func,
+  /**
    * The default content switcher icon
    */
   defaultContentSwitcherIcon: PropTypes.string,
@@ -52,6 +56,9 @@ const propTypes = {
 const defaultProps = {
   activeMenuItem: "1",
   activeContentDisplayMode: "slider",
+  setActiveContentDisplayMode: () => {
+    console.log("Set active display mode");
+  },
   defaultContentSwitcherIcon: "Contet switcher icon",
   contentSwitcherClickHandler: () => {
     console.log("Contet switcher clicked");
@@ -77,6 +84,7 @@ const Content = props => {
   const {
     activeMenuItem,
     activeContentDisplayMode,
+    setActiveContentDisplayMode,
     defaultContentSwitcherIcon,
     defaultImage,
     contentSwitcherClickHandler,
@@ -122,6 +130,14 @@ const Content = props => {
   const [activeImage, setActiveImage] = useState(defaultImage);
 
   /**
+   * Manages the click on a thumb.
+   */
+  const thumbClickHandler = index => {
+    setActiveImage(index);
+    setActiveContentDisplayMode("slider");
+  };
+
+  /**
    * Loads a list of posts associated to a category
    */
   const posts = Posts({ categoryId: activeMenuItem });
@@ -154,7 +170,7 @@ const Content = props => {
             edges={edgesWithFeaturedImage}
             activeImage={activeImage}
             setActiveImage={setActiveImage}
-            clickHandler={() => console.log("thumb!")}
+            imageClickHandler={thumbClickHandler}
           />
         );
       case "slider":

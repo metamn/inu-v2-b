@@ -151,6 +151,7 @@ const Main = props => {
         <Content
           activeMenuItem={activeMenuItem}
           activeContentDisplayMode={activeContentDisplayMode}
+          setActiveContentDisplayMode={setActiveContentDisplayMode}
           contentSwitcherClickHandler={contentSwitcherClickHandler}
         />
       </MainContext.Provider>

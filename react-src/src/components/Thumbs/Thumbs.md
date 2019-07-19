@@ -24,7 +24,7 @@ The component performs the following tasks:
 	<summary>###Displays a set of posts as thumbnails.
 
 </summary>
-* Returns the thumbs. Athe active thumb is marked.
+* Returns the thumbs. The active thumb is marked.
 
 </details>
 
