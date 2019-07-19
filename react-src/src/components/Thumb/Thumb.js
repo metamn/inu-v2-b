@@ -17,7 +17,7 @@ const propTypes = {
    */
   isActive: PropTypes.bool,
   /**
-   * The thumb image type / size
+   * The thumb image type
    */
   featuredImageType: PropTypes.string
 };

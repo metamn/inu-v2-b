@@ -154,6 +154,7 @@ const Content = props => {
             edges={edgesWithFeaturedImage}
             activeImage={activeImage}
             setActiveImage={setActiveImage}
+            clickHandler={() => console.log("thumb!")}
           />
         );
       case "slider":
@@ -164,6 +165,7 @@ const Content = props => {
             activeImage={activeImage}
             setActiveImage={setActiveImage}
             isSlideShowActive={isSlideShowActive}
+            clickHandler={() => console.log("slider!")}
           />
         );
     }

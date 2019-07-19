@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import ProgressiveImage from "react-progressive-image";
@@ -6,10 +6,6 @@ import ProgressiveImage from "react-progressive-image";
 import { Breakpoints, Media } from "../../hooks";
 import { ImagePropTypes, ImageDefaultProps } from "../Image";
 import { createPlaceholderImageUrl } from "../PlaceholderImage";
-
-import { SliderContext } from "../Slider";
-import { ThumbsContext } from "../Thumbs";
-import { MainContext } from "../Main";
 
 /**
  * Defines the prop types
@@ -152,7 +148,7 @@ const ImageResponsive = props => {
   /**
    * Returns a placeholder if the image is missing
    */
-  const nonEmptySrc = src !== "" ? src : placeholderImage;
+  const nonEmptySrc = src !== null ? src : placeholderImage;
 
   /**
    * Sets a responsive width for each breakpoint to avoid image flicking
@@ -164,23 +160,6 @@ const ImageResponsive = props => {
           widths: srcSetWidths,
           breakpoints: Breakpoints
         });
-
-  /**
-   * Sets up an image click handler
-   *
-   * For thumbs and slider there is a different handler
-   */
-  const { activeContentDisplayMode } = useContext(MainContext);
-  const slideClickHandler = useContext(SliderContext);
-  const thumbClickHandler = useContext(ThumbsContext);
-  const imageClickHandler =
-    activeContentDisplayMode === "slider"
-      ? slideClickHandler
-        ? slideClickHandler
-        : clickHandler
-      : thumbClickHandler
-      ? thumbClickHandler
-      : clickHandler;
 
   /**
    * Returns a ProgressiveImage if requested. Otherwise a simple HTML image
@@ -200,11 +179,11 @@ const ImageResponsive = props => {
           className="progressive-image"
           src={nonEmptySrc}
           alt={alt}
-          srcSet={srcSetData.srcSet !== "" ? srcSetData.srcSet : null}
-          sizes={srcSetData.sizes !== "" ? srcSetData.sizes : null}
+          srcSet={srcSetData.srcSet}
+          sizes={srcSetData.sizes}
           isLoading={loading}
-          widths={widths !== null ? widths : null}
-          onClick={() => imageClickHandler(index)}
+          widths={widths}
+          onClick={() => clickHandler(index)}
         />
       )}
     </ProgressiveImage>
@@ -213,13 +192,13 @@ const ImageResponsive = props => {
       className="image"
       src={nonEmptySrc}
       alt={alt}
-      srcSet={srcSet !== "" ? srcSet : null}
-      sizes={sizes !== "" ? sizes : null}
-      width={width !== "" ? width : null}
-      height={height !== "" ? height : null}
+      srcSet={srcSet}
+      sizes={sizes}
+      width={width}
+      height={height}
       isLoading={isLoading}
-      widths={widths !== null ? widths : null}
-      onClick={() => imageClickHandler(index)}
+      widths={widths}
+      onClick={() => clickHandler(index)}
     />
   );
 };

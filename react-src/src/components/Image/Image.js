@@ -29,13 +29,13 @@ const propTypes = {
    */
   height: PropTypes.string,
   /**
-   * The image click handler.
-   */
-  clickHandler: PropTypes.func,
-  /**
    * The placeholder
    */
   placeholder: PropTypes.shape(PlaceholderImagePropTypes),
+  /**
+   * The image click handler
+   */
+  clickHandler: PropTypes.func,
   /**
    * The image index. Passed to the click handler
    */
@@ -46,14 +46,14 @@ const propTypes = {
  * Defines the default props
  */
 const defaultProps = {
-  src: "",
+  src: null,
   alt: "image",
   width: null,
   height: null,
+  placeholder: PlaceholderImageDefaultProps,
   clickHandler: () => {
     console.log("Image clicked");
   },
-  placeholder: PlaceholderImageDefaultProps,
   index: 1
 };
 
@@ -82,7 +82,7 @@ const Image = props => {
   /**
    * Returns a placeholder if the image is missing
    */
-  const nonEmptySrc = src !== "" ? src : placeholderImage;
+  const nonEmptySrc = src !== null ? src : placeholderImage;
 
   /**
    * Returns a simple HTML image
