@@ -83,6 +83,11 @@ const Container = styled("div")(props => ({
 const ThumbClickContext = React.createContext({});
 
 /**
+ * Creates a context for the click on slide.
+ */
+const SlideClickContext = React.createContext({});
+
+/**
  * Displays various content types
  */
 const Content = props => {
@@ -135,14 +140,6 @@ const Content = props => {
   const [activeImage, setActiveImage] = useState(defaultImage);
 
   /**
-   * Manages the click on a thumb.
-   */
-  const thumbClickHandler = index => {
-    setActiveImage(index);
-    setActiveContentDisplayMode("slider");
-  };
-
-  /**
    * Loads a list of posts associated to a category
    */
   const posts = Posts({ categoryId: activeMenuItem });
@@ -161,7 +158,29 @@ const Content = props => {
   const contactPageContent = pages.edges[0].node.content;
 
   /**
-   * Decides which content to be displayed
+   * Manages the click on a thumb.
+   */
+  const thumbClickHandler = index => {
+    setActiveImage(index);
+    setActiveContentDisplayMode("slider");
+  };
+
+  /**
+   * Manages the click on a slide.
+   */
+  const slideClickHandler = index => {
+    // No clicks on `Random slideshow`
+    if (isSlideShowActive) return;
+
+    if (index + 1 < edgesWithFeaturedImage.length) {
+      setActiveImage(index + 1);
+    } else {
+      setActiveImage(0);
+    }
+  };
+
+  /**
+   * Decides which content to be displayed.
    */
   const DisplayContent = () => {
     switch (activeContentDisplayMode) {
@@ -182,13 +201,14 @@ const Content = props => {
       case "slider":
       default:
         return (
-          <Slider
-            edges={edgesWithFeaturedImage}
-            activeImage={activeImage}
-            setActiveImage={setActiveImage}
-            isSlideShowActive={isSlideShowActive}
-            clickHandler={() => console.log("slider!")}
-          />
+          <SlideClickContext.Provider value={slideClickHandler}>
+            <Slider
+              edges={edgesWithFeaturedImage}
+              activeImage={activeImage}
+              setActiveImage={setActiveImage}
+              isSlideShowActive={isSlideShowActive}
+            />
+          </SlideClickContext.Provider>
         );
     }
   };
@@ -208,4 +228,4 @@ Content.propTypes = propTypes;
 Content.defaultProps = defaultProps;
 
 export default Content;
-export { propTypes, defaultProps, ThumbClickContext };
+export { propTypes, defaultProps, ThumbClickContext, SlideClickContext };

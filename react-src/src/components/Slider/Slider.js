@@ -53,11 +53,6 @@ const Container = styled("div")(props => ({
 }));
 
 /**
- * Creates a context for handling the clicks on the image.
- */
-const SliderContext = React.createContext({});
-
-/**
  * Displays the slider
  */
 const Slider = props => {
@@ -92,20 +87,6 @@ const Slider = props => {
     },
     [activeImage, refs]
   );
-
-  /**
-   * Manages the click on a slide
-   */
-  const slideClickHandler = index => {
-    // No clicks on `Random slideshow`
-    if (isSlideShowActive) return;
-
-    if (index + 1 < numberOfSlides) {
-      setActiveImage(index + 1);
-    } else {
-      setActiveImage(0);
-    }
-  };
 
   /**
    * Handles the touch scroll event
@@ -166,21 +147,11 @@ const Slider = props => {
     [activeImage, isSlideShowActive, numberOfSlides, setActiveImage]
   );
 
-  return (
-    <Container className="Slider">
-      <SliderContext.Provider value={slideClickHandler}>
-        {slidesRendered}
-      </SliderContext.Provider>
-    </Container>
-  );
+  return <Container className="Slider">{slidesRendered}</Container>;
 };
 
 Slider.propTypes = propTypes;
 Slider.defaultProps = defaultProps;
 
 export default Slider;
-export {
-  propTypes as SliderPropTypes,
-  defaultProps as SliderDefaultProps,
-  SliderContext
-};
+export { propTypes as SliderPropTypes, defaultProps as SliderDefaultProps };

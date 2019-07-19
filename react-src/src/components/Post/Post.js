@@ -22,7 +22,7 @@ const propTypes = {
    */
   title: PropTypes.string,
   /**
-   * The post index
+   * The post index. A post might be part of a collection and needs to be indentified for example to handle clicks.
    */
   index: PropTypes.number,
   /**

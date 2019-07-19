@@ -17,7 +17,7 @@ const propTypes = {
    */
   isActive: PropTypes.bool,
   /**
-   * The index of the thumb
+   * The index of the thumb. A thumb might be part of a collection and needs to be indentified for example to handle clicks.
    */
   index: PropTypes.number
 };

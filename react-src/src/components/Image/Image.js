@@ -34,11 +34,7 @@ const propTypes = {
    */
   placeholder: PropTypes.shape(PlaceholderImagePropTypes),
   /**
-   * The image click handler
-   */
-  clickHandler: PropTypes.func,
-  /**
-   * The image index. Passed to the click handler
+   * The image index. Passed to the click handler.
    */
   index: PropTypes.number
 };
@@ -52,9 +48,6 @@ const defaultProps = {
   width: null,
   height: null,
   placeholder: PlaceholderImageDefaultProps,
-  clickHandler: () => {
-    console.log("Image clicked");
-  },
   index: 1
 };
 
@@ -87,6 +80,8 @@ const Image = props => {
 
   /**
    * Manages click on image via Context
+   *
+   * This is a special extension to the component to suit this project.
    */
   const thumbClickHandler = useContext(ThumbClickContext);
 

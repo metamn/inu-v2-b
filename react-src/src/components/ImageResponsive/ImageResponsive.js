@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import ProgressiveImage from "react-progressive-image";
@@ -6,6 +6,7 @@ import ProgressiveImage from "react-progressive-image";
 import { Breakpoints, Media } from "../../hooks";
 import { ImagePropTypes, ImageDefaultProps } from "../Image";
 import { createPlaceholderImageUrl } from "../PlaceholderImage";
+import { SlideClickContext } from "../Content";
 
 /**
  * Defines the prop types
@@ -133,7 +134,8 @@ const ImageResponsive = props => {
     placeholder,
     isProgressive,
     isLoading,
-    delay
+    delay,
+    index
   } = props;
 
   /**
@@ -158,6 +160,13 @@ const ImageResponsive = props => {
         });
 
   /**
+   * Manages click on image via Context
+   *
+   * This is a special extension to the component to suit this project.
+   */
+  const slideClickHandler = useContext(SlideClickContext);
+
+  /**
    * Returns a ProgressiveImage if requested. Otherwise a responsive HTML image
    */
   const result = isProgressive ? (
@@ -179,6 +188,11 @@ const ImageResponsive = props => {
           sizes={srcSetData.sizes}
           isLoading={loading}
           widths={widths}
+          onClick={() =>
+            typeof slideClickHandler === "function"
+              ? slideClickHandler(index)
+              : null
+          }
         />
       )}
     </ProgressiveImage>
@@ -193,6 +207,11 @@ const ImageResponsive = props => {
       height={height}
       isLoading={isLoading}
       widths={widths}
+      onClick={() =>
+        typeof slideClickHandler === "function"
+          ? slideClickHandler(index)
+          : null
+      }
     />
   );
 
