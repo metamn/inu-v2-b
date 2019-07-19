@@ -83,8 +83,6 @@ const Container = styled("div")(props => ({
 const createMenuItems = props => {
   /**
    * Retrieves props.
-   *
-   * Context cannot be used since this is not a hook
    */
   const { menuItems, menuSwitcherIconState, setStatus, activeMenuItem } = props;
 

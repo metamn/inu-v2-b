@@ -53,7 +53,7 @@ const setMenuDropdownItemStatus = props => {
  * Displays the component
  */
 const MenuDropdown = props => {
-  const { toggled, toggleIconClickHandler, children, icon1, icon2 } = props;
+  const { toggled, children, icon1, icon2 } = props;
 
   /**
    * Displays the dropdown icons
@@ -69,7 +69,6 @@ const MenuDropdown = props => {
         icon1={toggleIconDown}
         icon2={toggleIconUp}
         toggled={toggled}
-        toggleIconClickHandler={toggleIconClickHandler}
       />
       <ul className="MenuItems">{children}</ul>
     </Container>
