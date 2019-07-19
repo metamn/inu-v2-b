@@ -42,16 +42,7 @@ const queryFragment = {
 };
 
 /**
- * Converts a category to a menu item
- */
-const categoryToMenuItem = category => {
-  const { categoryId, name } = category;
-
-  return { name: name, id: categoryId.toString() };
-};
-
-/**
- * Returns nothing. Used only for its propTypes (and methods).
+ * Returns nothing. Used only for its PropTypes.
  */
 const Category = props => {
   return null;
@@ -62,8 +53,4 @@ Category.defaultProps = defaultProps;
 Category.fragments = queryFragment;
 
 export default Category;
-export {
-  propTypes as CategoryPropTypes,
-  defaultProps as CategoryDefaultProps,
-  categoryToMenuItem
-};
+export { propTypes as CategoryPropTypes, defaultProps as CategoryDefaultProps };

@@ -6,8 +6,7 @@ import Categories, {
   CategoriesPropTypes,
   CategoriesDefaultProps
 } from "../Categories";
-import { categoryToMenuItem } from "../Category";
-import { MenuItemPropTypes, createMenuItems } from "../MenuItem";
+import MenuItem, { MenuItemPropTypes } from "../MenuItem";
 import MenuDropdown, {
   MenuDropdownPropTypes,
   MenuDropdownDefaultProps,
@@ -77,6 +76,41 @@ const Container = styled("div")(props => ({
   padding: "1.25em",
   margin: "1.25em"
 }));
+
+/**
+ * Creates menu items.
+ */
+const createMenuItems = props => {
+  /**
+   * Retrieves props.
+   *
+   * Context cannot be used since this is not a hook
+   */
+  const { menuItems, menuSwitcherIconState, setStatus, activeMenuItem } = props;
+
+  return menuItems.map(menuItem => {
+    const { id, name } = menuItem;
+
+    const newStatus = setStatus({
+      id: id,
+      activeMenuItem: activeMenuItem,
+      menuSwitcherIconState: menuSwitcherIconState
+    });
+
+    return (
+      <MenuItem key={`MenuItem-${id}`} id={id} name={name} status={newStatus} />
+    );
+  });
+};
+
+/**
+ * Converts a category to a menu item
+ */
+const categoryToMenuItem = category => {
+  const { categoryId, name } = category;
+
+  return { name: name, id: categoryId.toString() };
+};
 
 /**
  * Displays the menu
