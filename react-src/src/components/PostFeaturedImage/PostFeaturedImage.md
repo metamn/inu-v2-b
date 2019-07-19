@@ -40,5 +40,7 @@ The component performs the following tasks:
 	<summary>###Displays the post featured image
 
 </summary>
+* Either returns a simple image or a responsive image.
+
 </details>
 

@@ -11,7 +11,7 @@ import ImageResponsive from "../ImageResponsive";
  */
 const propTypes = {
   featuredImageTitle: PropTypes.string,
-  featuredImageType: PropTypes.oneOf(["responsive", "thumbnail"]),
+  featuredImageType: PropTypes.oneOf(["large", "thumbnail"]),
   featuredImage: PropTypes.shape({
     id: PropTypes.string,
     sourceUrl: PropTypes.string,
@@ -38,7 +38,7 @@ const propTypes = {
  */
 const defaultProps = {
   featuredImageTitle: "Featured image",
-  featuredImageType: "responsive",
+  featuredImageType: "large",
   featuredImage: {
     id: "cG9zdDoxMQ==",
     sourceUrl: "http://localhost/react-wp/wp-content/uploads/2019/05/Bg.jpeg",
@@ -119,10 +119,10 @@ const queryFragment = {
 const Container = styled("div")(props => ({}));
 
 /**
- * Returns a responsive image
+ * Creates a responsive image
  */
 const responsiveImage = props => {
-  const { featuredImageTitle, featuredImage, index } = props;
+  const { featuredImageTitle, featuredImage } = props;
   const { sourceUrl, mediaDetails } = featuredImage;
   const { sizes } = mediaDetails;
   const { width } = mediaDetails;
@@ -139,16 +139,15 @@ const responsiveImage = props => {
       srcSet={srcSet.toString()}
       srcSetWidths={srcSetWidths}
       alt={featuredImageTitle}
-      index={index}
     />
   );
 };
 
 /**
- * Returns a thumbnail image
+ * Creates a thumbnail image
  */
 const thumbnailImage = props => {
-  const { featuredImageTitle, featuredImage, index } = props;
+  const { featuredImageTitle, featuredImage } = props;
   const { mediaDetails } = featuredImage;
   const { sizes } = mediaDetails;
   const thumbnail = sizes.filter(size => size.name === "thumbnail");
@@ -160,7 +159,6 @@ const thumbnailImage = props => {
       alt={featuredImageTitle}
       width={width}
       height={height}
-      index={index}
     />
   );
 };
@@ -171,8 +169,11 @@ const thumbnailImage = props => {
 const PostFeaturedImage = props => {
   const { featuredImageType } = props;
 
+  /**
+   * Either returns a simple image or a responsive image.
+   */
   const image =
-    featuredImageType === "responsive"
+    featuredImageType === "large"
       ? responsiveImage(props)
       : thumbnailImage(props);
 

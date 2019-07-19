@@ -66,13 +66,13 @@ const Img = styled("img")(props => ({
 }));
 
 /**
- * Displays the image
+ * Displays an image
  */
 const Image = props => {
   /**
    * Loads image properties
    */
-  const { src, alt, width, height, clickHandler, placeholder, index } = props;
+  const { src, alt, width, height, placeholder } = props;
 
   /**
    * Creates a placeholder image.
@@ -80,23 +80,24 @@ const Image = props => {
   const placeholderImage = createPlaceholderImageUrl(placeholder);
 
   /**
-   * Returns a placeholder if the image is missing
+   * Displays a placeholder image if the original image is missing
    */
   const nonEmptySrc = src !== null ? src : placeholderImage;
 
   /**
    * Returns a simple HTML image
    */
-  return (
+  const result = (
     <Img
       className="image"
       src={nonEmptySrc}
       alt={alt}
       width={width}
       height={height}
-      onClick={() => clickHandler(index)}
     />
   );
+
+  return result;
 };
 
 Image.propTypes = propTypes;

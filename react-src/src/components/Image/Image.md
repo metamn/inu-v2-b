@@ -33,12 +33,14 @@ The component performs the following tasks:
 </details>
 
 <details>
-	<summary>###Displays the image
+	<summary>###Displays an image
 
 </summary>
 * Creates a placeholder image.
 
-* Returns a placeholder if the image is missing
+* Displays a placeholder image if the original image is missing
+
+* Returns a simple HTML image
 
 </details>
 

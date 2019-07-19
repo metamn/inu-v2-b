@@ -64,9 +64,7 @@ const Img = styled("img")(props => ({
 }));
 
 /**
- * Creates `max-width:`s for various CSS breakpoints.
- *
- * Used to prevent image flicking on load.
+ * Creates `max-widths` for various CSS breakpoints to prevent image flicking on load.
  *
  * When `srcset`, `sizes` is used the image has to be made responsive also in CSS. Otherwise after the responsive image is loaded it will flick because the preloader image in `src` has a single size instead of the same responsive sizes.
  *
@@ -114,7 +112,7 @@ const createWidths = props => {
 };
 
 /**
- * Displays an image
+ * Displays a responsive image
  *
  * @see https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images
  *
@@ -135,9 +133,7 @@ const ImageResponsive = props => {
     placeholder,
     isProgressive,
     isLoading,
-    delay,
-    index,
-    clickHandler
+    delay
   } = props;
 
   /**
@@ -146,7 +142,7 @@ const ImageResponsive = props => {
   const placeholderImage = createPlaceholderImageUrl(placeholder);
 
   /**
-   * Returns a placeholder if the image is missing
+   * Displays a placeholder image if the original image is missing
    */
   const nonEmptySrc = src !== null ? src : placeholderImage;
 
@@ -162,9 +158,9 @@ const ImageResponsive = props => {
         });
 
   /**
-   * Returns a ProgressiveImage if requested. Otherwise a simple HTML image
+   * Returns a ProgressiveImage if requested. Otherwise a responsive HTML image
    */
-  return isProgressive ? (
+  const result = isProgressive ? (
     <ProgressiveImage
       src={nonEmptySrc}
       srcSetData={{
@@ -183,7 +179,6 @@ const ImageResponsive = props => {
           sizes={srcSetData.sizes}
           isLoading={loading}
           widths={widths}
-          onClick={() => clickHandler(index)}
         />
       )}
     </ProgressiveImage>
@@ -198,9 +193,10 @@ const ImageResponsive = props => {
       height={height}
       isLoading={isLoading}
       widths={widths}
-      onClick={() => clickHandler(index)}
     />
   );
+
+  return result;
 };
 
 ImageResponsive.propTypes = propTypes;
