@@ -15,11 +15,7 @@ const propTypes = {
   /**
    * Is the thumb active?
    */
-  isActive: PropTypes.bool,
-  /**
-   * The thumb image type
-   */
-  featuredImageType: PropTypes.string
+  isActive: PropTypes.bool
 };
 
 /**
@@ -27,8 +23,7 @@ const propTypes = {
  */
 const defaultProps = {
   post: PostDefaultProps,
-  isActive: false,
-  featuredImageType: "thumbnail"
+  isActive: false
 };
 
 /**
@@ -41,14 +36,14 @@ const Container = styled("div")(props => ({
 }));
 
 /**
- * Displays the component
+ * Displays post as a thumb.
  */
 const Thumb = props => {
-  const { isActive, post, featuredImageType, index } = props;
+  const { post, isActive } = props;
 
   return (
     <Container className="Thumb" isActive={isActive}>
-      <Post {...post} featuredImageType={featuredImageType} index={index} />
+      <Post {...post} featuredImageType="thumbnail" />
     </Container>
   );
 };

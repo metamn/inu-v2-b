@@ -1,8 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { MainContext } from "../Main";
 import Thumb from "../Thumb";
 import { PostsPropTypes, PostsDefaultProps } from "../Posts";
 
@@ -15,13 +14,9 @@ const propTypes = {
    */
   ...PostsPropTypes,
   /**
-   * The active image
+   * The active image (thumb)
    */
-  activeImage: PropTypes.number,
-  /**
-   * The active image setter function
-   */
-  setActiveImage: PropTypes.func
+  activeImage: PropTypes.number
 };
 
 /**
@@ -29,10 +24,7 @@ const propTypes = {
  */
 const defaultProps = {
   ...PostsDefaultProps,
-  activeImage: 1,
-  setActiveImage: () => {
-    console.log("Active image setter");
-  }
+  activeImage: 1
 };
 
 /**
@@ -48,62 +40,30 @@ const Container = styled("div")(props => ({
 }));
 
 /**
- * Creates a context for handling the clicks on the image.
- */
-const ThumbsContext = React.createContext({});
-
-/**
- * Displays a set of thumbnails
+ * Displays a set of posts as thumbnails.
  */
 const Thumbs = props => {
   /**
-   * Loads the posts
+   * Loads the props
    */
-  const { edges, activeImage, setActiveImage } = props;
+  const { edges, activeImage } = props;
 
   /**
-   * Loads context from <Main>
-   */
-  const { setActiveContentDisplayMode } = useContext(MainContext);
-
-  /**
-   * Manages the click on a thumb.
-   *
-   * Marks the active image.
-   * Changes the display mode to `slider`
-   */
-  const thumbClickHandler = index => {
-    setActiveImage(index);
-    setActiveContentDisplayMode("slider");
-  };
-
-  /**
-   * Prepares the thumbs
+   * Returns the thumbs. The active thumb is marked.
    */
   const thumbs = edges.map((data, index) => {
     const isActive = index === activeImage;
 
     return (
-      <Thumb
-        isActive={isActive}
-        key={`thumb-${index}`}
-        post={data.node}
-        index={index}
-      />
+      <Thumb isActive={isActive} key={`thumb-${index}`} post={data.node} />
     );
   });
 
-  return (
-    <Container className="Thumbs">
-      <ThumbsContext.Provider value={thumbClickHandler}>
-        {thumbs}
-      </ThumbsContext.Provider>
-    </Container>
-  );
+  return <Container className="Thumbs">{thumbs}</Container>;
 };
 
 Thumbs.propTypes = propTypes;
 Thumbs.defaultProps = defaultProps;
 
 export default Thumbs;
-export { propTypes, defaultProps, ThumbsContext };
+export { propTypes, defaultProps };

@@ -25,13 +25,13 @@ The component performs the following tasks:
 </details>
 
 <details>
-	<summary>###Returns a responsive image
+	<summary>###Creates a large, responsive image
 
 </summary>
 </details>
 
 <details>
-	<summary>###Returns a thumbnail image
+	<summary>###Creates a thumbnail image
 
 </summary>
 </details>
@@ -40,7 +40,7 @@ The component performs the following tasks:
 	<summary>###Displays the post featured image
 
 </summary>
-* Either returns a simple image or a responsive image.
+* Either returns a simple image (thumbnail) or a large, responsive image.
 
 </details>
 

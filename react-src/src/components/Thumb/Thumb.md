@@ -8,8 +8,6 @@ The component performs the following tasks:
 
 * Is the thumb active?
 
-* The thumb image type / size
-
 </details>
 
 <details>
@@ -25,7 +23,7 @@ The component performs the following tasks:
 </details>
 
 <details>
-	<summary>###Displays the component
+	<summary>###Displays post as a thumb.
 
 </summary>
 </details>

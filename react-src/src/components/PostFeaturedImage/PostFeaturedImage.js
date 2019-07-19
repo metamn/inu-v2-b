@@ -119,7 +119,7 @@ const queryFragment = {
 const Container = styled("div")(props => ({}));
 
 /**
- * Creates a responsive image
+ * Creates a large, responsive image
  */
 const responsiveImage = props => {
   const { featuredImageTitle, featuredImage } = props;
@@ -170,7 +170,7 @@ const PostFeaturedImage = props => {
   const { featuredImageType } = props;
 
   /**
-   * Either returns a simple image or a responsive image.
+   * Either returns a simple image (thumbnail) or a large, responsive image.
    */
   const image =
     featuredImageType === "large"
