@@ -8,6 +8,8 @@ The component performs the following tasks:
 
 * Is the thumb active?
 
+* The index of the thumb. A thumb might be part of a collection and needs to be indentified for example to handle clicks.
+
 </details>
 
 <details>

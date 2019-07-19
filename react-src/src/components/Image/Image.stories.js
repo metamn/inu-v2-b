@@ -29,17 +29,4 @@ storiesOf("Image", module)
     {
       notes: { markdown: description }
     }
-  )
-  .add(
-    "With click from context",
-    () => (
-      <Image
-        src="http://metamn.io/assets/images/avatar-kubist_desktop.png"
-        width="300"
-        height="300"
-      />
-    ),
-    {
-      notes: { markdown: description }
-    }
   );

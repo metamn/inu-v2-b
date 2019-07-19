@@ -14,9 +14,7 @@ The component performs the following tasks:
 
 * The placeholder
 
-* The image click handler
-
-* The image index. Passed to the click handler
+* The image index. Passed to the click handler.
 
 </details>
 
@@ -39,6 +37,10 @@ The component performs the following tasks:
 * Creates a placeholder image.
 
 * Displays a placeholder image if the original image is missing
+
+* Manages click on image via Context
+
+This is a special extension to the component to suit this project.
 
 * Returns a simple HTML image
 

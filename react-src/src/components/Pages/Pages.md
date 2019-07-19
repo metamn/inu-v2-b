@@ -4,6 +4,10 @@ The component performs the following tasks:
 	<summary>###Defines the prop types
 
 </summary>
+* The pages
+
+* The query variables
+
 </details>
 
 <details>
@@ -22,7 +26,5 @@ The component performs the following tasks:
 	<summary>###Loads the Contact page from the database
 
 </summary>
-* Loads only the `Contact` page
-
 </details>
 

@@ -4,6 +4,14 @@ The component performs the following tasks:
 	<summary>###Defines the prop types
 
 </summary>
+* The featured image title
+
+* The featured image type
+
+* The post index. A post might be part of a collection and needs to be indentified for example to handle clicks.
+
+* The featured image
+
 </details>
 
 <details>

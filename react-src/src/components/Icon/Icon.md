@@ -5,11 +5,13 @@ The component performs the following tasks:
 
 </summary>
 * The size multiplier.
-The width and height of the icon will be `var(--lem) * size`.
+The width and height of the icon will be `line-height * size`.
 
 * The icon status
 
 * The icon itself. Preferably in SVG format.
+
+* Props used for styling
 
 </details>
 

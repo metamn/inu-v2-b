@@ -191,11 +191,7 @@ const Content = props => {
       case "thumbs":
         return (
           <ThumbClickContext.Provider value={thumbClickHandler}>
-            <Thumbs
-              edges={edgesWithFeaturedImage}
-              activeImage={activeImage}
-              setActiveImage={setActiveImage}
-            />
+            <Thumbs edges={edgesWithFeaturedImage} activeImage={activeImage} />
           </ThumbClickContext.Provider>
         );
       case "slider":

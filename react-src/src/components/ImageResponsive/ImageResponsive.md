@@ -55,6 +55,10 @@ Let's say on tablet initially the `beat-home-mobile_desktop.png` of 622px width 
 
 * Sets a responsive width for each breakpoint to avoid image flicking
 
+* Manages click on image via Context
+
+This is a special extension to the component to suit this project.
+
 * Returns a ProgressiveImage if requested. Otherwise a responsive HTML image
 
 </details>

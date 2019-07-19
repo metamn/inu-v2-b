@@ -8,6 +8,8 @@ The component performs the following tasks:
 
 * The post title
 
+* The post index. A post might be part of a collection and needs to be indentified for example to handle clicks.
+
 </details>
 
 <details>
