@@ -78,6 +78,11 @@ const Container = styled("div")(props => ({
 }));
 
 /**
+ * Creates a context for the thumb click.
+ */
+const ThumbClickContext = React.createContext({});
+
+/**
  * Displays various content types
  */
 const Content = props => {
@@ -134,6 +139,7 @@ const Content = props => {
    */
   const thumbClickHandler = index => {
     setActiveImage(index);
+    console.log("thumb clicked: " + index);
     setActiveContentDisplayMode("slider");
   };
 
@@ -166,12 +172,13 @@ const Content = props => {
         return <Contact content={contactPageContent} />;
       case "thumbs":
         return (
-          <Thumbs
-            edges={edgesWithFeaturedImage}
-            activeImage={activeImage}
-            setActiveImage={setActiveImage}
-            imageClickHandler={thumbClickHandler}
-          />
+          <ThumbClickContext.Provider value={thumbClickHandler}>
+            <Thumbs
+              edges={edgesWithFeaturedImage}
+              activeImage={activeImage}
+              setActiveImage={setActiveImage}
+            />
+          </ThumbClickContext.Provider>
         );
       case "slider":
       default:
@@ -202,4 +209,4 @@ Content.propTypes = propTypes;
 Content.defaultProps = defaultProps;
 
 export default Content;
-export { propTypes, defaultProps };
+export { propTypes, defaultProps, ThumbClickContext };

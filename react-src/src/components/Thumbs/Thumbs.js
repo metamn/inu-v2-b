@@ -55,7 +55,12 @@ const Thumbs = props => {
     const isActive = index === activeImage;
 
     return (
-      <Thumb isActive={isActive} key={`thumb-${index}`} post={data.node} />
+      <Thumb
+        isActive={isActive}
+        key={`thumb-${index}`}
+        post={data.node}
+        index={index}
+      />
     );
   });
 

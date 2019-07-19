@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
@@ -7,6 +7,7 @@ import {
   PlaceholderImageDefaultProps,
   createPlaceholderImageUrl
 } from "../PlaceholderImage";
+import { ThumbClickContext } from "../Content";
 
 /**
  * Defines the prop types
@@ -72,7 +73,7 @@ const Image = props => {
   /**
    * Loads image properties
    */
-  const { src, alt, width, height, placeholder } = props;
+  const { src, alt, width, height, placeholder, index } = props;
 
   /**
    * Creates a placeholder image.
@@ -85,6 +86,11 @@ const Image = props => {
   const nonEmptySrc = src !== null ? src : placeholderImage;
 
   /**
+   * Manages click on image via Context
+   */
+  const thumbClickHandler = useContext(ThumbClickContext);
+
+  /**
    * Returns a simple HTML image
    */
   const result = (
@@ -94,6 +100,7 @@ const Image = props => {
       alt={alt}
       width={width}
       height={height}
+      onClick={() => (thumbClickHandler ? thumbClickHandler(index) : null)}
     />
   );
 

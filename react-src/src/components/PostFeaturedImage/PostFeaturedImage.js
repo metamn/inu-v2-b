@@ -10,8 +10,21 @@ import ImageResponsive from "../ImageResponsive";
  * Defines the prop types
  */
 const propTypes = {
+  /**
+   * The featured image title
+   */
   featuredImageTitle: PropTypes.string,
+  /**
+   * The featured image type
+   */
   featuredImageType: PropTypes.oneOf(["large", "thumbnail"]),
+  /**
+   * The post index
+   */
+  index: PropTypes.number,
+  /**
+   * The featured image
+   */
   featuredImage: PropTypes.shape({
     id: PropTypes.string,
     sourceUrl: PropTypes.string,
@@ -39,6 +52,7 @@ const propTypes = {
 const defaultProps = {
   featuredImageTitle: "Featured image",
   featuredImageType: "large",
+  index: 1,
   featuredImage: {
     id: "cG9zdDoxMQ==",
     sourceUrl: "http://localhost/react-wp/wp-content/uploads/2019/05/Bg.jpeg",
@@ -122,7 +136,7 @@ const Container = styled("div")(props => ({}));
  * Creates a large, responsive image
  */
 const responsiveImage = props => {
-  const { featuredImageTitle, featuredImage } = props;
+  const { featuredImageTitle, featuredImage, index } = props;
   const { sourceUrl, mediaDetails } = featuredImage;
   const { sizes } = mediaDetails;
   const { width } = mediaDetails;
@@ -139,6 +153,7 @@ const responsiveImage = props => {
       srcSet={srcSet.toString()}
       srcSetWidths={srcSetWidths}
       alt={featuredImageTitle}
+      index={index}
     />
   );
 };
@@ -147,7 +162,7 @@ const responsiveImage = props => {
  * Creates a thumbnail image
  */
 const thumbnailImage = props => {
-  const { featuredImageTitle, featuredImage } = props;
+  const { featuredImageTitle, featuredImage, index } = props;
   const { mediaDetails } = featuredImage;
   const { sizes } = mediaDetails;
   const thumbnail = sizes.filter(size => size.name === "thumbnail");
@@ -159,6 +174,7 @@ const thumbnailImage = props => {
       alt={featuredImageTitle}
       width={width}
       height={height}
+      index={index}
     />
   );
 };

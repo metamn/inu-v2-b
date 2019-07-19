@@ -15,7 +15,11 @@ const propTypes = {
   /**
    * Is the thumb active?
    */
-  isActive: PropTypes.bool
+  isActive: PropTypes.bool,
+  /**
+   * The index of the thumb
+   */
+  index: PropTypes.number
 };
 
 /**
@@ -23,7 +27,8 @@ const propTypes = {
  */
 const defaultProps = {
   post: PostDefaultProps,
-  isActive: false
+  isActive: false,
+  index: 1
 };
 
 /**
@@ -39,11 +44,11 @@ const Container = styled("div")(props => ({
  * Displays post as a thumb.
  */
 const Thumb = props => {
-  const { post, isActive } = props;
+  const { post, isActive, index } = props;
 
   return (
     <Container className="Thumb" isActive={isActive}>
-      <Post {...post} featuredImageType="thumbnail" />
+      <Post {...post} featuredImageType="thumbnail" index={index} />
     </Container>
   );
 };
