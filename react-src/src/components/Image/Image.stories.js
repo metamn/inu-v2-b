@@ -18,7 +18,20 @@ storiesOf("Image", module)
     }
   )
   .add(
-    "With real URL and dimennsions set",
+    "With real URL and dimensions set",
+    () => (
+      <Image
+        src="http://metamn.io/assets/images/avatar-kubist_desktop.png"
+        width="300"
+        height="300"
+      />
+    ),
+    {
+      notes: { markdown: description }
+    }
+  )
+  .add(
+    "With click from context",
     () => (
       <Image
         src="http://metamn.io/assets/images/avatar-kubist_desktop.png"

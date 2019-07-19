@@ -100,7 +100,11 @@ const Image = props => {
       alt={alt}
       width={width}
       height={height}
-      onClick={() => (thumbClickHandler ? thumbClickHandler(index) : null)}
+      onClick={() =>
+        typeof thumbClickHandler === "function"
+          ? thumbClickHandler(index)
+          : null
+      }
     />
   );
 

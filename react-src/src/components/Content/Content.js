@@ -139,7 +139,6 @@ const Content = props => {
    */
   const thumbClickHandler = index => {
     setActiveImage(index);
-    console.log("thumb clicked: " + index);
     setActiveContentDisplayMode("slider");
   };
 
