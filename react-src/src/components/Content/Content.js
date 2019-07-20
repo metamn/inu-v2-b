@@ -129,9 +129,9 @@ const Content = props => {
     : "inactive";
 
   /**
-   * Removes the click handler when the content switcher icon is inactive
+   * Removes the content switcher click handler when the content switcher icon is inactive
    */
-  const clickHandler =
+  const newContentSwitcherClickHandler =
     iconStatus === "active" ? contentSwitcherClickHandler : () => {};
 
   /**
@@ -142,7 +142,7 @@ const Content = props => {
   /**
    * Loads a list of posts associated to a category
    */
-  const posts = Posts({ categoryId: activeMenuItem });
+  const posts = Posts({ variables: { categoryId: activeMenuItem } });
 
   /**
    * Filters posts having a featured image set
@@ -212,7 +212,10 @@ const Content = props => {
   return (
     <Container className="Content">
       Content
-      <Icon status={iconStatus} onClick={() => clickHandler()}>
+      <Icon
+        status={iconStatus}
+        onClick={() => newContentSwitcherClickHandler()}
+      >
         {contentSwitcherIcon}
       </Icon>
       <DisplayContent />

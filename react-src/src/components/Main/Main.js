@@ -59,6 +59,8 @@ const MainContext = React.createContext({});
 
 /**
  * Gets the display mode.
+ *
+ * A reusable helper for setting the active display mode.
  */
 const getDisplayMode = activeMenuItem => {
   return activeMenuItem === "-2" ? "page" : "slider";
