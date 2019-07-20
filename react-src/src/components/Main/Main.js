@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import Menu from "../Menu";
-import Content, { ContentPropTypes, ContentDefaultProps } from "../Content";
+import Content, { ContentPropTypes } from "../Content";
 
 /**
  * Defines the prop types
