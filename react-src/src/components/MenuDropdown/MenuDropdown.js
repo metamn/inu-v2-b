@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
@@ -8,6 +8,7 @@ import IconToggle, {
   IconTogglePropTypes,
   IconToggleDefaultProps
 } from "../IconToggle";
+import { MainContext } from "../Main";
 
 /**
  * Defines the prop types
@@ -63,12 +64,18 @@ const MenuDropdown = props => {
   const toggleIconUp = icons.chevronUp ? icons.chevronUp : icon1;
   const toggleIconDown = icons.chevronDown ? icons.chevronDown : icon2;
 
+  /**
+   * Loads the click handler from Context
+   */
+  const { menuSwitcherClickHandler } = useContext(MainContext);
+
   return (
     <Container className="MenuDropdown">
       <IconToggle
         icon1={toggleIconDown}
         icon2={toggleIconUp}
         toggled={toggled}
+        onClick={() => menuSwitcherClickHandler()}
       />
       <ul className="MenuItems">{children}</ul>
     </Container>

@@ -26,10 +26,6 @@ const propTypes = {
    */
   menuSwitcherIconState: PropTypes.bool,
   /**
-   * The menu switcher click handler
-   */
-  menuSwitcherClickHandler: PropTypes.func,
-  /**
    * The `Random` menu item
    */
   random: PropTypes.shape(MenuItemPropTypes),
@@ -53,9 +49,6 @@ const propTypes = {
 const defaultProps = {
   activeMenuItem: "1",
   menuSwitcherIconState: false,
-  menuSwitcherClickHandler: () => {
-    console.log("Menu switcher clicked");
-  },
   random: {
     name: "Random slideshow",
     id: "-1"
@@ -111,17 +104,11 @@ const categoryToMenuItem = category => {
 };
 
 /**
- * Creates a context for the icon and menu item click.
- */
-const MenuContext = React.createContext({});
-
-/**
  * Displays the menu
  */
 const Menu = props => {
   const {
     menuSwitcherIconState,
-    menuSwitcherClickHandler,
     activeMenuItem,
     defaultCategoriesQuery
   } = props;
@@ -159,12 +146,10 @@ const Menu = props => {
   return (
     <Container className="Menu">
       Menu
-      <MenuContext.Provider value={menuSwitcherClickHandler}>
-        <MenuDropdown toggled={menuSwitcherIconState}>
-          {categoriesAsMenuItems}
-          {customMenuItems}
-        </MenuDropdown>
-      </MenuContext.Provider>
+      <MenuDropdown toggled={menuSwitcherIconState}>
+        {categoriesAsMenuItems}
+        {customMenuItems}
+      </MenuDropdown>
     </Container>
   );
 };
@@ -173,4 +158,4 @@ Menu.propTypes = propTypes;
 Menu.defaultProps = defaultProps;
 
 export default Menu;
-export { propTypes, defaultProps, MenuContext };
+export { propTypes, defaultProps };

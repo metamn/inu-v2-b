@@ -108,7 +108,6 @@ const Main = props => {
    * Manages the click on the menu switcher icon
    */
   const menuSwitcherClickHandler = () => {
-    console.log("menuSwitcherClickHandler");
     setMenuSwitcherIconState(!menuSwitcherIconState);
 
     setActiveContentDisplayMode(
@@ -129,25 +128,11 @@ const Main = props => {
     <Container className="Main">
       Main
       <MainContext.Provider
-        value={{
-          /**
-           * Used in <Image>
-           */
-          activeContentDisplayMode: activeContentDisplayMode,
-          /**
-           * Used in <Thumbs>
-           */
-          setActiveContentDisplayMode: setActiveContentDisplayMode,
-          /**
-           * Used in <MenuItem>
-           */
-          menuItemClickHandler: menuItemClickHandler
-        }}
+        value={{ menuSwitcherClickHandler: menuSwitcherClickHandler }}
       >
         <Menu
           activeMenuItem={activeMenuItem}
           menuSwitcherIconState={menuSwitcherIconState}
-          menuSwitcherClickHandler={menuSwitcherClickHandler}
         />
         <Content
           activeMenuItem={activeMenuItem}

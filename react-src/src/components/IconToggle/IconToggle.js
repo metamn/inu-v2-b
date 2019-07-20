@@ -1,9 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import Icon from "../Icon";
-import { MenuContext } from "../Menu";
 
 /**
  * Defines the prop types
@@ -58,27 +57,8 @@ const IconToggle = props => {
   const icon1Status = toggled ? "hidden" : "active";
   const icon2Status = toggled ? "active" : "hidden";
 
-  /**
-   * Manages click on the icon via Context
-   *
-   * This is a special extension to the component to suit this project.
-   */
-  const menuSwitcherClickHandler = useContext(MenuContext);
-  console.log(
-    "menuSwitcherClickHandler:" + JSON.stringify(menuSwitcherClickHandler)
-  );
-
   return (
-    <Container
-      className="icon-toggle"
-      status={status}
-      {...props}
-      onClick={() =>
-        typeof menuSwitcherClickHandler === "function"
-          ? menuSwitcherClickHandler
-          : null
-      }
-    >
+    <Container className="icon-toggle" status={status} {...props}>
       <Icon status={icon1Status}>{icon1}</Icon>
       <Icon status={icon2Status}>{icon2}</Icon>
     </Container>
