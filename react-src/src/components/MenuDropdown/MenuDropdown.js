@@ -38,9 +38,9 @@ const defaultProps = {
 const Container = styled("div")(props => ({}));
 
 /**
- * Sets the dropdown menu item status
+ * Sets the menu item status for items in a dropdown menu.
  */
-const setMenuDropdownItemStatus = props => {
+const setMenuItemStatusForDropdown = props => {
   const { id, activeMenuItem, menuSwitcherIconState } = props;
 
   return id === activeMenuItem
@@ -95,5 +95,5 @@ export default MenuDropdown;
 export {
   propTypes as MenuDropdownPropTypes,
   defaultProps as MenuDropdownDefaultProps,
-  setMenuDropdownItemStatus
+  setMenuItemStatusForDropdown
 };

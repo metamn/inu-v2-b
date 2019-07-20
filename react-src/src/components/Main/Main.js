@@ -124,21 +124,24 @@ const Main = props => {
     setActiveContentDisplayMode(newDisplay);
   };
 
+  /**
+   * Sets up context variables
+   */
+  const context = {
+    /**
+     * Used in MenuDropdown
+     */
+    menuSwitcherClickHandler: menuSwitcherClickHandler,
+    /**
+     * Used in MenuItem
+     */
+    menuItemClickHandler: menuItemClickHandler
+  };
+
   return (
     <Container className="Main">
       Main
-      <MainContext.Provider
-        value={{
-          /**
-           * Used in MenuDropdown
-           */
-          menuSwitcherClickHandler: menuSwitcherClickHandler,
-          /**
-           * Used in MenuItem
-           */
-          menuItemClickHandler: menuItemClickHandler
-        }}
-      >
+      <MainContext.Provider value={context}>
         <Menu
           activeMenuItem={activeMenuItem}
           menuSwitcherIconState={menuSwitcherIconState}

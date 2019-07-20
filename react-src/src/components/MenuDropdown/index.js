@@ -2,5 +2,5 @@ export { default } from "./MenuDropdown";
 export {
   MenuDropdownPropTypes,
   MenuDropdownDefaultProps,
-  setMenuDropdownItemStatus
+  setMenuItemStatusForDropdown
 } from "./MenuDropdown";

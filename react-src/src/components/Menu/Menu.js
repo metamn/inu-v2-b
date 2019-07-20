@@ -10,7 +10,7 @@ import MenuItem, { MenuItemPropTypes } from "../MenuItem";
 import MenuDropdown, {
   MenuDropdownPropTypes,
   MenuDropdownDefaultProps,
-  setMenuDropdownItemStatus
+  setMenuItemStatusForDropdown
 } from "../MenuDropdown";
 
 /**
@@ -123,7 +123,7 @@ const Menu = props => {
    */
   const categoriesAsMenuItems = createMenuItems({
     menuItems: categories.edges.map(edge => categoryToMenuItem(edge.node)),
-    setStatus: setMenuDropdownItemStatus,
+    setStatus: setMenuItemStatusForDropdown,
     menuSwitcherIconState: menuSwitcherIconState,
     activeMenuItem: activeMenuItem
   });
@@ -138,7 +138,7 @@ const Menu = props => {
    */
   const customMenuItems = createMenuItems({
     menuItems: [random, contact],
-    setStatus: setMenuDropdownItemStatus,
+    setStatus: setMenuItemStatusForDropdown,
     menuSwitcherIconState: menuSwitcherIconState,
     activeMenuItem: activeMenuItem
   });
