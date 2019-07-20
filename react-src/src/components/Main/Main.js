@@ -128,7 +128,16 @@ const Main = props => {
     <Container className="Main">
       Main
       <MainContext.Provider
-        value={{ menuSwitcherClickHandler: menuSwitcherClickHandler }}
+        value={{
+          /**
+           * Used in MenuDropdown
+           */
+          menuSwitcherClickHandler: menuSwitcherClickHandler,
+          /**
+           * Used in MenuItem
+           */
+          menuItemClickHandler: menuItemClickHandler
+        }}
       >
         <Menu
           activeMenuItem={activeMenuItem}

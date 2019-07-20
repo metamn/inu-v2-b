@@ -66,6 +66,8 @@ const MenuDropdown = props => {
 
   /**
    * Loads the click handler from Context
+   *
+   * This is a special extension to the component to suit this project.
    */
   const { menuSwitcherClickHandler } = useContext(MainContext);
 
@@ -75,7 +77,11 @@ const MenuDropdown = props => {
         icon1={toggleIconDown}
         icon2={toggleIconUp}
         toggled={toggled}
-        onClick={() => menuSwitcherClickHandler()}
+        onClick={() =>
+          typeof menuSwitcherClickHandler === "function"
+            ? menuSwitcherClickHandler()
+            : null
+        }
       />
       <ul className="MenuItems">{children}</ul>
     </Container>
