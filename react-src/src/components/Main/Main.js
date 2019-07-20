@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import Menu from "../Menu";
-import Content from "../Content";
+import Content, { ContentPropTypes, ContentDefaultProps } from "../Content";
 
 /**
  * Defines the prop types
@@ -18,20 +18,9 @@ const propTypes = {
    */
   defaultMenuSwitcherIconState: PropTypes.bool,
   /**
-   * The display modes:
-   *
-   * `blank` - When the menu is visible
-   * `slider` - When a category or Random slideshow is displayed
-   * `thumbs` - When a category is displayd`
-   * `page` - When the Contact page is displayed
-   * ``
+   * The display modes
    */
-  defaultContentDisplayMode: PropTypes.oneOf([
-    "blank",
-    "slider",
-    "thumbs",
-    "page"
-  ])
+  defaultContentDisplayMode: ContentPropTypes.activeContentDisplayMode
 };
 
 /**

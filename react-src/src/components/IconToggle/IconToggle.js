@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import Icon from "../Icon";
+import Icon, { IconPropTypes } from "../Icon";
 
 /**
  * Defines the prop types
@@ -19,7 +19,7 @@ const propTypes = {
   /**
    * The component status
    */
-  status: PropTypes.oneOf(["active", "inactive", "hidden", "invisible"]),
+  status: IconPropTypes.status,
   /**
    * The initial icon toggle status
    */

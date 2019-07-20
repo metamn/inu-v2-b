@@ -12,6 +12,16 @@ import Contact from "../Contact";
 import Icon from "../Icon";
 
 /**
+ * Defines the content display modes
+ *
+ * `blank` - When the menu is visible
+ * `slider` - When a category or Random slideshow is displayed
+ * `thumbs` - When a category is displayd`
+ * `page` - When the Contact page is displayed
+ */
+const ContentDisplayModes = ["blank", "slider", "thumbs", "page"];
+
+/**
  * Defines the prop types
  */
 const propTypes = {
@@ -22,14 +32,9 @@ const propTypes = {
   /**
    * The active display mode
    */
-  activeContentDisplayMode: PropTypes.oneOf([
-    "blank",
-    "slider",
-    "thumbs",
-    "page"
-  ]),
+  activeContentDisplayMode: PropTypes.oneOf(ContentDisplayModes),
   /**
-   * Sets the active display mode`
+   * Sets the active display mode
    */
   setActiveContentDisplayMode: PropTypes.func,
   /**
@@ -227,4 +232,10 @@ Content.propTypes = propTypes;
 Content.defaultProps = defaultProps;
 
 export default Content;
-export { propTypes, defaultProps, ThumbClickContext, SlideClickContext };
+export {
+  propTypes as ContentPropTypes,
+  defaultProps as ContentDefaultProps,
+  ThumbClickContext,
+  SlideClickContext,
+  ContentDisplayModes
+};

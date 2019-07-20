@@ -1,7 +1,8 @@
 export { default } from "./Content";
 export {
-  propTypes,
-  defaultProps,
+  ContentPropTypes,
+  ContentDefaultProps,
   ThumbClickContext,
-  SlideClickContext
+  SlideClickContext,
+  ContentDisplayModes
 } from "./Content";
