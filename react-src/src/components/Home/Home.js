@@ -56,15 +56,16 @@ const Section = styled(_Section)(props => ({
   ...props.theme.colorPairs.default,
   ...props.theme.fonts.default,
   display: "flex",
-  flexWrap: "wrap",
-  padding: "var(--lem)"
+  flexDirection: "column",
+  padding: "var(--lem)",
+  minHeight: "100vh"
 }));
 
 /**
- * Styles the icon
+ * Styles the theme switcher icon
  */
 const Icon = styled(_Icon)(props => ({
-  display: "none"
+  marginBottom: "var(--lem)"
 }));
 
 /**

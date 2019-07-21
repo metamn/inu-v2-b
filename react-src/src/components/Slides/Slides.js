@@ -35,7 +35,6 @@ const Container = styled("div")(props => ({
   width: "100%",
 
   display: "flex",
-  alignItems: "center",
 
   overflowX: "auto",
   overflowY: "hidden",

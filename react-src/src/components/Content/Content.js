@@ -76,13 +76,23 @@ const defaultProps = {
 /**
  * Styles the component container
  */
-const Section = styled(_Section)(props => ({}));
+const Section = styled(_Section)(props => ({
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "space-between",
+  alignItems: "end",
+  minHeight: "calc(100vh - var(--lem)*11)",
+
+  "& .Slider": {
+    width: "100%"
+  }
+}));
 
 /**
  * Styles the icon
  */
 const Icon = styled(_Icon)(props => ({
-  display: "none"
+  order: "2"
 }));
 
 /**
