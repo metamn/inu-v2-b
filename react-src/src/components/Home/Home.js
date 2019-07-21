@@ -65,7 +65,7 @@ const Section = styled(_Section)(props => ({
  * Styles the theme switcher icon
  */
 const Icon = styled(_Icon)(props => ({
-  marginBottom: "var(--lem)"
+  display: "none"
 }));
 
 /**
@@ -101,7 +101,9 @@ const Home = props => {
       <ThemeContext.Provider value={activeTheme}>
         <TypographicGrid />
         <Section className="Home" title="Home" theme={activeTheme.theme}>
-          <Icon onClick={() => switchTheme()}>{sunIcon}</Icon>
+          <Icon className="ThemeSwitcherIcon" onClick={() => switchTheme()}>
+            {sunIcon}
+          </Icon>
           <Logo {...siteSettings} />
           <Main />
         </Section>

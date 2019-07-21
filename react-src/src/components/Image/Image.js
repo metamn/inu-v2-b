@@ -55,8 +55,10 @@ const defaultProps = {
  * Styles the image
  */
 const Img = styled("img")(props => ({
-  width: props.width ? props.width : "100%",
-  height: props.height ? props.height : "auto"
+  width: "100%",
+  height: "auto",
+  maxWidth: props.width ? `${props.width}px` : "100%",
+  maxHeight: props.height ? `${props.height}px` : "auto"
 }));
 
 /**

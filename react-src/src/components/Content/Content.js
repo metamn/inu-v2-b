@@ -79,9 +79,9 @@ const defaultProps = {
 const Section = styled(_Section)(props => ({
   display: "flex",
   flexDirection: "column",
-  justifyContent: "space-between",
+  justifyContent: "center",
   alignItems: "end",
-  minHeight: "calc(100vh - var(--lem)*11)",
+  minHeight: "calc(100vh - var(--lem)*10)",
 
   "& .Slider": {
     width: "100%"
@@ -92,7 +92,7 @@ const Section = styled(_Section)(props => ({
  * Styles the icon
  */
 const Icon = styled(_Icon)(props => ({
-  order: "2"
+  display: "none"
 }));
 
 /**
@@ -232,6 +232,7 @@ const Content = props => {
   return (
     <Section className="Content" title="Content">
       <Icon
+        className="ContentSwitcherIcon"
         status={iconStatus}
         onClick={() => newContentSwitcherClickHandler()}
       >
