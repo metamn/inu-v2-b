@@ -44,7 +44,7 @@ const Container = styled("div")(props => ({
   "-ms-overflow-style": "none",
   "-webkit-overflow-scrolling": "touch",
 
-  "& ::-webkit-scrollbar": {
+  "&::-webkit-scrollbar": {
     display: "none"
   },
 

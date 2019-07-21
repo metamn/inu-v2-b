@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { SettingsPropTypes, SettingsDefaultProps } from "../Settings";
+import Link from "../Link";
 
 /**
  * Defines the prop types
@@ -42,14 +43,17 @@ const Description = styled("h2")(props => ({}));
  * Displays site title and description
  */
 const Logo = props => {
+  /**
+   * Loads logo props
+   */
   const { title, url, description } = props;
 
   return (
     <Header className="Logo">
       <Title className="Title">
-        <a href={url} title={title}>
+        <Link url={url} title={title}>
           {title}
-        </a>
+        </Link>
       </Title>
       <Description className="Description">{description}</Description>
     </Header>

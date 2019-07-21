@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
+import { useTheme } from "../../hooks";
 import { MainContext } from "../Main";
 
 /**
@@ -35,6 +36,7 @@ const defaultProps = {
  * Styles the component container
  */
 const Container = styled("li")(props => ({
+  ...props.theme.links.default,
   textDecoration: props.status === "active" ? "line-through" : "none",
   display: props.status === "hidden" ? "none" : "flex",
   cursor: "pointer"
@@ -47,6 +49,11 @@ const MenuItem = props => {
   const { name, id, status } = props;
 
   /**
+   * Loads theme
+   */
+  const { theme } = useTheme();
+
+  /**
    * Manages click on menu item via Context
    *
    * This is a special extension to the component to suit this project.
@@ -57,6 +64,7 @@ const MenuItem = props => {
     <Container
       className="MenuItem"
       status={status}
+      theme={theme}
       onClick={() =>
         typeof menuItemClickHandler === "function"
           ? menuItemClickHandler(id)
