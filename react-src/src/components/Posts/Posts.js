@@ -16,9 +16,18 @@ const propTypes = {
     PropTypes.shape({ node: PropTypes.shape(PostPropTypes) })
   ),
   /**
-   * The category from where the posts are loaded
+   * The query variables
    */
-  categoryId: PropTypes.number
+  variables: PropTypes.shape({
+    /**
+     * The category from where the posts are loaded
+     */
+    category: PropTypes.number,
+    /**
+     * How many posts to load? Max. 100 (hard coded in WPGraphQL)
+     */
+    first: PropTypes.number
+  })
 };
 
 /**
@@ -26,7 +35,10 @@ const propTypes = {
  */
 const defaultProps = {
   edges: Array(1).fill({ node: PostDefaultProps }),
-  categoryId: 1
+  variables: {
+    categoryId: 1,
+    first: 50
+  }
 };
 
 /**
@@ -53,18 +65,7 @@ const query = gql`
  * Loads a list of posts associated to a category (with featured images)
  */
 const Posts = props => {
-  const { categoryId } = props;
-
-  /**
-   * Defines which category to load posts from
-   */
-  const variables = {
-    /**
-     * 100 is hard coded in WPGraphQL
-     */
-    first: 100,
-    category: categoryId
-  };
+  const { variables } = props;
 
   return useData(defaultProps, query, "posts", variables);
 };

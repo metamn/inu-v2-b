@@ -22,6 +22,10 @@ const propTypes = {
    */
   title: PropTypes.string,
   /**
+   * The post index. A post might be part of a collection and needs to be indentified for example to handle clicks.
+   */
+  index: PropTypes.number,
+  /**
    * The post featured image
    */
   ...PostFeaturedImagePropTypes
@@ -33,6 +37,7 @@ const propTypes = {
 const defaultProps = {
   id: "1",
   title: "Post",
+  index: 1,
   ...PostFeaturedImageDefaultProps
 };
 

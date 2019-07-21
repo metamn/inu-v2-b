@@ -8,11 +8,15 @@ The component performs the following tasks:
 
 * The active display mode
 
+* Sets the active display mode`
+
 * The default content switcher icon
 
 * The content switcher click handler
 
 * The default active image (slide and thumb)
+
+* The default page query
 
 </details>
 
@@ -24,6 +28,18 @@ The component performs the following tasks:
 
 <details>
 	<summary>###Styles the component container
+
+</summary>
+</details>
+
+<details>
+	<summary>###Creates a context for the thumb click.
+
+</summary>
+</details>
+
+<details>
+	<summary>###Creates a context for the click on slide.
 
 </summary>
 </details>
@@ -48,7 +64,11 @@ Inactive - Otherwise ...
 
 * Loads the Contact page from the database
 
-* Decides which content to be displayed
+* Manages the click on a thumb.
+
+* Manages the click on a slide.
+
+* Decides which content to be displayed.
 
 </details>
 

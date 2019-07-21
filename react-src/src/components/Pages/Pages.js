@@ -9,16 +9,34 @@ import Page, { PageDefaultProps, PagePropTypes } from "../Page";
  * Defines the prop types
  */
 const propTypes = {
+  /**
+   * The pages
+   */
   edges: PropTypes.arrayOf(
     PropTypes.shape({ node: PropTypes.shape(PagePropTypes) })
-  )
+  ),
+  /**
+   * The query variables
+   */
+  variables: PropTypes.shape({
+    first: PropTypes.number,
+    where: {
+      title: PropTypes.string
+    }
+  })
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
-  edges: Array(1).fill({ node: PageDefaultProps })
+  edges: Array(1).fill({ node: PageDefaultProps }),
+  variables: {
+    first: 1,
+    where: {
+      title: "Contact"
+    }
+  }
 };
 
 /**
@@ -40,16 +58,11 @@ const query = gql`
 /**
  * Loads the Contact page from the database
  */
-const Pages = () => {
+const Pages = props => {
   /**
    * Loads only the `Contact` page
    */
-  const variables = {
-    first: 1,
-    where: {
-      title: "Contact"
-    }
-  };
+  const { variables } = props;
 
   return useData(defaultProps, query, "pages", variables);
 };

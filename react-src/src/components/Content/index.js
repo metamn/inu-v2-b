@@ -1,2 +1,8 @@
 export { default } from "./Content";
-export { propTypes, defaultProps } from "./Content";
+export {
+  ContentPropTypes,
+  ContentDefaultProps,
+  ThumbClickContext,
+  SlideClickContext,
+  ContentDisplayModes
+} from "./Content";

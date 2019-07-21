@@ -8,7 +8,7 @@ import Categories, {
 import description from "./Categories.md";
 
 const CategoriesForStory = () => {
-  const data = Categories();
+  const data = Categories({});
   const code = JSON.stringify(data, null, 2);
   return (
     <>

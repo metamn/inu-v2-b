@@ -2,13 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import Categories from "../Categories";
-import { categoryToMenuItem } from "../Category";
-import { MenuItemPropTypes, createMenuItems } from "../MenuItem";
+import Categories, {
+  CategoriesPropTypes,
+  CategoriesDefaultProps
+} from "../Categories";
+import MenuItem, { MenuItemPropTypes } from "../MenuItem";
 import MenuDropdown, {
   MenuDropdownPropTypes,
   MenuDropdownDefaultProps,
-  setMenuDropdownItemStatus
+  setMenuItemStatusForDropdown
 } from "../MenuDropdown";
 
 /**
@@ -24,10 +26,6 @@ const propTypes = {
    */
   menuSwitcherIconState: PropTypes.bool,
   /**
-   * The menu switcher click handler
-   */
-  menuSwitcherClickHandler: PropTypes.func,
-  /**
    * The `Random` menu item
    */
   random: PropTypes.shape(MenuItemPropTypes),
@@ -38,7 +36,11 @@ const propTypes = {
   /**
    * The drowpdown menu
    */
-  ...MenuDropdownPropTypes
+  ...MenuDropdownPropTypes,
+  /**
+   * The default category query
+   */
+  defaultCategoriesQuery: CategoriesPropTypes.variables
 };
 
 /**
@@ -47,9 +49,6 @@ const propTypes = {
 const defaultProps = {
   activeMenuItem: "1",
   menuSwitcherIconState: false,
-  menuSwitcherClickHandler: () => {
-    console.log("Menu switcher clicked");
-  },
   random: {
     name: "Random slideshow",
     id: "-1"
@@ -58,7 +57,8 @@ const defaultProps = {
     name: "Contact",
     id: "-2"
   },
-  ...MenuDropdownDefaultProps
+  ...MenuDropdownDefaultProps,
+  defaultCategoriesQuery: CategoriesDefaultProps.variables
 };
 
 /**
@@ -71,26 +71,59 @@ const Container = styled("div")(props => ({
 }));
 
 /**
- * Displays the menu
+ * Creates menu items.
+ */
+const createMenuItems = props => {
+  /**
+   * Retrieves props.
+   */
+  const { menuItems, menuSwitcherIconState, setStatus, activeMenuItem } = props;
+
+  return menuItems.map(menuItem => {
+    const { id, name } = menuItem;
+
+    const newStatus = setStatus({
+      id: id,
+      activeMenuItem: activeMenuItem,
+      menuSwitcherIconState: menuSwitcherIconState
+    });
+
+    return (
+      <MenuItem key={`MenuItem-${id}`} id={id} name={name} status={newStatus} />
+    );
+  });
+};
+
+/**
+ * Converts a category to a menu item.
+ */
+const categoryToMenuItem = category => {
+  const { categoryId, name } = category;
+
+  return { name: name, id: categoryId.toString() };
+};
+
+/**
+ * Displays the menu.
  */
 const Menu = props => {
   const {
     menuSwitcherIconState,
-    menuSwitcherClickHandler,
-    activeMenuItem
+    activeMenuItem,
+    defaultCategoriesQuery
   } = props;
 
   /**
    * Loads categories
    */
-  const categories = Categories();
+  const categories = Categories({ variables: defaultCategoriesQuery });
 
   /**
    * Displays categories as menu items
    */
   const categoriesAsMenuItems = createMenuItems({
     menuItems: categories.edges.map(edge => categoryToMenuItem(edge.node)),
-    setStatus: setMenuDropdownItemStatus,
+    setStatus: setMenuItemStatusForDropdown,
     menuSwitcherIconState: menuSwitcherIconState,
     activeMenuItem: activeMenuItem
   });
@@ -105,7 +138,7 @@ const Menu = props => {
    */
   const customMenuItems = createMenuItems({
     menuItems: [random, contact],
-    setStatus: setMenuDropdownItemStatus,
+    setStatus: setMenuItemStatusForDropdown,
     menuSwitcherIconState: menuSwitcherIconState,
     activeMenuItem: activeMenuItem
   });
@@ -113,10 +146,7 @@ const Menu = props => {
   return (
     <Container className="Menu">
       Menu
-      <MenuDropdown
-        toggled={menuSwitcherIconState}
-        toggleIconClickHandler={menuSwitcherClickHandler}
-      >
+      <MenuDropdown toggled={menuSwitcherIconState}>
         {categoriesAsMenuItems}
         {customMenuItems}
       </MenuDropdown>

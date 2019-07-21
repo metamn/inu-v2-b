@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 //import { stringify } from "flatted";
 
@@ -17,14 +18,19 @@ const propTypes = {
   /**
    * The site settings
    */
-  ...SettingsPropTypes
+  ...SettingsPropTypes,
+  /**
+   * The theme switcher icon
+   */
+  defaultThemeSwitcherIcon: PropTypes.string
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
-  ...SettingsDefaultProps
+  ...SettingsDefaultProps,
+  defaultThemeSwitcherIcon: "Theme switcher"
 };
 
 /**
@@ -43,6 +49,11 @@ const Container = styled("div")(props => ({
  */
 const Home = props => {
   /**
+   * Loads props
+   */
+  const { defaultThemeSwitcherIcon } = props;
+
+  /**
    * Sets up theming
    */
   const { activeTheme, switchTheme, ThemeContext } = useTheme();
@@ -52,7 +63,7 @@ const Home = props => {
    */
   const { theme } = activeTheme;
   const { icons } = theme;
-  const sunIcon = icons.sun;
+  const sunIcon = icons.sun ? icons.sun : defaultThemeSwitcherIcon;
 
   /**
    * Loads site settings from the database

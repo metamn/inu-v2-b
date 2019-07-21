@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import Menu from "../Menu";
-import Content from "../Content";
+import Content, { ContentPropTypes } from "../Content";
 
 /**
  * Defines the prop types
@@ -18,20 +18,9 @@ const propTypes = {
    */
   defaultMenuSwitcherIconState: PropTypes.bool,
   /**
-   * The display modes:
-   *
-   * `blank` - When the menu is visible
-   * `slider` - When a category or Random slideshow is displayed
-   * `thumbs` - When a category is displayd`
-   * `page` - When the Contact page is displayed
-   * ``
+   * The display modes
    */
-  defaultContentDisplayMode: PropTypes.oneOf([
-    "blank",
-    "slider",
-    "thumbs",
-    "page"
-  ])
+  defaultContentDisplayMode: ContentPropTypes.activeContentDisplayMode
 };
 
 /**
@@ -59,6 +48,8 @@ const MainContext = React.createContext({});
 
 /**
  * Gets the display mode.
+ *
+ * A reusable helper for setting the active display mode.
  */
 const getDisplayMode = activeMenuItem => {
   return activeMenuItem === "-2" ? "page" : "slider";
@@ -124,33 +115,32 @@ const Main = props => {
     setActiveContentDisplayMode(newDisplay);
   };
 
+  /**
+   * Sets up context variables
+   */
+  const context = {
+    /**
+     * Used in MenuDropdown
+     */
+    menuSwitcherClickHandler: menuSwitcherClickHandler,
+    /**
+     * Used in MenuItem
+     */
+    menuItemClickHandler: menuItemClickHandler
+  };
+
   return (
     <Container className="Main">
       Main
-      <MainContext.Provider
-        value={{
-          /**
-           * Used in <Image>
-           */
-          activeContentDisplayMode: activeContentDisplayMode,
-          /**
-           * Used in <Thumbs>
-           */
-          setActiveContentDisplayMode: setActiveContentDisplayMode,
-          /**
-           * Used in <MenuItem>
-           */
-          menuItemClickHandler: menuItemClickHandler
-        }}
-      >
+      <MainContext.Provider value={context}>
         <Menu
           activeMenuItem={activeMenuItem}
           menuSwitcherIconState={menuSwitcherIconState}
-          menuSwitcherClickHandler={menuSwitcherClickHandler}
         />
         <Content
           activeMenuItem={activeMenuItem}
           activeContentDisplayMode={activeContentDisplayMode}
+          setActiveContentDisplayMode={setActiveContentDisplayMode}
           contentSwitcherClickHandler={contentSwitcherClickHandler}
         />
       </MainContext.Provider>

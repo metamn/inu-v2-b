@@ -4,6 +4,10 @@ The component performs the following tasks:
 	<summary>###Defines the prop types
 
 </summary>
+* The categories
+
+* The query variables
+
 </details>
 
 <details>
@@ -22,7 +26,5 @@ The component performs the following tasks:
 	<summary>###Loads categories from the database
 
 </summary>
-* Excludes empty categories
-
 </details>
 

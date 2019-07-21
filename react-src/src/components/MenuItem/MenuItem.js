@@ -19,11 +19,7 @@ const propTypes = {
   /**
    * The menu item status
    */
-  status: PropTypes.oneOf(["active", "inactive", "hidden"]),
-  /**
-   * The menu item click handler
-   */
-  defaultMenuItemClickHandler: PropTypes.func
+  status: PropTypes.oneOf(["active", "inactive", "hidden"])
 };
 
 /**
@@ -32,10 +28,7 @@ const propTypes = {
 const defaultProps = {
   name: "Menu item",
   id: "1",
-  status: "inactive",
-  defaultMenuItemClickHandler: () => {
-    console.log("Menu item clicked");
-  }
+  status: "inactive"
 };
 
 /**
@@ -48,47 +41,27 @@ const Container = styled("li")(props => ({
 }));
 
 /**
- * Creates menu items
- */
-const createMenuItems = props => {
-  /**
-   * Retrieves props.
-   *
-   * Context cannot be used since this is not a hook
-   */
-  const { menuItems, menuSwitcherIconState, setStatus, activeMenuItem } = props;
-
-  return menuItems.map(menuItem => {
-    const { id, name } = menuItem;
-
-    const newStatus = setStatus({
-      id: id,
-      activeMenuItem: activeMenuItem,
-      menuSwitcherIconState: menuSwitcherIconState
-    });
-
-    return (
-      <MenuItem key={`MenuItem-${id}`} id={id} name={name} status={newStatus} />
-    );
-  });
-};
-
-/**
- * Displays the component
+ * Displays a menu item
  */
 const MenuItem = props => {
-  const { name, id, status, defaultMenuItemClickHandler } = props;
-  const { menuItemClickHandler } = useContext(MainContext);
+  const { name, id, status } = props;
 
-  const clickHandler = menuItemClickHandler
-    ? menuItemClickHandler
-    : defaultMenuItemClickHandler;
+  /**
+   * Manages click on menu item via Context
+   *
+   * This is a special extension to the component to suit this project.
+   */
+  const { menuItemClickHandler } = useContext(MainContext);
 
   return (
     <Container
       className="MenuItem"
       status={status}
-      onClick={() => clickHandler(id)}
+      onClick={() =>
+        typeof menuItemClickHandler === "function"
+          ? menuItemClickHandler(id)
+          : null
+      }
     >
       {name}
     </Container>
@@ -99,8 +72,4 @@ MenuItem.propTypes = propTypes;
 MenuItem.defaultProps = defaultProps;
 
 export default MenuItem;
-export {
-  propTypes as MenuItemPropTypes,
-  defaultProps as MenuItemDefaultProps,
-  createMenuItems
-};
+export { propTypes as MenuItemPropTypes, defaultProps as MenuItemDefaultProps };

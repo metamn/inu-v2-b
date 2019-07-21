@@ -4,12 +4,6 @@ The component performs the following tasks:
 	<summary>###Defines the prop types
 
 </summary>
-* The post data
-
-* Is the thumb active?
-
-* The index of the thumb. A thumb might be part of a collection and needs to be indentified for example to handle clicks.
-
 </details>
 
 <details>
@@ -25,7 +19,13 @@ The component performs the following tasks:
 </details>
 
 <details>
-	<summary>###Displays post as a thumb.
+	<summary>###Creates a placeholder image url with `https://placeholder.pics`
+
+</summary>
+</details>
+
+<details>
+	<summary>###Displays the component
 
 </summary>
 </details>

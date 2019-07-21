@@ -14,6 +14,8 @@ The component performs the following tasks:
 
 * The `Contact` menu item
 
+* The default category query
+
 </details>
 
 <details>

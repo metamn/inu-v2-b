@@ -7,23 +7,23 @@ import styled from "styled-components";
  */
 const propTypes = {
   /**
-   * The element name
+   * The element name.
    */
   elementName: PropTypes.oneOf(["section", "article", "aside", "nav"])
     .isRequired,
   /**
-   * The element class name
-   * Required to make it later styleable
+   * The element class name.
+   * Required to make it later styleable.
    */
   className: PropTypes.string.isRequired,
   /**
-   * The element title
-   * Usually a string, but it can be a link too
+   * The element title.
+   * Usually a string, but it can be a link too.
    */
   title: PropTypes.any.isRequired,
   /**
-   * The element children
-   * Without children there is no use of an empty element
+   * The element children.
+   * Without children there is no use of this component.
    */
   children: PropTypes.any.isRequired
 };

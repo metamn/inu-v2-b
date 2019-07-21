@@ -5,11 +5,21 @@ import styled from "styled-components";
 import { useTheme } from "./../../hooks";
 
 import Posts from "../Posts";
-import Pages from "../Pages";
+import Pages, { PagesPropTypes, PagesDefaultProps } from "../Pages";
 import Slider from "../Slider";
 import Thumbs from "../Thumbs";
 import Contact from "../Contact";
 import Icon from "../Icon";
+
+/**
+ * Defines the content display modes
+ *
+ * `blank` - When the menu is visible
+ * `slider` - When a category or Random slideshow is displayed
+ * `thumbs` - When a category is displayd`
+ * `page` - When the Contact page is displayed
+ */
+const ContentDisplayModes = ["blank", "slider", "thumbs", "page"];
 
 /**
  * Defines the prop types
@@ -22,12 +32,11 @@ const propTypes = {
   /**
    * The active display mode
    */
-  activeContentDisplayMode: PropTypes.oneOf([
-    "blank",
-    "slider",
-    "thumbs",
-    "page"
-  ]),
+  activeContentDisplayMode: PropTypes.oneOf(ContentDisplayModes),
+  /**
+   * Sets the active display mode
+   */
+  setActiveContentDisplayMode: PropTypes.func,
   /**
    * The default content switcher icon
    */
@@ -39,7 +48,11 @@ const propTypes = {
   /**
    * The default active image (slide and thumb)
    */
-  defaultImage: PropTypes.number
+  defaultImage: PropTypes.number,
+  /**
+   * The default page query
+   */
+  defaultPageQuery: PagesPropTypes.variables
 };
 
 /**
@@ -48,11 +61,15 @@ const propTypes = {
 const defaultProps = {
   activeMenuItem: "1",
   activeContentDisplayMode: "slider",
+  setActiveContentDisplayMode: () => {
+    console.log("Set active display mode");
+  },
   defaultContentSwitcherIcon: "Contet switcher icon",
   contentSwitcherClickHandler: () => {
     console.log("Contet switcher clicked");
   },
-  defaultImage: 1
+  defaultImage: 1,
+  defaultPageQuery: PagesDefaultProps.variables
 };
 
 /**
@@ -66,15 +83,27 @@ const Container = styled("div")(props => ({
 }));
 
 /**
+ * Creates a context for the thumb click.
+ */
+const ThumbClickContext = React.createContext({});
+
+/**
+ * Creates a context for the click on slide.
+ */
+const SlideClickContext = React.createContext({});
+
+/**
  * Displays various content types
  */
 const Content = props => {
   const {
     activeMenuItem,
     activeContentDisplayMode,
+    setActiveContentDisplayMode,
     defaultContentSwitcherIcon,
     defaultImage,
-    contentSwitcherClickHandler
+    contentSwitcherClickHandler,
+    defaultPageQuery
   } = props;
 
   /**
@@ -105,9 +134,9 @@ const Content = props => {
     : "inactive";
 
   /**
-   * Removes the click handler when the content switcher icon is inactive
+   * Removes the content switcher click handler when the content switcher icon is inactive
    */
-  const clickHandler =
+  const newContentSwitcherClickHandler =
     iconStatus === "active" ? contentSwitcherClickHandler : () => {};
 
   /**
@@ -118,7 +147,9 @@ const Content = props => {
   /**
    * Loads a list of posts associated to a category
    */
-  const posts = Posts({ categoryId: activeMenuItem });
+  const posts = Posts({
+    variables: { category: Number(activeMenuItem), first: 100 }
+  });
 
   /**
    * Filters posts having a featured image set
@@ -130,11 +161,33 @@ const Content = props => {
   /**
    * Loads the Contact page from the database
    */
-  const pages = Pages();
+  const pages = Pages({ variables: defaultPageQuery });
   const contactPageContent = pages.edges[0].node.content;
 
   /**
-   * Decides which content to be displayed
+   * Manages the click on a thumb.
+   */
+  const thumbClickHandler = index => {
+    setActiveImage(index);
+    setActiveContentDisplayMode("slider");
+  };
+
+  /**
+   * Manages the click on a slide.
+   */
+  const slideClickHandler = index => {
+    // No clicks on `Random slideshow`
+    if (isSlideShowActive) return;
+
+    if (index + 1 < edgesWithFeaturedImage.length) {
+      setActiveImage(index + 1);
+    } else {
+      setActiveImage(0);
+    }
+  };
+
+  /**
+   * Decides which content to be displayed.
    */
   const DisplayContent = () => {
     switch (activeContentDisplayMode) {
@@ -144,21 +197,21 @@ const Content = props => {
         return <Contact content={contactPageContent} />;
       case "thumbs":
         return (
-          <Thumbs
-            edges={edgesWithFeaturedImage}
-            activeImage={activeImage}
-            setActiveImage={setActiveImage}
-          />
+          <ThumbClickContext.Provider value={thumbClickHandler}>
+            <Thumbs edges={edgesWithFeaturedImage} activeImage={activeImage} />
+          </ThumbClickContext.Provider>
         );
       case "slider":
       default:
         return (
-          <Slider
-            edges={edgesWithFeaturedImage}
-            activeImage={activeImage}
-            setActiveImage={setActiveImage}
-            isSlideShowActive={isSlideShowActive}
-          />
+          <SlideClickContext.Provider value={slideClickHandler}>
+            <Slider
+              edges={edgesWithFeaturedImage}
+              activeImage={activeImage}
+              setActiveImage={setActiveImage}
+              isSlideShowActive={isSlideShowActive}
+            />
+          </SlideClickContext.Provider>
         );
     }
   };
@@ -166,7 +219,10 @@ const Content = props => {
   return (
     <Container className="Content">
       Content
-      <Icon status={iconStatus} onClick={() => clickHandler()}>
+      <Icon
+        status={iconStatus}
+        onClick={() => newContentSwitcherClickHandler()}
+      >
         {contentSwitcherIcon}
       </Icon>
       <DisplayContent />
@@ -178,4 +234,10 @@ Content.propTypes = propTypes;
 Content.defaultProps = defaultProps;
 
 export default Content;
-export { propTypes, defaultProps };
+export {
+  propTypes as ContentPropTypes,
+  defaultProps as ContentDefaultProps,
+  ThumbClickContext,
+  SlideClickContext,
+  ContentDisplayModes
+};

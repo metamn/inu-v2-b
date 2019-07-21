@@ -4,13 +4,27 @@ import styled from "styled-components";
 import gql from "graphql-tag";
 
 import Image from "../Image";
+import ImageResponsive from "../ImageResponsive";
 
 /**
  * Defines the prop types
  */
 const propTypes = {
+  /**
+   * The featured image title
+   */
   featuredImageTitle: PropTypes.string,
-  featuredImageType: PropTypes.oneOf(["responsive", "thumbnail"]),
+  /**
+   * The featured image type
+   */
+  featuredImageType: PropTypes.oneOf(["large", "thumbnail"]),
+  /**
+   * The post index. A post might be part of a collection and needs to be indentified for example to handle clicks.
+   */
+  index: PropTypes.number,
+  /**
+   * The featured image
+   */
   featuredImage: PropTypes.shape({
     id: PropTypes.string,
     sourceUrl: PropTypes.string,
@@ -37,7 +51,8 @@ const propTypes = {
  */
 const defaultProps = {
   featuredImageTitle: "Featured image",
-  featuredImageType: "responsive",
+  featuredImageType: "large",
+  index: 1,
   featuredImage: {
     id: "cG9zdDoxMQ==",
     sourceUrl: "http://localhost/react-wp/wp-content/uploads/2019/05/Bg.jpeg",
@@ -118,7 +133,7 @@ const queryFragment = {
 const Container = styled("div")(props => ({}));
 
 /**
- * Returns a responsive image
+ * Creates a large, responsive image
  */
 const responsiveImage = props => {
   const { featuredImageTitle, featuredImage, index } = props;
@@ -133,18 +148,18 @@ const responsiveImage = props => {
   srcSetWidths.push(width.toString());
 
   return (
-    <Image
+    <ImageResponsive
       src={sourceUrl}
       srcSet={srcSet.toString()}
       srcSetWidths={srcSetWidths}
-      index={index}
       alt={featuredImageTitle}
+      index={index}
     />
   );
 };
 
 /**
- * Returns a thumbnail image
+ * Creates a thumbnail image
  */
 const thumbnailImage = props => {
   const { featuredImageTitle, featuredImage, index } = props;
@@ -155,7 +170,6 @@ const thumbnailImage = props => {
 
   return (
     <Image
-      isProgressive={false}
       src={sourceUrl}
       alt={featuredImageTitle}
       width={width}
@@ -171,8 +185,11 @@ const thumbnailImage = props => {
 const PostFeaturedImage = props => {
   const { featuredImageType } = props;
 
+  /**
+   * Either returns a simple image (thumbnail) or a large, responsive image.
+   */
   const image =
-    featuredImageType === "responsive"
+    featuredImageType === "large"
       ? responsiveImage(props)
       : thumbnailImage(props);
 
