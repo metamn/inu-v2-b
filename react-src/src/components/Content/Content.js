@@ -77,10 +77,6 @@ const defaultProps = {
  * Styles the component container
  */
 const Section = styled(_Section)(props => ({
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
-  alignItems: "end",
   minHeight: "calc(100vh - var(--lem)*10)",
 
   "& .Slider": {
@@ -91,9 +87,7 @@ const Section = styled(_Section)(props => ({
 /**
  * Styles the icon
  */
-const Icon = styled(_Icon)(props => ({
-  display: "none"
-}));
+const Icon = styled(_Icon)(props => ({}));
 
 /**
  * Creates a context for the thumb click.
@@ -230,7 +224,7 @@ const Content = props => {
   };
 
   return (
-    <Section className="Content" title="Content">
+    <>
       <Icon
         className="ContentSwitcherIcon"
         status={iconStatus}
@@ -239,7 +233,7 @@ const Content = props => {
         {contentSwitcherIcon}
       </Icon>
       <DisplayContent />
-    </Section>
+    </>
   );
 };
 

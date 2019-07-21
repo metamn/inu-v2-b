@@ -141,12 +141,12 @@ const Menu = props => {
   });
 
   return (
-    <Nav className="Menu" title="Menu">
+    <>
       <MenuDropdown toggled={menuSwitcherIconState}>
         {categoriesAsMenuItems}
         {customMenuItems}
       </MenuDropdown>
-    </Nav>
+    </>
   );
 };
 

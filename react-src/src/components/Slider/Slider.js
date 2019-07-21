@@ -6,6 +6,7 @@ import { useEventListener } from "../../hooks";
 
 import Slides from "../Slides";
 import { PostsPropTypes, PostsDefaultProps } from "../Posts";
+import { Section as _Section } from "../SemanticHTML";
 
 /**
  * Defines the prop types
@@ -44,7 +45,9 @@ const defaultProps = {
 /**
  * Styles the component container
  */
-const Container = styled("div")(props => ({}));
+const Section = styled(_Section)(props => ({
+  overflowX: "hidden"
+}));
 
 /**
  * Displays the slider
@@ -137,7 +140,11 @@ const Slider = props => {
     [activeImage, isSlideShowActive, numberOfSlides, setActiveImage]
   );
 
-  return <Container className="Slider">{slidesRendered}</Container>;
+  return (
+    <Section className="Slider" title="Slider">
+      {slidesRendered}
+    </Section>
+  );
 };
 
 Slider.propTypes = propTypes;

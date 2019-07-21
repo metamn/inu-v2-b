@@ -55,18 +55,44 @@ const defaultProps = {
 const Section = styled(_Section)(props => ({
   ...props.theme.colorPairs.default,
   ...props.theme.fonts.default,
-  display: "flex",
-  flexDirection: "column",
+
   padding: "var(--lem)",
-  minHeight: "100vh"
+  minHeight: "100vh",
+
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr",
+  gridTemplateRows: "1fr 1fr 4fr 1fr",
+  gridTemplateAreas: `
+  "logo logo"
+  "menudd menudd"
+  "content content"
+  "themeswi contentswi"`,
+
+  "& .Logo": {
+    gridArea: "logo"
+  },
+
+  "& .MenuDropdown": {
+    gridArea: "menudd"
+  },
+
+  "& .ThemeSwitcherIcon": {
+    gridArea: "themeswi"
+  },
+
+  "& .ContentSwitcherIcon": {
+    gridArea: "contentswi"
+  },
+
+  "& .Slider": {
+    gridArea: "content"
+  }
 }));
 
 /**
  * Styles the theme switcher icon
  */
-const Icon = styled(_Icon)(props => ({
-  display: "none"
-}));
+const Icon = styled(_Icon)(props => ({}));
 
 /**
  * Displays the homepage

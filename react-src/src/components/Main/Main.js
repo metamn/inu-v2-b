@@ -128,7 +128,7 @@ const Main = props => {
   };
 
   return (
-    <MainContainer className="Main">
+    <>
       <MainContext.Provider value={context}>
         <Menu
           activeMenuItem={activeMenuItem}
@@ -141,7 +141,7 @@ const Main = props => {
           contentSwitcherClickHandler={contentSwitcherClickHandler}
         />
       </MainContext.Provider>
-    </MainContainer>
+    </>
   );
 };
 

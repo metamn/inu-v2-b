@@ -9,6 +9,7 @@ import IconToggle, {
   IconToggleDefaultProps
 } from "../IconToggle";
 import { MainContext } from "../Main";
+import { Nav as _Nav } from "../SemanticHTML";
 
 /**
  * Defines the prop types
@@ -35,7 +36,7 @@ const defaultProps = {
 /**
  * Styles the component container
  */
-const Container = styled("div")(props => ({
+const Nav = styled(_Nav)(props => ({
   display: "flex",
   justifyContent: "space-between",
   margin: "var(--lem) 0",
@@ -106,7 +107,7 @@ const MenuDropdown = props => {
   const { menuSwitcherClickHandler } = useContext(MainContext);
 
   return (
-    <Container className={`MenuDropdown ${status}`}>
+    <Nav className={`MenuDropdown ${status}`} title="Dropdown menu">
       <IconToggle
         icon1={toggleIconDown}
         icon2={toggleIconUp}
@@ -118,7 +119,7 @@ const MenuDropdown = props => {
         }
       />
       <ul className="MenuItems">{children}</ul>
-    </Container>
+    </Nav>
   );
 };
 
