@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
+import { Article as _Article } from "../SemanticHTML";
+
 /**
  * Defines the prop types
  */
@@ -22,11 +24,7 @@ const defaultProps = {
 /**
  * Styles the component container
  */
-const Container = styled("div")(props => ({
-  border: "1px solid",
-  padding: "1.25em",
-  margin: "1.25em"
-}));
+const Article = styled(_Article)(props => ({}));
 
 /**
  * Displays the Contact page content
@@ -35,8 +33,9 @@ const Contact = props => {
   const { content } = props;
 
   return (
-    <Container
+    <Article
       className="Contact"
+      title="Contact"
       dangerouslySetInnerHTML={{ __html: content }}
       {...props}
     />

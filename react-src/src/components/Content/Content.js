@@ -10,6 +10,7 @@ import Slider from "../Slider";
 import Thumbs from "../Thumbs";
 import Contact from "../Contact";
 import Icon from "../Icon";
+import { Section as _Section } from "../SemanticHTML";
 
 /**
  * Defines the content display modes
@@ -75,12 +76,7 @@ const defaultProps = {
 /**
  * Styles the component container
  */
-const Container = styled("div")(props => ({
-  border: "1px solid",
-  padding: "1.25em",
-  margin: "1.25em",
-  position: "relative"
-}));
+const Section = styled(_Section)(props => ({}));
 
 /**
  * Creates a context for the thumb click.
@@ -217,8 +213,7 @@ const Content = props => {
   };
 
   return (
-    <Container className="Content">
-      Content
+    <Section className="Content" title="Content">
       <Icon
         status={iconStatus}
         onClick={() => newContentSwitcherClickHandler()}
@@ -226,7 +221,7 @@ const Content = props => {
         {contentSwitcherIcon}
       </Icon>
       <DisplayContent />
-    </Container>
+    </Section>
   );
 };
 

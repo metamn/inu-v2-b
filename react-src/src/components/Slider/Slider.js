@@ -44,13 +44,7 @@ const defaultProps = {
 /**
  * Styles the component container
  */
-const Container = styled("div")(props => ({
-  width: "80vw",
-
-  border: "1px solid",
-  padding: "1.25em",
-  margin: "1.25em"
-}));
+const Container = styled("div")(props => ({}));
 
 /**
  * Displays the slider

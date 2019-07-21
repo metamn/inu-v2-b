@@ -35,11 +35,7 @@ const defaultProps = {
 /**
  * Styles the component container
  */
-const Container = styled("div")(props => ({
-  border: "1px solid",
-  padding: "1.25em",
-  margin: "1.25em"
-}));
+const MainContainer = styled("main")(props => ({}));
 
 /**
  * Creates a context for the component.
@@ -130,8 +126,7 @@ const Main = props => {
   };
 
   return (
-    <Container className="Main">
-      Main
+    <MainContainer className="Main">
       <MainContext.Provider value={context}>
         <Menu
           activeMenuItem={activeMenuItem}
@@ -144,7 +139,7 @@ const Main = props => {
           contentSwitcherClickHandler={contentSwitcherClickHandler}
         />
       </MainContext.Provider>
-    </Container>
+    </MainContainer>
   );
 };
 

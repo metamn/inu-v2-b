@@ -12,6 +12,7 @@ import MenuDropdown, {
   MenuDropdownDefaultProps,
   setMenuItemStatusForDropdown
 } from "../MenuDropdown";
+import { Nav as _Nav } from "../SemanticHTML";
 
 /**
  * Defines the prop types
@@ -64,11 +65,7 @@ const defaultProps = {
 /**
  * Styles the component container
  */
-const Container = styled("div")(props => ({
-  border: "1px solid",
-  padding: "1.25em",
-  margin: "1.25em"
-}));
+const Nav = styled(_Nav)(props => ({}));
 
 /**
  * Creates menu items.
@@ -144,13 +141,12 @@ const Menu = props => {
   });
 
   return (
-    <Container className="Menu">
-      Menu
+    <Nav className="Menu" title="Menu">
       <MenuDropdown toggled={menuSwitcherIconState}>
         {categoriesAsMenuItems}
         {customMenuItems}
       </MenuDropdown>
-    </Container>
+    </Nav>
   );
 };
 

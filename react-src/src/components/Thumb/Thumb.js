@@ -35,9 +35,7 @@ const defaultProps = {
  * Styles the component container
  */
 const Container = styled("div")(props => ({
-  border: props.isActive ? "1px solid" : "1px transparent",
-  padding: "1.25em",
-  margin: "1.25em"
+  border: props.isActive ? "1px solid" : "1px transparent"
 }));
 
 /**
