@@ -167,9 +167,9 @@ const ImageResponsive = props => {
   const slideClickHandler = useContext(SlideClickContext);
 
   /**
-   * Returns a ProgressiveImage if requested. Otherwise a responsive HTML image
+   * Puts together a progressive image.
    */
-  const result = isProgressive ? (
+  const progressive = (
     <ProgressiveImage
       src={nonEmptySrc}
       srcSetData={{
@@ -196,7 +196,12 @@ const ImageResponsive = props => {
         />
       )}
     </ProgressiveImage>
-  ) : (
+  );
+
+  /**
+   * Puts together a simple responsive image.
+   */
+  const simple = (
     <Img
       className="image"
       src={nonEmptySrc}
@@ -214,6 +219,11 @@ const ImageResponsive = props => {
       }
     />
   );
+
+  /**
+   * Returns a ProgressiveImage if requested. Otherwise a responsive HTML image
+   */
+  const result = isProgressive ? progressive : simple;
 
   return result;
 };
