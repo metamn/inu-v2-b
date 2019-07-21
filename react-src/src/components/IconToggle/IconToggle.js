@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import Icon, { IconPropTypes } from "../Icon";
+import Icon, { IconPropTypes, IconDefaultProps } from "../Icon";
 
 /**
  * Defines the prop types
@@ -11,11 +11,11 @@ const propTypes = {
   /**
    * The first, active by default icon
    */
-  icon1: PropTypes.node.isRequired,
+  icon1: PropTypes.shape(IconPropTypes),
   /**
    * The second, inactive by default icon
    */
-  icon2: PropTypes.node.isRequired,
+  icon2: PropTypes.shape(IconPropTypes),
   /**
    * The component status
    */
@@ -30,8 +30,8 @@ const propTypes = {
  * Defines the default props
  */
 const defaultProps = {
-  icon1: "icon1",
-  icon2: "icon2",
+  icon1: IconDefaultProps,
+  icon2: IconDefaultProps,
   status: "active",
   toggled: false
 };
@@ -59,8 +59,8 @@ const IconToggle = props => {
 
   return (
     <Container className="icon-toggle" status={status} {...props}>
-      <Icon status={icon1Status}>{icon1}</Icon>
-      <Icon status={icon2Status}>{icon2}</Icon>
+      <Icon {...icon1} status={icon1Status} />
+      <Icon {...icon2} status={icon2Status} />
     </Container>
   );
 };

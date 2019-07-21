@@ -61,8 +61,10 @@ const MenuDropdown = props => {
    */
   const { theme } = useTheme();
   const { icons } = theme;
-  const toggleIconUp = icons.chevronUp ? icons.chevronUp : icon1;
-  const toggleIconDown = icons.chevronDown ? icons.chevronDown : icon2;
+  const toggleIconUp = icons.chevronUp ? { children: icons.chevronUp } : icon1;
+  const toggleIconDown = icons.chevronDown
+    ? { children: icons.chevronDown }
+    : icon2;
 
   /**
    * Loads the click handler from Context
