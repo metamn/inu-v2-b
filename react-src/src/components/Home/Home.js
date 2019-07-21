@@ -1,15 +1,31 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import WebFont from "webfontloader";
 //import { stringify } from "flatted";
 
 import { useTheme } from "./../../hooks";
 
+import Reset from "../Reset";
+import TypographicGrid from "../TypographicGrid";
+
 import Settings, { SettingsPropTypes, SettingsDefaultProps } from "../Settings";
+import { Section as _Section } from "../SemanticHTML";
 import Meta from "../Meta";
 import Logo from "../Logo";
 import Main from "../Main";
 import Icon from "../Icon";
+
+/**
+ * Loads web fonts
+ *
+ * NOTE: When changing font also the `theme` has to be updated
+ */
+WebFont.load({
+  google: {
+    families: ["Major+Mono+Display"]
+  }
+});
 
 /**
  * Defines the prop types
@@ -36,11 +52,11 @@ const defaultProps = {
 /**
  * Styles the component container
  */
-const Container = styled("div")(props => ({
+const Section = styled(_Section)(props => ({
   ...props.theme.colorPairs.default,
-  border: "1px solid",
-  padding: "1.25em",
-  margin: "1.25em",
+  ...props.theme.fonts.default,
+  display: "flex",
+  flexDirection: "column",
   minHeight: "100vh"
 }));
 
@@ -72,14 +88,15 @@ const Home = props => {
 
   return (
     <>
+      <Reset />
       <Meta {...siteSettings} />
       <ThemeContext.Provider value={activeTheme}>
-        <Container className="Home" theme={activeTheme.theme}>
-          Home
+        <TypographicGrid />
+        <Section className="Home" title="Home" theme={activeTheme.theme}>
           <Icon onClick={() => switchTheme()}>{sunIcon}</Icon>
           <Logo {...siteSettings} />
           <Main />
-        </Container>
+        </Section>
       </ThemeContext.Provider>
     </>
   );
