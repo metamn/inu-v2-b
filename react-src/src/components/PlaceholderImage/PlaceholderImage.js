@@ -41,7 +41,7 @@ const createPlaceholderImageUrl = props => {
 };
 
 /**
- * Displays the component
+ * Displays a placeholder image
  */
 const PlaceholderImage = props => {
   return <Container className="PlaceholderImage">PlaceholderImage</Container>;

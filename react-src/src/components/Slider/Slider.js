@@ -128,15 +128,11 @@ const Slider = props => {
           const slideNumbers = Array.from(Array(numberOfSlides).keys()).filter(
             i => i !== activeImage
           );
+
           const random =
             slideNumbers[Math.floor(Math.random() * slideNumbers.length)];
 
-          console.log("random:" + random);
           setActiveImage(random);
-
-          if (random === 0) {
-            //loadMore();
-          }
         }, 2500);
       } else {
         clearInterval(interval);

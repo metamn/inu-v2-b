@@ -30,7 +30,7 @@ const propTypes = {
    */
   srcSetWidths: PropTypes.arrayOf(PropTypes.string),
   /**
-   * To use ProgressiveImage?
+   * Use ProgressiveImage?
    */
   isProgressive: PropTypes.bool,
   /**

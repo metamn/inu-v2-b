@@ -20,7 +20,7 @@ const propTypes = {
    */
   children: PropTypes.any.isRequired,
   /**
-   * Props used for styling
+   * The props used for styling
    */
   theme: PropTypes.shape({
     colorPairs: PropTypes.shape({

@@ -68,6 +68,7 @@ const Container = styled("div")(props => ({
  */
 const Slide = React.forwardRef((props, ref) => {
   const { children, isActive } = props;
+
   const active = isActive ? "active" : "";
 
   return (

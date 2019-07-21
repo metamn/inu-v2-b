@@ -11,7 +11,7 @@ import { PostsPropTypes, PostsDefaultProps } from "../Posts";
  */
 const propTypes = {
   /**
-   * Raw data to set up slides
+   * The post data to set up slides
    */
   ...PostsPropTypes,
   /**
