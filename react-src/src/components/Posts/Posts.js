@@ -22,7 +22,7 @@ const propTypes = {
     /**
      * The category from where the posts are loaded
      */
-    categoryId: PropTypes.number,
+    category: PropTypes.number,
     /**
      * How many posts to load? Max. 100 (hard coded in WPGraphQL)
      */

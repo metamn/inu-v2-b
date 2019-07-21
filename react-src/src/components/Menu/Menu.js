@@ -95,7 +95,7 @@ const createMenuItems = props => {
 };
 
 /**
- * Converts a category to a menu item
+ * Converts a category to a menu item.
  */
 const categoryToMenuItem = category => {
   const { categoryId, name } = category;
@@ -104,7 +104,7 @@ const categoryToMenuItem = category => {
 };
 
 /**
- * Displays the menu
+ * Displays the menu.
  */
 const Menu = props => {
   const {

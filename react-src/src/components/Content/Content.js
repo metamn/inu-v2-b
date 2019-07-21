@@ -147,7 +147,9 @@ const Content = props => {
   /**
    * Loads a list of posts associated to a category
    */
-  const posts = Posts({ variables: { categoryId: activeMenuItem } });
+  const posts = Posts({
+    variables: { category: Number(activeMenuItem), first: 100 }
+  });
 
   /**
    * Filters posts having a featured image set
