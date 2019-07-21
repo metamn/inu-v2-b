@@ -14,7 +14,7 @@ import { Section as _Section } from "../SemanticHTML";
 import Meta from "../Meta";
 import Logo from "../Logo";
 import Main from "../Main";
-import Icon from "../Icon";
+import _Icon from "../Icon";
 
 /**
  * Loads web fonts
@@ -56,8 +56,15 @@ const Section = styled(_Section)(props => ({
   ...props.theme.colorPairs.default,
   ...props.theme.fonts.default,
   display: "flex",
-  flexDirection: "column",
-  minHeight: "100vh"
+  flexWrap: "wrap",
+  padding: "var(--lem)"
+}));
+
+/**
+ * Styles the icon
+ */
+const Icon = styled(_Icon)(props => ({
+  display: "none"
 }));
 
 /**

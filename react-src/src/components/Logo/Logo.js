@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import { Media } from "../../hooks";
+
 import { SettingsPropTypes, SettingsDefaultProps } from "../Settings";
 import Link from "../Link";
 
@@ -40,6 +42,17 @@ const Title = styled("h1")(props => ({}));
 const Description = styled("h2")(props => ({}));
 
 /**
+ * Styles the line
+ */
+const Line = styled("div")(props => ({
+  width: "calc(var(--lem) * 8)",
+  height: "var(--lem)",
+  borderBottom: "1px solid",
+  transform: "rotate(-65deg)",
+  display: "none"
+}));
+
+/**
  * Displays site title and description
  */
 const Logo = props => {
@@ -56,6 +69,7 @@ const Logo = props => {
         </Link>
       </Title>
       <Description className="Description">{description}</Description>
+      <Line />
     </Header>
   );
 };

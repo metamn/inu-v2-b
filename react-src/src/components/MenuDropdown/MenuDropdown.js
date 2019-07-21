@@ -35,7 +35,34 @@ const defaultProps = {
 /**
  * Styles the component container
  */
-const Container = styled("div")(props => ({}));
+const Container = styled("div")(props => ({
+  display: "flex",
+  justifyContent: "space-between",
+  margin: "var(--lem) 0",
+  borderTop: "1px solid",
+  borderBottom: "1px solid",
+
+  "& .MenuItems": {
+    order: "-1",
+    marginRight: "var(--lem)",
+
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center"
+  },
+
+  "&.toggled": {
+    "& .MenuItems": {
+      "& .MenuItem": {
+        padding: "calc(var(--lem) / 2) 0",
+
+        "& +.MenuItem": {
+          borderTop: "1px solid"
+        }
+      }
+    }
+  }
+}));
 
 /**
  * Sets the menu item status for items in a dropdown menu.
@@ -67,6 +94,11 @@ const MenuDropdown = props => {
     : icon2;
 
   /**
+   * Creates a class name to mark the status of the component
+   */
+  const status = toggled ? "toggled" : "";
+
+  /**
    * Loads the click handler from Context
    *
    * This is a special extension to the component to suit this project.
@@ -74,7 +106,7 @@ const MenuDropdown = props => {
   const { menuSwitcherClickHandler } = useContext(MainContext);
 
   return (
-    <Container className="MenuDropdown">
+    <Container className={`MenuDropdown ${status}`}>
       <IconToggle
         icon1={toggleIconDown}
         icon2={toggleIconUp}

@@ -8,6 +8,9 @@ Based on [Thinking in React](https://reactjs.org/docs/thinking-in-react.html).
 
 ### Theme - v0.0.5
 
+- semantic html5
+- mobile first
+
 ### Mocks - v0.0.1
 
 1. Mocking up the component structure and the functionality

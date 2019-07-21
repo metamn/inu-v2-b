@@ -31,6 +31,7 @@ const Container = styled("div")(props => ({
   width: "100%",
 
   "& article": {
+    width: "80vw",
     opacity: "0",
     transform: "translateX(100vw)",
     /**

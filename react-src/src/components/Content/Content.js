@@ -9,7 +9,7 @@ import Pages, { PagesPropTypes, PagesDefaultProps } from "../Pages";
 import Slider from "../Slider";
 import Thumbs from "../Thumbs";
 import Contact from "../Contact";
-import Icon from "../Icon";
+import _Icon from "../Icon";
 import { Section as _Section } from "../SemanticHTML";
 
 /**
@@ -77,6 +77,13 @@ const defaultProps = {
  * Styles the component container
  */
 const Section = styled(_Section)(props => ({}));
+
+/**
+ * Styles the icon
+ */
+const Icon = styled(_Icon)(props => ({
+  display: "none"
+}));
 
 /**
  * Creates a context for the thumb click.

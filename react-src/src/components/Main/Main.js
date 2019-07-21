@@ -35,7 +35,9 @@ const defaultProps = {
 /**
  * Styles the component container
  */
-const MainContainer = styled("main")(props => ({}));
+const MainContainer = styled("main")(props => ({
+  width: "100%"
+}));
 
 /**
  * Creates a context for the component.
