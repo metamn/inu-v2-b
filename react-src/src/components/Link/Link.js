@@ -41,7 +41,8 @@ const defaultProps = {
  */
 const Container = styled("a")(props => ({
   ...props.theme.links.default,
-  ...props.theme.colorPairs.default
+  ...props.theme.colorPairs.default,
+  ...props.theme.cursors.brutalistCursor2
 }));
 
 /**

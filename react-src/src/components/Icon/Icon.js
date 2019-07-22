@@ -39,7 +39,10 @@ const Container = styled("div")(props => ({
   width: `calc(var(--lem) * ${props.size})`,
   height: `calc(var(--lem) * ${props.size})`,
 
-  cursor: props.status === "active" ? "pointer" : "default",
+  cursor:
+    props.status === "active"
+      ? props.theme.cursors.brutalistCursor2Url
+      : "default",
   display: props.status === "hidden" ? "none" : "flex",
   visibility: props.status === "invisible" ? "hidden" : "visible",
 

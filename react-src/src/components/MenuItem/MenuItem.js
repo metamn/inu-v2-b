@@ -37,9 +37,9 @@ const defaultProps = {
  */
 const Container = styled("li")(props => ({
   ...props.theme.links.default,
+  ...props.theme.cursors.brutalistCursor2,
   textDecoration: props.status === "active" ? "line-through" : "none",
-  display: props.status === "hidden" ? "none" : "flex",
-  cursor: "pointer"
+  display: props.status === "hidden" ? "none" : "flex"
 }));
 
 /**

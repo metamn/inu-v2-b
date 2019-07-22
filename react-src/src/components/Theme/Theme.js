@@ -16,13 +16,27 @@ const icons = {
 
 /**
  * Cursors
+ *
+ * Usage:
+ *
+ * ```
+ * cursor: url("/react-wp/wp-content/themes/inu-v2/brutalist_line_SVGicon_cursor2.png")
+      31 0,
+    pointer;
+ * ```
  */
 const cursors = {
   light: {
-    brutalistCursor2: "brutalist_line_SVGicon_cursor2.png"
+    brutalistCursor2: {
+      cursor: `url("/react-wp/wp-content/themes/inu-v2/brutalist_line_SVGicon_cursor2.png") 31 0, pointer`
+    },
+    brutalistCursor2Url: `url("/react-wp/wp-content/themes/inu-v2/brutalist_line_SVGicon_cursor2.png") 31 0, pointer`
   },
   dark: {
-    brutalistCursor2: "brutalist_line_SVGicon_cursor2-black.png"
+    brutalistCursor2: {
+      cursor: `url("/react-wp/wp-content/themes/inu-v2/brutalist_line_SVGicon_cursor2-black.png") 31 0, pointer`
+    },
+    brutalistCursor2Url: `url("/react-wp/wp-content/themes/inu-v2/brutalist_line_SVGicon_cursor2-black.png") 31 0, pointer`
   }
 };
 

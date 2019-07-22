@@ -37,6 +37,7 @@ const Article = styled(_Article)(props => ({
     "& a": {
       ...props.theme.links.default,
       ...props.theme.colorPairs.default,
+      ...props.theme.cursors.brutalistCursor2,
       padding: "calc(var(--lem) / 2)",
       border: "1px solid",
       display: "inline-block"
