@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { useTheme } from "./../../hooks";
+import { useTheme, Media } from "./../../hooks";
 
 import Posts from "../Posts";
 import Pages, { PagesPropTypes, PagesDefaultProps } from "../Pages";
@@ -77,7 +77,9 @@ const defaultProps = {
  * Styles the component container
  */
 const Section = styled(_Section)(props => ({
-  minHeight: "calc(100vh - var(--lem)*10)",
+  [`${Media.mobile}`]: {
+    minHeight: "calc(100vh - var(--lem)*10)"
+  },
 
   "& .Slider": {
     width: "100%"
@@ -88,7 +90,9 @@ const Section = styled(_Section)(props => ({
  * Styles the icon
  */
 const Icon = styled(_Icon)(props => ({
-  marginTop: "calc(var(--lem) / 2)"
+  [`${Media.mobile}`]: {
+    marginTop: "calc(var(--lem) / 2)"
+  }
 }));
 
 /**

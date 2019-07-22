@@ -49,7 +49,14 @@ const Line = styled("div")(props => ({
   height: "var(--lem)",
   borderBottom: "1px solid",
   transform: "rotate(-65deg)",
-  display: "none"
+
+  [`${Media.mobile}`]: {
+    display: "none"
+  },
+
+  [`${Media.tablet}`]: {
+    display: "flex"
+  }
 }));
 
 /**

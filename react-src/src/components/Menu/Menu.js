@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
 
 import Categories, {
   CategoriesPropTypes,
@@ -12,7 +11,6 @@ import MenuDropdown, {
   MenuDropdownDefaultProps,
   setMenuItemStatusForDropdown
 } from "../MenuDropdown";
-import { Nav as _Nav } from "../SemanticHTML";
 
 /**
  * Defines the prop types
@@ -61,11 +59,6 @@ const defaultProps = {
   ...MenuDropdownDefaultProps,
   defaultCategoriesQuery: CategoriesDefaultProps.variables
 };
-
-/**
- * Styles the component container
- */
-const Nav = styled(_Nav)(props => ({}));
 
 /**
  * Creates menu items.

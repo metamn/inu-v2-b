@@ -2,7 +2,7 @@ import React, { useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { useEventListener } from "../../hooks";
+import { useEventListener, Media } from "../../hooks";
 
 import Slides from "../Slides";
 import { PostsPropTypes, PostsDefaultProps } from "../Posts";
@@ -48,7 +48,10 @@ const defaultProps = {
 const Section = styled(_Section)(props => ({
   overflowX: "hidden",
   overflowY: "hidden",
-  height: "calc(100vh - var(--lem) * 10)"
+
+  [`${Media.mobile}`]: {
+    height: "calc(100vh - var(--lem) * 10)"
+  }
 }));
 
 /**

@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { useTheme } from "./../../hooks";
+import { useTheme, Media } from "./../../hooks";
 
 import IconToggle, {
   IconTogglePropTypes,
@@ -34,6 +34,14 @@ const defaultProps = {
 };
 
 /**
+ * Styles the component for mobiles
+ */
+const NavMobile = {
+  borderTop: "1px solid",
+  borderBottom: "1px solid"
+};
+
+/**
  * Styles the component container
  */
 const Nav = styled(_Nav)(props => ({
@@ -42,10 +50,7 @@ const Nav = styled(_Nav)(props => ({
   alignItems: "center",
 
   height: "calc(var(--lem) * 2)",
-
   margin: "var(--lem) 0",
-  borderTop: "1px solid",
-  borderBottom: "1px solid",
 
   "& .MenuItems": {
     order: "-1",
@@ -59,6 +64,7 @@ const Nav = styled(_Nav)(props => ({
   "&.toggled": {
     height: "auto",
     alignItems: "start",
+
     "& .MenuItems": {
       "& .MenuItem": {
         padding: "calc(var(--lem) / 2) 0",
@@ -68,6 +74,10 @@ const Nav = styled(_Nav)(props => ({
         }
       }
     }
+  },
+
+  [`${Media.mobile}`]: {
+    ...NavMobile
   }
 }));
 

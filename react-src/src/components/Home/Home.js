@@ -4,7 +4,7 @@ import styled from "styled-components";
 import WebFont from "webfontloader";
 //import { stringify } from "flatted";
 
-import { useTheme } from "./../../hooks";
+import { useTheme, Media } from "./../../hooks";
 
 import Reset from "../Reset";
 import TypographicGrid from "../TypographicGrid";
@@ -50,24 +50,18 @@ const defaultProps = {
 };
 
 /**
- * Styles the component container
+ * Styles the component for mobiles
  */
-const Section = styled(_Section)(props => ({
-  ...props.theme.colorPairs.default,
-  ...props.theme.fonts.default,
-
-  padding: "var(--lem)",
-  minHeight: "100vh",
-
+const SectionMobile = {
   display: "grid",
   alignItems: "start",
   gridTemplateColumns: "calc(var(--lem) * 3) auto",
   gridTemplateRows: "calc(var(--lem) * 2) 1fr auto calc(var(--lem) * 2)",
   gridTemplateAreas: `
-  "logo logo"
-  "menudd menudd"
-  "content content"
-  "themeswi contentswi"`,
+    "logo logo"
+    "menudd menudd"
+    "content content"
+    "themeswi contentswi"`,
 
   "& .Logo": {
     gridArea: "logo"
@@ -88,13 +82,30 @@ const Section = styled(_Section)(props => ({
   "& .Slider, .Thumbs, .Contact": {
     gridArea: "content"
   }
+};
+
+/**
+ * Styles the component container
+ */
+const Section = styled(_Section)(props => ({
+  ...props.theme.colorPairs.default,
+  ...props.theme.fonts.default,
+
+  padding: "var(--lem)",
+  minHeight: "100vh",
+
+  [`${Media.mobile}`]: {
+    ...SectionMobile
+  }
 }));
 
 /**
  * Styles the theme switcher icon
  */
 const Icon = styled(_Icon)(props => ({
-  marginTop: "calc(var(--lem) / 2)"
+  [`${Media.mobile}`]: {
+    marginTop: "calc(var(--lem) / 2)"
+  }
 }));
 
 /**

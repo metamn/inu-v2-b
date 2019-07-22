@@ -64,8 +64,11 @@ const Img = styled("img")(props => ({
   width: "100%",
   height: "auto",
   ...props.widths,
-  width: "auto !important",
-  maxWidth: "calc(100vw - var(--lem) * 2)"
+
+  [`${Media.mobile}`]: {
+    width: "auto !important",
+    maxWidth: "calc(100vw - var(--lem) * 2)"
+  }
 }));
 
 /**
