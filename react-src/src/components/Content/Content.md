@@ -1,6 +1,17 @@
 The component performs the following tasks:
 
 <details>
+	<summary>###Defines the content display modes
+
+`blank` - When the menu is visible
+`slider` - When a category or Random slideshow is displayed
+`thumbs` - When a category is displayd`
+`page` - When the Contact page is displayed
+
+</summary>
+</details>
+
+<details>
 	<summary>###Defines the prop types
 
 </summary>
@@ -8,7 +19,7 @@ The component performs the following tasks:
 
 * The active display mode
 
-* Sets the active display mode`
+* Sets the active display mode
 
 * The default content switcher icon
 
@@ -27,7 +38,7 @@ The component performs the following tasks:
 </details>
 
 <details>
-	<summary>###Styles the component container
+	<summary>###Styles the icon
 
 </summary>
 </details>
@@ -56,7 +67,7 @@ Active - when a category is displayed
 Hidden - When there is a Slideshow
 Inactive - Otherwise ...
 
-* Removes the click handler when the content switcher icon is inactive
+* Removes the content switcher click handler when the content switcher icon is inactive
 
 * Loads a list of posts associated to a category
 

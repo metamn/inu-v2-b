@@ -11,7 +11,7 @@ The width and height of the icon will be `line-height * size`.
 
 * The icon itself. Preferably in SVG format.
 
-* Props used for styling
+* The props used for styling
 
 </details>
 

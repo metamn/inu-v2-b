@@ -19,7 +19,7 @@ The component performs the following tasks:
 </details>
 
 <details>
-	<summary>###Imitates the for loop inside JSX
+	<summary>###Imitates the for loop inside JSX.
 
 </summary>
 </details>

@@ -4,16 +4,16 @@ The component performs the following tasks:
 	<summary>###Defines the prop types
 
 </summary>
-* The element name
+* The element name.
 
-* The element class name
-Required to make it later styleable
+* The element class name.
+Required to make it later styleable.
 
-* The element title
-Usually a string, but it can be a link too
+* The element title.
+Usually a string, but it can be a link too.
 
-* The element children
-Without children there is no use of an empty element
+* The element children.
+Without children there is no use of this component.
 
 </details>
 
