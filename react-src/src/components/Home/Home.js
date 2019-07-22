@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import WebFont from "webfontloader";
 //import { stringify } from "flatted";
 
-import { useTheme, Media } from "./../../hooks";
+import { Media } from "./../../hooks";
+
+import Theme, { switchThemeTo, switchThemeFrom } from "../Theme";
 
 import Reset from "../Reset";
 import TypographicGrid from "../TypographicGrid";
@@ -159,6 +161,11 @@ const Icon = styled(_Icon)(props => ({
 }));
 
 /**
+ * Creates a theme context
+ */
+const ThemeContext = React.createContext({});
+
+/**
  * Displays the homepage
  */
 const Home = props => {
@@ -168,9 +175,24 @@ const Home = props => {
   const { defaultThemeSwitcherIcon } = props;
 
   /**
-   * Sets up theming
+   * Sets up theme
    */
-  const { activeTheme, switchTheme, ThemeContext } = useTheme();
+  const { starterTheme, setCurrentThemeSaved } = Theme();
+
+  /**
+   * Saves theme into a state so it can be switched during a session.
+   */
+  const [activeTheme, setActiveTheme] = useState(starterTheme);
+
+  /**
+   * Switches the theme.
+   * Saves the new theme into the local storage
+   */
+  const switchTheme = () => {
+    const newTheme = switchThemeFrom(activeTheme.colorScheme);
+    setActiveTheme(newTheme);
+    setCurrentThemeSaved(newTheme.colorScheme);
+  };
 
   /**
    * Displays a theme switcher icon
@@ -213,4 +235,4 @@ Home.propTypes = propTypes;
 Home.defaultProps = defaultProps;
 
 export default Home;
-export { propTypes, defaultProps };
+export { propTypes, defaultProps, ThemeContext };

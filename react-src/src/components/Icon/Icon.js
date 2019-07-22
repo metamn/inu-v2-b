@@ -62,7 +62,11 @@ const Container = styled("div")(props => ({
       : props.theme.colorPairs.inactive,
 
   svg: {
-    fontSize: `calc(var(--lem) * ${props.size})`
+    fontSize: `calc(var(--lem) * ${props.size})`,
+    color:
+      props.status === "active"
+        ? props.theme.colorPairs.default
+        : props.theme.colorPairs.inactive
   }
 }));
 

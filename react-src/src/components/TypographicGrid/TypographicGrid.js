@@ -3,8 +3,6 @@ import PropTypes from "prop-types";
 import styled, { createGlobalStyle } from "styled-components";
 import Repeat from "../Repeat";
 
-import { ThemeContext } from "../../themes/default.js";
-
 /**
  * Defines the component prop types
  */
@@ -130,12 +128,9 @@ const TypographicGrid = props => {
     lineColor
   } = props;
 
-  const themeContext = useContext(ThemeContext);
-  const { theme } = themeContext;
-
   return (
     <>
-      <GlobalStyle theme={theme} />
+      <GlobalStyle />
       {(displayHorizontalRhytm || displayVerticalRhytm) && (
         <Container className="typographic-grid">
           {displayHorizontalRhytm && (
