@@ -61,7 +61,9 @@ const Section = styled(_Section)(props => ({
 }));
 
 /**
- * Displays the slider
+ * Displays the slider.
+ *
+ * @see https://nolanlawson.com/2019/02/10/building-a-modern-carousel-with-css-scroll-snap-smooth-scrolling-and-pinch-zoom/
  */
 const Slider = props => {
   const { edges, activeImage, setActiveImage, isSlideShowActive } = props;
@@ -87,7 +89,7 @@ const Slider = props => {
       if (refs && refs[activeImage] && refs[activeImage].current) {
         refs[activeImage].current.className += " active";
         refs[activeImage].current.scrollIntoView({
-          behavior: "auto",
+          behavior: "smooth",
           block: "start",
           inline: "nearest"
         });

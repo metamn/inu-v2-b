@@ -154,6 +154,7 @@ const responsiveImage = props => {
       srcSetWidths={srcSetWidths}
       alt={featuredImageTitle}
       index={index}
+      delay={0}
     />
   );
 };

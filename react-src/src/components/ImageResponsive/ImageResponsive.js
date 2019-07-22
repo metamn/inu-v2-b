@@ -60,7 +60,7 @@ const defaultProps = {
  * Styles the component container
  */
 const Img = styled("img")(props => ({
-  opacity: props.isLoading ? "0.3" : "1",
+  backgroundColor: props.isLoading ? "gray" : "white",
   width: "100%",
   height: "auto",
   cursor: "pointer",
