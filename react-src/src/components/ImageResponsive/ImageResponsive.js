@@ -66,6 +66,9 @@ const Img = styled("img")(props => ({
   ...props.widths,
 
   [`${Media.mobile}`]: {
+    /**
+     * Stretches the image to the full viewport width
+     */
     width: "auto !important",
     maxWidth: "calc(100vw - var(--lem) * 2)"
   }

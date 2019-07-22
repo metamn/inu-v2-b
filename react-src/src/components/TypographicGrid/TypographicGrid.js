@@ -118,6 +118,7 @@ const Container = styled.div([]);
  * Displays horizontal and vertical lines across the page.
  *
  * It helps to verify elements are all perfectly aligned to the grid.
+ *
  * @see http://metamn.io/mr-ui
  */
 const TypographicGrid = props => {

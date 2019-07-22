@@ -28,7 +28,7 @@ const defaultProps = {
 };
 
 /**
- * Imitates the for loop inside JSX
+ * Imitates the for loop inside JSX.
  *
  * @see: https://reactjs.org/docs/jsx-in-depth.html
  */

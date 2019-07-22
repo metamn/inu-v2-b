@@ -10,7 +10,6 @@ import Slider from "../Slider";
 import Thumbs from "../Thumbs";
 import Contact from "../Contact";
 import _Icon from "../Icon";
-import { Section as _Section } from "../SemanticHTML";
 
 /**
  * Defines the content display modes
@@ -72,19 +71,6 @@ const defaultProps = {
   defaultImage: 1,
   defaultPageQuery: PagesDefaultProps.variables
 };
-
-/**
- * Styles the component container
- */
-const Section = styled(_Section)(props => ({
-  [`${Media.mobile}`]: {
-    minHeight: "calc(100vh - var(--lem)*10)"
-  },
-
-  "& .Slider": {
-    width: "100%"
-  }
-}));
 
 /**
  * Styles the icon
