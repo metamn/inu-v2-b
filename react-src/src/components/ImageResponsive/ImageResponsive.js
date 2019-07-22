@@ -63,6 +63,7 @@ const Img = styled("img")(props => ({
   opacity: props.isLoading ? "0.3" : "1",
   width: "100%",
   height: "auto",
+  cursor: "pointer",
 
   [`${Media.mobile}`]: {
     /**

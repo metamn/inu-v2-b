@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
+import { useTheme } from "../../hooks";
+
 import {
   PlaceholderImagePropTypes,
   PlaceholderImageDefaultProps,
@@ -55,6 +57,7 @@ const defaultProps = {
  * Styles the image
  */
 const Img = styled("img")(props => ({
+  ...props.theme.cursors.brutalistCursor2,
   width: "100%",
   height: "auto",
   maxWidth: props.width ? `${props.width}px` : "100%",
@@ -88,6 +91,11 @@ const Image = props => {
   const thumbClickHandler = useContext(ThumbClickContext);
 
   /**
+   * Loads theme
+   */
+  const { theme } = useTheme();
+
+  /**
    * Returns a simple HTML image
    */
   const result = (
@@ -97,6 +105,7 @@ const Image = props => {
       alt={alt}
       width={width}
       height={height}
+      theme={theme}
       onClick={() =>
         typeof thumbClickHandler === "function"
           ? thumbClickHandler(index)
