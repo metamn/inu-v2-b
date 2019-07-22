@@ -60,8 +60,9 @@ const Section = styled(_Section)(props => ({
   minHeight: "100vh",
 
   display: "grid",
-  gridTemplateColumns: "1fr 1fr",
-  gridTemplateRows: "1fr 1fr 4fr 1fr",
+  alignItems: "start",
+  gridTemplateColumns: "calc(var(--lem) * 3) auto",
+  gridTemplateRows: "calc(var(--lem) * 2) 1fr auto calc(var(--lem) * 2)",
   gridTemplateAreas: `
   "logo logo"
   "menudd menudd"
@@ -84,7 +85,7 @@ const Section = styled(_Section)(props => ({
     gridArea: "contentswi"
   },
 
-  "& .Slider": {
+  "& .Slider, .Thumbs, .Contact": {
     gridArea: "content"
   }
 }));

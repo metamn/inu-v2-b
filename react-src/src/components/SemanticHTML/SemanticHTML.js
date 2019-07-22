@@ -25,7 +25,7 @@ const propTypes = {
    * The element children.
    * Without children there is no use of this component.
    */
-  children: PropTypes.any.isRequired
+  children: PropTypes.any
 };
 
 /**

@@ -39,6 +39,10 @@ const defaultProps = {
 const Nav = styled(_Nav)(props => ({
   display: "flex",
   justifyContent: "space-between",
+  alignItems: "center",
+
+  height: "calc(var(--lem) * 2)",
+
   margin: "var(--lem) 0",
   borderTop: "1px solid",
   borderBottom: "1px solid",
@@ -53,6 +57,8 @@ const Nav = styled(_Nav)(props => ({
   },
 
   "&.toggled": {
+    height: "auto",
+    alignItems: "start",
     "& .MenuItems": {
       "& .MenuItem": {
         padding: "calc(var(--lem) / 2) 0",
