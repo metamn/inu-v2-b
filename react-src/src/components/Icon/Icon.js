@@ -48,15 +48,15 @@ const Container = styled("div")(props => ({
 
   color:
     props.status === "active"
-      ? props.theme.colorPairs.default
-      : props.theme.colorPairs.inactive,
+      ? props.theme.colors.text
+      : props.theme.colors.inactive,
 
   svg: {
     fontSize: `calc(var(--lem) * ${props.size})`,
     color:
       props.status === "active"
-        ? props.theme.colorPairs.default
-        : props.theme.colorPairs.inactive
+        ? props.theme.colors.text
+        : props.theme.colors.inactive
   }
 }));
 

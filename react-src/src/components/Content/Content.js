@@ -132,7 +132,7 @@ const Content = props => {
    * Inactive - Otherwise ...
    */
   const iconStatus = isSlideShowActive
-    ? "hidden"
+    ? "inactive"
     : activeContentDisplayMode === "slider"
     ? "active"
     : "inactive";
