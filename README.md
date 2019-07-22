@@ -12,6 +12,7 @@ Based on [Thinking in React](https://reactjs.org/docs/thinking-in-react.html).
 - mobile first
 - end of divism? https://codepen.io/metamn/pen/JgdxKe
 - aligned to grid
+- custom cursor
 
 ### Mocks - v0.0.1
 

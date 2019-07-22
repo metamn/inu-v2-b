@@ -99,10 +99,12 @@ const Nav = styled(_Nav)(props => ({
 const setMenuItemStatusForDropdown = props => {
   const { id, activeMenuItem, menuSwitcherIconState } = props;
 
-  return id === activeMenuItem
-    ? "active"
-    : menuSwitcherIconState
-    ? "inactive"
+  return menuSwitcherIconState
+    ? id === activeMenuItem
+      ? "active"
+      : "inactive"
+    : id === activeMenuItem
+    ? "activeUntoggled"
     : "hidden";
 };
 
