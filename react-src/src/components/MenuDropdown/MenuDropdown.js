@@ -42,6 +42,13 @@ const NavMobile = {
 };
 
 /**
+ * Styles the component for tablets
+ */
+const NavTablet = {
+  border: "none"
+};
+
+/**
  * Styles the component container
  */
 const Nav = styled(_Nav)(props => ({
@@ -78,6 +85,10 @@ const Nav = styled(_Nav)(props => ({
 
   [`${Media.mobile}`]: {
     ...NavMobile
+  },
+
+  [`${Media.tablet}`]: {
+    ...NavTablet
   }
 }));
 

@@ -78,6 +78,11 @@ const defaultProps = {
 const Icon = styled(_Icon)(props => ({
   [`${Media.mobile}`]: {
     marginTop: "calc(var(--lem) / 2)"
+  },
+
+  [`${Media.tablet}`]: {
+    marginTop: "calc(var(--lem) * 1.5)",
+    marginLeft: "calc(var(--lem) / 1)"
   }
 }));
 
@@ -220,6 +225,7 @@ const Content = props => {
       <Icon
         className="ContentSwitcherIcon"
         status={iconStatus}
+        size={1}
         onClick={() => newContentSwitcherClickHandler()}
       >
         {contentSwitcherIcon}

@@ -28,7 +28,20 @@ const defaultProps = {
  */
 const Header = styled("header")(props => ({
   display: "flex",
-  flexDirection: "column"
+
+  [`${Media.mobile}`]: {
+    flexDirection: "column"
+  },
+
+  [`${Media.tablet}`]: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    width: "calc(var(--lem) * 7)",
+
+    "& .Description": {
+      marginTop: "calc(var(--lem) / 2)"
+    }
+  }
 }));
 
 /**
@@ -45,17 +58,12 @@ const Description = styled("h2")(props => ({}));
  * Styles the line
  */
 const Line = styled("div")(props => ({
-  width: "calc(var(--lem) * 8)",
-  height: "var(--lem)",
-  borderBottom: "1px solid",
-  transform: "rotate(-65deg)",
-
-  [`${Media.mobile}`]: {
-    display: "none"
-  },
-
   [`${Media.tablet}`]: {
-    display: "flex"
+    display: "flex",
+    width: "calc(var(--lem) * 8)",
+    height: "var(--lem)",
+    borderBottom: "1px solid",
+    transform: "rotate(-65deg) translateY(3em) translateX(4.5em)"
   }
 }));
 
@@ -76,7 +84,7 @@ const Logo = props => {
         </Link>
       </Title>
       <Description className="Description">{description}</Description>
-      <Line />
+      <Line className="Line" />
     </Header>
   );
 };

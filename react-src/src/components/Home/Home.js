@@ -53,15 +53,54 @@ const defaultProps = {
  * Styles the component for mobiles
  */
 const SectionMobile = {
-  display: "grid",
-  alignItems: "start",
+  padding: "var(--lem)",
+  minHeight: "100vh",
+
   gridTemplateColumns: "calc(var(--lem) * 3) auto",
   gridTemplateRows: "calc(var(--lem) * 2) 1fr auto calc(var(--lem) * 2)",
   gridTemplateAreas: `
     "logo logo"
     "menudd menudd"
     "content content"
-    "themeswi contentswi"`,
+    "themeswi contentswi"`
+};
+
+/**
+ * Styles the component for tablets
+ */
+const SectionTablet = {
+  padding: "5vh 10vw",
+  height: "100vh",
+
+  gridTemplateColumns:
+    "calc(var(--lem) * 10) calc(var(--lem) * 15) calc(var(--lem) * 3) calc(var(--lem) * 3) auto",
+  gridTemplateRows: "1fr auto",
+  gridTemplateAreas: `
+    "logo menudd contentswi themeswi ."
+    "content content content content content"`,
+
+  "& .Slider, .Thumbs, .Contact": {
+    marginTop: "calc(var(--lem) * 2)"
+  }
+};
+
+/**
+ * Styles the component container
+ */
+const Section = styled(_Section)(props => ({
+  ...props.theme.colorPairs.default,
+  ...props.theme.fonts.default,
+
+  display: "grid",
+  alignItems: "start",
+
+  [`${Media.mobile}`]: {
+    ...SectionMobile
+  },
+
+  [`${Media.tablet}`]: {
+    ...SectionTablet
+  },
 
   "& .Logo": {
     gridArea: "logo"
@@ -82,21 +121,6 @@ const SectionMobile = {
   "& .Slider, .Thumbs, .Contact": {
     gridArea: "content"
   }
-};
-
-/**
- * Styles the component container
- */
-const Section = styled(_Section)(props => ({
-  ...props.theme.colorPairs.default,
-  ...props.theme.fonts.default,
-
-  padding: "var(--lem)",
-  minHeight: "100vh",
-
-  [`${Media.mobile}`]: {
-    ...SectionMobile
-  }
 }));
 
 /**
@@ -105,6 +129,10 @@ const Section = styled(_Section)(props => ({
 const Icon = styled(_Icon)(props => ({
   [`${Media.mobile}`]: {
     marginTop: "calc(var(--lem) / 2)"
+  },
+
+  [`${Media.tablet}`]: {
+    marginTop: "calc(var(--lem) * 1.5)"
   }
 }));
 
@@ -141,7 +169,11 @@ const Home = props => {
       <ThemeContext.Provider value={activeTheme}>
         <TypographicGrid />
         <Section className="Home" title="Home" theme={activeTheme.theme}>
-          <Icon className="ThemeSwitcherIcon" onClick={() => switchTheme()}>
+          <Icon
+            className="ThemeSwitcherIcon"
+            size={1}
+            onClick={() => switchTheme()}
+          >
             {sunIcon}
           </Icon>
           <Logo {...siteSettings} />

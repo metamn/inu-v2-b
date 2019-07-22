@@ -63,14 +63,18 @@ const Img = styled("img")(props => ({
   opacity: props.isLoading ? "0.3" : "1",
   width: "100%",
   height: "auto",
-  ...props.widths,
 
   [`${Media.mobile}`]: {
     /**
      * Stretches the image to the full viewport width
      */
-    width: "auto !important",
+    width: "auto",
     maxWidth: "calc(100vw - var(--lem) * 2)"
+  },
+
+  [`${Media.tablet}`]: {
+    width: "auto",
+    maxHeight: "70vh"
   }
 }));
 
