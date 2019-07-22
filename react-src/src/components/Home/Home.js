@@ -6,7 +6,7 @@ import WebFont from "webfontloader";
 
 import { Media } from "./../../hooks";
 
-import Theme, { switchThemeTo, switchThemeFrom } from "../Theme";
+import Theme, { switchThemeFrom } from "../Theme";
 
 import Reset from "../Reset";
 import TypographicGrid from "../TypographicGrid";
@@ -215,7 +215,7 @@ const Home = props => {
           displayVerticalRhytm={false}
           displayHorizontalRhytm={false}
         />
-        <Section className="Home" title="Home" theme={activeTheme.theme}>
+        <Section className="Home" title="Home" theme={theme}>
           <Icon
             className="ThemeSwitcherIcon"
             size={1}

@@ -1,2 +1,2 @@
-export { default, switchThemeTo, switchThemeFrom } from "./Theme";
+export { default, switchThemeFrom } from "./Theme";
 export { sgColors, sgScales } from "./Theme";

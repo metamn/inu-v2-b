@@ -186,7 +186,7 @@ const switchThemeTo = colorScheme => {
 };
 
 /**
- * Returns ...
+ * Returns a starter theme and a local storage setter.
  */
 const Theme = () => {
   /**
@@ -230,7 +230,7 @@ export default Theme;
 /**
  * Exports additional data
  */
-export { switchThemeTo, switchThemeFrom };
+export { switchThemeFrom };
 
 /**
  * Exports original values for the styleguide
