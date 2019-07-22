@@ -63,7 +63,9 @@ const Img = styled("img")(props => ({
   opacity: props.isLoading ? "0.3" : "1",
   width: "100%",
   height: "auto",
-  ...props.widths
+  ...props.widths,
+  width: "auto !important",
+  maxWidth: "calc(100vw - var(--lem) * 2)"
 }));
 
 /**

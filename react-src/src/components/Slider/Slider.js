@@ -47,6 +47,7 @@ const defaultProps = {
  */
 const Section = styled(_Section)(props => ({
   overflowX: "hidden",
+  overflowY: "hidden",
   height: "calc(100vh - var(--lem) * 10)"
 }));
 

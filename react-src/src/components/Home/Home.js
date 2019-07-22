@@ -93,7 +93,9 @@ const Section = styled(_Section)(props => ({
 /**
  * Styles the theme switcher icon
  */
-const Icon = styled(_Icon)(props => ({}));
+const Icon = styled(_Icon)(props => ({
+  marginTop: "calc(var(--lem) / 2)"
+}));
 
 /**
  * Displays the homepage

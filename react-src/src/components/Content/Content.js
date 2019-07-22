@@ -87,7 +87,9 @@ const Section = styled(_Section)(props => ({
 /**
  * Styles the icon
  */
-const Icon = styled(_Icon)(props => ({}));
+const Icon = styled(_Icon)(props => ({
+  marginTop: "calc(var(--lem) / 2)"
+}));
 
 /**
  * Creates a context for the thumb click.
