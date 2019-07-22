@@ -69,7 +69,7 @@ const SectionMobile = {
  * Styles the component for tablets
  */
 const SectionTablet = {
-  padding: "5vh 10vw",
+  padding: "calc(var(--lem) * 2) calc(var(--lem) * 2)",
   height: "100vh",
 
   gridTemplateColumns:
@@ -82,6 +82,20 @@ const SectionTablet = {
   "& .Slider, .Thumbs, .Contact": {
     marginTop: "calc(var(--lem) * 2)"
   }
+};
+
+/**
+ * Styles the component for laptops
+ */
+const SectionLaptop = {
+  padding: "calc(var(--lem) * 2) calc(var(--lem) * 4)"
+};
+
+/**
+ * Styles the component for desktops
+ */
+const SectionDesktop = {
+  padding: "calc(var(--lem) * 2) calc(var(--lem) * 10)"
 };
 
 /**
@@ -100,6 +114,14 @@ const Section = styled(_Section)(props => ({
 
   [`${Media.tablet}`]: {
     ...SectionTablet
+  },
+
+  [`${Media.laptop}`]: {
+    ...SectionLaptop
+  },
+
+  [`${Media.desktop}`]: {
+    ...SectionDesktop
   },
 
   "& .Logo": {
@@ -132,7 +154,7 @@ const Icon = styled(_Icon)(props => ({
   },
 
   [`${Media.tablet}`]: {
-    marginTop: "calc(var(--lem) * 1.5)"
+    marginTop: "calc(var(--lem) * 2)"
   }
 }));
 
@@ -167,7 +189,10 @@ const Home = props => {
       <Reset />
       <Meta {...siteSettings} />
       <ThemeContext.Provider value={activeTheme}>
-        <TypographicGrid />
+        <TypographicGrid
+          displayVerticalRhytm={false}
+          displayHorizontalRhytm={false}
+        />
         <Section className="Home" title="Home" theme={activeTheme.theme}>
           <Icon
             className="ThemeSwitcherIcon"

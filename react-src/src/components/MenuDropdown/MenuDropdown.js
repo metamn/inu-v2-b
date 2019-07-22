@@ -38,14 +38,16 @@ const defaultProps = {
  */
 const NavMobile = {
   borderTop: "1px solid",
-  borderBottom: "1px solid"
+  borderBottom: "1px solid",
+  margin: "var(--lem) 0"
 };
 
 /**
  * Styles the component for tablets
  */
 const NavTablet = {
-  border: "none"
+  border: "none",
+  marginTop: "calc(var(--lem) * 1.5)"
 };
 
 /**
@@ -57,7 +59,6 @@ const Nav = styled(_Nav)(props => ({
   alignItems: "center",
 
   height: "calc(var(--lem) * 2)",
-  margin: "var(--lem) 0",
 
   "& .MenuItems": {
     order: "-1",

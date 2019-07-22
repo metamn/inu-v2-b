@@ -11,6 +11,7 @@ Based on [Thinking in React](https://reactjs.org/docs/thinking-in-react.html).
 - semantic html5
 - mobile first
 - end of divism? https://codepen.io/metamn/pen/JgdxKe
+- aligned to grid
 
 ### Mocks - v0.0.1
 

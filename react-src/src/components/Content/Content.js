@@ -81,7 +81,7 @@ const Icon = styled(_Icon)(props => ({
   },
 
   [`${Media.tablet}`]: {
-    marginTop: "calc(var(--lem) * 1.5)",
+    marginTop: "calc(var(--lem) * 2)",
     marginLeft: "calc(var(--lem) / 1)"
   }
 }));

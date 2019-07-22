@@ -39,7 +39,7 @@ const Header = styled("header")(props => ({
     width: "calc(var(--lem) * 7)",
 
     "& .Description": {
-      marginTop: "calc(var(--lem) / 2)"
+      marginTop: "calc(var(--lem) / 1)"
     }
   }
 }));
@@ -63,7 +63,8 @@ const Line = styled("div")(props => ({
     width: "calc(var(--lem) * 8)",
     height: "var(--lem)",
     borderBottom: "1px solid",
-    transform: "rotate(-65deg) translateY(3em) translateX(4.5em)"
+    transform:
+      "rotate(-65deg) translateY(calc(var(--lem) * 2)) translateX(calc(var(--lem)*4))"
   }
 }));
 
