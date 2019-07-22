@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
+import { Media } from "../../hooks";
+
 import Slide from "../Slide";
 import Post from "../Post";
 import { PostsPropTypes, PostsDefaultProps } from "../Posts";
@@ -35,6 +37,11 @@ const Container = styled("div")(props => ({
   width: "100%",
 
   display: "flex",
+  alignItems: "center",
+
+  [`${Media.tablet}`]: {
+    alignItems: "start"
+  },
 
   overflowX: "auto",
   overflowY: "hidden",

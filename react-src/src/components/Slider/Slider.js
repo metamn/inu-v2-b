@@ -50,7 +50,13 @@ const Section = styled(_Section)(props => ({
   overflowY: "hidden",
 
   [`${Media.mobile}`]: {
-    height: "calc(100vh - var(--lem) * 10)"
+    height: "calc(100vh - var(--lem) * 10)",
+    display: "flex",
+    alignItems: "center"
+  },
+
+  [`${Media.tablet}`]: {
+    alignItems: "start"
   }
 }));
 

@@ -77,7 +77,7 @@ const defaultProps = {
  */
 const Icon = styled(_Icon)(props => ({
   [`${Media.mobile}`]: {
-    marginTop: "calc(var(--lem) / 2)"
+    marginTop: "calc(var(--lem) / 1)"
   },
 
   [`${Media.tablet}`]: {
