@@ -43,8 +43,21 @@ const Container = styled("div")(props => ({
   display: "flex",
   alignItems: "center",
 
-  /* Enable Safari touch scrolling physics which is needed for scroll snap */
-  "-webkit-overflow-scrolling": "touch"
+  /**
+   * Enable Safari touch scrolling physics which is needed for scroll snap
+   */
+  "-webkit-overflow-scrolling": "touch",
+
+  /**
+   * Hide scrollbar
+   */
+  scrollbarWidth: "none",
+  "-ms-overflow-style": "none",
+  "-webkit-overflow-scrolling": "touch",
+
+  "&::-webkit-scrollbar": {
+    display: "none"
+  }
 }));
 
 /**
