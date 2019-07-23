@@ -10,7 +10,14 @@ Based on [Thinking in React](https://reactjs.org/docs/thinking-in-react.html).
 
 1. Database queries lifted up to the highest level.
 
-2. A news slider has to be added.
+```
+| Query        | Old Component | New Component |
+------------------------------------------------
+| Categories   | Main          | Home          |
+| Posts, Pages | Content       | Main          |
+```
+
+2. A new slider has to be added.
 
    - Slider uses `scrollIntoView` which is a [working draft](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView) and not compatible with Edge, Safari iOS and behaves differently on Chrome than in Firefox. Also `scrollTo` from the [original idea](https://nolanlawson.com/2019/02/10/building-a-modern-carousel-with-css-scroll-snap-smooth-scrolling-and-pinch-zoom/) is not fully compatible with all browsers.
 
