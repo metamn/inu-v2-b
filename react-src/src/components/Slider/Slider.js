@@ -27,7 +27,11 @@ const propTypes = {
   /**
    * Is the slideshow active?
    */
-  isSlideShowActive: PropTypes.bool
+  isSlideShowActive: PropTypes.bool,
+  /**
+   * The reference to slides
+   */
+  slidesRef: PropTypes.node
 };
 
 /**
@@ -39,7 +43,8 @@ const defaultProps = {
   setActiveImage: () => {
     console.log("Active image setter");
   },
-  isSlideShowActive: false
+  isSlideShowActive: false,
+  slidesRef: null
 };
 
 /**

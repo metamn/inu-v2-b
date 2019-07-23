@@ -3,10 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import gql from "graphql-tag";
 
-import PostFeaturedImage, {
-  PostFeaturedImagePropTypes,
-  PostFeaturedImageDefaultProps
-} from "../PostFeaturedImage";
+import PostFeaturedImage from "../PostFeaturedImage";
 import { Article as _Article } from "../SemanticHTML";
 
 /**
@@ -24,11 +21,7 @@ const propTypes = {
   /**
    * The post index. A post might be part of a collection and needs to be indentified for example to handle clicks.
    */
-  index: PropTypes.number,
-  /**
-   * The post featured image
-   */
-  ...PostFeaturedImagePropTypes
+  index: PropTypes.number
 };
 
 /**
@@ -37,8 +30,7 @@ const propTypes = {
 const defaultProps = {
   id: "1",
   title: "Post",
-  index: 1,
-  ...PostFeaturedImageDefaultProps
+  index: 1
 };
 
 /**
