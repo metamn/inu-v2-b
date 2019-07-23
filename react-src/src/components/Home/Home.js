@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import WebFont from "webfontloader";
@@ -181,7 +181,7 @@ const Home = props => {
   /**
    * Loads props
    */
-  const { url, defaultThemeSwitcherIcon, defaultCategoriesQuery } = props;
+  const { defaultThemeSwitcherIcon, defaultCategoriesQuery } = props;
   console.log("Home");
 
   /**

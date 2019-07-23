@@ -1,10 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import Categories, {
-  CategoriesPropTypes,
-  CategoriesDefaultProps
-} from "../Categories";
+import { CategoriesPropTypes, CategoriesDefaultProps } from "../Categories";
 import MenuItem, { MenuItemPropTypes } from "../MenuItem";
 import MenuDropdown, {
   MenuDropdownPropTypes,

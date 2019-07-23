@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-import Categories, {
-  CategoriesPropTypes,
-  CategoriesDefaultProps
-} from "../Categories";
+import { CategoriesPropTypes, CategoriesDefaultProps } from "../Categories";
 import Posts from "../Posts";
 import Pages, { PagesPropTypes, PagesDefaultProps } from "../Pages";
 import Menu from "../Menu";

@@ -2,8 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { Media } from "../../hooks";
-
 import Slide from "../Slide";
 import Post from "../Post";
 import { PostsPropTypes, PostsDefaultProps } from "../Posts";
@@ -53,8 +51,6 @@ const Container = styled("div")(props => ({
    */
   scrollbarWidth: "none",
   "-ms-overflow-style": "none",
-  "-webkit-overflow-scrolling": "touch",
-
   "&::-webkit-scrollbar": {
     display: "none"
   }

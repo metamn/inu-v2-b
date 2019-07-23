@@ -1,8 +1,8 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { useEventListener, Media, useTheme } from "../../hooks";
+import { Media, useTheme } from "../../hooks";
 
 import Slides from "../Slides";
 import { PostsPropTypes, PostsDefaultProps } from "../Posts";
