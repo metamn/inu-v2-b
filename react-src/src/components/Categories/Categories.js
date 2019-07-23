@@ -54,6 +54,7 @@ const query = gql`
  */
 const Categories = props => {
   const { variables } = props;
+  console.log("Categories");
 
   return useData(defaultProps, query, "categories", variables);
 };
