@@ -75,10 +75,9 @@ const SlideClickContext = React.createContext({});
  * @see https://developers.google.com/web/updates/2018/07/css-scroll-snap
  */
 const Slider = props => {
-  const { edges, activeImage } = props;
+  const { edges, activeImage, slidesRef } = props;
   const { theme } = useTheme();
   console.log("Slider");
-  console.log("activeImage:" + activeImage);
 
   /**
    * Calculates the number of slides
@@ -86,12 +85,7 @@ const Slider = props => {
   const numberOfSlides = edges.length;
 
   /**
-   * Creates a `ref` to the slides
-   */
-  const slidesRef = React.createRef();
-
-  /**
-   * Scrolls to the active image
+   * Scrolls the slider to the active image
    */
   useEffect(
     () => {

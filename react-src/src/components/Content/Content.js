@@ -109,12 +109,21 @@ const Content = props => {
     setActiveContentDisplayMode,
     defaultContentSwitcherIcon,
     defaultImage,
-    contentSwitcherClickHandler,
     edgesWithFeaturedImage,
     contactPageContent
   } = props;
 
   console.log("Content");
+
+  /**
+   * Sets up state to mark the active image (thumb, or slide)
+   */
+  const [activeImage, setActiveImage] = useState(defaultImage);
+
+  /**
+   * Decides if there is a slideshow
+   */
+  const isSlideShowActive = activeMenuItem === "-1";
 
   /**
    * Displays a content switcher icon
@@ -124,11 +133,6 @@ const Content = props => {
   const contentSwitcherIcon = icons.grid
     ? icons.grid
     : defaultContentSwitcherIcon;
-
-  /**
-   * Decides if there is a slideshow
-   */
-  const isSlideShowActive = activeMenuItem === "-1";
 
   /**
    * Sets the status of the content switcher icon
@@ -144,15 +148,40 @@ const Content = props => {
     : "inactive";
 
   /**
+   * Creates a `ref` to the slides.
+   *
+   * It will be used to calculate the active image by the content switcher
+   */
+  const slidesRef = React.createRef();
+
+  /**
+   * Manages the click on the content switcher icon
+   */
+  const contentSwitcherClickHandler = () => {
+    /**
+     * Sets the new display mode
+     */
+    const newDisplay =
+      activeContentDisplayMode === "slider" ? "thumbs" : "slider";
+    setActiveContentDisplayMode(newDisplay);
+
+    /**
+     * Calculates the active image for thumbs
+     */
+    if (newDisplay === "thumbs") {
+      const ref = slidesRef.current;
+      const slideWidth = ref.clientWidth;
+      const sliderPosition = ref.scrollLeft;
+
+      setActiveImage(sliderPosition / slideWidth);
+    }
+  };
+
+  /**
    * Removes the content switcher click handler when the content switcher icon is inactive
    */
   const newContentSwitcherClickHandler =
     iconStatus === "active" ? contentSwitcherClickHandler : () => {};
-
-  /**
-   * Sets up state to mark the active image (thumb, or slide)
-   */
-  const [activeImage, setActiveImage] = useState(defaultImage);
 
   /**
    * Manages the click on a thumb.
@@ -185,6 +214,7 @@ const Content = props => {
             activeImage={activeImage}
             setActiveImage={setActiveImage}
             isSlideShowActive={isSlideShowActive}
+            slidesRef={slidesRef}
           />
         );
     }

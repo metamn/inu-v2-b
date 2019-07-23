@@ -116,15 +116,6 @@ const Main = props => {
   };
 
   /**
-   * Manages the click on the content switcher icon
-   */
-  const contentSwitcherClickHandler = () => {
-    const newDisplay =
-      activeContentDisplayMode === "slider" ? "thumbs" : "slider";
-    setActiveContentDisplayMode(newDisplay);
-  };
-
-  /**
    * Loads posts, pages from the database.
    *
    * They can't be conditionally queried due to hook rules
@@ -169,7 +160,6 @@ const Main = props => {
           activeMenuItem={activeMenuItem}
           activeContentDisplayMode={activeContentDisplayMode}
           setActiveContentDisplayMode={setActiveContentDisplayMode}
-          contentSwitcherClickHandler={contentSwitcherClickHandler}
           edgesWithFeaturedImage={edgesWithFeaturedImage}
           contactPageContent={contactPageContent}
         />
