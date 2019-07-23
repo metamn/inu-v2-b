@@ -6,14 +6,11 @@ import WebFont from "webfontloader";
 
 import { Media } from "./../../hooks";
 
-import Theme, { switchThemeFrom } from "../Theme";
-
-import Settings, { SettingsPropTypes, SettingsDefaultProps } from "../Settings";
+import Settings from "../Settings";
 import Categories, {
   CategoriesPropTypes,
   CategoriesDefaultProps
 } from "../Categories";
-
 import Reset from "../Reset";
 import TypographicGrid from "../TypographicGrid";
 import { Section as _Section } from "../SemanticHTML";
@@ -21,6 +18,7 @@ import Meta from "../Meta";
 import Logo from "../Logo";
 import Main from "../Main";
 import _Icon from "../Icon";
+import Theme, { switchThemeFrom } from "../Theme";
 
 /**
  * Loads web fonts
@@ -38,10 +36,6 @@ WebFont.load({
  */
 const propTypes = {
   /**
-   * The site settings
-   */
-  ...SettingsPropTypes,
-  /**
    * The default theme switcher icon
    */
   defaultThemeSwitcherIcon: PropTypes.string,
@@ -55,7 +49,6 @@ const propTypes = {
  * Defines the default props
  */
 const defaultProps = {
-  ...SettingsDefaultProps,
   defaultThemeSwitcherIcon: "Theme switcher",
   defaultCategoriesQuery: CategoriesDefaultProps.variables
 };
