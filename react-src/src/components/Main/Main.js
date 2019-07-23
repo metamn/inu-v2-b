@@ -113,7 +113,7 @@ const Main = props => {
   };
 
   /**
-   * Loads posts, pages from the database.
+   * Loads from the database.
    *
    * They can't be conditionally queried due to hook rules
    */
@@ -128,6 +128,9 @@ const Main = props => {
     edge => edge.node.featuredImage
   );
 
+  /**
+   * Loads pages from the database
+   */
   const pages = Pages({ variables: defaultPageQuery });
   const contactPageContent = pages.edges[0].node.content;
 
