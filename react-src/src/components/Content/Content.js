@@ -4,8 +4,7 @@ import styled from "styled-components";
 
 import { useTheme, Media } from "./../../hooks";
 
-import Posts from "../Posts";
-import Pages, { PagesPropTypes, PagesDefaultProps } from "../Pages";
+import { PostsPropTypes, PostsDefaultProps } from "../Posts";
 import Slider from "../Slider";
 import Thumbs from "../Thumbs";
 import Contact from "../Contact";
@@ -50,9 +49,13 @@ const propTypes = {
    */
   defaultImage: PropTypes.number,
   /**
-   * The default page query
+   * The posts
    */
-  defaultPageQuery: PagesPropTypes.variables
+  posts: PropTypes.shape(PostsPropTypes),
+  /**
+   * The contact page content
+   */
+  contactPageContent: PropTypes.string
 };
 
 /**
@@ -69,7 +72,8 @@ const defaultProps = {
     console.log("Contet switcher clicked");
   },
   defaultImage: 1,
-  defaultPageQuery: PagesDefaultProps.variables
+  posts: PostsDefaultProps,
+  contactPageContent: "Contact page content"
 };
 
 /**
@@ -107,8 +111,11 @@ const Content = props => {
     defaultContentSwitcherIcon,
     defaultImage,
     contentSwitcherClickHandler,
-    defaultPageQuery
+    posts,
+    contactPageContent
   } = props;
+
+  console.log("Content");
 
   /**
    * Displays a content switcher icon
@@ -149,24 +156,11 @@ const Content = props => {
   const [activeImage, setActiveImage] = useState(defaultImage);
 
   /**
-   * Loads a list of posts associated to a category
-   */
-  const posts = Posts({
-    variables: { category: Number(activeMenuItem), first: 100 }
-  });
-
-  /**
    * Filters posts having a featured image set
    */
   const edgesWithFeaturedImage = posts.edges.filter(
     edge => edge.node.featuredImage
   );
-
-  /**
-   * Loads the Contact page from the database
-   */
-  const pages = Pages({ variables: defaultPageQuery });
-  const contactPageContent = pages.edges[0].node.content;
 
   /**
    * Manages the click on a thumb.

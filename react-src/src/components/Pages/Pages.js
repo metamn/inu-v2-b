@@ -59,10 +59,8 @@ const query = gql`
  * Loads the Contact page from the database
  */
 const Pages = props => {
-  /**
-   * Loads only the `Contact` page
-   */
   const { variables } = props;
+  console.log("Pages");
 
   return useData(defaultProps, query, "pages", variables);
 };

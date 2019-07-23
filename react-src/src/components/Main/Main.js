@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
+import Categories, {
+  CategoriesPropTypes,
+  CategoriesDefaultProps
+} from "../Categories";
+import Posts from "../Posts";
+import Pages, { PagesPropTypes, PagesDefaultProps } from "../Pages";
 import Menu from "../Menu";
 import Content, { ContentPropTypes } from "../Content";
 
@@ -20,7 +26,14 @@ const propTypes = {
    * The display modes
    */
   defaultContentDisplayMode: ContentPropTypes.activeContentDisplayMode,
-  categories: PropTypes.any
+  /**
+   * The default page query
+   */
+  defaultPageQuery: PagesPropTypes.variables,
+  /**
+   * The categories
+   */
+  categories: PropTypes.shape(CategoriesPropTypes)
 };
 
 /**
@@ -29,7 +42,9 @@ const propTypes = {
 const defaultProps = {
   defaultMenuItem: "1",
   defaultMenuSwitcherIconState: false,
-  defaultContentDisplayMode: "slider"
+  defaultContentDisplayMode: "slider",
+  defaultPageQuery: PagesDefaultProps.variables,
+  categories: CategoriesDefaultProps
 };
 
 /**
@@ -54,6 +69,7 @@ const Main = props => {
     defaultMenuItem,
     defaultMenuSwitcherIconState,
     defaultContentDisplayMode,
+    defaultPageQuery,
     categories
   } = props;
   console.log("Main");
@@ -109,6 +125,18 @@ const Main = props => {
   };
 
   /**
+   * Loads posts, pages from the database.
+   *
+   * They can't be conditionally queried due to hook rules
+   */
+  const posts = Posts({
+    variables: { category: Number(activeMenuItem), first: 100 }
+  });
+
+  const pages = Pages({ variables: defaultPageQuery });
+  const contactPageContent = pages.edges[0].node.content;
+
+  /**
    * Sets up context variables
    */
   const context = {
@@ -130,15 +158,14 @@ const Main = props => {
           menuSwitcherIconState={menuSwitcherIconState}
           categories={categories}
         />
-        {/*
-			<Content
-	          activeMenuItem={activeMenuItem}
-	          activeContentDisplayMode={activeContentDisplayMode}
-	          setActiveContentDisplayMode={setActiveContentDisplayMode}
-	          contentSwitcherClickHandler={contentSwitcherClickHandler}
-	        />
-
-			*/}
+        <Content
+          activeMenuItem={activeMenuItem}
+          activeContentDisplayMode={activeContentDisplayMode}
+          setActiveContentDisplayMode={setActiveContentDisplayMode}
+          contentSwitcherClickHandler={contentSwitcherClickHandler}
+          posts={posts}
+          contactPageContent={contactPageContent}
+        />
       </MainContext.Provider>
     </>
   );
