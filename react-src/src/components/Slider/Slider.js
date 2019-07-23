@@ -2,7 +2,7 @@ import React, { useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { useEventListener, Media } from "../../hooks";
+import { useEventListener, Media, useTheme } from "../../hooks";
 
 import Slides from "../Slides";
 import { PostsPropTypes, PostsDefaultProps } from "../Posts";
@@ -46,32 +46,36 @@ const defaultProps = {
  * Styles the component container
  */
 const Section = styled(_Section)(props => ({
-  overflowX: "hidden",
-  overflowY: "hidden",
-
   [`${Media.mobile}`]: {
     height: "calc(100vh - var(--lem) * 10)",
     display: "flex",
-    alignItems: "center"
+    alignItems: "center",
+    width: `calc(100vw - ${props.theme.spacing.left.mobile} * 2)`
   },
 
   [`${Media.tablet}`]: {
-    alignItems: "start"
+    alignItems: "start",
+    width: `calc(100vw - ${props.theme.spacing.left.tablet} * 2)`
+  },
+
+  [`${Media.laptop}`]: {
+    width: `calc(100vw - ${props.theme.spacing.left.laptop} * 2)`
+  },
+
+  [`${Media.desktop}`]: {
+    width: `calc(100vw - ${props.theme.spacing.left.desktop} * 2)`
   }
 }));
 
 /**
  * Displays the slider.
  *
- * @see https://nolanlawson.com/2019/02/10/building-a-modern-carousel-with-css-scroll-snap-smooth-scrolling-and-pinch-zoom/
+ * @see https://developers.google.com/web/updates/2018/07/css-scroll-snap
  */
 const Slider = props => {
   const { edges, activeImage, setActiveImage, isSlideShowActive } = props;
 
-  /**
-   * Counts the slides
-   */
-  const numberOfSlides = edges.length;
+  const { theme } = useTheme();
 
   /**
    * Loads the slides
@@ -81,80 +85,8 @@ const Slider = props => {
     ...props
   });
 
-  /**
-   * Scrolls the active slide into the view
-   */
-  useEffect(
-    () => {
-      if (refs && refs[activeImage] && refs[activeImage].current) {
-        refs[activeImage].current.className += " active";
-        refs[activeImage].current.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-          inline: "nearest"
-        });
-      }
-    },
-    [activeImage, refs]
-  );
-
-  /**
-   * Handles the touch scroll event
-   */
-  const touchScrollHandler = useCallback(
-    () => {
-      const visibleRef = refs.findIndex(ref => {
-        const left = ref.current.getBoundingClientRect().left;
-        const right = ref.current.getBoundingClientRect().right;
-        return (
-          left >= -window.innerWidth / 2 &&
-          left <= window.innerWidth &&
-          right > 0 &&
-          right <= window.innerWidth * 1.5
-        );
-      });
-
-      setActiveImage(visibleRef);
-    },
-    [refs, setActiveImage]
-  );
-
-  /**
-   * Listens for the touch event
-   */
-  useEventListener("touchend", touchScrollHandler);
-
-  /**
-   * Autoslides the images.
-   *
-   * Images are randomized during the autoslide.
-   */
-  useEffect(
-    () => {
-      let interval = null;
-
-      if (isSlideShowActive) {
-        interval = setInterval(() => {
-          const slideNumbers = Array.from(Array(numberOfSlides).keys()).filter(
-            i => i !== activeImage
-          );
-
-          const random =
-            slideNumbers[Math.floor(Math.random() * slideNumbers.length)];
-
-          setActiveImage(random);
-        }, 2500);
-      } else {
-        clearInterval(interval);
-      }
-
-      return () => clearInterval(interval);
-    },
-    [activeImage, isSlideShowActive, numberOfSlides, setActiveImage]
-  );
-
   return (
-    <Section className="Slider" title="Slider">
+    <Section className="Slider" title="Slider" theme={theme}>
       {slidesRendered}
     </Section>
   );

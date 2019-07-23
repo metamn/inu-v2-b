@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
+import { Media, useTheme } from "../../hooks";
+
 /**
  * Defines the prop types
  */
@@ -28,37 +30,22 @@ const defaultProps = {
  * Styles the component container
  */
 const Container = styled("div")(props => ({
-  width: "100%",
+  scrollSnapAlign: "center",
 
-  "& article": {
-    width: "100vw",
-    opacity: "0",
-    transform: "translateX(100vw)",
-    /**
-     * On Random this transition effect is not visible since there are many images and the scrollintoview process takes more than 500ms, even more then 1500ms
-     */
-    transition: "all 500ms"
+  [`${Media.mobile}`]: {
+    minWidth: `calc(100vw - ${props.theme.spacing.left.mobile} * 2)`
   },
 
-  "&.active": {
-    "& article": {
-      opacity: "1",
-      transform: "translateX(0px)"
-    }
+  [`${Media.tablet}`]: {
+    minWidth: `calc(100vw - ${props.theme.spacing.left.tablet} * 2)`
   },
 
-  /**
-   * Modern scroll snap points
-   */
-  "& @supports (scroll-snap-align: start)": {
-    scrollSnapAlign: "center"
+  [`${Media.laptop}`]: {
+    minWidth: `calc(100vw - ${props.theme.spacing.left.laptop} * 2)`
   },
 
-  /**
-   * Old scroll snap points
-   */
-  "& @supports not (scroll-snap-align: start)": {
-    scrollSnapCoordinate: "0 0"
+  [`${Media.desktop}`]: {
+    minWidth: `calc(100vw - ${props.theme.spacing.left.desktop} * 2)`
   }
 }));
 
@@ -70,10 +57,12 @@ const Container = styled("div")(props => ({
 const Slide = React.forwardRef((props, ref) => {
   const { children, isActive } = props;
 
+  const { theme } = useTheme();
+
   const active = isActive ? "active" : "";
 
   return (
-    <Container className={`Slide ${active}`} ref={ref}>
+    <Container className={`Slide ${active}`} ref={ref} theme={theme}>
       {children}
     </Container>
   );

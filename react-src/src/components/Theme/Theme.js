@@ -126,7 +126,7 @@ const links = {
 };
 
 /**
- * Text styles
+ * Text scale
  */
 const scales = {
   large: 1
@@ -142,6 +142,22 @@ const textStyles = {
   },
   large: {
     fontSize: modularScale(scales.large)
+  }
+};
+
+/**
+ * Spacing
+ */
+const spacing = {
+  top: {
+    mobile: "var(--lem)",
+    mobileAndUp: "calc(var(--lem) * 2)"
+  },
+  left: {
+    mobile: "var(--lem)",
+    tablet: "calc(var(--lem) * 2)",
+    laptop: "calc(var(--lem) * 4)",
+    desktop: "calc(var(--lem) * 10)"
   }
 };
 
@@ -171,6 +187,7 @@ const getTheme = colorScheme => {
     links: links,
     icons: icons,
     cursors: cursors[colorScheme],
+    spacing: spacing,
     /** Temporary, we'll have to get from the database */
     themeUri: "wp-content/themes/inu-v2-a"
   };
