@@ -3,11 +3,7 @@ import PropTypes from "prop-types";
 
 import { CategoriesPropTypes, CategoriesDefaultProps } from "../Categories";
 import MenuItem, { MenuItemPropTypes } from "../MenuItem";
-import MenuDropdown, {
-  MenuDropdownPropTypes,
-  MenuDropdownDefaultProps,
-  setMenuItemStatusForDropdown
-} from "../MenuDropdown";
+import MenuDropdown, { setMenuItemStatusForDropdown } from "../MenuDropdown";
 
 /**
  * Defines the prop types
@@ -22,21 +18,17 @@ const propTypes = {
    */
   menuSwitcherIconState: PropTypes.bool,
   /**
+   * The categories
+   */
+  categories: PropTypes.shape(CategoriesPropTypes),
+  /**
    * The `Random` menu item
    */
   random: PropTypes.shape(MenuItemPropTypes),
   /**
    * The `Contact` menu item
    */
-  contact: PropTypes.shape(MenuItemPropTypes),
-  /**
-   * The drowpdown menu
-   */
-  ...MenuDropdownPropTypes,
-  /**
-   * The categories
-   */
-  categories: PropTypes.shape(CategoriesPropTypes)
+  contact: PropTypes.shape(MenuItemPropTypes)
 };
 
 /**
@@ -45,6 +37,7 @@ const propTypes = {
 const defaultProps = {
   activeMenuItem: "1",
   menuSwitcherIconState: false,
+  categories: CategoriesDefaultProps,
   random: {
     name: "Random slideshow",
     id: "-1"
@@ -52,9 +45,7 @@ const defaultProps = {
   contact: {
     name: "Contact",
     id: "-2"
-  },
-  ...MenuDropdownDefaultProps,
-  categories: CategoriesDefaultProps
+  }
 };
 
 /**
@@ -94,7 +85,13 @@ const categoryToMenuItem = category => {
  * Displays the menu.
  */
 const Menu = props => {
-  const { menuSwitcherIconState, activeMenuItem, categories } = props;
+  const {
+    activeMenuItem,
+    menuSwitcherIconState,
+    categories,
+    random,
+    contact
+  } = props;
   console.log("Menu");
 
   /**
@@ -106,11 +103,6 @@ const Menu = props => {
     menuSwitcherIconState: menuSwitcherIconState,
     activeMenuItem: activeMenuItem
   });
-
-  /**
-   * Loads `Random` and `Contact` menu items
-   */
-  const { random, contact } = props;
 
   /**
    * Displays  `Random` and `Contact` menu items
