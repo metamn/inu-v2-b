@@ -77,6 +77,8 @@ const SlideClickContext = React.createContext({});
 const Slider = props => {
   const { edges, activeImage } = props;
   const { theme } = useTheme();
+  console.log("Slider");
+  console.log("activeImage:" + activeImage);
 
   /**
    * Calculates the number of slides
@@ -87,6 +89,20 @@ const Slider = props => {
    * Creates a `ref` to the slides
    */
   const slidesRef = React.createRef();
+
+  /**
+   * Scrolls to the active image
+   */
+  useEffect(
+    () => {
+      if (slidesRef && slidesRef.current) {
+        const ref = slidesRef.current;
+        const slideWidth = ref.clientWidth;
+        ref.scrollBy(slideWidth * activeImage, 0);
+      }
+    },
+    [activeImage, slidesRef]
+  );
 
   /**
    * Manages the click on a slide
