@@ -8,9 +8,13 @@ Based on [Thinking in React](https://reactjs.org/docs/thinking-in-react.html).
 
 ### Performance - v0.0.6
 
-The slider works well when there are a few images in the category and slows down when there are more. It _turned out_ the slider is re-rendered after each click causing the problem above.
+1. Database queries lifted up to the highest level.
 
-The whole data-flow has to be re-checked to avoid unnecessary re-renders.
+2. A news slider has to be added.
+
+   - Slider uses `scrollIntoView` which is a [working draft](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView) and not compatible with Edge, Safari iOS and behaves differently on Chrome than in Firefox. Also `scrollTo` from the [original idea](https://nolanlawson.com/2019/02/10/building-a-modern-carousel-with-css-scroll-snap-smooth-scrolling-and-pinch-zoom/) is not fully compatible with all browsers.
+
+   - On click on a slide the whole parent container (`<Content>`, ie. all slides) are re-rendered because `activeImage` state is kept there to be shared with `<Thumbs>`. The new slider has to take this as an advantage instead of a drawback.
 
 ### Mocks - v0.0.1
 
