@@ -75,16 +75,33 @@ const SlideClickContext = React.createContext({});
  * @see https://developers.google.com/web/updates/2018/07/css-scroll-snap
  */
 const Slider = props => {
-  const { activeImage } = props;
+  const { edges, activeImage } = props;
   const { theme } = useTheme();
 
+  /**
+   * Calculates the number of slides
+   */
+  const numberOfSlides = edges.length;
+
+  /**
+   * Creates a `ref` to the slides
+   */
   const slidesRef = React.createRef();
 
+  /**
+   * Manages the click on a slide
+   *
+   * Detecting end of scroll: https://stackoverflow.com/questions/19005348/how-to-check-if-the-scrollbar-has-reached-at-the-end-of-div
+   */
   const slideClickHandler = () => {
     const ref = slidesRef.current;
-
     const slideWidth = ref.clientWidth;
-    ref.scrollBy(slideWidth, 0);
+    const sliderPosition = ref.scrollLeft;
+    const slideEnd = (numberOfSlides - 1) * slideWidth;
+
+    sliderPosition === slideEnd
+      ? ref.scrollTo(0, 0)
+      : ref.scrollBy(slideWidth, 0);
   };
 
   return (
