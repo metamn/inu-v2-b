@@ -1,7 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
+import { Media } from "../../hooks";
+
 import { SettingsPropTypes, SettingsDefaultProps } from "../Settings";
+import Link from "../Link";
 
 /**
  * Defines the prop types
@@ -25,7 +28,20 @@ const defaultProps = {
  */
 const Header = styled("header")(props => ({
   display: "flex",
-  flexDirection: "column"
+
+  [`${Media.mobile}`]: {
+    flexDirection: "column"
+  },
+
+  [`${Media.tablet}`]: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    width: "calc(var(--lem) * 7)",
+
+    "& .Description": {
+      marginTop: "calc(var(--lem) / 1)"
+    }
+  }
 }));
 
 /**
@@ -39,19 +55,37 @@ const Title = styled("h1")(props => ({}));
 const Description = styled("h2")(props => ({}));
 
 /**
+ * Styles the line
+ */
+const Line = styled("div")(props => ({
+  [`${Media.tablet}`]: {
+    display: "flex",
+    width: "calc(var(--lem) * 8)",
+    height: "var(--lem)",
+    borderBottom: "1px solid",
+    transform:
+      "rotate(-65deg) translateY(calc(var(--lem) * 2)) translateX(calc(var(--lem)*4))"
+  }
+}));
+
+/**
  * Displays site title and description
  */
 const Logo = props => {
+  /**
+   * Loads logo props
+   */
   const { title, url, description } = props;
 
   return (
     <Header className="Logo">
       <Title className="Title">
-        <a href={url} title={title}>
+        <Link url={url} title={title}>
           {title}
-        </a>
+        </Link>
       </Title>
       <Description className="Description">{description}</Description>
+      <Line className="Line" />
     </Header>
   );
 };

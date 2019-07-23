@@ -25,7 +25,7 @@ The component performs the following tasks:
 </details>
 
 <details>
-	<summary>###Displays the component
+	<summary>###Displays a placeholder image
 
 </summary>
 </details>

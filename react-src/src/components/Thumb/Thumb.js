@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
+import { Media } from "./../../hooks";
 import Post, { PostPropTypes, PostDefaultProps } from "../Post";
 
 /**
@@ -36,8 +37,11 @@ const defaultProps = {
  */
 const Container = styled("div")(props => ({
   border: props.isActive ? "1px solid" : "1px transparent",
-  padding: "1.25em",
-  margin: "1.25em"
+  padding: "calc(var(--lem) / 1)",
+
+  [`${Media.mobile}`]: {
+    maxWidth: "50%"
+  }
 }));
 
 /**

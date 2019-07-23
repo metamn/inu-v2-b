@@ -8,8 +8,6 @@ The component performs the following tasks:
 
 * The state of the menu switcher icon
 
-* The menu switcher click handler
-
 * The `Random` menu item
 
 * The `Contact` menu item
@@ -25,13 +23,19 @@ The component performs the following tasks:
 </details>
 
 <details>
-	<summary>###Styles the component container
+	<summary>###Creates menu items.
 
 </summary>
 </details>
 
 <details>
-	<summary>###Displays the menu
+	<summary>###Converts a category to a menu item.
+
+</summary>
+</details>
+
+<details>
+	<summary>###Displays the menu.
 
 </summary>
 * Loads categories

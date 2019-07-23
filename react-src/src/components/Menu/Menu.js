@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
 
 import Categories, {
   CategoriesPropTypes,
@@ -60,15 +59,6 @@ const defaultProps = {
   ...MenuDropdownDefaultProps,
   defaultCategoriesQuery: CategoriesDefaultProps.variables
 };
-
-/**
- * Styles the component container
- */
-const Container = styled("div")(props => ({
-  border: "1px solid",
-  padding: "1.25em",
-  margin: "1.25em"
-}));
 
 /**
  * Creates menu items.
@@ -144,13 +134,12 @@ const Menu = props => {
   });
 
   return (
-    <Container className="Menu">
-      Menu
+    <>
       <MenuDropdown toggled={menuSwitcherIconState}>
         {categoriesAsMenuItems}
         {customMenuItems}
       </MenuDropdown>
-    </Container>
+    </>
   );
 };
 

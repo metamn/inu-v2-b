@@ -2,6 +2,8 @@ import React from "react";
 import { modularScale } from "polished";
 import { FiSun, FiGrid, FiChevronUp, FiChevronDown } from "react-icons/fi";
 
+import { useLocalStorage, usePrefersDarkMode } from "../../hooks";
+
 /**
  * Icons
  */
@@ -14,13 +16,27 @@ const icons = {
 
 /**
  * Cursors
+ *
+ * Usage:
+ *
+ * ```
+ * cursor: url("/react-wp/wp-content/themes/inu-v2/brutalist_line_SVGicon_cursor2.png")
+      31 0,
+    pointer;
+ * ```
  */
 const cursors = {
   light: {
-    brutalistCursor2: "brutalist_line_SVGicon_cursor2.png"
+    brutalistCursor2: {
+      cursor: `url("/react-wp/wp-content/themes/inu-v2/brutalist_line_SVGicon_cursor2.png") 31 0, pointer`
+    },
+    brutalistCursor2Url: `url("/react-wp/wp-content/themes/inu-v2/brutalist_line_SVGicon_cursor2.png") 31 0, pointer`
   },
   dark: {
-    brutalistCursor2: "brutalist_line_SVGicon_cursor2-black.png"
+    brutalistCursor2: {
+      cursor: `url("/react-wp/wp-content/themes/inu-v2/brutalist_line_SVGicon_cursor2-black.png") 31 0, pointer`
+    },
+    brutalistCursor2Url: `url("/react-wp/wp-content/themes/inu-v2/brutalist_line_SVGicon_cursor2-black.png") 31 0, pointer`
   }
 };
 
@@ -58,7 +74,8 @@ const colorSchemes = {
 };
 
 /**
- * Color pairs
+ * Color pairs.
+ *
  * Colors come in pairs. And with an accessible contrast ratio.
  * We don't set a single color, we always set a pair of colors, one for the background, the other for the text, and make sure when they are paired their color contrast ratio is checked first
  *
@@ -183,14 +200,51 @@ const switchThemeTo = colorScheme => {
 };
 
 /**
- * Creates a theme context
+ * Returns a starter theme and a local storage setter.
  */
-const ThemeContext = React.createContext(switchThemeTo("light"));
+const Theme = () => {
+  /**
+   * Checks if the user / browser prefers dark mode.
+   */
+  const prefersDarkMode = usePrefersDarkMode();
+
+  /**
+   * Checks if the browser has stored a preference for a theme.
+   */
+  const [currentThemeSaved, setCurrentThemeSaved] = useLocalStorage(
+    "current-theme"
+  );
+
+  /**
+   * Defines the color scheme based on the above preferences.
+   */
+  const starterColorScheme =
+    typeof currentThemeSaved !== "undefined"
+      ? currentThemeSaved
+      : prefersDarkMode
+      ? "dark"
+      : "light";
+
+  /**
+   * Returns the starter theme
+   */
+  const starterTheme = switchThemeTo(starterColorScheme);
+
+  return {
+    starterTheme: starterTheme,
+    setCurrentThemeSaved: setCurrentThemeSaved
+  };
+};
 
 /**
  * Exports default data
  */
-export { getTheme, switchThemeFrom, switchThemeTo, ThemeContext };
+export default Theme;
+
+/**
+ * Exports additional data
+ */
+export { switchThemeFrom };
 
 /**
  * Exports original values for the styleguide

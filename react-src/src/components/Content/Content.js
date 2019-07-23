@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { useTheme } from "./../../hooks";
+import { useTheme, Media } from "./../../hooks";
 
 import Posts from "../Posts";
 import Pages, { PagesPropTypes, PagesDefaultProps } from "../Pages";
 import Slider from "../Slider";
 import Thumbs from "../Thumbs";
 import Contact from "../Contact";
-import Icon from "../Icon";
+import _Icon from "../Icon";
 
 /**
  * Defines the content display modes
@@ -73,13 +73,17 @@ const defaultProps = {
 };
 
 /**
- * Styles the component container
+ * Styles the icon
  */
-const Container = styled("div")(props => ({
-  border: "1px solid",
-  padding: "1.25em",
-  margin: "1.25em",
-  position: "relative"
+const Icon = styled(_Icon)(props => ({
+  [`${Media.mobile}`]: {
+    marginTop: "calc(var(--lem) / 1)"
+  },
+
+  [`${Media.tablet}`]: {
+    marginTop: "calc(var(--lem) * 2)",
+    marginLeft: "calc(var(--lem) / 1)"
+  }
 }));
 
 /**
@@ -128,7 +132,7 @@ const Content = props => {
    * Inactive - Otherwise ...
    */
   const iconStatus = isSlideShowActive
-    ? "hidden"
+    ? "inactive"
     : activeContentDisplayMode === "slider"
     ? "active"
     : "inactive";
@@ -217,16 +221,17 @@ const Content = props => {
   };
 
   return (
-    <Container className="Content">
-      Content
+    <>
       <Icon
+        className="ContentSwitcherIcon"
         status={iconStatus}
+        sizeMultiplier={1}
         onClick={() => newContentSwitcherClickHandler()}
       >
         {contentSwitcherIcon}
       </Icon>
       <DisplayContent />
-    </Container>
+    </>
   );
 };
 

@@ -2,10 +2,11 @@ import React, { useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { useEventListener } from "../../hooks";
+import { useEventListener, Media } from "../../hooks";
 
 import Slides from "../Slides";
 import { PostsPropTypes, PostsDefaultProps } from "../Posts";
+import { Section as _Section } from "../SemanticHTML";
 
 /**
  * Defines the prop types
@@ -44,16 +45,25 @@ const defaultProps = {
 /**
  * Styles the component container
  */
-const Container = styled("div")(props => ({
-  width: "80vw",
+const Section = styled(_Section)(props => ({
+  overflowX: "hidden",
+  overflowY: "hidden",
 
-  border: "1px solid",
-  padding: "1.25em",
-  margin: "1.25em"
+  [`${Media.mobile}`]: {
+    height: "calc(100vh - var(--lem) * 10)",
+    display: "flex",
+    alignItems: "center"
+  },
+
+  [`${Media.tablet}`]: {
+    alignItems: "start"
+  }
 }));
 
 /**
- * Displays the slider
+ * Displays the slider.
+ *
+ * @see https://nolanlawson.com/2019/02/10/building-a-modern-carousel-with-css-scroll-snap-smooth-scrolling-and-pinch-zoom/
  */
 const Slider = props => {
   const { edges, activeImage, setActiveImage, isSlideShowActive } = props;
@@ -79,7 +89,7 @@ const Slider = props => {
       if (refs && refs[activeImage] && refs[activeImage].current) {
         refs[activeImage].current.className += " active";
         refs[activeImage].current.scrollIntoView({
-          behavior: "auto",
+          behavior: "smooth",
           block: "start",
           inline: "nearest"
         });
@@ -143,7 +153,11 @@ const Slider = props => {
     [activeImage, isSlideShowActive, numberOfSlides, setActiveImage]
   );
 
-  return <Container className="Slider">{slidesRendered}</Container>;
+  return (
+    <Section className="Slider" title="Slider">
+      {slidesRendered}
+    </Section>
+  );
 };
 
 Slider.propTypes = propTypes;

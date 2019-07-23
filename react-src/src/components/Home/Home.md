@@ -4,6 +4,8 @@ The component performs the following tasks:
 	<summary>###Defines the prop types
 
 </summary>
+* The theme switcher icon
+
 </details>
 
 <details>
@@ -13,7 +15,19 @@ The component performs the following tasks:
 </details>
 
 <details>
+	<summary>###Styles the component for mobiles
+
+</summary>
+</details>
+
+<details>
 	<summary>###Styles the component container
+
+</summary>
+</details>
+
+<details>
+	<summary>###Styles the theme switcher icon
 
 </summary>
 </details>

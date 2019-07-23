@@ -12,8 +12,6 @@ The component performs the following tasks:
 
 * The initial icon toggle status
 
-* The toggle icon click handler
-
 </details>
 
 <details>

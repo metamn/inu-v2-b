@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
+import { Media } from "../../hooks";
+
 import Slide from "../Slide";
 import Post from "../Post";
 import { PostsPropTypes, PostsDefaultProps } from "../Posts";
@@ -37,6 +39,10 @@ const Container = styled("div")(props => ({
   display: "flex",
   alignItems: "center",
 
+  [`${Media.tablet}`]: {
+    alignItems: "start"
+  },
+
   overflowX: "auto",
   overflowY: "hidden",
 
@@ -44,7 +50,7 @@ const Container = styled("div")(props => ({
   "-ms-overflow-style": "none",
   "-webkit-overflow-scrolling": "touch",
 
-  "& ::-webkit-scrollbar": {
+  "&::-webkit-scrollbar": {
     display: "none"
   },
 

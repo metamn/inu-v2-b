@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
+import { useTheme } from "../../hooks";
 import { MainContext } from "../Main";
 
 /**
@@ -19,7 +20,7 @@ const propTypes = {
   /**
    * The menu item status
    */
-  status: PropTypes.oneOf(["active", "inactive", "hidden"])
+  status: PropTypes.oneOf(["active", "inactive", "hidden", "activeUntoggled"])
 };
 
 /**
@@ -35,9 +36,18 @@ const defaultProps = {
  * Styles the component container
  */
 const Container = styled("li")(props => ({
+  ...props.theme.links.default,
   textDecoration: props.status === "active" ? "line-through" : "none",
   display: props.status === "hidden" ? "none" : "flex",
-  cursor: "pointer"
+
+  cursor:
+    props.status === "activeUntoggled"
+      ? "default"
+      : props.theme.cursors.brutalistCursor2Url,
+
+  "&:hover": {
+    textDecoration: props.status === "activeUntoggled" ? "none" : "line-through"
+  }
 }));
 
 /**
@@ -45,6 +55,11 @@ const Container = styled("li")(props => ({
  */
 const MenuItem = props => {
   const { name, id, status } = props;
+
+  /**
+   * Loads theme
+   */
+  const { theme } = useTheme();
 
   /**
    * Manages click on menu item via Context
@@ -57,6 +72,7 @@ const MenuItem = props => {
     <Container
       className="MenuItem"
       status={status}
+      theme={theme}
       onClick={() =>
         typeof menuItemClickHandler === "function"
           ? menuItemClickHandler(id)

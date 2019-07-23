@@ -25,13 +25,7 @@ The component performs the following tasks:
 </details>
 
 <details>
-	<summary>###Converts a category to a menu item
-
-</summary>
-</details>
-
-<details>
-	<summary>###Returns nothing. Used only for its propTypes (and methods).
+	<summary>###Returns nothing. Used only for its PropTypes.
 
 </summary>
 </details>

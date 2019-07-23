@@ -1,6 +1,12 @@
 The component performs the following tasks:
 
 <details>
+	<summary>###Stretches the image to the full viewport width
+
+</summary>
+</details>
+
+<details>
 	<summary>###Defines the prop types
 
 </summary>
@@ -11,7 +17,7 @@ The component performs the following tasks:
 * The widths used in the srcSet.
 They will be passed to media queries to avoid image flicks on loading.
 
-* To use ProgressiveImage?
+* Use ProgressiveImage?
 
 * Is it still loading?
 
@@ -58,6 +64,10 @@ Let's say on tablet initially the `beat-home-mobile_desktop.png` of 622px width 
 * Manages click on image via Context
 
 This is a special extension to the component to suit this project.
+
+* Puts together a progressive image.
+
+* Puts together a simple responsive image.
 
 * Returns a ProgressiveImage if requested. Otherwise a responsive HTML image
 
