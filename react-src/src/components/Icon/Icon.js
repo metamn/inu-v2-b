@@ -12,7 +12,7 @@ const propTypes = {
    * The size multiplier.
    * The width and height of the icon will be `line-height * size`.
    */
-  size: PropTypes.number,
+  sizeMultiplier: PropTypes.number,
   /**
    * The icon status
    */
@@ -27,7 +27,7 @@ const propTypes = {
  * Defines the default props
  */
 const defaultProps = {
-  size: 1.5,
+  sizeMultiplier: 1.5,
   status: "active",
   children: "Icon"
 };
@@ -36,8 +36,8 @@ const defaultProps = {
  * Styles the icon container
  */
 const Container = styled("div")(props => ({
-  width: `calc(var(--lem) * ${props.size})`,
-  height: `calc(var(--lem) * ${props.size})`,
+  width: `calc(var(--lem) * ${props.sizeMultiplier})`,
+  height: `calc(var(--lem) * ${props.sizeMultiplier})`,
 
   cursor:
     props.status === "active"
@@ -52,7 +52,7 @@ const Container = styled("div")(props => ({
       : props.theme.colors.inactive,
 
   svg: {
-    fontSize: `calc(var(--lem) * ${props.size})`,
+    fontSize: `calc(var(--lem) * ${props.sizeMultiplier})`,
     color:
       props.status === "active"
         ? props.theme.colors.text

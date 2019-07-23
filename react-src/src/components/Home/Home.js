@@ -218,7 +218,7 @@ const Home = props => {
         <Section className="Home" title="Home" theme={theme}>
           <Icon
             className="ThemeSwitcherIcon"
-            size={1}
+            sizeMultiplier={1}
             onClick={() => switchTheme()}
           >
             {sunIcon}

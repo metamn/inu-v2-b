@@ -143,13 +143,15 @@ Reusable components stay as thin as possible, project specific components can be
 
 ### Theme - v0.0.5
 
-1. Presentational (Reusable Web) components should be semantically valid in the W3C checker.
+1. Illegal HTML attributes / props should be eliminated.
+
+   - ![Illegal attributes](./react-src/docs/design-illegal-attributes.png)
+
+   - This happens when reserved prop names are added to components. See list of all reserved attributes: https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes
+
+2. Presentational (Reusable Web) components should be semantically valid in the W3C checker.
 
 ![Semantic outline](./react-src/docs/design-semantic-outline.png)
-
-2. The React specific, non-standard attributes should be eliminated.
-
-![Illegal attributes](./react-src/docs/design-illegal-attributes.png)
 
 3. Container (Non-reusable, project specific) components which holds the business logic should be fragments. This way the `divism` is highly reduced and the layout can be easily sketched with CSS Grid.
 
