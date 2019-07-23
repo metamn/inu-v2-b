@@ -50,40 +50,28 @@ const Container = styled("div")(props => ({
 /**
  * Displays the component
  */
-const Slides = props => {
+const Slides = React.forwardRef((props, ref) => {
   const { edges, activeImage } = props;
-
-  /**
-   * Prepares an array to hold the refs to each slide
-   */
-  let refs = [];
 
   /**
    * Prepares the slides
    */
   const slides = edges.map((data, index) => {
-    const ref = React.createRef();
-    refs[index] = ref;
-
     const isActive = index === activeImage;
 
     return (
-      <Slide isActive={isActive} key={`slide-${index}`} ref={ref}>
+      <Slide isActive={isActive} key={`slide-${index}`}>
         <Post {...data.node} index={index} />
       </Slide>
     );
   });
 
-  /**
-   * Renders the slides
-   */
-  const slidesRendered = <Container className="Slides">{slides}</Container>;
-
-  return {
-    refs: refs,
-    slidesRendered: slidesRendered
-  };
-};
+  return (
+    <Container className="Slides" ref={ref}>
+      {slides}
+    </Container>
+  );
+});
 
 Slides.propTypes = propTypes;
 Slides.defaultProps = defaultProps;

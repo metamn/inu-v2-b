@@ -6,7 +6,7 @@ import ProgressiveImage from "react-progressive-image";
 import { Breakpoints, Media } from "../../hooks";
 import { ImagePropTypes, ImageDefaultProps } from "../Image";
 import { createPlaceholderImageUrl } from "../PlaceholderImage";
-import { SlideClickContext } from "../Content";
+import { SlideClickContext } from "../Slider";
 
 /**
  * Defines the prop types

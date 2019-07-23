@@ -67,28 +67,32 @@ const Section = styled(_Section)(props => ({
   }
 }));
 
+const SlideClickContext = React.createContext({});
+
 /**
  * Displays the slider.
  *
  * @see https://developers.google.com/web/updates/2018/07/css-scroll-snap
  */
 const Slider = props => {
-  const { edges, activeImage, setActiveImage, isSlideShowActive } = props;
-
+  const { activeImage } = props;
   const { theme } = useTheme();
 
-  /**
-   * Loads the slides
-   */
-  const { refs, slidesRendered } = Slides({
-    activeImage: activeImage,
-    ...props
-  });
+  const slidesRef = React.createRef();
+
+  const slideClickHandler = () => {
+    const ref = slidesRef.current;
+
+    const slideWidth = ref.clientWidth;
+    ref.scrollBy(slideWidth, 0);
+  };
 
   return (
-    <Section className="Slider" title="Slider" theme={theme}>
-      {slidesRendered}
-    </Section>
+    <SlideClickContext.Provider value={slideClickHandler}>
+      <Section className="Slider" title="Slider" theme={theme}>
+        <Slides ref={slidesRef} activeImage={activeImage} {...props} />
+      </Section>
+    </SlideClickContext.Provider>
   );
 };
 
@@ -96,4 +100,8 @@ Slider.propTypes = propTypes;
 Slider.defaultProps = defaultProps;
 
 export default Slider;
-export { propTypes as SliderPropTypes, defaultProps as SliderDefaultProps };
+export {
+  propTypes as SliderPropTypes,
+  defaultProps as SliderDefaultProps,
+  SlideClickContext
+};

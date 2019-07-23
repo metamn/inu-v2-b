@@ -54,19 +54,18 @@ const Container = styled("div")(props => ({
  *
  * @see https://reactjs.org/docs/forwarding-refs.html
  */
-const Slide = React.forwardRef((props, ref) => {
+const Slide = props => {
   const { children, isActive } = props;
-
   const { theme } = useTheme();
 
   const active = isActive ? "active" : "";
 
   return (
-    <Container className={`Slide ${active}`} ref={ref} theme={theme}>
+    <Container className={`Slide ${active}`} theme={theme}>
       {children}
     </Container>
   );
-});
+};
 
 Slide.propTypes = propTypes;
 Slide.defaultProps = defaultProps;

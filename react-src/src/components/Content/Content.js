@@ -100,11 +100,6 @@ const Icon = styled(_Icon)(props => ({
 const ThumbClickContext = React.createContext({});
 
 /**
- * Creates a context for the click on slide.
- */
-const SlideClickContext = React.createContext({});
-
-/**
  * Displays various content types
  */
 const Content = props => {
@@ -168,20 +163,6 @@ const Content = props => {
   };
 
   /**
-   * Manages the click on a slide.
-   */
-  const slideClickHandler = index => {
-    // No clicks on `Random slideshow`
-    if (isSlideShowActive) return;
-
-    if (index + 1 < edgesWithFeaturedImage.length) {
-      setActiveImage(index + 1);
-    } else {
-      setActiveImage(0);
-    }
-  };
-
-  /**
    * Decides which content to be displayed.
    */
   const DisplayContent = () => {
@@ -199,14 +180,12 @@ const Content = props => {
       case "slider":
       default:
         return (
-          <SlideClickContext.Provider value={slideClickHandler}>
-            <Slider
-              edges={edgesWithFeaturedImage}
-              activeImage={activeImage}
-              setActiveImage={setActiveImage}
-              isSlideShowActive={isSlideShowActive}
-            />
-          </SlideClickContext.Provider>
+          <Slider
+            edges={edgesWithFeaturedImage}
+            activeImage={activeImage}
+            setActiveImage={setActiveImage}
+            isSlideShowActive={isSlideShowActive}
+          />
         );
     }
   };
@@ -234,6 +213,5 @@ export {
   propTypes as ContentPropTypes,
   defaultProps as ContentDefaultProps,
   ThumbClickContext,
-  SlideClickContext,
   ContentDisplayModes
 };
