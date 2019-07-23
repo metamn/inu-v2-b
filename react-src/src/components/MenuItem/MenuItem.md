@@ -10,8 +10,6 @@ The component performs the following tasks:
 
 * The menu item status
 
-* The menu item click handler
-
 </details>
 
 <details>
@@ -27,13 +25,7 @@ The component performs the following tasks:
 </details>
 
 <details>
-	<summary>###Creates menu items
-
-</summary>
-</details>
-
-<details>
-	<summary>###Displays the component
+	<summary>###Displays a menu item
 
 </summary>
 </details>

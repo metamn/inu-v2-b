@@ -15,13 +15,19 @@ The component performs the following tasks:
 </details>
 
 <details>
+	<summary>###Styles the component for mobiles
+
+</summary>
+</details>
+
+<details>
 	<summary>###Styles the component container
 
 </summary>
 </details>
 
 <details>
-	<summary>###Sets the dropdown menu item status
+	<summary>###Sets the menu item status for items in a dropdown menu.
 
 </summary>
 </details>
@@ -30,5 +36,7 @@ The component performs the following tasks:
 	<summary>###Displays the component
 
 </summary>
+* Creates a class name to mark the status of the component
+
 </details>
 

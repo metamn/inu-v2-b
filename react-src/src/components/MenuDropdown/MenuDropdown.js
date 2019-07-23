@@ -2,13 +2,14 @@ import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { useTheme } from "./../../hooks";
+import { useTheme, Media } from "./../../hooks";
 
 import IconToggle, {
   IconTogglePropTypes,
   IconToggleDefaultProps
 } from "../IconToggle";
 import { MainContext } from "../Main";
+import { Nav as _Nav } from "../SemanticHTML";
 
 /**
  * Defines the prop types
@@ -33,9 +34,64 @@ const defaultProps = {
 };
 
 /**
+ * Styles the component for mobiles
+ */
+const NavMobile = {
+  borderTop: "1px solid",
+  borderBottom: "1px solid",
+  margin: "var(--lem) 0"
+};
+
+/**
+ * Styles the component for tablets
+ */
+const NavTablet = {
+  border: "none",
+  marginTop: "calc(var(--lem) * 1.5)"
+};
+
+/**
  * Styles the component container
  */
-const Container = styled("div")(props => ({}));
+const Nav = styled(_Nav)(props => ({
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+
+  height: "calc(var(--lem) * 2)",
+
+  "& .MenuItems": {
+    order: "-1",
+    marginRight: "var(--lem)",
+
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center"
+  },
+
+  "&.toggled": {
+    height: "auto",
+    alignItems: "start",
+
+    "& .MenuItems": {
+      "& .MenuItem": {
+        padding: "calc(var(--lem) / 2) 0",
+
+        "& +.MenuItem": {
+          borderTop: "1px solid"
+        }
+      }
+    }
+  },
+
+  [`${Media.mobile}`]: {
+    ...NavMobile
+  },
+
+  [`${Media.tablet}`]: {
+    ...NavTablet
+  }
+}));
 
 /**
  * Sets the menu item status for items in a dropdown menu.
@@ -43,10 +99,12 @@ const Container = styled("div")(props => ({}));
 const setMenuItemStatusForDropdown = props => {
   const { id, activeMenuItem, menuSwitcherIconState } = props;
 
-  return id === activeMenuItem
-    ? "active"
-    : menuSwitcherIconState
-    ? "inactive"
+  return menuSwitcherIconState
+    ? id === activeMenuItem
+      ? "active"
+      : "inactive"
+    : id === activeMenuItem
+    ? "activeUntoggled"
     : "hidden";
 };
 
@@ -67,6 +125,11 @@ const MenuDropdown = props => {
     : icon2;
 
   /**
+   * Creates a class name to mark the status of the component
+   */
+  const status = toggled ? "toggled" : "";
+
+  /**
    * Loads the click handler from Context
    *
    * This is a special extension to the component to suit this project.
@@ -74,7 +137,7 @@ const MenuDropdown = props => {
   const { menuSwitcherClickHandler } = useContext(MainContext);
 
   return (
-    <Container className="MenuDropdown">
+    <Nav className={`MenuDropdown ${status}`} title="Dropdown menu">
       <IconToggle
         icon1={toggleIconDown}
         icon2={toggleIconUp}
@@ -86,7 +149,7 @@ const MenuDropdown = props => {
         }
       />
       <ul className="MenuItems">{children}</ul>
-    </Container>
+    </Nav>
   );
 };
 

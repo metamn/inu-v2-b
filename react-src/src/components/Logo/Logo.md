@@ -31,6 +31,12 @@ The component performs the following tasks:
 </details>
 
 <details>
+	<summary>###Styles the line
+
+</summary>
+</details>
+
+<details>
 	<summary>###Displays site title and description
 
 </summary>

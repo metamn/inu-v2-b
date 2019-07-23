@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
 
 import Menu from "../Menu";
 import Content, { ContentPropTypes } from "../Content";
@@ -31,15 +30,6 @@ const defaultProps = {
   defaultMenuSwitcherIconState: false,
   defaultContentDisplayMode: "slider"
 };
-
-/**
- * Styles the component container
- */
-const Container = styled("div")(props => ({
-  border: "1px solid",
-  padding: "1.25em",
-  margin: "1.25em"
-}));
 
 /**
  * Creates a context for the component.
@@ -130,8 +120,7 @@ const Main = props => {
   };
 
   return (
-    <Container className="Main">
-      Main
+    <>
       <MainContext.Provider value={context}>
         <Menu
           activeMenuItem={activeMenuItem}
@@ -144,7 +133,7 @@ const Main = props => {
           contentSwitcherClickHandler={contentSwitcherClickHandler}
         />
       </MainContext.Provider>
-    </Container>
+    </>
   );
 };
 

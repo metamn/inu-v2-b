@@ -60,8 +60,23 @@ const defaultProps = {
  * Styles the component container
  */
 const Img = styled("img")(props => ({
-  opacity: props.isLoading ? "0.3" : "1",
-  ...props.widths
+  backgroundColor: props.isLoading ? "gray" : "white",
+  width: "100%",
+  height: "auto",
+  cursor: "pointer",
+
+  [`${Media.mobile}`]: {
+    /**
+     * Stretches the image to the full viewport width
+     */
+    width: "auto",
+    maxWidth: "calc(100vw - var(--lem) * 2)"
+  },
+
+  [`${Media.tablet}`]: {
+    width: "auto",
+    maxHeight: "70vh"
+  }
 }));
 
 /**
@@ -78,7 +93,7 @@ const Img = styled("img")(props => ({
  */
 const createWidths = props => {
   const { breakpoints } = props;
-  let { widths } = props;
+  let { responsiveWidths } = props;
 
   /**
    * `breakpoints` are like: [320,768,1280,1440]
@@ -86,11 +101,11 @@ const createWidths = props => {
    * `maxWidths` should be like: [320:300, 768:768, 1280:1024, 1440:1181] or [320:200, 768:572, 1280:572, 1440:572]
    */
 
-  widths.shift();
-  const wlength = widths.length;
-  const wlast = widths[wlength - 1];
+  responsiveWidths.shift();
+  const wlength = responsiveWidths.length;
+  const wlast = responsiveWidths[wlength - 1];
   const normalizedWidths = Object.keys(breakpoints).map((breakpoint, index) =>
-    index < wlength ? widths[index] : wlast
+    index < wlength ? responsiveWidths[index] : wlast
   );
 
   return {
@@ -151,11 +166,11 @@ const ImageResponsive = props => {
   /**
    * Sets a responsive width for each breakpoint to avoid image flicking
    */
-  const widths =
+  const responsiveWidths =
     srcSetWidths === null
       ? null
       : createWidths({
-          widths: srcSetWidths,
+          responsiveWidths: srcSetWidths,
           breakpoints: Breakpoints
         });
 
@@ -184,10 +199,10 @@ const ImageResponsive = props => {
           className="progressive-image"
           src={nonEmptySrc}
           alt={alt}
-          srcSet={srcSetData.srcSet}
-          sizes={srcSetData.sizes}
+          srcSet={srcSetData.srcSet !== "" ? srcSetData.srcSet : null}
+          sizes={srcSetData.sizes !== "" ? srcSetData.srcSet : null}
           isLoading={loading}
-          widths={widths}
+          responsiveWidths={responsiveWidths}
           onClick={() =>
             typeof slideClickHandler === "function"
               ? slideClickHandler(index)
@@ -206,12 +221,12 @@ const ImageResponsive = props => {
       className="image"
       src={nonEmptySrc}
       alt={alt}
-      srcSet={srcSet}
-      sizes={sizes}
+      srcSet={srcSet !== "" ? srcSet : null}
+      sizes={sizes !== "" ? srcSet : null}
       width={width}
       height={height}
       isLoading={isLoading}
-      widths={widths}
+      responsiveWidths={responsiveWidths}
       onClick={() =>
         typeof slideClickHandler === "function"
           ? slideClickHandler(index)
