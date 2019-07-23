@@ -37,9 +37,9 @@ const propTypes = {
    */
   ...MenuDropdownPropTypes,
   /**
-   * The default category query
+   * The categories
    */
-  defaultCategoriesQuery: CategoriesPropTypes.variables
+  categories: PropTypes.shape(CategoriesPropTypes)
 };
 
 /**
@@ -57,7 +57,7 @@ const defaultProps = {
     id: "-2"
   },
   ...MenuDropdownDefaultProps,
-  defaultCategoriesQuery: CategoriesDefaultProps.variables
+  categories: CategoriesDefaultProps
 };
 
 /**
@@ -97,16 +97,8 @@ const categoryToMenuItem = category => {
  * Displays the menu.
  */
 const Menu = props => {
-  const {
-    menuSwitcherIconState,
-    activeMenuItem,
-    defaultCategoriesQuery
-  } = props;
-
-  /**
-   * Loads categories
-   */
-  const categories = Categories({ variables: defaultCategoriesQuery });
+  const { menuSwitcherIconState, activeMenuItem, categories } = props;
+  console.log("Menu");
 
   /**
    * Displays categories as menu items

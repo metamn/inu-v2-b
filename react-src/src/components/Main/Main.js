@@ -19,7 +19,8 @@ const propTypes = {
   /**
    * The display modes
    */
-  defaultContentDisplayMode: ContentPropTypes.activeContentDisplayMode
+  defaultContentDisplayMode: ContentPropTypes.activeContentDisplayMode,
+  categories: PropTypes.any
 };
 
 /**
@@ -52,8 +53,10 @@ const Main = props => {
   const {
     defaultMenuItem,
     defaultMenuSwitcherIconState,
-    defaultContentDisplayMode
+    defaultContentDisplayMode,
+    categories
   } = props;
+  console.log("Main");
 
   /**
    * Sets up state for the active menu item
@@ -125,13 +128,17 @@ const Main = props => {
         <Menu
           activeMenuItem={activeMenuItem}
           menuSwitcherIconState={menuSwitcherIconState}
+          categories={categories}
         />
-        <Content
-          activeMenuItem={activeMenuItem}
-          activeContentDisplayMode={activeContentDisplayMode}
-          setActiveContentDisplayMode={setActiveContentDisplayMode}
-          contentSwitcherClickHandler={contentSwitcherClickHandler}
-        />
+        {/*
+			<Content
+	          activeMenuItem={activeMenuItem}
+	          activeContentDisplayMode={activeContentDisplayMode}
+	          setActiveContentDisplayMode={setActiveContentDisplayMode}
+	          contentSwitcherClickHandler={contentSwitcherClickHandler}
+	        />
+
+			*/}
       </MainContext.Provider>
     </>
   );

@@ -8,10 +8,14 @@ import { Media } from "./../../hooks";
 
 import Theme, { switchThemeFrom } from "../Theme";
 
+import Settings, { SettingsPropTypes, SettingsDefaultProps } from "../Settings";
+import Categories, {
+  CategoriesPropTypes,
+  CategoriesDefaultProps
+} from "../Categories";
+
 import Reset from "../Reset";
 import TypographicGrid from "../TypographicGrid";
-
-import Settings, { SettingsPropTypes, SettingsDefaultProps } from "../Settings";
 import { Section as _Section } from "../SemanticHTML";
 import Meta from "../Meta";
 import Logo from "../Logo";
@@ -38,9 +42,13 @@ const propTypes = {
    */
   ...SettingsPropTypes,
   /**
-   * The theme switcher icon
+   * The default theme switcher icon
    */
-  defaultThemeSwitcherIcon: PropTypes.string
+  defaultThemeSwitcherIcon: PropTypes.string,
+  /**
+   * The default category query
+   */
+  defaultCategoriesQuery: CategoriesPropTypes.variables
 };
 
 /**
@@ -48,7 +56,8 @@ const propTypes = {
  */
 const defaultProps = {
   ...SettingsDefaultProps,
-  defaultThemeSwitcherIcon: "Theme switcher"
+  defaultThemeSwitcherIcon: "Theme switcher",
+  defaultCategoriesQuery: CategoriesDefaultProps.variables
 };
 
 /**
@@ -172,7 +181,8 @@ const Home = props => {
   /**
    * Loads props
    */
-  const { defaultThemeSwitcherIcon } = props;
+  const { defaultThemeSwitcherIcon, defaultCategoriesQuery } = props;
+  console.log("Home");
 
   /**
    * Sets up theme
@@ -206,6 +216,11 @@ const Home = props => {
    */
   const siteSettings = Settings(props);
 
+  /**
+   * Loads categories from the database
+   */
+  const categories = Categories({ variables: defaultCategoriesQuery });
+
   return (
     <>
       <Reset />
@@ -224,7 +239,7 @@ const Home = props => {
             {sunIcon}
           </Icon>
           <Logo {...siteSettings} />
-          <Main />
+          <Main categories={categories} />
         </Section>
       </ThemeContext.Provider>
     </>
