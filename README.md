@@ -6,6 +6,12 @@ A photo portfolio theme with React, WPGraphQL and Create React WPTheme.
 
 Based on [Thinking in React](https://reactjs.org/docs/thinking-in-react.html).
 
+### Performance - v0.0.6
+
+The slider works well when there are a few images in the category and slows down when there are more. It _turned out_ the slider is re-rendered after each click causing the problem above.
+
+The whole data-flow has to be re-checked to avoid unnecessary re-renders.
+
 ### Mocks - v0.0.1
 
 1. Mocking up the component structure and the functionality
