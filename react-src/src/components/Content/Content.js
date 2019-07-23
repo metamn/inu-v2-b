@@ -37,18 +37,6 @@ const propTypes = {
    */
   setActiveContentDisplayMode: PropTypes.func,
   /**
-   * The default content switcher icon
-   */
-  defaultContentSwitcherIcon: PropTypes.string,
-  /**
-   * The content switcher click handler
-   */
-  contentSwitcherClickHandler: PropTypes.func,
-  /**
-   * The default active image (slide and thumb)
-   */
-  defaultImage: PropTypes.number,
-  /**
    * The featured images.
    *
    * For some reasons the PostsPropTypes.edges cannot be used here ..
@@ -59,7 +47,15 @@ const propTypes = {
   /**
    * The contact page content
    */
-  contactPageContent: PropTypes.string
+  contactPageContent: PropTypes.string,
+  /**
+   * The default content switcher icon
+   */
+  defaultContentSwitcherIcon: PropTypes.string,
+  /**
+   * The default active image (slide and thumb)
+   */
+  defaultImage: PropTypes.number
 };
 
 /**
@@ -71,13 +67,10 @@ const defaultProps = {
   setActiveContentDisplayMode: () => {
     console.log("Set active display mode");
   },
-  defaultContentSwitcherIcon: "Contet switcher icon",
-  contentSwitcherClickHandler: () => {
-    console.log("Contet switcher clicked");
-  },
-  defaultImage: 1,
   edgesWithFeaturedImage: Array(1).fill({ node: PostDefaultProps }),
-  contactPageContent: "Contact page content"
+  contactPageContent: "Contact page content",
+  defaultContentSwitcherIcon: "Contet switcher icon",
+  defaultImage: 1
 };
 
 /**
@@ -107,10 +100,10 @@ const Content = props => {
     activeMenuItem,
     activeContentDisplayMode,
     setActiveContentDisplayMode,
-    defaultContentSwitcherIcon,
-    defaultImage,
     edgesWithFeaturedImage,
-    contactPageContent
+    contactPageContent,
+    defaultContentSwitcherIcon,
+    defaultImage
   } = props;
 
   console.log("Content");
