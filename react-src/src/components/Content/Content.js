@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import { useTheme, Media } from "./../../hooks";
 
-import { PostsPropTypes, PostsDefaultProps } from "../Posts";
+import { PostPropTypes, PostDefaultProps } from "../Post";
 import Slider from "../Slider";
 import Thumbs from "../Thumbs";
 import Contact from "../Contact";
@@ -49,9 +49,13 @@ const propTypes = {
    */
   defaultImage: PropTypes.number,
   /**
-   * The posts
+   * The featured images.
+   *
+   * For some reasons the PostsPropTypes.edges cannot be used here ..
    */
-  posts: PropTypes.shape(PostsPropTypes),
+  edgesWithFeaturedImage: PropTypes.arrayOf(
+    PropTypes.shape({ node: PropTypes.shape(PostPropTypes) })
+  ),
   /**
    * The contact page content
    */
@@ -72,7 +76,7 @@ const defaultProps = {
     console.log("Contet switcher clicked");
   },
   defaultImage: 1,
-  posts: PostsDefaultProps,
+  edgesWithFeaturedImage: Array(1).fill({ node: PostDefaultProps }),
   contactPageContent: "Contact page content"
 };
 
@@ -111,7 +115,7 @@ const Content = props => {
     defaultContentSwitcherIcon,
     defaultImage,
     contentSwitcherClickHandler,
-    posts,
+    edgesWithFeaturedImage,
     contactPageContent
   } = props;
 
@@ -154,13 +158,6 @@ const Content = props => {
    * Sets up state to mark the active image (thumb, or slide)
    */
   const [activeImage, setActiveImage] = useState(defaultImage);
-
-  /**
-   * Filters posts having a featured image set
-   */
-  const edgesWithFeaturedImage = posts.edges.filter(
-    edge => edge.node.featuredImage
-  );
 
   /**
    * Manages the click on a thumb.

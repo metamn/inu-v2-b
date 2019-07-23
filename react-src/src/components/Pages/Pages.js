@@ -20,9 +20,9 @@ const propTypes = {
    */
   variables: PropTypes.shape({
     first: PropTypes.number,
-    where: {
+    where: PropTypes.shape({
       title: PropTypes.string
-    }
+    })
   })
 };
 

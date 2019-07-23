@@ -15,7 +15,7 @@ import Content, { ContentPropTypes } from "../Content";
  */
 const propTypes = {
   /**
-   * The ID of default menu item
+   * The default menu item Id
    */
   defaultMenuItem: PropTypes.string,
   /**
@@ -23,9 +23,13 @@ const propTypes = {
    */
   defaultMenuSwitcherIconState: PropTypes.bool,
   /**
-   * The display modes
+   * The initial display modes
    */
   defaultContentDisplayMode: ContentPropTypes.activeContentDisplayMode,
+  /**
+   * The default page query
+   */
+  defaultPageQuery: PagesPropTypes.variables,
   /**
    * The categories
    */
@@ -39,6 +43,7 @@ const defaultProps = {
   defaultMenuItem: "1",
   defaultMenuSwitcherIconState: false,
   defaultContentDisplayMode: "slider",
+  defaultPageQuery: PagesDefaultProps.variables,
   categories: CategoriesDefaultProps
 };
 
@@ -64,6 +69,7 @@ const Main = props => {
     defaultMenuItem,
     defaultMenuSwitcherIconState,
     defaultContentDisplayMode,
+    defaultPageQuery,
     categories
   } = props;
   console.log("Main");
@@ -127,14 +133,14 @@ const Main = props => {
     variables: { category: Number(activeMenuItem), first: 100 }
   });
 
-  const pages = Pages({
-    variables: {
-      first: 1,
-      where: {
-        title: "Contact"
-      }
-    }
-  });
+  /**
+   * Filters posts having a featured image set
+   */
+  const edgesWithFeaturedImage = posts.edges.filter(
+    edge => edge.node.featuredImage
+  );
+
+  const pages = Pages({ variables: defaultPageQuery });
   const contactPageContent = pages.edges[0].node.content;
 
   /**
@@ -164,7 +170,7 @@ const Main = props => {
           activeContentDisplayMode={activeContentDisplayMode}
           setActiveContentDisplayMode={setActiveContentDisplayMode}
           contentSwitcherClickHandler={contentSwitcherClickHandler}
-          posts={posts}
+          edgesWithFeaturedImage={edgesWithFeaturedImage}
           contactPageContent={contactPageContent}
         />
       </MainContext.Provider>
