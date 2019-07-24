@@ -144,6 +144,11 @@ const responsiveImage = props => {
   let srcSet = sizes.map(item => `${item.sourceUrl} ${item.width}w`);
   srcSet.push(`${sourceUrl} ${width}w`);
 
+  let srcSetSizes = sizes.map(
+    item => `(max-width: ${item.width}px) ${item.width}px`
+  );
+  srcSetSizes.push(`${width}px`);
+
   let srcSetWidths = sizes.map(item => item.width);
   srcSetWidths.push(width.toString());
 
@@ -151,6 +156,7 @@ const responsiveImage = props => {
     <ImageResponsive
       src={sourceUrl}
       srcSet={srcSet.toString()}
+      sizes={srcSetSizes.toString()}
       srcSetWidths={srcSetWidths}
       alt={featuredImageTitle}
       index={index}

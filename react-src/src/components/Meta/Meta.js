@@ -35,7 +35,12 @@ const Meta = props => {
       <meta name="description" content={description} />
       <meta name="viewport" content="width=device-width" />
       <meta name="url" content={url} />
+      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-status-bar-style" content="black" />
       <link rel="canonical" href={url} />
+      <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+      <link rel="icon" type="image/png" href="/favicon-32x32.png" />
+      <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     </Helmet>
   );
 };
