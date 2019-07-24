@@ -6,6 +6,10 @@ A photo portfolio theme with React, WPGraphQL and Create React WPTheme.
 
 Based on [Thinking in React](https://reactjs.org/docs/thinking-in-react.html).
 
+### Best practices checklist - v0.0.07
+
+- https://frontendchecklist.io/
+
 ### Mocks - v0.0.1
 
 1. Mocking up the component structure and the functionality
