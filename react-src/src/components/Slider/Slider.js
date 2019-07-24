@@ -85,7 +85,7 @@ const SlideClickContext = React.createContext({});
  * @see https://developers.google.com/web/updates/2018/07/css-scroll-snap
  */
 const Slider = props => {
-  const { edges, activeImage, slidesRef } = props;
+  const { edges, activeImage, slidesRef, isSlideShowActive } = props;
   const { theme } = useTheme();
 
   /**
@@ -122,6 +122,37 @@ const Slider = props => {
       ? ref.scrollTo(0, 0)
       : ref.scrollBy(slideWidth, 0);
   };
+
+  /**
+   * Autoslides the images.
+   *
+   * Images are randomized during the autoslide.
+   */
+  useEffect(
+    () => {
+      let interval = null;
+
+      if (isSlideShowActive) {
+        interval = setInterval(() => {
+          const slideNumbers = Array.from(Array(numberOfSlides).keys()).filter(
+            i => i !== activeImage
+          );
+
+          const random =
+            slideNumbers[Math.floor(Math.random() * slideNumbers.length)];
+
+          const ref = slidesRef.current;
+          const slideWidth = ref.clientWidth;
+          ref.scrollBy(slideWidth * random, 0);
+        }, 2500);
+      } else {
+        clearInterval(interval);
+      }
+
+      return () => clearInterval(interval);
+    },
+    [activeImage, isSlideShowActive, numberOfSlides, slidesRef]
+  );
 
   return (
     <SlideClickContext.Provider value={slideClickHandler}>
