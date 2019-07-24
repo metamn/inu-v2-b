@@ -2,15 +2,50 @@
 
 A photo portfolio theme with React, WPGraphQL and Create React WPTheme.
 
+## Prerequisites
+
+The old [inu.ro](http://inu.ro) design is dated back spring 2014. It's time for a refresh.
+
+The slider on mobile screens was confusing: on click the slide disappeared and the next photo was sliding in. This had to be fixed.
+
+## Requirements
+
+1. Keep the same simple design.
+2. Keep the black/white background switcher.
+3. Fix the slider on mobile screens.
+4. Add a random slideshow.
+5. Keep WordPress as backend.
+6. Refresh the front-end stack and make it future friendly for another couple of years.
+7. Enhance page load performance.
+
+## Results
+
+The old site was looking like:
+
+![Old site on mobile screens](./react-src/docs/inu-old-mobile.png)
+![Old site in landscape mode](./react-src/docs/inu-old-landscape.png)
+![Old site navigation](./react-src/docs/inu-old-navigation.png)
+
+The new site looks like:
+
+![The new site on mobile screens](./react-src/docs/inu-new-mobile.png)
+![The new site in landscape mode](./react-src/docs/inu-new-landscape.png)
+![New site navigation](./react-src/docs/inu-new-navigation.png)
+
+The performance of the old site:
+
+![Old site performance, Lighthouse](./react-src/docs/inu-old-lighthouse.png)
+![Old site performance, WebPageTest](./react-src/docs/inu-old-webpagetest.png)
+
 ## Development process
 
 Based on [Thinking in React](https://reactjs.org/docs/thinking-in-react.html).
 
 ### Documentation - v0.0.8
 
-- README.md
-- Storybook: - Components - API
-- Styleguide
+- README.md - Developer docs
+- Storybook - Components and API docs
+- Styleguide - Desgner docs
 
 ### Mocks - v0.0.1
 
