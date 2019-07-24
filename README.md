@@ -22,7 +22,7 @@ The slider on mobile screens was confusing: on click the slide disappeared and t
 
 The old site was looking like:
 
-<img alt="Old site on mobile screens" src="./react-src/docs/inu-old-mobile.png" width='320' height='auto'/>
+<img style="border: 1px solid" alt="Old site on mobile screens" src="./react-src/docs/inu-old-mobile.png" width='320' height='auto'/>
 
 <img alt="Old site in landscape mode" src="./react-src/docs/inu-old-landscape.png" width='640' height='auto'/>
 
