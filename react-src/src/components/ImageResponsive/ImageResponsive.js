@@ -200,7 +200,7 @@ const ImageResponsive = props => {
           src={nonEmptySrc}
           alt={alt}
           srcSet={srcSetData.srcSet !== "" ? srcSetData.srcSet : null}
-          sizes={srcSetData.sizes !== "" ? srcSetData.srcSet : null}
+          sizes={srcSetData.sizes !== "" ? srcSetData.sizes : null}
           isLoading={loading}
           responsiveWidths={responsiveWidths}
           onClick={() =>
