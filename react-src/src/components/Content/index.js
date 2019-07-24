@@ -3,6 +3,5 @@ export {
   ContentPropTypes,
   ContentDefaultProps,
   ThumbClickContext,
-  SlideClickContext,
   ContentDisplayModes
 } from "./Content";

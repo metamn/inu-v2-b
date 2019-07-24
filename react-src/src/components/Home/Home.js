@@ -6,17 +6,19 @@ import WebFont from "webfontloader";
 
 import { Media } from "./../../hooks";
 
-import Theme, { switchThemeFrom } from "../Theme";
-
+import Settings, { SettingsPropTypes, SettingsDefaultProps } from "../Settings";
+import Categories, {
+  CategoriesPropTypes,
+  CategoriesDefaultProps
+} from "../Categories";
 import Reset from "../Reset";
 import TypographicGrid from "../TypographicGrid";
-
-import Settings, { SettingsPropTypes, SettingsDefaultProps } from "../Settings";
 import { Section as _Section } from "../SemanticHTML";
 import Meta from "../Meta";
 import Logo from "../Logo";
 import Main from "../Main";
 import _Icon from "../Icon";
+import Theme, { switchThemeFrom } from "../Theme";
 
 /**
  * Loads web fonts
@@ -36,19 +38,24 @@ const propTypes = {
   /**
    * The site settings
    */
-  ...SettingsPropTypes,
+  settings: PropTypes.shape(SettingsPropTypes),
   /**
-   * The theme switcher icon
+   * The default theme switcher icon
    */
-  defaultThemeSwitcherIcon: PropTypes.string
+  defaultThemeSwitcherIcon: PropTypes.string,
+  /**
+   * The default category query
+   */
+  defaultCategoriesQuery: CategoriesPropTypes.variables
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
-  ...SettingsDefaultProps,
-  defaultThemeSwitcherIcon: "Theme switcher"
+  settings: SettingsDefaultProps,
+  defaultThemeSwitcherIcon: "Theme switcher",
+  defaultCategoriesQuery: CategoriesDefaultProps.variables
 };
 
 /**
@@ -172,7 +179,8 @@ const Home = props => {
   /**
    * Loads props
    */
-  const { defaultThemeSwitcherIcon } = props;
+  const { settings, defaultThemeSwitcherIcon, defaultCategoriesQuery } = props;
+  console.log("Home");
 
   /**
    * Sets up theme
@@ -204,7 +212,12 @@ const Home = props => {
   /**
    * Loads site settings from the database
    */
-  const siteSettings = Settings(props);
+  const siteSettings = Settings(settings);
+
+  /**
+   * Loads categories from the database
+   */
+  const categories = Categories({ variables: defaultCategoriesQuery });
 
   return (
     <>
@@ -219,12 +232,12 @@ const Home = props => {
           <Icon
             className="ThemeSwitcherIcon"
             sizeMultiplier={1}
-            onClick={() => switchTheme()}
+            clickHandler={switchTheme}
           >
             {sunIcon}
           </Icon>
           <Logo {...siteSettings} />
-          <Main />
+          <Main categories={categories} />
         </Section>
       </ThemeContext.Provider>
     </>

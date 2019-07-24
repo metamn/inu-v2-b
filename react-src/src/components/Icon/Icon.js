@@ -9,6 +9,14 @@ import { useTheme } from "../../hooks";
  */
 const propTypes = {
   /**
+   * The class name
+   */
+  className: PropTypes.string,
+  /**
+   * The click handler
+   */
+  clickHandler: PropTypes.func,
+  /**
    * The size multiplier.
    * The width and height of the icon will be `line-height * size`.
    */
@@ -27,6 +35,10 @@ const propTypes = {
  * Defines the default props
  */
 const defaultProps = {
+  className: "Icon",
+  clickHandler: () => {
+    console.log("Icon clicked");
+  },
   sizeMultiplier: 1.5,
   status: "active",
   children: "Icon"
@@ -64,11 +76,17 @@ const Container = styled("div")(props => ({
  * Displays an icon
  */
 const Icon = props => {
-  const { children } = props;
+  const { className, clickHandler, sizeMultiplier, status, children } = props;
   const { theme } = useTheme();
 
   return (
-    <Container className="icon" theme={theme} {...props}>
+    <Container
+      className={className}
+      sizeMultiplier={sizeMultiplier}
+      status={status}
+      theme={theme}
+      onClick={() => clickHandler()}
+    >
       {children}
     </Container>
   );

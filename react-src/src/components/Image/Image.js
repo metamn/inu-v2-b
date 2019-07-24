@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import { useTheme } from "../../hooks";
+import { ThumbClickContext } from "../Content";
 
 import {
   PlaceholderImagePropTypes,
   PlaceholderImageDefaultProps,
   createPlaceholderImageUrl
 } from "../PlaceholderImage";
-import { ThumbClickContext } from "../Content";
 
 /**
  * Defines the prop types
@@ -100,7 +100,7 @@ const Image = props => {
    */
   const result = (
     <Img
-      className="image"
+      className="Image"
       src={nonEmptySrc}
       alt={alt}
       width={width}

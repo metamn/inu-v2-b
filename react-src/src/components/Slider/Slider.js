@@ -1,8 +1,8 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { useEventListener, Media } from "../../hooks";
+import { Media, useTheme } from "../../hooks";
 
 import Slides from "../Slides";
 import { PostsPropTypes, PostsDefaultProps } from "../Posts";
@@ -27,7 +27,16 @@ const propTypes = {
   /**
    * Is the slideshow active?
    */
-  isSlideShowActive: PropTypes.bool
+  isSlideShowActive: PropTypes.bool,
+  /**
+   * The reference to slides.
+   *
+   * @see https://stackoverflow.com/questions/48007326/what-is-the-correct-proptype-for-a-ref-in-react#51127130
+   */
+  slidesRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.instanceOf(Slides) })
+  ])
 };
 
 /**
@@ -39,124 +48,88 @@ const defaultProps = {
   setActiveImage: () => {
     console.log("Active image setter");
   },
-  isSlideShowActive: false
+  isSlideShowActive: false,
+  slidesRef: null
 };
 
 /**
  * Styles the component container
  */
 const Section = styled(_Section)(props => ({
-  overflowX: "hidden",
-  overflowY: "hidden",
-
   [`${Media.mobile}`]: {
     height: "calc(100vh - var(--lem) * 10)",
     display: "flex",
-    alignItems: "center"
+    alignItems: "center",
+    width: `calc(100vw - ${props.theme.spacing.left.mobile} * 2)`
   },
 
   [`${Media.tablet}`]: {
-    alignItems: "start"
+    alignItems: "start",
+    width: `calc(100vw - ${props.theme.spacing.left.tablet} * 2)`
+  },
+
+  [`${Media.laptop}`]: {
+    width: `calc(100vw - ${props.theme.spacing.left.laptop} * 2)`
+  },
+
+  [`${Media.desktop}`]: {
+    width: `calc(100vw - ${props.theme.spacing.left.desktop} * 2)`
   }
 }));
+
+const SlideClickContext = React.createContext({});
 
 /**
  * Displays the slider.
  *
- * @see https://nolanlawson.com/2019/02/10/building-a-modern-carousel-with-css-scroll-snap-smooth-scrolling-and-pinch-zoom/
+ * @see https://developers.google.com/web/updates/2018/07/css-scroll-snap
  */
 const Slider = props => {
-  const { edges, activeImage, setActiveImage, isSlideShowActive } = props;
+  const { edges, activeImage, slidesRef } = props;
+  const { theme } = useTheme();
+  console.log("Slider");
 
   /**
-   * Counts the slides
+   * Calculates the number of slides
    */
   const numberOfSlides = edges.length;
 
   /**
-   * Loads the slides
-   */
-  const { refs, slidesRendered } = Slides({
-    activeImage: activeImage,
-    ...props
-  });
-
-  /**
-   * Scrolls the active slide into the view
+   * Scrolls the slider to the active image
    */
   useEffect(
     () => {
-      if (refs && refs[activeImage] && refs[activeImage].current) {
-        refs[activeImage].current.className += " active";
-        refs[activeImage].current.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-          inline: "nearest"
-        });
+      if (slidesRef && slidesRef.current) {
+        const ref = slidesRef.current;
+        const slideWidth = ref.clientWidth;
+        ref.scrollBy(slideWidth * activeImage, 0);
       }
     },
-    [activeImage, refs]
+    [activeImage, slidesRef]
   );
 
   /**
-   * Handles the touch scroll event
-   */
-  const touchScrollHandler = useCallback(
-    () => {
-      const visibleRef = refs.findIndex(ref => {
-        const left = ref.current.getBoundingClientRect().left;
-        const right = ref.current.getBoundingClientRect().right;
-        return (
-          left >= -window.innerWidth / 2 &&
-          left <= window.innerWidth &&
-          right > 0 &&
-          right <= window.innerWidth * 1.5
-        );
-      });
-
-      setActiveImage(visibleRef);
-    },
-    [refs, setActiveImage]
-  );
-
-  /**
-   * Listens for the touch event
-   */
-  useEventListener("touchend", touchScrollHandler);
-
-  /**
-   * Autoslides the images.
+   * Manages the click on a slide
    *
-   * Images are randomized during the autoslide.
+   * Detecting end of scroll: https://stackoverflow.com/questions/19005348/how-to-check-if-the-scrollbar-has-reached-at-the-end-of-div
    */
-  useEffect(
-    () => {
-      let interval = null;
+  const slideClickHandler = () => {
+    const ref = slidesRef.current;
+    const slideWidth = ref.clientWidth;
+    const sliderPosition = ref.scrollLeft;
+    const slideEnd = (numberOfSlides - 1) * slideWidth;
 
-      if (isSlideShowActive) {
-        interval = setInterval(() => {
-          const slideNumbers = Array.from(Array(numberOfSlides).keys()).filter(
-            i => i !== activeImage
-          );
-
-          const random =
-            slideNumbers[Math.floor(Math.random() * slideNumbers.length)];
-
-          setActiveImage(random);
-        }, 2500);
-      } else {
-        clearInterval(interval);
-      }
-
-      return () => clearInterval(interval);
-    },
-    [activeImage, isSlideShowActive, numberOfSlides, setActiveImage]
-  );
+    sliderPosition === slideEnd
+      ? ref.scrollTo(0, 0)
+      : ref.scrollBy(slideWidth, 0);
+  };
 
   return (
-    <Section className="Slider" title="Slider">
-      {slidesRendered}
-    </Section>
+    <SlideClickContext.Provider value={slideClickHandler}>
+      <Section className="Slider" title="Slider" theme={theme}>
+        <Slides ref={slidesRef} activeImage={activeImage} {...props} />
+      </Section>
+    </SlideClickContext.Provider>
   );
 };
 
@@ -164,4 +137,8 @@ Slider.propTypes = propTypes;
 Slider.defaultProps = defaultProps;
 
 export default Slider;
-export { propTypes as SliderPropTypes, defaultProps as SliderDefaultProps };
+export {
+  propTypes as SliderPropTypes,
+  defaultProps as SliderDefaultProps,
+  SlideClickContext
+};

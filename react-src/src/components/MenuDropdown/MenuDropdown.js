@@ -112,7 +112,7 @@ const setMenuItemStatusForDropdown = props => {
  * Displays the component
  */
 const MenuDropdown = props => {
-  const { toggled, children, icon1, icon2 } = props;
+  const { icon1, icon2, toggled, children } = props;
 
   /**
    * Displays the dropdown icons

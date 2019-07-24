@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
+import { CategoriesPropTypes, CategoriesDefaultProps } from "../Categories";
+import Posts from "../Posts";
+import Pages, { PagesPropTypes, PagesDefaultProps } from "../Pages";
 import Menu from "../Menu";
 import Content, { ContentPropTypes } from "../Content";
 
@@ -9,7 +12,7 @@ import Content, { ContentPropTypes } from "../Content";
  */
 const propTypes = {
   /**
-   * The ID of default menu item
+   * The default menu item Id
    */
   defaultMenuItem: PropTypes.string,
   /**
@@ -17,9 +20,17 @@ const propTypes = {
    */
   defaultMenuSwitcherIconState: PropTypes.bool,
   /**
-   * The display modes
+   * The initial display modes
    */
-  defaultContentDisplayMode: ContentPropTypes.activeContentDisplayMode
+  defaultContentDisplayMode: ContentPropTypes.activeContentDisplayMode,
+  /**
+   * The default page
+   */
+  defaultPage: PropTypes.shape(PagesPropTypes),
+  /**
+   * The categories
+   */
+  categories: PropTypes.shape(CategoriesPropTypes)
 };
 
 /**
@@ -28,7 +39,9 @@ const propTypes = {
 const defaultProps = {
   defaultMenuItem: "1",
   defaultMenuSwitcherIconState: false,
-  defaultContentDisplayMode: "slider"
+  defaultContentDisplayMode: "slider",
+  defaultPage: PagesDefaultProps,
+  categories: CategoriesDefaultProps
 };
 
 /**
@@ -52,8 +65,11 @@ const Main = props => {
   const {
     defaultMenuItem,
     defaultMenuSwitcherIconState,
-    defaultContentDisplayMode
+    defaultContentDisplayMode,
+    defaultPage,
+    categories
   } = props;
+  console.log("Main");
 
   /**
    * Sets up state for the active menu item
@@ -97,13 +113,26 @@ const Main = props => {
   };
 
   /**
-   * Manages the click on the content switcher icon
+   * Loads from the database.
+   *
+   * They can't be conditionally queried due to hook rules
    */
-  const contentSwitcherClickHandler = () => {
-    const newDisplay =
-      activeContentDisplayMode === "slider" ? "thumbs" : "slider";
-    setActiveContentDisplayMode(newDisplay);
-  };
+  const posts = Posts({
+    variables: { category: Number(activeMenuItem), first: 100 }
+  });
+
+  /**
+   * Filters posts having a featured image set
+   */
+  const edgesWithFeaturedImage = posts.edges.filter(
+    edge => edge.node.featuredImage
+  );
+
+  /**
+   * Loads pages from the database
+   */
+  const pages = Pages(defaultPage);
+  const contactPageContent = pages.edges[0].node.content;
 
   /**
    * Sets up context variables
@@ -125,12 +154,14 @@ const Main = props => {
         <Menu
           activeMenuItem={activeMenuItem}
           menuSwitcherIconState={menuSwitcherIconState}
+          categories={categories}
         />
         <Content
           activeMenuItem={activeMenuItem}
           activeContentDisplayMode={activeContentDisplayMode}
           setActiveContentDisplayMode={setActiveContentDisplayMode}
-          contentSwitcherClickHandler={contentSwitcherClickHandler}
+          edgesWithFeaturedImage={edgesWithFeaturedImage}
+          contactPageContent={contactPageContent}
         />
       </MainContext.Provider>
     </>

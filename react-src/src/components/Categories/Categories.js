@@ -6,17 +6,17 @@ import { useData } from "../../hooks";
 import Category, { CategoryPropTypes, CategoryDefaultProps } from "../Category";
 
 /**
- * Defines the prop types
+ * Defines the prop types.
  */
 const propTypes = {
   /**
-   * The categories
+   * The categories.
    */
   edges: PropTypes.arrayOf(
     PropTypes.shape({ node: PropTypes.shape(CategoryPropTypes) })
   ),
   /**
-   * The query variables
+   * The query variables.
    */
   variables: PropTypes.shape({
     hideEmpty: PropTypes.bool
@@ -24,7 +24,7 @@ const propTypes = {
 };
 
 /**
- * Defines the default props
+ * Defines the default props.
  */
 const defaultProps = {
   edges: Array(1).fill({ node: CategoryDefaultProps }),
@@ -34,7 +34,7 @@ const defaultProps = {
 };
 
 /**
- * Defines the database query
+ * Defines the database query.
  */
 const query = gql`
   query Categories($hideEmpty: Boolean) {
@@ -50,12 +50,13 @@ const query = gql`
 `;
 
 /**
- * Loads categories from the database
+ * Loads categories from the database.
  */
 const Categories = props => {
-  const { variables } = props;
+  const { edges, variables } = props;
+  console.log("Categories");
 
-  return useData(defaultProps, query, "categories", variables);
+  return useData(edges, query, "categories", variables);
 };
 
 Categories.propTypes = propTypes;

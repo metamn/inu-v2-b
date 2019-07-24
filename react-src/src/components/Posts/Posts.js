@@ -66,6 +66,7 @@ const query = gql`
  */
 const Posts = props => {
   const { variables } = props;
+  console.log("Posts");
 
   return useData(defaultProps, query, "posts", variables);
 };

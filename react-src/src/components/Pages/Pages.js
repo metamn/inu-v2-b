@@ -20,9 +20,9 @@ const propTypes = {
    */
   variables: PropTypes.shape({
     first: PropTypes.number,
-    where: {
+    where: PropTypes.shape({
       title: PropTypes.string
-    }
+    })
   })
 };
 
@@ -59,12 +59,10 @@ const query = gql`
  * Loads the Contact page from the database
  */
 const Pages = props => {
-  /**
-   * Loads only the `Contact` page
-   */
   const { variables } = props;
+  console.log("Pages");
 
-  return useData(defaultProps, query, "pages", variables);
+  return useData(props, query, "pages", variables);
 };
 
 Pages.propTypes = propTypes;

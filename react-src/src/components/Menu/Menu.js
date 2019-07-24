@@ -1,16 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import Categories, {
-  CategoriesPropTypes,
-  CategoriesDefaultProps
-} from "../Categories";
+import { CategoriesPropTypes, CategoriesDefaultProps } from "../Categories";
 import MenuItem, { MenuItemPropTypes } from "../MenuItem";
-import MenuDropdown, {
-  MenuDropdownPropTypes,
-  MenuDropdownDefaultProps,
-  setMenuItemStatusForDropdown
-} from "../MenuDropdown";
+import MenuDropdown, { setMenuItemStatusForDropdown } from "../MenuDropdown";
 
 /**
  * Defines the prop types
@@ -25,21 +18,17 @@ const propTypes = {
    */
   menuSwitcherIconState: PropTypes.bool,
   /**
+   * The categories
+   */
+  categories: PropTypes.shape(CategoriesPropTypes),
+  /**
    * The `Random` menu item
    */
   random: PropTypes.shape(MenuItemPropTypes),
   /**
    * The `Contact` menu item
    */
-  contact: PropTypes.shape(MenuItemPropTypes),
-  /**
-   * The drowpdown menu
-   */
-  ...MenuDropdownPropTypes,
-  /**
-   * The default category query
-   */
-  defaultCategoriesQuery: CategoriesPropTypes.variables
+  contact: PropTypes.shape(MenuItemPropTypes)
 };
 
 /**
@@ -48,6 +37,7 @@ const propTypes = {
 const defaultProps = {
   activeMenuItem: "1",
   menuSwitcherIconState: false,
+  categories: CategoriesDefaultProps,
   random: {
     name: "Random slideshow",
     id: "-1"
@@ -55,9 +45,7 @@ const defaultProps = {
   contact: {
     name: "Contact",
     id: "-2"
-  },
-  ...MenuDropdownDefaultProps,
-  defaultCategoriesQuery: CategoriesDefaultProps.variables
+  }
 };
 
 /**
@@ -98,15 +86,13 @@ const categoryToMenuItem = category => {
  */
 const Menu = props => {
   const {
-    menuSwitcherIconState,
     activeMenuItem,
-    defaultCategoriesQuery
+    menuSwitcherIconState,
+    categories,
+    random,
+    contact
   } = props;
-
-  /**
-   * Loads categories
-   */
-  const categories = Categories({ variables: defaultCategoriesQuery });
+  console.log("Menu");
 
   /**
    * Displays categories as menu items
@@ -117,11 +103,6 @@ const Menu = props => {
     menuSwitcherIconState: menuSwitcherIconState,
     activeMenuItem: activeMenuItem
   });
-
-  /**
-   * Loads `Random` and `Contact` menu items
-   */
-  const { random, contact } = props;
 
   /**
    * Displays  `Random` and `Contact` menu items
