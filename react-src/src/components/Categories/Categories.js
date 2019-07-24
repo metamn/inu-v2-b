@@ -54,7 +54,6 @@ const query = gql`
  */
 const Categories = props => {
   const { edges, variables } = props;
-  console.log("Categories");
 
   return useData(edges, query, "categories", variables);
 };

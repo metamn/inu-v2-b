@@ -92,7 +92,6 @@ const Menu = props => {
     random,
     contact
   } = props;
-  console.log("Menu");
 
   /**
    * Displays categories as menu items

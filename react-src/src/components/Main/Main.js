@@ -69,7 +69,6 @@ const Main = props => {
     defaultPage,
     categories
   } = props;
-  console.log("Main");
 
   /**
    * Sets up state for the active menu item

@@ -106,8 +106,6 @@ const Content = props => {
     defaultImage
   } = props;
 
-  console.log("Content");
-
   /**
    * Sets up state to mark the active image (thumb, or slide)
    */

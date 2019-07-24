@@ -180,7 +180,6 @@ const Home = props => {
    * Loads props
    */
   const { settings, defaultThemeSwitcherIcon, defaultCategoriesQuery } = props;
-  console.log("Home");
 
   /**
    * Sets up theme

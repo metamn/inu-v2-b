@@ -87,7 +87,6 @@ const SlideClickContext = React.createContext({});
 const Slider = props => {
   const { edges, activeImage, slidesRef } = props;
   const { theme } = useTheme();
-  console.log("Slider");
 
   /**
    * Calculates the number of slides
