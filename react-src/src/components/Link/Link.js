@@ -19,11 +19,7 @@ const propTypes = {
   /**
    * The link content
    */
-  children: PropTypes.any,
-  /**
-   * The link style
-   */
-  linkStyle: PropTypes.string
+  children: PropTypes.any
 };
 
 /**
@@ -32,8 +28,7 @@ const propTypes = {
 const defaultProps = {
   url: "http://example.com",
   title: "http://example.com",
-  children: "http://example.com",
-  linkStyle: "default"
+  children: "http://example.com"
 };
 
 /**
@@ -49,11 +44,11 @@ const Container = styled("a")(props => ({
  * Displays a HTML link element
  */
 const Link = props => {
-  const { url, children } = props;
+  const { url, title, children } = props;
   const { theme } = useTheme();
 
   return (
-    <Container className="link" theme={theme} href={url} {...props}>
+    <Container className="link" href={url} title={title} theme={theme}>
       {children}
     </Container>
   );

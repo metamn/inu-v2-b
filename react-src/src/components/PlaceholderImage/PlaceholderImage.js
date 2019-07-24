@@ -6,11 +6,29 @@ import styled from "styled-components";
  * Defines the prop types
  */
 const propTypes = {
+  /**
+   * The url of the placeholder image service
+   */
   url: PropTypes.string,
+  /**
+   * The background color
+   */
   backgroundColor: PropTypes.string,
+  /**
+   * The text color
+   */
   color: PropTypes.string,
+  /**
+   * The text (optional)
+   */
   text: PropTypes.string,
+  /**
+   * The image width in pixels
+   */
   width: PropTypes.string,
+  /**
+   * The image height in pixels
+   */
   height: PropTypes.string
 };
 

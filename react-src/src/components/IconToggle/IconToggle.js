@@ -21,7 +21,7 @@ const propTypes = {
    */
   status: IconPropTypes.status,
   /**
-   * The initial icon toggle status
+   * The initial toggle icon status
    */
   toggled: PropTypes.bool
 };
@@ -58,7 +58,7 @@ const IconToggle = props => {
   const icon2Status = toggled ? "active" : "hidden";
 
   return (
-    <Container className="icon-toggle" status={status} {...props}>
+    <Container className="IconToggle" status={status} {...props}>
       <Icon {...icon1} status={icon1Status} />
       <Icon {...icon2} status={icon2Status} />
     </Container>
