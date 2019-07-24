@@ -14,7 +14,7 @@ The slider on mobile screens was confusing: on click the slide disappeared and t
 2. Keep the black/white background switcher.
 3. Fix the slider on mobile screens.
 4. Add a random slideshow.
-5. Keep WordPress as backend.
+5. Keep the WordPress backend.
 6. Refresh the front-end stack and make it future friendly for another couple of years.
 7. Enhance page load performance.
 
@@ -22,15 +22,19 @@ The slider on mobile screens was confusing: on click the slide disappeared and t
 
 The old site was looking like:
 
-![Old site on mobile screens](./react-src/docs/inu-old-mobile.png)
-![Old site in landscape mode](./react-src/docs/inu-old-landscape.png)
-![Old site navigation](./react-src/docs/inu-old-navigation.png)
+<img alt="Old site on mobile screens" src="./react-src/docs/inu-old-mobile.png" width='320' height='auto'/>
+
+<img alt="Old site in landscape mode" src="./react-src/docs/inu-old-landscape.png" width='640' height='auto'/>
+
+<img alt="Old site navigation" src="./react-src/docs/inu-old-navigation.png" width='640' height='auto'/>
 
 The new site looks like:
 
-![The new site on mobile screens](./react-src/docs/inu-new-mobile.png)
-![The new site in landscape mode](./react-src/docs/inu-new-landscape.png)
-![New site navigation](./react-src/docs/inu-new-navigation.png)
+<img alt="New site on mobile screens" src="./react-src/docs/inu-new-mobile.png" width='320' height='auto'/>
+
+<img alt="New site in landscape mode" src="./react-src/docs/inu-new-landscape.png" width='640' height='auto'/>
+
+<img alt="New site navigation" src="./react-src/docs/inu-new-navigation.png" width='640' height='auto'/>
 
 The performance of the old site:
 
