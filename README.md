@@ -1,6 +1,6 @@
 # inu-v2-b
 
-A photo portfolio theme with React, WPGraphQL and Create React WPTheme.
+A photo portfolio theme with React and WordPress.
 
 ## Prerequisites
 
@@ -14,10 +14,17 @@ The slider on mobile screens was confusing: on click the slide disappeared and t
 2. Keep the black/white background switcher.
 3. Fix the slider on mobile screens.
 4. Add a random slideshow.
-5. Make categories order changeable on the backend.
+5. Make categories display order changeable on the backend.
 6. Keep the WordPress backend.
 7. Refresh the front-end stack and make it future friendly for another couple of years.
 8. Enhance page load performance.
+
+## Deliverables
+
+- The new site: http://inu.ro
+- The component guide and the API documentation: http://metamn.io/inu-v2-b-storybook
+- The styleguide: http://inu.ro/styleguide
+- The source code: https://github.com/metamn/inu-v2-b
 
 ## Features
 
@@ -49,53 +56,52 @@ The following features were added:
 - New technologies wherever possible:
 
   - `CSS Grid` layout
-
   - `CSS scroll-snap` for sliding images inspired by [Google Developers](https://developers.google.com/web/updates/2018/07/css-scroll-snap)
 
 ## Development process
 
 A short overview of the major steps and tasks done. It is completely based on [Thinking in React](https://reactjs.org/docs/thinking-in-react.html) with each step separated into a feature branch.
 
-### Mocks - v0.0.1
+### Mocks - [v0.0.1](https://github.com/metamn/inu-v2-b/tree/v0.0.1-mock)
 
 1. Mocking up the component structure and the functionality
 2. Adjusting component structure to the WP GraphQL API
 3. Applying the single responsibility principle
 4. Create requirement specification
 
-### Static content (a.k.a data)- v0.0.2
+### Static content (a.k.a data)- [v0.0.2](https://github.com/metamn/inu-v2-b/tree/v0.0.2-data)
 
 1. Building up the data components.
 2. Continuing with other (presentational) components.
 3. Creating additional components when necessary. Like `MenuItem` for `Menu`.
 4. Focusing on content and data. Any new ideas are added as Github Issues to be implemented later.
 
-### Interaction - v0.0.3
+### Interaction - [v0.0.3](https://github.com/metamn/inu-v2-b/tree/v0.0.3-interaction)
 
 1.  Going through each component which is handling interactive elements and implement their functionality. Usually with states.
 2.  Connect states together and lifting state up.
 
-### Refactoring - v0.0.4
+### Refactoring - [v0.0.4](https://github.com/metamn/inu-v2-b/tree/v0.0.4-refactoring)
 
 1. Make sure all components satisfy the Single Responsibility Principle (SRP).
 2. Separate reusable components (for web, for WordPress) from project specific components.
 
-### Theme - v0.0.5
+### Theme - [v0.0.5](https://github.com/metamn/inu-v2-b/tree/v0.0.5-theme)
 
 1. Presentational (reusable web) components should be semantically valid in the W3C checker.
 2. Container (non-reusable, project specific) components which holds the business logic should be fragments. This way the `divism` is highly reduced and the layout can be easily sketched with CSS Grid.
 3. All elements should be aligned to the typographic grid both vertically and horizontally.
 
-### Performance - v0.0.6
+### Performance - [v0.0.6](https://github.com/metamn/inu-v2-b/tree/v0.0.6-performance)
 
 1. Database queries were lifted up to the highest level. This way the minimum amount of queries are performed only.
 2. A new slider had to be added. The old slider triggered too many re-renders.
 
-### Best practices checklist - v0.0.07
+### Best practices checklist - [v0.0.07](https://github.com/metamn/inu-v2-b/tree/v0.0.7-checklist)
 
 1. Testing the dev version only. After deployment the live (staging) site will be more thoroughly tested.
 
-### Documentation - v0.0.8
+### Documentation - [v0.0.8](https://github.com/metamn/inu-v2-b/tree/v0.0.8-documentation)
 
 1. Developer docs created (this README.md)
 2. Components documented with Storybook
