@@ -70,7 +70,7 @@ const Post = props => {
 
   return (
     <Article className="Post" title={title}>
-      <PostFeaturedImage {...props} featuredImageTitle={title} />
+      <PostFeaturedImage featuredImageTitle={title} {...props} />
     </Article>
   );
 };
