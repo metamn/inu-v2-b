@@ -29,9 +29,14 @@ const propTypes = {
    */
   isSlideShowActive: PropTypes.bool,
   /**
-   * The reference to slides
+   * The reference to slides.
+   *
+   * @see https://stackoverflow.com/questions/48007326/what-is-the-correct-proptype-for-a-ref-in-react#51127130
    */
-  slidesRef: PropTypes.node
+  slidesRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.instanceOf(Slides) })
+  ])
 };
 
 /**
