@@ -24,9 +24,9 @@ const propTypes = {
    */
   defaultContentDisplayMode: ContentPropTypes.activeContentDisplayMode,
   /**
-   * The default page query
+   * The default page
    */
-  defaultPageQuery: PagesPropTypes.variables,
+  defaultPage: PropTypes.shape(PagesPropTypes),
   /**
    * The categories
    */
@@ -40,7 +40,7 @@ const defaultProps = {
   defaultMenuItem: "1",
   defaultMenuSwitcherIconState: false,
   defaultContentDisplayMode: "slider",
-  defaultPageQuery: PagesDefaultProps.variables,
+  defaultPage: PagesDefaultProps,
   categories: CategoriesDefaultProps
 };
 
@@ -66,7 +66,7 @@ const Main = props => {
     defaultMenuItem,
     defaultMenuSwitcherIconState,
     defaultContentDisplayMode,
-    defaultPageQuery,
+    defaultPage,
     categories
   } = props;
   console.log("Main");
@@ -131,7 +131,7 @@ const Main = props => {
   /**
    * Loads pages from the database
    */
-  const pages = Pages({ variables: defaultPageQuery });
+  const pages = Pages(defaultPage);
   const contactPageContent = pages.edges[0].node.content;
 
   /**

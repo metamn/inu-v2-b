@@ -62,7 +62,7 @@ const Pages = props => {
   const { variables } = props;
   console.log("Pages");
 
-  return useData(defaultProps, query, "pages", variables);
+  return useData(props, query, "pages", variables);
 };
 
 Pages.propTypes = propTypes;

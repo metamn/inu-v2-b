@@ -6,7 +6,7 @@ import WebFont from "webfontloader";
 
 import { Media } from "./../../hooks";
 
-import Settings from "../Settings";
+import Settings, { SettingsPropTypes, SettingsDefaultProps } from "../Settings";
 import Categories, {
   CategoriesPropTypes,
   CategoriesDefaultProps
@@ -36,6 +36,10 @@ WebFont.load({
  */
 const propTypes = {
   /**
+   * The site settings
+   */
+  settings: PropTypes.shape(SettingsPropTypes),
+  /**
    * The default theme switcher icon
    */
   defaultThemeSwitcherIcon: PropTypes.string,
@@ -49,6 +53,7 @@ const propTypes = {
  * Defines the default props
  */
 const defaultProps = {
+  settings: SettingsDefaultProps,
   defaultThemeSwitcherIcon: "Theme switcher",
   defaultCategoriesQuery: CategoriesDefaultProps.variables
 };
@@ -174,7 +179,7 @@ const Home = props => {
   /**
    * Loads props
    */
-  const { defaultThemeSwitcherIcon, defaultCategoriesQuery } = props;
+  const { settings, defaultThemeSwitcherIcon, defaultCategoriesQuery } = props;
   console.log("Home");
 
   /**
@@ -207,7 +212,7 @@ const Home = props => {
   /**
    * Loads site settings from the database
    */
-  const siteSettings = Settings();
+  const siteSettings = Settings(settings);
 
   /**
    * Loads categories from the database

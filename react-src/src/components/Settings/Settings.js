@@ -46,9 +46,10 @@ const query = gql`
 /**
  * Loads site settings from the database
  */
-const Settings = () => {
+const Settings = props => {
   console.log("Settings");
-  return useData(defaultProps, query, "generalSettings");
+
+  return useData(props, query, "generalSettings");
 };
 
 Settings.propTypes = propTypes;

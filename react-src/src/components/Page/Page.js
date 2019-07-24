@@ -2,7 +2,9 @@ import PropTypes from "prop-types";
 import gql from "graphql-tag";
 
 /**
- * Defines the prop types
+ * Defines the prop types.
+ *
+ * Used only to describe the schema. It will be re-used by `Pages`.
  */
 const propTypes = {
   /**
@@ -20,7 +22,7 @@ const propTypes = {
 };
 
 /**
- * Defines the default props
+ * Defines the default props.
  */
 const defaultProps = {
   id: "1",
@@ -29,7 +31,7 @@ const defaultProps = {
 };
 
 /**
- * Defines the query fragment needed by the component
+ * Defines the query fragment needed by the component.
  */
 const queryFragment = {
   node: gql`
