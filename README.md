@@ -29,6 +29,8 @@ Based on [Thinking in React](https://reactjs.org/docs/thinking-in-react.html).
 
    - It needs no `activeImage` for scrolling. This state can be eliminated therefore on slide click the `<Content>` is not re-rendered. In fact nothing gets rendered on scroll / click.
 
+4. Props re-checked after the consistent changes above.
+
 ### Mocks - v0.0.1
 
 1. Mocking up the component structure and the functionality
