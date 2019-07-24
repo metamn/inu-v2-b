@@ -57,10 +57,15 @@ const IconToggle = props => {
   const icon1Status = toggled ? "hidden" : "active";
   const icon2Status = toggled ? "active" : "hidden";
 
+  /**
+   * Removes the icon click handler
+   */
+  const clickHandler = () => {};
+
   return (
     <Container className="IconToggle" status={status} {...props}>
-      <Icon {...icon1} status={icon1Status} />
-      <Icon {...icon2} status={icon2Status} />
+      <Icon {...icon1} status={icon1Status} clickHandler={clickHandler} />
+      <Icon {...icon2} status={icon2Status} clickHandler={clickHandler} />
     </Container>
   );
 };
