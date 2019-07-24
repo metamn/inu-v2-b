@@ -219,7 +219,7 @@ const Content = props => {
         className="ContentSwitcherIcon"
         status={iconStatus}
         sizeMultiplier={1}
-        onClick={() => newContentSwitcherClickHandler()}
+        clickHandler={newContentSwitcherClickHandler}
       >
         {contentSwitcherIcon}
       </Icon>

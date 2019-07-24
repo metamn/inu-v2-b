@@ -232,7 +232,7 @@ const Home = props => {
           <Icon
             className="ThemeSwitcherIcon"
             sizeMultiplier={1}
-            onClick={() => switchTheme()}
+            clickHandler={switchTheme}
           >
             {sunIcon}
           </Icon>
