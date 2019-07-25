@@ -60,7 +60,7 @@ The following features were added:
 
 ## Development process
 
-A short overview of the major steps and tasks done. It is completely based on [Thinking in React](https://reactjs.org/docs/thinking-in-react.html) with each step separated into a feature branch.
+A short overview of the major steps and tasks done. It is completely based on [Thinking in React](https://reactjs.org/docs/thinking-in-react.html) with each step separated into a feature branch. Every branch goes into deeper details in its README.md.
 
 ### Mocks - [v0.0.1](https://github.com/metamn/inu-v2-b/tree/v0.0.1-mock)
 
@@ -110,7 +110,7 @@ A short overview of the major steps and tasks done. It is completely based on [T
 
 ## Results
 
-The old site was looking like:
+### The old site look
 
 <img style="border: 1px solid" alt="Old site on mobile screens" src="./react-src/docs/inu-old-mobile.png" width='320' height='auto'/>
 
@@ -118,7 +118,7 @@ The old site was looking like:
 
 <img alt="Old site navigation" src="./react-src/docs/inu-old-navigation.png" width='640' height='auto'/>
 
-The new site looks like:
+### The new site look
 
 <img alt="New site on mobile screens" src="./react-src/docs/inu-new-mobile.png" width='320' height='auto'/>
 
@@ -126,7 +126,9 @@ The new site looks like:
 
 <img alt="New site navigation" src="./react-src/docs/inu-new-navigation.png" width='640' height='auto'/>
 
-The performance of the old site:
+### The old site performance
 
 ![Old site performance, Lighthouse](./react-src/docs/inu-old-lighthouse.png)
 ![Old site performance, WebPageTest](./react-src/docs/inu-old-webpagetest.png)
+
+### The new site performance
