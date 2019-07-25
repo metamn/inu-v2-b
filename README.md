@@ -97,7 +97,7 @@ A short overview of the major steps and tasks done. It is completely based on [T
 1. Database queries were lifted up to the highest level. This way the minimum amount of queries are performed only.
 2. A new slider had to be added. The old slider triggered too many re-renders.
 
-### Best practices checklist - [v0.0.07](https://github.com/metamn/inu-v2-b/tree/v0.0.7-checklist)
+### Best practices checklist - [v0.0.7](https://github.com/metamn/inu-v2-b/tree/v0.0.7-checklist)
 
 1. Testing the dev version only. After deployment the live (staging) site will be more thoroughly tested.
 
