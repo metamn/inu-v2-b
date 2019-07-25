@@ -10,6 +10,8 @@ The component performs the following tasks:
 
 * Is the slideshow active?
 
+* The reference to slides.
+
 </details>
 
 <details>
@@ -25,12 +27,14 @@ The component performs the following tasks:
 </details>
 
 <details>
-	<summary>###Displays the slider
+	<summary>###Displays the slider.
 
 </summary>
-* Counts the slides
+* Calculates the number of slides
 
-* Handles the touch scroll event
+* Manages the click on a slide
+
+Detecting end of scroll: https://stackoverflow.com/questions/19005348/how-to-check-if-the-scrollbar-has-reached-at-the-end-of-div
 
 </details>
 

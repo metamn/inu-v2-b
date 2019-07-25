@@ -4,6 +4,18 @@ The component performs the following tasks:
 	<summary>###Defines the prop types
 
 </summary>
+* The url of the placeholder image service
+
+* The background color
+
+* The text color
+
+* The text (optional)
+
+* The image width in pixels
+
+* The image height in pixels
+
 </details>
 
 <details>

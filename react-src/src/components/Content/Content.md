@@ -21,13 +21,15 @@ The component performs the following tasks:
 
 * Sets the active display mode
 
+* The featured images.
+
+For some reasons the PostsPropTypes.edges cannot be used here ..
+
+* The contact page content
+
 * The default content switcher icon
 
-* The content switcher click handler
-
 * The default active image (slide and thumb)
-
-* The default page query
 
 </details>
 
@@ -50,12 +52,6 @@ The component performs the following tasks:
 </details>
 
 <details>
-	<summary>###Creates a context for the click on slide.
-
-</summary>
-</details>
-
-<details>
 	<summary>###Displays various content types
 
 </summary>
@@ -67,17 +63,15 @@ Active - when a category is displayed
 Hidden - When there is a Slideshow
 Inactive - Otherwise ...
 
+* Creates a `ref` to the slides.
+
+It will be used to calculate the active image by the content switcher
+
 * Removes the content switcher click handler when the content switcher icon is inactive
 
-* Loads a list of posts associated to a category
-
-* Filters posts having a featured image set
-
-* Loads the Contact page from the database
+* Manages the click on the content switcher icon
 
 * Manages the click on a thumb.
-
-* Manages the click on a slide.
 
 * Decides which content to be displayed.
 

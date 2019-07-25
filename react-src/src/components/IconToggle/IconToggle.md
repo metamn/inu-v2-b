@@ -10,7 +10,7 @@ The component performs the following tasks:
 
 * The component status
 
-* The initial icon toggle status
+* The initial toggle icon status
 
 </details>
 
@@ -31,6 +31,8 @@ The component performs the following tasks:
 
 </summary>
 * Derives the state of the icons
+
+* Removes the icon click handler
 
 </details>
 
