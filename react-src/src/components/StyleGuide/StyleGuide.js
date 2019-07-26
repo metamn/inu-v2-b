@@ -41,6 +41,11 @@ const Container = styled("div")(props => ({
 }));
 
 /**
+ * Styles the styleguide entries container
+ */
+const Entries = styled("div")(props => ({}));
+
+/**
  * Styles the items container
  */
 const ItemsContainer = styled("div")(props => ({
@@ -191,7 +196,7 @@ const StyleGuide = props => {
   /**
    * Displays the color pairs
    */
-  const colorTexts = Object.keys(colorPairs).map(name => {
+  const colorTexts = Object.keys(colorPairs).map((name, index) => {
     const { color, backgroundColor } = colorPairs[name];
 
     const contrast = getContrast(color, backgroundColor);
@@ -205,6 +210,7 @@ const StyleGuide = props => {
 
     return (
       <TextBox
+        key={index}
         name={name}
         colors={theme.colorPairs[name]}
         fonts={theme.fonts.default}
@@ -227,11 +233,12 @@ const StyleGuide = props => {
   /**
    * Displays the fonts used
    */
-  const fontTexts = Object.keys(fonts).map(name => {
+  const fontTexts = Object.keys(fonts).map((name, index) => {
     const { fontFamily } = fonts[name];
 
     return (
       <TextBox
+        key={index}
         name={name}
         colors={theme.colorPairs.default}
         fonts={theme.fonts[name]}
@@ -253,11 +260,12 @@ const StyleGuide = props => {
   /**
    * Displays the typographic scale
    */
-  const scaleTexts = Object.keys(sgScales).map(name => {
+  const scaleTexts = Object.keys(sgScales).map((name, index) => {
     const value = sgScales[name];
 
     return (
       <TextBox
+        key={index}
         name={name}
         colors={theme.colorPairs.default}
         fonts={theme.fonts.default}
@@ -285,11 +293,12 @@ const StyleGuide = props => {
   /**
    * Displays the link styles
    */
-  const linkTexts = Object.keys(links).map(name => {
+  const linkTexts = Object.keys(links).map((name, index) => {
     const value = links[name];
 
     return (
       <TextBox
+        key={index}
         name={name}
         colors={theme.colorPairs.default}
         fonts={theme.fonts.default}
@@ -311,11 +320,12 @@ const StyleGuide = props => {
   /**
    * Displays the text styles
    */
-  const textStyleTexts = Object.keys(textStyles).map(name => {
+  const textStyleTexts = Object.keys(textStyles).map((name, index) => {
     const value = textStyles[name];
 
     return (
       <TextBox
+        key={`test-${index}`}
         name={name}
         colors={theme.colorPairs.default}
         fonts={theme.fonts.default}
@@ -341,42 +351,50 @@ const StyleGuide = props => {
     {
       id: "icons",
       name: "Icons",
-      url: "#icons"
+      url: "#icons",
+      content: iconList
     },
     {
       id: "cursors",
       name: "Cursors",
-      url: "#cursors"
+      url: "#cursors",
+      content: cursorList
     },
     {
       id: "colors",
       name: "Colors",
-      url: "#colors"
+      url: "#colors",
+      content: colorSwatches
     },
     {
       id: "colorpairs",
       name: "Color pairs",
-      url: "#colorpairs"
+      url: "#colorpairs",
+      content: colorTexts
     },
     {
       id: "fonts",
       name: "Fonts",
-      url: "#fonts"
+      url: "#fonts",
+      content: fontTexts
     },
     {
       id: "scales",
       name: "Scale",
-      url: "#scales"
+      url: "#scales",
+      content: scaleTexts
     },
     {
       id: "links",
       name: "Links",
-      url: "#links"
+      url: "#links",
+      content: linkTexts
     },
     {
       id: "text-styles",
       name: "Text styles",
-      url: "#text-styles"
+      url: "#text-styles",
+      content: textStyleTexts
     }
   ];
 
@@ -384,6 +402,19 @@ const StyleGuide = props => {
    * Loads site settings from the database
    */
   const siteSettings = Settings();
+
+  /**
+   * Creates styleguide entries`
+   */
+  const entries = menuItems.map((item, index) => {
+    const { id, name, url, content } = item;
+
+    return (
+      <ItemsContainer id={id} className={name} key={index}>
+        {content}
+      </ItemsContainer>
+    );
+  });
 
   return (
     <>
@@ -394,46 +425,7 @@ const StyleGuide = props => {
         <Container className="StyleGuide" theme={theme}>
           <Logo {...siteSettings} />
           <Menu items={menuItems} />
-
-          <ItemsContainer id="icons" className="Icons" key="Icons">
-            {iconList}
-          </ItemsContainer>
-
-          <ItemsContainer id="cursors" className="Cursors" key="Cursors">
-            {cursorList}
-          </ItemsContainer>
-
-          <ItemsContainer id="colors" className="Colors" key="Colors">
-            {colorSwatches}
-          </ItemsContainer>
-
-          <ItemsContainer
-            id="colorpairs"
-            className="ColorTexts"
-            key="ColorTexts"
-          >
-            {colorTexts}
-          </ItemsContainer>
-
-          <ItemsContainer id="fonts" className="FontTexts" key="" FontTexts>
-            {fontTexts}
-          </ItemsContainer>
-
-          <ItemsContainer id="scales" className="Scales" key="Scales">
-            {scaleTexts}
-          </ItemsContainer>
-
-          <ItemsContainer id="links" className="Links" key="Links">
-            {linkTexts}
-          </ItemsContainer>
-
-          <ItemsContainer
-            id="text-styles"
-            className="textStyles"
-            key="textStyles"
-          >
-            {textStyleTexts}
-          </ItemsContainer>
+          <Entries>{entries}</Entries>
         </Container>
       </ThemeContext.Provider>
     </>
