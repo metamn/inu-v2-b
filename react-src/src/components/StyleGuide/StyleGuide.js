@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { modularScale, getContrast, meetsContrastGuidelines } from "polished";
 
 import Theme, { sgColors, sgScales } from "../Theme";
-import { modularScale, getContrast, meetsContrastGuidelines } from "polished";
+import { ThemeContext } from "../Home";
 
 import Reset from "../Reset";
 import TypographicGrid from "../TypographicGrid";
@@ -113,11 +114,6 @@ const MeetsContrastItem = styled("span")(props => ({
 }));
 
 /**
- * Creates a theme context
- */
-const SgThemeContext = React.createContext({});
-
-/**
  * Displays the styleguide.
  */
 const StyleGuide = props => {
@@ -144,15 +140,15 @@ const StyleGuide = props => {
   /**
    * Displays the icons
    */
-  const iconList = Object.keys(icons).map(name => {
+  const iconList = Object.keys(icons).map((name, index) => {
     const value = icons[name];
 
     return (
-      <ItemContainer>
-        <div class="text">
+      <ItemContainer key={index}>
+        <div className="text">
           <Icon>{value}</Icon>
         </div>
-        <div class="details">
+        <div className="details">
           <p>{name}</p>
         </div>
       </ItemContainer>
@@ -162,14 +158,14 @@ const StyleGuide = props => {
   /**
    * Displays the cursors
    */
-  const cursorList = Object.keys(cursors).map(name => {
+  const cursorList = Object.keys(cursors).map((name, index) => {
     const value = cursors[name];
     const src = `${themeUri}/${value}`;
 
     return (
-      <ItemContainer>
+      <ItemContainer key={index}>
         <img src={src} alt="cursor" />
-        <div class="details">
+        <div className="details">
           <p>{name}</p>
         </div>
       </ItemContainer>
@@ -179,13 +175,13 @@ const StyleGuide = props => {
   /**
    * Displays the colors
    */
-  const colorSwatches = Object.keys(sgColors).map(name => {
+  const colorSwatches = Object.keys(sgColors).map((name, index) => {
     const value = sgColors[name];
     const currentColors = colorPairs.default;
     const { backgroundColor } = currentColors;
 
     return (
-      <ItemContainer className="color">
+      <ItemContainer key={index} className="color">
         <Circle className="circle" color={value} current={backgroundColor} />
         <span className="text">{name}</span>
       </ItemContainer>
@@ -215,11 +211,11 @@ const StyleGuide = props => {
         textStyle={theme.textStyles.default}
         link={theme.links.default}
       >
-        <div class="text">
+        <div className="text">
           Colors don't exist alone yet in pairs, like black on white. All color
           pairs have a contrast ratio set for perfect readability.
         </div>
-        <div class="details">
+        <div className="details">
           <p>Name: {name}</p>
           <p>Contrast ratio: {contrast}</p>
           <p>Meets guidelines: {meetsContrastItems}</p>
@@ -242,11 +238,11 @@ const StyleGuide = props => {
         textStyle={theme.textStyles.default}
         link={theme.links.default}
       >
-        <div class="text">
+        <div className="text">
           Hello, I'm a designer and developer creating user interfaces and
           experiences for the web.
         </div>
-        <div class="details">
+        <div className="details">
           <p>Name: {name}</p>
           <p>Font family: {fontFamily}</p>
         </div>
@@ -269,7 +265,7 @@ const StyleGuide = props => {
         scale={value}
         link={theme.links.default}
       >
-        <div class="text with-scale">
+        <div className="text with-scale">
           Typographic grid and scale. Different font sizes based on the{" "}
           <a
             href="https://polished.js.org/docs/#modularscale"
@@ -278,7 +274,7 @@ const StyleGuide = props => {
             Modular Scale.
           </a>
         </div>
-        <div class="details">
+        <div className="details">
           <p>Name: {name}</p>
           <p>Modular scale: {value}</p>
         </div>
@@ -300,12 +296,12 @@ const StyleGuide = props => {
         textStyle={theme.textStyles.default}
         link={value}
       >
-        <div class="text">
+        <div className="text">
           <a href="#" title="link">
             This is the {name} link style. No decoration just on hover.
           </a>
         </div>
-        <div class="details">
+        <div className="details">
           <p>Name: {name}</p>
         </div>
       </TextBox>
@@ -326,12 +322,12 @@ const StyleGuide = props => {
         textStyle={value}
         link={theme.links.default}
       >
-        <div class="text">
+        <div className="text">
           This is the default text. With a high contrast background and a modern
           typeface with extra letter spacing it should look electric, vibrant,
           energizing on all displays.
         </div>
-        <div class="details">
+        <div className="details">
           <p>Name: {name}</p>
         </div>
       </TextBox>
@@ -393,12 +389,53 @@ const StyleGuide = props => {
     <>
       <Reset />
       <Meta {...siteSettings} />
-      <SgThemeContext.Provider value={starterTheme}>
+      <ThemeContext.Provider value={starterTheme}>
         <TypographicGrid />
         <Container className="StyleGuide" theme={theme}>
           <Logo {...siteSettings} />
+          <Menu items={menuItems} />
+
+          <ItemsContainer id="icons" className="Icons" key="Icons">
+            {iconList}
+          </ItemsContainer>
+
+          <ItemsContainer id="cursors" className="Cursors" key="Cursors">
+            {cursorList}
+          </ItemsContainer>
+
+          <ItemsContainer id="colors" className="Colors" key="Colors">
+            {colorSwatches}
+          </ItemsContainer>
+
+          <ItemsContainer
+            id="colorpairs"
+            className="ColorTexts"
+            key="ColorTexts"
+          >
+            {colorTexts}
+          </ItemsContainer>
+
+          <ItemsContainer id="fonts" className="FontTexts" key="" FontTexts>
+            {fontTexts}
+          </ItemsContainer>
+
+          <ItemsContainer id="scales" className="Scales" key="Scales">
+            {scaleTexts}
+          </ItemsContainer>
+
+          <ItemsContainer id="links" className="Links" key="Links">
+            {linkTexts}
+          </ItemsContainer>
+
+          <ItemsContainer
+            id="text-styles"
+            className="textStyles"
+            key="textStyles"
+          >
+            {textStyleTexts}
+          </ItemsContainer>
         </Container>
-      </SgThemeContext.Provider>
+      </ThemeContext.Provider>
     </>
   );
 };
@@ -407,4 +444,4 @@ StyleGuide.propTypes = propTypes;
 StyleGuide.defaultProps = defaultProps;
 
 export default StyleGuide;
-export { propTypes, defaultProps, SgThemeContext };
+export { propTypes, defaultProps };
