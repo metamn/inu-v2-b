@@ -12,8 +12,8 @@ import TypographicGrid from "../TypographicGrid";
 import Settings, { SettingsPropTypes, SettingsDefaultProps } from "../Settings";
 import Meta from "../Meta";
 import Logo from "../Logo";
-import Menu from "../Menu";
 import Icon from "../Icon";
+import Link from "../Link";
 
 /**
  * Defines the prop types
@@ -41,9 +41,19 @@ const Container = styled("div")(props => ({
 }));
 
 /**
+ * Styles the menu container
+ */
+const Menu = styled("ul")(props => ({}));
+
+/**
+ * Styles the menu items
+ */
+const MenuItem = styled("li")(props => ({}));
+
+/**
  * Styles the styleguide entries container
  */
-const Entries = styled("div")(props => ({}));
+const StyleguideEntries = styled("div")(props => ({}));
 
 /**
  * Styles the items container
@@ -347,7 +357,7 @@ const StyleGuide = props => {
   /**
    * Displays the menu
    */
-  const menuItems = [
+  const menu = [
     {
       id: "icons",
       name: "Icons",
@@ -399,14 +409,24 @@ const StyleGuide = props => {
   ];
 
   /**
-   * Loads site settings from the database
+   * Creates menu items
    */
-  const siteSettings = Settings();
+  const menuItems = menu.map((item, index) => {
+    const { id, name, url } = item;
+
+    return (
+      <MenuItem key={index}>
+        <Link id={id} title={name} url={url}>
+          {name}
+        </Link>
+      </MenuItem>
+    );
+  });
 
   /**
-   * Creates styleguide entries`
+   * Creates styleguide entries
    */
-  const entries = menuItems.map((item, index) => {
+  const styleguideEntries = menu.map((item, index) => {
     const { id, name, url, content } = item;
 
     return (
@@ -416,6 +436,11 @@ const StyleGuide = props => {
     );
   });
 
+  /**
+   * Loads site settings from the database
+   */
+  const siteSettings = Settings();
+
   return (
     <>
       <Reset />
@@ -424,8 +449,8 @@ const StyleGuide = props => {
         <TypographicGrid />
         <Container className="StyleGuide" theme={theme}>
           <Logo {...siteSettings} />
-          <Menu items={menuItems} />
-          <Entries>{entries}</Entries>
+          <Menu>{menuItems}</Menu>
+          <StyleguideEntries>{styleguideEntries}</StyleguideEntries>
         </Container>
       </ThemeContext.Provider>
     </>

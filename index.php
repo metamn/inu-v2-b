@@ -22,5 +22,5 @@
         You need to enable JavaScript to run this app.
     </noscript>
     <div id="root"></div>
-    <script src="/react-wp/wp-content/themes/inu-v2-b/static/js/runtime~main.ad097248.js"></script><script src="/react-wp/wp-content/themes/inu-v2-b/static/js/0.a5c6e0fa.chunk.js"></script><script src="/react-wp/wp-content/themes/inu-v2-b/static/js/main.4e0e737e.chunk.js"></script></body>
+    <script src="/react-wp/wp-content/themes/inu-v2-b/static/js/runtime~main.ad097248.js"></script><script src="/react-wp/wp-content/themes/inu-v2-b/static/js/1.53579d1a.chunk.js"></script><script src="/react-wp/wp-content/themes/inu-v2-b/static/js/main.3e82d4bc.chunk.js"></script></body>
 </html>
