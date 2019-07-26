@@ -14,9 +14,9 @@ const App = () => {
   return (
     <Router basename={baseName}>
       <Switch>
-        <Route path="/styleguide" component={StyleGuide} />
         <ApolloProvider client={apolloClient}>
-          <Route path="/" component={Home} />
+          <Route exact path="/" component={Home} />
+          <Route path="/styleguide" component={StyleGuide} />
         </ApolloProvider>
       </Switch>
     </Router>

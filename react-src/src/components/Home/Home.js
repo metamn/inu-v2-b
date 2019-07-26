@@ -6,19 +6,20 @@ import WebFont from "webfontloader";
 
 import { Media } from "./../../hooks";
 
+import Theme, { switchThemeFrom } from "../Theme";
+
+import Reset from "../Reset";
+import TypographicGrid from "../TypographicGrid";
 import Settings, { SettingsPropTypes, SettingsDefaultProps } from "../Settings";
 import Categories, {
   CategoriesPropTypes,
   CategoriesDefaultProps
 } from "../Categories";
-import Reset from "../Reset";
-import TypographicGrid from "../TypographicGrid";
-import { Section as _Section } from "../SemanticHTML";
 import Meta from "../Meta";
 import Logo from "../Logo";
 import Main from "../Main";
 import _Icon from "../Icon";
-import Theme, { switchThemeFrom } from "../Theme";
+import { Section as _Section } from "../SemanticHTML";
 
 /**
  * Loads web fonts

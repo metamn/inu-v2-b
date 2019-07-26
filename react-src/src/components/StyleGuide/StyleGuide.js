@@ -8,7 +8,8 @@ import { modularScale, getContrast, meetsContrastGuidelines } from "polished";
 import Reset from "../Reset";
 import TypographicGrid from "../TypographicGrid";
 
-import Meta, { MetaPropTypes } from "../Meta";
+import Settings, { SettingsPropTypes, SettingsDefaultProps } from "../Settings";
+import Meta from "../Meta";
 import Logo from "../Logo";
 import Menu from "../Menu";
 import Icon from "../Icon";
@@ -20,16 +21,14 @@ const propTypes = {
   /**
    * Page title and url
    */
-  ...MetaPropTypes
+  ...SettingsPropTypes
 };
 
 /**
  * Defines the default props
  */
 const defaultProps = {
-  title: "Styleguide",
-  description: "for inu.ro",
-  url: "http://inu.ro/styleguide"
+  ...SettingsDefaultProps
 };
 
 /**
@@ -203,7 +202,9 @@ const StyleGuide = props => {
     const meetsContrast = meetsContrastGuidelines(color, backgroundColor);
 
     const meetsContrastItems = Object.keys(meetsContrast).map(key => (
-      <MeetsContrastItem ok={meetsContrast[key]}>{key}</MeetsContrastItem>
+      <MeetsContrastItem key={key} ok={meetsContrast[key]}>
+        {key}
+      </MeetsContrastItem>
     ));
 
     return (
@@ -383,47 +384,19 @@ const StyleGuide = props => {
     }
   ];
 
+  /**
+   * Loads site settings from the database
+   */
+  const siteSettings = Settings();
+
   return (
     <>
       <Reset />
-      <Meta {...props} />
+      <Meta {...siteSettings} />
       <SgThemeContext.Provider value={starterTheme}>
         <TypographicGrid />
         <Container className="StyleGuide" theme={theme}>
-          <Logo {...props} />
-          <Menu items={menuItems} />
-
-          <ItemsContainer id="icons" className="Icons">
-            {iconList}
-          </ItemsContainer>
-
-          <ItemsContainer id="cursors" className="Cursors">
-            {cursorList}
-          </ItemsContainer>
-
-          <ItemsContainer id="colors" className="Colors">
-            {colorSwatches}
-          </ItemsContainer>
-
-          <ItemsContainer id="colorpairs" className="ColorTexts">
-            {colorTexts}
-          </ItemsContainer>
-
-          <ItemsContainer id="fonts" className="FontTexts">
-            {fontTexts}
-          </ItemsContainer>
-
-          <ItemsContainer id="scales" className="Scales">
-            {scaleTexts}
-          </ItemsContainer>
-
-          <ItemsContainer id="links" className="Links">
-            {linkTexts}
-          </ItemsContainer>
-
-          <ItemsContainer id="text-styles" className="textStyles">
-            {textStyleTexts}
-          </ItemsContainer>
+          <Logo {...siteSettings} />
         </Container>
       </SgThemeContext.Provider>
     </>
@@ -434,4 +407,4 @@ StyleGuide.propTypes = propTypes;
 StyleGuide.defaultProps = defaultProps;
 
 export default StyleGuide;
-export { propTypes, defaultProps };
+export { propTypes, defaultProps, SgThemeContext };
