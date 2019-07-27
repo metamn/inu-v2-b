@@ -44,7 +44,7 @@ const propTypes = {
  */
 const defaultProps = {
   ...PostsDefaultProps,
-  activeImage: 1,
+  activeImage: 0,
   setActiveImage: () => {
     console.log("Active image setter");
   },

@@ -70,7 +70,7 @@ const defaultProps = {
   edgesWithFeaturedImage: Array(1).fill({ node: PostDefaultProps }),
   contactPageContent: "Contact page content",
   defaultContentSwitcherIcon: "Contet switcher icon",
-  defaultImage: 1
+  defaultImage: 0
 };
 
 /**
