@@ -1,7 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { modularScale, getContrast, meetsContrastGuidelines } from "polished";
+import {
+  modularScale,
+  getContrast,
+  meetsContrastGuidelines,
+  wordWrap
+} from "polished";
 
 import { Media } from "./../../hooks";
 
@@ -63,13 +68,17 @@ const Container = styled("div")(props => ({
  * Styles the menu container
  */
 const Menu = styled("ul")(props => ({
-  margin: "var(--lem) 0"
+  margin: "calc(var(--lem) * 2) 0 var(--lem)",
+  listStyle: "none"
 }));
 
 /**
  * Styles the menu items
  */
-const MenuItem = styled("li")(props => ({}));
+const MenuItem = styled("li")(props => ({
+  marginBottom: "var(--lem)",
+  borderBottom: "1px solid"
+}));
 
 /**
  * Styles the styleguide entries container
@@ -82,7 +91,7 @@ const StyleguideEntries = styled("div")(props => ({}));
 const ItemsContainer = styled(_Section)(props => ({
   display: "flex",
   flexDirection: "column",
-  marginBottom: "var(--lem)",
+  margin: "calc(var(--lem) * 2) 0",
 
   "& .title": {
     display: "flex",
@@ -100,7 +109,22 @@ const ItemsContainer = styled(_Section)(props => ({
 /**
  * Styles the item container
  */
-const ItemContainer = styled("div")(props => ({}));
+const ItemContainer = styled("div")(props => ({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  width: "calc(var(--lem) * 6)",
+  marginBottom: "var(--lem)",
+
+  "& .Details, & .Text": {
+    ...wordWrap("break-word"),
+    marginTop: "var(--lem)",
+
+    "& > *": {
+      ...wordWrap("break-word")
+    }
+  }
+}));
 
 /**
  * Styles the color circle
@@ -119,11 +143,11 @@ const Circle = styled("span")(props => ({
  */
 const TextBox = styled("div")(props => ({
   ...props.fonts,
+  ...wordWrap("break-word"),
 
   width: "100%",
   maxWidth: "calc(var(--lem) * 25)",
   border: "1px solid",
-  wordWrap: "break-word",
   marginBottom: "var(--lem)",
 
   "& a": {
@@ -187,11 +211,11 @@ const StyleGuide = props => {
     const value = icons[name];
 
     return (
-      <ItemContainer className="ItemContainer" key={index}>
-        <div className="text">
+      <ItemContainer className="ItemContainer Icon" key={index}>
+        <div className="Text">
           <Icon>{value}</Icon>
         </div>
-        <div className="details">
+        <div className="Details">
           <p>{name}</p>
         </div>
       </ItemContainer>
@@ -203,12 +227,13 @@ const StyleGuide = props => {
    */
   const cursorList = Object.keys(cursors).map((name, index) => {
     const value = cursors[name];
-    const src = `${themeUri}/${value}`;
+    const { image } = value;
+    const src = `${themeUri}/${image}`;
 
     return (
-      <ItemContainer className="ItemContainer" key={index}>
+      <ItemContainer className="ItemContainer Cursor" key={index}>
         <img src={src} alt="cursor" />
-        <div className="details">
+        <div className="Details">
           <p>{name}</p>
         </div>
       </ItemContainer>
@@ -260,11 +285,11 @@ const StyleGuide = props => {
           Colors don't exist alone yet in pairs, like black on white. All color
           pairs have a contrast ratio set for perfect readability.
         </div>
-        <div className="Details">
-          <p>Name: {name}</p>
-          <p>Contrast ratio: {contrast}</p>
-          <p>Meets guidelines: {meetsContrastItems}</p>
-        </div>
+        <ul className="Details">
+          <li>Name: {name}</li>
+          <li>Contrast ratio: {contrast}</li>
+          <li>Meets guidelines: {meetsContrastItems}</li>
+        </ul>
       </TextBox>
     );
   });
@@ -289,10 +314,10 @@ const StyleGuide = props => {
           Hello, I'm a designer and developer creating user interfaces and
           experiences for the web.
         </div>
-        <div className="Details">
-          <p>Name: {name}</p>
-          <p>Font family: {fontFamily}</p>
-        </div>
+        <ul className="Details">
+          <li>Name: {name}</li>
+          <li>Font family: {fontFamily}</li>
+        </ul>
       </TextBox>
     );
   });
@@ -323,10 +348,10 @@ const StyleGuide = props => {
             Modular Scale.
           </a>
         </div>
-        <div className="Details">
-          <p>Name: {name}</p>
-          <p>Modular scale: {value}</p>
-        </div>
+        <ul className="Details">
+          <li>Name: {name}</li>
+          <li>Modular scale: {value}</li>
+        </ul>
       </TextBox>
     );
   });
@@ -352,9 +377,9 @@ const StyleGuide = props => {
             This is the {name} link style. No decoration just on hover.
           </a>
         </div>
-        <div className="Details">
-          <p>Name: {name}</p>
-        </div>
+        <ul className="Details">
+          <li>Name: {name}</li>
+        </ul>
       </TextBox>
     );
   });
@@ -380,9 +405,9 @@ const StyleGuide = props => {
           typeface with extra letter spacing it should look electric, vibrant,
           energizing on all displays.
         </div>
-        <div className="Details">
-          <p>Name: {name}</p>
-        </div>
+        <ul className="Details">
+          <li>Name: {name}</li>
+        </ul>
       </TextBox>
     );
   });

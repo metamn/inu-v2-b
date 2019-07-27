@@ -28,15 +28,17 @@ const icons = {
 const cursors = {
   light: {
     brutalistCursor2: {
-      cursor: `url("/react-wp/wp-content/themes/inu-v2/brutalist_line_SVGicon_cursor2.png") 31 0, pointer`
-    },
-    brutalistCursor2Url: `url("/react-wp/wp-content/themes/inu-v2/brutalist_line_SVGicon_cursor2.png") 31 0, pointer`
+      image: "brutalist_line_SVGicon_cursor2.png",
+      cursor: `url("/react-wp/wp-content/themes/inu-v2/brutalist_line_SVGicon_cursor2.png") 31 0, pointer`,
+      url: `url("/react-wp/wp-content/themes/inu-v2/brutalist_line_SVGicon_cursor2.png") 31 0, pointer`
+    }
   },
   dark: {
     brutalistCursor2: {
-      cursor: `url("/react-wp/wp-content/themes/inu-v2/brutalist_line_SVGicon_cursor2-black.png") 31 0, pointer`
-    },
-    brutalistCursor2Url: `url("/react-wp/wp-content/themes/inu-v2/brutalist_line_SVGicon_cursor2-black.png") 31 0, pointer`
+      image: "brutalist_line_SVGicon_cursor2-black.png",
+      cursor: `url("/react-wp/wp-content/themes/inu-v2/brutalist_line_SVGicon_cursor2-black.png") 31 0, pointer`,
+      url: `url("/react-wp/wp-content/themes/inu-v2/brutalist_line_SVGicon_cursor2-black.png") 31 0, pointer`
+    }
   }
 };
 
