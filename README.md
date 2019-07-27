@@ -142,24 +142,25 @@ A short overview of the major steps and tasks done. It is completely based on [T
 
 ### The old site look
 
-<img style="border: 1px solid" alt="Old site on mobile screens" src="./react-src/docs/inu-old-mobile.png" width='320' height='auto'/>
+> <img style="border: 1px solid" alt="Old site on mobile screens" src="./react-src/docs/inu-old-mobile.png" width='320' height='auto'/>
 
-<img alt="Old site in landscape mode" src="./react-src/docs/inu-old-landscape.png" width='640' height='auto'/>
+> <img alt="Old site in landscape mode" src="./react-src/docs/inu-old-landscape.png" width='640' height='auto'/>
 
-<img alt="Old site navigation" src="./react-src/docs/inu-old-navigation.png" width='640' height='auto'/>
+> <img alt="Old site navigation" src="./react-src/docs/inu-old-navigation.png" width='640' height='auto'/>
 
 ### The new site look
 
-<img alt="New site on mobile screens" src="./react-src/docs/inu-new-mobile.png" width='320' height='auto'/>
+> <img alt="New site on mobile screens" src="./react-src/docs/inu-new-mobile.png" width='320' height='auto'/>
 
-<img alt="New site in landscape mode" src="./react-src/docs/inu-new-landscape.png" width='640' height='auto'/>
+> <img alt="New site in landscape mode" src="./react-src/docs/inu-new-landscape.png" width='640' height='auto'/>
 
-<img alt="New site navigation" src="./react-src/docs/inu-new-navigation.png" width='640' height='auto'/>
+> <img alt="New site navigation" src="./react-src/docs/inu-new-navigation.png" width='640' height='auto'/>
 
 ### The old site performance
 
-![Old site performance, Lighthouse](./react-src/docs/inu-old-lighthouse.png)
-![Old site performance, WebPageTest](./react-src/docs/inu-old-webpagetest.png)
+> ![Old site performance, Lighthouse](./react-src/docs/inu-old-lighthouse.png)
+
+> ![Old site performance, WebPageTest](./react-src/docs/inu-old-webpagetest.png)
 
 ### The new site performance
 
