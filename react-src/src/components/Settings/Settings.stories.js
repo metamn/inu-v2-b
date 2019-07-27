@@ -5,7 +5,7 @@ import Settings, { SettingsPropTypes, SettingsDefaultProps } from "./Settings";
 import description from "./Settings.md";
 
 const SettingsForStory = () => {
-  const data = Settings();
+  const data = Settings(SettingsDefaultProps);
   const code = JSON.stringify(data, null, 2);
   return (
     <>

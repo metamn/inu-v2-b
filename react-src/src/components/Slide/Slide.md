@@ -1,18 +1,6 @@
 The component performs the following tasks:
 
 <details>
-	<summary>###Modern scroll snap points
-
-</summary>
-</details>
-
-<details>
-	<summary>###Old scroll snap points
-
-</summary>
-</details>
-
-<details>
 	<summary>###Defines the prop types
 
 </summary>

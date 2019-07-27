@@ -21,6 +21,12 @@ The component performs the following tasks:
 </details>
 
 <details>
+	<summary>###Styles the component for tablets
+
+</summary>
+</details>
+
+<details>
 	<summary>###Styles the component container
 
 </summary>

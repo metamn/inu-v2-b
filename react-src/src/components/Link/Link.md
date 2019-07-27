@@ -10,8 +10,6 @@ The component performs the following tasks:
 
 * The link content
 
-* The link style
-
 </details>
 
 <details>

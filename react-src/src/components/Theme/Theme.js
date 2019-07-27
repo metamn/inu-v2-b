@@ -28,15 +28,17 @@ const icons = {
 const cursors = {
   light: {
     brutalistCursor2: {
-      cursor: `url("/react-wp/wp-content/themes/inu-v2/brutalist_line_SVGicon_cursor2.png") 31 0, pointer`
-    },
-    brutalistCursor2Url: `url("/react-wp/wp-content/themes/inu-v2/brutalist_line_SVGicon_cursor2.png") 31 0, pointer`
+      image: "brutalist_line_SVGicon_cursor2.png",
+      cursor: `url("/react-wp/wp-content/themes/inu-v2/brutalist_line_SVGicon_cursor2.png") 31 0, pointer`,
+      url: `url("/react-wp/wp-content/themes/inu-v2/brutalist_line_SVGicon_cursor2.png") 31 0, pointer`
+    }
   },
   dark: {
     brutalistCursor2: {
-      cursor: `url("/react-wp/wp-content/themes/inu-v2/brutalist_line_SVGicon_cursor2-black.png") 31 0, pointer`
-    },
-    brutalistCursor2Url: `url("/react-wp/wp-content/themes/inu-v2/brutalist_line_SVGicon_cursor2-black.png") 31 0, pointer`
+      image: "brutalist_line_SVGicon_cursor2-black.png",
+      cursor: `url("/react-wp/wp-content/themes/inu-v2/brutalist_line_SVGicon_cursor2-black.png") 31 0, pointer`,
+      url: `url("/react-wp/wp-content/themes/inu-v2/brutalist_line_SVGicon_cursor2-black.png") 31 0, pointer`
+    }
   }
 };
 
@@ -162,6 +164,29 @@ const spacing = {
 };
 
 /**
+ * Padding
+ */
+const padding = spacing => {
+  return {
+    mobile: {
+      padding: `${spacing.top.mobile} ${spacing.left.mobile}`
+    },
+
+    tablet: {
+      padding: `${spacing.top.mobileAndUp} ${spacing.left.tablet}`
+    },
+
+    laptop: {
+      padding: `${spacing.top.mobileAndUp} ${spacing.left.laptop}`
+    },
+
+    desktop: {
+      padding: `${spacing.top.mobileAndUp} ${spacing.left.desktop}`
+    }
+  };
+};
+
+/**
  * Returns a color scheme
  *
  * @param  String colorScheme The name of the color scheme
@@ -188,6 +213,7 @@ const getTheme = colorScheme => {
     icons: icons,
     cursors: cursors[colorScheme],
     spacing: spacing,
+    padding: padding(spacing),
     /** Temporary, we'll have to get from the database */
     themeUri: "wp-content/themes/inu-v2-a"
   };

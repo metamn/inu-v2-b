@@ -1,197 +1,134 @@
 # inu-v2-b
 
-A photo portfolio theme with React, WPGraphQL and Create React WPTheme.
+A photo portfolio theme with React and WordPress.
+
+## Prerequisites
+
+The old [inu.ro](http://inu.ro) design is dated back spring 2014. It's time for a refresh.
+
+The slider on mobile screens was confusing: on click the slide disappeared and the next photo was sliding in. This had to be fixed.
+
+## Requirements
+
+1. Keep the same simple design.
+2. Keep the black/white background switcher.
+3. Fix the slider on mobile screens.
+4. Add a random slideshow.
+5. Make categories display order changeable on the backend.
+6. Keep the WordPress backend.
+7. Refresh the front-end stack and make it future friendly for another couple of years.
+8. Enhance page load performance.
+
+## Deliverables
+
+- The new site: http://inu.ro
+- The component guide and the API documentation: http://metamn.io/inu-v2-b-storybook
+- The styleguide: http://inu.ro/styleguide
+- The source code: https://github.com/metamn/inu-v2-b
+
+## Features
+
+The following features were added:
+
+### Backend
+
+- WordPress updated to Gutenberg.
+- [Category Order and Taxonomy Terms Order](https://www.nsp-code.com/wordpress-plugins/category-order-and-taxonomy-terms-order/) plugin added.
+- Support for multiple ways to add photos:
+  - As a featured image.
+  - Inserted into the post.
+  - As associated media to the post.
+
+### Frontend
+
+- React Single Page Application with function components and hooks.
+- WordPress theming with [create-react-wptheme](https://github.com/devloco/create-react-wptheme)
+- GraphQL with [WP GraphQL](https://www.wpgraphql.com/) and [react-apollo-hooks](https://github.com/trojanowski/react-apollo-hooks)
+- [styled-components](https://www.styled-components.com/) for styling.
+- Prop types for static type checking.
+- Query fragments.
+- Complete API/JSDoc documentation.
+
+### Design
+
+- Component based design with [Storybook](https://storybook.js.org/).
+- Design documentation with a custom made styleguide.
+- New technologies wherever possible:
+
+  - `CSS Grid` layout
+  - `CSS scroll-snap` for sliding images inspired by [Google Developers](https://developers.google.com/web/updates/2018/07/css-scroll-snap)
 
 ## Development process
 
-Based on [Thinking in React](https://reactjs.org/docs/thinking-in-react.html).
+A short overview of the major steps and tasks done. It is completely based on [Thinking in React](https://reactjs.org/docs/thinking-in-react.html) with each step separated into a feature branch. Every branch goes into deeper details in its README.md.
 
-### Mocks - v0.0.1
+### Mocks - [v0.0.1](https://github.com/metamn/inu-v2-b/tree/v0.0.1-mock)
 
 1. Mocking up the component structure and the functionality
-
-![First iteration](./react-src/docs/mocks-1.png)
-
 2. Adjusting component structure to the WP GraphQL API
-
-![Second iteration](./react-src/docs/mocks-2.png)
-
 3. Applying the single responsibility principle
-
-![Third iteration](./react-src/docs/mocks-3.png)
-
 4. Create requirement specification
 
-With a little text cleanup the requirement specification is done!
+### Static content (a.k.a data)- [v0.0.2](https://github.com/metamn/inu-v2-b/tree/v0.0.2-data)
 
-![Fourth iteration](./react-src/docs/mocks-4.png)
+1. Building up the data components.
+2. Continuing with other (presentational) components.
+3. Creating additional components when necessary. Like `MenuItem` for `Menu`.
+4. Focusing on content and data. Any new ideas are added as Github Issues to be implemented later.
 
-### Static content (a.k.a data)- v0.0.2
+### Interaction - [v0.0.3](https://github.com/metamn/inu-v2-b/tree/v0.0.3-interaction)
 
-- Start building up every component.
-- From bottom to top starting with standalone components.
-- Focus on props only, default values and _skip states_.
-- Skip the UI/UX design part. Leave it as it is. Don't do theming. Default props should work.
-- Check components also in Storybook.
-- Leave no warnings in the console log.
+1.  Going through each component which is handling interactive elements and implement their functionality. Usually with states.
+2.  Connect states together and lifting state up.
 
-1. Start with data components.
-2. Continue with other (presentational) components.
-3. Create additional components when necessary. Like `MenuItem` for `Menu`.
-4. Don't fully implement all the features at this stage. Instead create Github Issues for later reuse.
+### Refactoring - [v0.0.4](https://github.com/metamn/inu-v2-b/tree/v0.0.4-refactoring)
 
-![The final screenshot](./react-src/docs/data-1.png)
+1. Make sure all components satisfy the Single Responsibility Principle (SRP).
+2. Separate reusable components (for web, for WordPress) from project specific components.
 
-### Interaction - v0.0.3
+### Theme - [v0.0.5](https://github.com/metamn/inu-v2-b/tree/v0.0.5-theme)
 
-1.  Go through each component which is handling interactive elements and implement their functionality. Usually with states.
+1. Presentational (reusable web) components should be semantically valid in the W3C checker.
+2. Container (non-reusable, project specific) components which holds the business logic should be fragments. This way the `divism` is highly reduced and the layout can be easily sketched with CSS Grid.
+3. All elements should be aligned to the typographic grid both vertically and horizontally.
 
-    1.  To check if something is a state [answer these questions](https://reactjs.org/docs/thinking-in-react.html) and fill the table below. All answers must be `No` to make a candidate a state:
-
-    ```
-    | State candidate          | Props | Unchanged | Computable |
-    -------------------------------------------------------------
-    | state                    | No    | No        | No         |
-    | ....                     | No    | No        | No         |
-    ```
-
-    2.  When adding state try to maintain some naming conventions. Like:
-
-        1. `active` should mark a state. Ex.: `activeTheme`, `activeImage`, `activeMenuItem`. `current` should not mark a state.
-        2. `State` suffix should be used where appropriate. Like `menuSwitcherIconState`.
-
-    3.  Try to `useContext` to pass state when it will be consumed down deep in the tree.
-
-2.  Connect states together. One state change might trigger another state changes. Connecting states usually changes the owner component of a state. To find the component which best owns a state (lifting state) this table can help:
-
-```
-| State                    | Home component | Other comps using the state | Common owner above |
-------------------------------------------------------------------------------------------------
-| state                    |                |                             |                    |
-```
-
-3. The generated docs should include implementations of every feature / requirement specification declared in previous stages. More, if tests were used from beginning this task now would be obvious.
-
-#### Example
-
-After implementing states (1.) we had:
-
-```
-| State candidate          | Props | Unchanged | Computable |
--------------------------------------------------------------
-| activeTheme              | No    | No        | No         |
-| activeMenuItem           | No    | No        | No         |
-| menuSwitcherIconState    | No    | No        | No         |
-| activeContentDisplayMode | No    | No        | No         |
-| activeImage              | No    | No        | No         |
-```
-
-```
-| State                    | Home component | Other comps using the state | Common owner above |
-------------------------------------------------------------------------------------------------
-| activeTheme              | Home           | Many, with `useContext`     | n/a                |
-| activeMenuItem           | Main           | Content, MenuItem           | n/a                |
-| menuSwitcherIconState    | Menu           | n/a                         | n/a                |
-| activeContentDisplayMode | Content        | Thumbs                      | n/a                |
-| activeImage              | Content        | Thumbs, Slider              | n/a                |
-```
-
-After connecting states (2.) we had:
-
-```
-| State                    | Home component | Other comps using the state | Common owner above |
-------------------------------------------------------------------------------------------------
-| activeTheme              | Home           | Many, with `useContext`     | n/a                |
-| activeMenuItem           | Main           | Content, MenuItem           | n/a                |
-| menuSwitcherIconState    | Main           | n/a                         | n/a                |
-| activeContentDisplayMode | Main           | Thumbs                      | n/a                |
-| activeImage              | Content        | Thumbs, Slider              | n/a                |
-```
-
-### Screenshots
-
-![The menu](./react-src/docs/interaction-1.png)
-
-![The slider](./react-src/docs/interaction-2.png)
-
-![Thumbs](./react-src/docs/interaction-3.png)
-
-### Refactoring - v0.0.4
-
-This is an intermediary step necessary to make sure all components satisfy the Single Responsibility Principle (SRP). Being my first React project I don't feel 100% confident all components are as slim as they should be at this stage.
-
-The idea is to take every component, think about it as a single entity, separate from the rest of the project via Storybook and clean it up. Then connect back to the whole.
-
-The aim is to have a set of reusable components (in other web projects, in other WordPress backed projects) and a set of project specific, non-reusable components.
-
-Reusable components stay as thin as possible, project specific components can be heavy. Perhaps reusable components should be adapted back to the project via Context instead of adding lots of project specific props.
-
-```
-| Reusable components | Web                              | WordPress
-----------------------------------------------------------------------------------------
-|                     | Icon, IconToggle, Image,         | Category, Categories, Page, |
-|                     | ImageResponsive, MenuDropdown,   | Pages, Post, Posts,         |
-|                     | MenuItem, Meta, PlaceholderImage,| PostFeaturedImage, Settings |
-|                     | SemanticHTML, Slide, Slides,     |                             |
-|                     | Slider, Thumb, Thumbs            |                             |
-----------------------------------------------------------------------------------------
-|Non-reusable         | Project specific                 |                             |
-----------------------------------------------------------------------------------------
-|                     | Contact, Content, Home, Logo,    |                             |
-|                     | Main, Menu                       |                             |
-```
-
-### Theme - v0.0.5
-
-1. Illegal HTML attributes / props should be eliminated.
-
-   - ![Illegal attributes](./react-src/docs/design-illegal-attributes.png)
-
-   - This happens when reserved prop names are added to components. See list of all reserved attributes: https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes
-
-2. Presentational (Reusable Web) components should be semantically valid in the W3C checker.
-
-![Semantic outline](./react-src/docs/design-semantic-outline.png)
-
-3. Container (Non-reusable, project specific) components which holds the business logic should be fragments. This way the `divism` is highly reduced and the layout can be easily sketched with CSS Grid.
-
-![No divism](./react-src/docs/design-no-divism.png)
-
-4. All elements should be aligned to the grid both vertically and horizontally.
-
-![Aligned to grid, on mobile screens](./react-src/docs/design-grid-mobile.png)
-![Aligned to grid, on bigger than mobile screens](./react-src/docs/design-grid-mobile-and-up.png)
-
-### Performance - v0.0.6
+### Performance - [v0.0.6](https://github.com/metamn/inu-v2-b/tree/v0.0.6-performance)
 
 1. Database queries were lifted up to the highest level. This way the minimum amount of queries are performed only.
+2. A new slider had to be added. The old slider triggered too many re-renders.
 
-```
-| Query        | Old Component | New Component |
-------------------------------------------------
-| Categories   | Main          | Home          |
-| Posts, Pages | Content       | Main          |
-```
+### Best practices checklist - [v0.0.7](https://github.com/metamn/inu-v2-b/tree/v0.0.7-checklist)
 
-2. A new slider has to be added.
+1. Testing the dev version only. After deployment the live (staging) site will be more thoroughly tested.
 
-   - The current slider uses `scrollIntoView` which is a [working draft](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView) and not compatible with Edge, Safari iOS and behaves differently on Chrome than in Firefox. Also `scrollTo` from the [original idea](https://nolanlawson.com/2019/02/10/building-a-modern-carousel-with-css-scroll-snap-smooth-scrolling-and-pinch-zoom/) is not fully compatible with all browsers.
+### Documentation - [v0.0.8](https://github.com/metamn/inu-v2-b/tree/v0.0.8-documentation)
 
-   - On click on a slide the whole parent container (`<Content>`, ie. all slides) is re-rendered because `activeImage` state is kept there to be shared with `<Thumbs>`. The new slider has to take this as an advantage instead of a drawback.
+1. Developer docs created (this README.md)
+2. Components documented with Storybook
+3. API documented with JSDoc, JSDoc2Markdown and added to Storybook as Notes.
+4. Theme / style / design decisions documented with a handmade styleguide.
 
-3. A new slider was added: https://developers.google.com/web/updates/2018/07/css-scroll-snap
+## Results
 
-   - This uses `scrollBy` which has [full support](https://developer.mozilla.org/en-US/docs/Web/API/Window/scrollBy) for the features used.
+### The old site look
 
-   - It needs no `activeImage` for scrolling. This state can be eliminated therefore on slide click the `<Content>` is not re-rendered. In fact nothing gets rendered on scroll / click.
+<img style="border: 1px solid" alt="Old site on mobile screens" src="./react-src/docs/inu-old-mobile.png" width='320' height='auto'/>
 
-4. Props re-checked after the consistent changes above.
+<img alt="Old site in landscape mode" src="./react-src/docs/inu-old-landscape.png" width='640' height='auto'/>
 
-### Best practices checklist - v0.0.07
+<img alt="Old site navigation" src="./react-src/docs/inu-old-navigation.png" width='640' height='auto'/>
 
-For now only the development version is tested. Once live, with a proper URL, another set of tests will be performed.
+### The new site look
 
-Sources used:
+<img alt="New site on mobile screens" src="./react-src/docs/inu-new-mobile.png" width='320' height='auto'/>
 
-- https://frontendchecklist.io/
-- https://www.smashingmagazine.com/2019/01/front-end-performance-checklist-2019-pdf-pages/
+<img alt="New site in landscape mode" src="./react-src/docs/inu-new-landscape.png" width='640' height='auto'/>
+
+<img alt="New site navigation" src="./react-src/docs/inu-new-navigation.png" width='640' height='auto'/>
+
+### The old site performance
+
+![Old site performance, Lighthouse](./react-src/docs/inu-old-lighthouse.png)
+![Old site performance, WebPageTest](./react-src/docs/inu-old-webpagetest.png)
+
+### The new site performance

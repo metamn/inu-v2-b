@@ -4,7 +4,11 @@ The component performs the following tasks:
 	<summary>###Defines the prop types
 
 </summary>
-* The theme switcher icon
+* The site settings
+
+* The default theme switcher icon
+
+* The default category query
 
 </details>
 
@@ -16,6 +20,24 @@ The component performs the following tasks:
 
 <details>
 	<summary>###Styles the component for mobiles
+
+</summary>
+</details>
+
+<details>
+	<summary>###Styles the component for tablets
+
+</summary>
+</details>
+
+<details>
+	<summary>###Styles the component for laptops
+
+</summary>
+</details>
+
+<details>
+	<summary>###Styles the component for desktops
 
 </summary>
 </details>
@@ -33,10 +55,21 @@ The component performs the following tasks:
 </details>
 
 <details>
+	<summary>###Creates a theme context
+
+</summary>
+</details>
+
+<details>
 	<summary>###Displays the homepage
 
 </summary>
 * Loads site settings from the database
+
+* Loads categories from the database
+
+* Switches the theme.
+Saves the new theme into the local storage
 
 </details>
 

@@ -8,11 +8,11 @@ The component performs the following tasks:
 
 * The state of the menu switcher icon
 
+* The categories
+
 * The `Random` menu item
 
 * The `Contact` menu item
-
-* The default category query
 
 </details>
 
@@ -38,8 +38,6 @@ The component performs the following tasks:
 	<summary>###Displays the menu.
 
 </summary>
-* Loads categories
-
 * Displays categories as menu items
 
 * Displays  `Random` and `Contact` menu items
