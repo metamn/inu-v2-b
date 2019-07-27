@@ -101,7 +101,11 @@ const Slider = props => {
       if (slidesRef && slidesRef.current) {
         const ref = slidesRef.current;
         const slideWidth = ref.clientWidth;
-        ref.scrollBy(slideWidth * activeImage, 0);
+        ref.scrollBy({
+          left: slideWidth * activeImage,
+          top: 0,
+          behavior: "smooth"
+        });
       }
     },
     [activeImage, slidesRef]
@@ -147,7 +151,11 @@ const Slider = props => {
 
           const ref = slidesRef.current;
           const slideWidth = ref.clientWidth;
-          ref.scrollBy(slideWidth * random, 0);
+          ref.scrollBy({
+            left: slideWidth * random,
+            top: 0,
+            behavior: "smooth"
+          });
         }, 2500);
       } else {
         clearInterval(interval);
