@@ -2,6 +2,35 @@
 
 A photo portfolio theme with React and WordPress.
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+
+- [Prerequisites](#prerequisites)
+- [Requirements](#requirements)
+- [Deliverables](#deliverables)
+- [Features](#features)
+  - [Backend](#backend)
+  - [Frontend](#frontend)
+  - [Design](#design)
+- [Development process](#development-process)
+  - [Mocks - v0.0.1](#mocks---v001)
+  - [Static content (a.k.a data)- v0.0.2](#static-content-aka-data--v002)
+  - [Interaction - v0.0.3](#interaction---v003)
+  - [Refactoring - v0.0.4](#refactoring---v004)
+  - [Theme - v0.0.5](#theme---v005)
+  - [Performance - v0.0.6](#performance---v006)
+  - [Best practices checklist - v0.0.7](#best-practices-checklist---v007)
+  - [Documentation - v0.0.8](#documentation---v008)
+- [Results](#results)
+  - [The old site look](#the-old-site-look)
+  - [The new site look](#the-new-site-look)
+  - [The old site performance](#the-old-site-performance)
+  - [The new site performance](#the-new-site-performance)
+- [Changelog](#changelog)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## Prerequisites
 
 The old [inu.ro](http://inu.ro) design is dated back spring 2014. It's time for a refresh.
@@ -103,8 +132,8 @@ A short overview of the major steps and tasks done. It is completely based on [T
 
 ### Documentation - [v0.0.8](https://github.com/metamn/inu-v2-b/tree/v0.0.8-documentation)
 
-1. Developer docs created (this README.md)
-2. Components documented with Storybook
+1. Developer docs created (this README.md).
+2. Components documented with Storybook.
 3. API documented with JSDoc, JSDoc2Markdown and added to Storybook as Notes.
 4. Theme / style / design decisions documented with a handmade styleguide.
 
@@ -132,3 +161,7 @@ A short overview of the major steps and tasks done. It is completely based on [T
 ![Old site performance, WebPageTest](./react-src/docs/inu-old-webpagetest.png)
 
 ### The new site performance
+
+tbd.
+
+## Changelog
