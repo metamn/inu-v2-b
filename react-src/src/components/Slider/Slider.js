@@ -119,8 +119,12 @@ const Slider = props => {
     const slideEnd = (numberOfSlides - 1) * slideWidth;
 
     sliderPosition === slideEnd
-      ? ref.scrollTo(0, 0)
-      : ref.scrollBy(slideWidth, 0);
+      ? ref.scrollTo({ left: 0, top: 0, behavior: "smooth" })
+      : ref.scrollBy({
+          left: slideWidth,
+          top: 0,
+          behavior: "smooth"
+        });
   };
 
   /**
