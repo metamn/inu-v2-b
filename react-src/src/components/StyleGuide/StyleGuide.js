@@ -56,7 +56,27 @@ const Container = styled("div")(props => ({
   },
 
   [`${Media.laptop}`]: {
-    ...props.theme.padding.laptop
+    ...props.theme.padding.laptop,
+
+    display: "grid",
+    gridTemplateColumns: "calc(var(--lem) * 10) 1fr",
+    gridGap: "calc(var(--lem) * 10)",
+    gridTemplateAreas: `
+      "logo content"
+      "menu content"
+	  ". content"`,
+
+    "& .Logo": {
+      gridArea: "logo"
+    },
+
+    "& .Menu": {
+      gridArea: "menu"
+    },
+
+    "& .StyleguideEntries": {
+      gridArea: "content"
+    }
   },
 
   [`${Media.desktop}`]: {
@@ -146,7 +166,6 @@ const TextBox = styled("div")(props => ({
   ...wordWrap("break-word"),
 
   width: "100%",
-  maxWidth: "calc(var(--lem) * 25)",
   border: "1px solid",
   marginBottom: "var(--lem)",
 

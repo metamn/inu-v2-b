@@ -25,7 +25,11 @@ const propTypes = {
    * The element children.
    * Without children there is no use of this component.
    */
-  children: PropTypes.any
+  children: PropTypes.any,
+  /**
+   * The element id.
+   */
+  id: PropTypes.string
 };
 
 /**
@@ -35,7 +39,8 @@ const defaultProps = {
   elementName: "section",
   className: "section",
   titleElement: "Section Title",
-  children: "Section body"
+  children: "Section body",
+  id: null
 };
 
 /**
@@ -88,7 +93,7 @@ const Title = styled("h3")([], {
  *
  */
 const SemanticHTMLElement = props => {
-  const { elementName, children, className, title } = props;
+  const { elementName, children, className, title, id } = props;
 
   const titleElement = React.createElement(
     Title,
@@ -96,10 +101,11 @@ const SemanticHTMLElement = props => {
     title
   );
 
-  return React.createElement(elementName, { className: className, key: 2 }, [
-    titleElement,
-    children
-  ]);
+  return React.createElement(
+    elementName,
+    { className: className, key: 2, id: id },
+    [titleElement, children]
+  );
 };
 
 SemanticHTMLElement.propTypes = propTypes;
