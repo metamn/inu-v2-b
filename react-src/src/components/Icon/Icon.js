@@ -53,7 +53,7 @@ const Container = styled("div")(props => ({
 
   cursor:
     props.status === "active"
-      ? props.theme.cursors.brutalistCursor2Url
+      ? props.theme.cursors.brutalistCursor2.url
       : "default",
   display: props.status === "hidden" ? "none" : "flex",
   visibility: props.status === "invisible" ? "hidden" : "visible",

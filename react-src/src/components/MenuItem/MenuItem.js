@@ -43,7 +43,7 @@ const Container = styled("li")(props => ({
   cursor:
     props.status === "activeUntoggled"
       ? "default"
-      : props.theme.cursors.brutalistCursor2Url,
+      : props.theme.cursors.brutalistCursor2.url,
 
   "&:hover": {
     textDecoration: props.status === "activeUntoggled" ? "none" : "line-through"
