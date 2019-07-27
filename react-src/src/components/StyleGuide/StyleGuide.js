@@ -62,9 +62,9 @@ const Container = styled("div")(props => ({
     gridTemplateColumns: "calc(var(--lem) * 10) 1fr",
     gridGap: "calc(var(--lem) * 10)",
     gridTemplateAreas: `
-      "logo content"
-      "menu content"
-	  ". content"`,
+      "logo menu"
+	  ". menu"
+      "content content"`,
 
     "& .Logo": {
       gridArea: "logo"
@@ -116,7 +116,11 @@ const ItemsContainer = styled(_Section)(props => ({
   "& .title": {
     display: "flex",
     borderBottom: "1px solid",
-    margin: "var(--lem) 0"
+    margin: "var(--lem) 0",
+
+    [`${Media.laptop}`]: {
+      ...props.theme.textStyles.large
+    }
   },
 
   "& .content": {
@@ -168,6 +172,7 @@ const TextBox = styled("div")(props => ({
   width: "100%",
   border: "1px solid",
   marginBottom: "var(--lem)",
+  maxWidth: "calc(var(--lem) * 25)",
 
   "& a": {
     ...props.link
@@ -195,6 +200,7 @@ const TextBox = styled("div")(props => ({
  */
 const MeetsContrastItem = styled("span")(props => ({
   backgroundColor: props.ok ? "green" : "red",
+  color: "white",
   marginRight: "var(--lem)",
   padding: "calc(var(--lem) / 4)"
 }));
