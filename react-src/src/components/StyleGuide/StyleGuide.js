@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { modularScale, getContrast, meetsContrastGuidelines } from "polished";
 
+import { Media } from "./../../hooks";
+
 import Theme, { sgColors, sgScales } from "../Theme";
 import { ThemeContext } from "../Home";
 
@@ -37,7 +39,23 @@ const defaultProps = {
  */
 const Container = styled("div")(props => ({
   ...props.theme.colorPairs.default,
-  ...props.theme.fonts.default
+  ...props.theme.fonts.default,
+
+  [`${Media.mobile}`]: {
+    ...props.theme.padding.mobile
+  },
+
+  [`${Media.tablet}`]: {
+    ...props.theme.padding.tablet
+  },
+
+  [`${Media.laptop}`]: {
+    ...props.theme.padding.laptop
+  },
+
+  [`${Media.desktop}`]: {
+    ...props.theme.padding.desktop
+  }
 }));
 
 /**
@@ -444,13 +462,15 @@ const StyleGuide = props => {
   return (
     <>
       <Reset />
-      <Meta {...siteSettings} />
+      <Meta {...siteSettings} description="Styleguide" />
       <ThemeContext.Provider value={starterTheme}>
         <TypographicGrid />
         <Container className="StyleGuide" theme={theme}>
-          <Logo {...siteSettings} />
-          <Menu>{menuItems}</Menu>
-          <StyleguideEntries>{styleguideEntries}</StyleguideEntries>
+          <Logo {...siteSettings} description="Styleguide" />
+          <Menu className="Menu">{menuItems}</Menu>
+          <StyleguideEntries className="StyleguideEntries">
+            {styleguideEntries}
+          </StyleguideEntries>
         </Container>
       </ThemeContext.Provider>
     </>

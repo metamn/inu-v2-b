@@ -2,7 +2,7 @@ import React from "react";
 import { modularScale } from "polished";
 import { FiSun, FiGrid, FiChevronUp, FiChevronDown } from "react-icons/fi";
 
-import { useLocalStorage, usePrefersDarkMode } from "../../hooks";
+import { useLocalStorage, usePrefersDarkMode, Media } from "../../hooks";
 
 /**
  * Icons
@@ -162,6 +162,29 @@ const spacing = {
 };
 
 /**
+ * Padding
+ */
+const padding = spacing => {
+  return {
+    mobile: {
+      padding: `${spacing.top.mobile} ${spacing.left.mobile}`
+    },
+
+    tablet: {
+      padding: `${spacing.top.mobileAndUp} ${spacing.left.tablet}`
+    },
+
+    laptop: {
+      padding: `${spacing.top.mobileAndUp} ${spacing.left.laptop}`
+    },
+
+    desktop: {
+      padding: `${spacing.top.mobileAndUp} ${spacing.left.desktop}`
+    }
+  };
+};
+
+/**
  * Returns a color scheme
  *
  * @param  String colorScheme The name of the color scheme
@@ -188,6 +211,7 @@ const getTheme = colorScheme => {
     icons: icons,
     cursors: cursors[colorScheme],
     spacing: spacing,
+    padding: padding(spacing),
     /** Temporary, we'll have to get from the database */
     themeUri: "wp-content/themes/inu-v2-a"
   };

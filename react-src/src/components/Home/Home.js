@@ -63,7 +63,6 @@ const defaultProps = {
  * Styles the component for mobiles
  */
 const SectionMobile = {
-  padding: "var(--lem)",
   minHeight: "100vh",
 
   gridTemplateColumns: "calc(var(--lem) * 3) auto",
@@ -79,7 +78,6 @@ const SectionMobile = {
  * Styles the component for tablets
  */
 const SectionTablet = {
-  padding: "calc(var(--lem) * 2) calc(var(--lem) * 2)",
   height: "100vh",
 
   gridTemplateColumns:
@@ -95,20 +93,6 @@ const SectionTablet = {
 };
 
 /**
- * Styles the component for laptops
- */
-const SectionLaptop = {
-  padding: "calc(var(--lem) * 2) calc(var(--lem) * 4)"
-};
-
-/**
- * Styles the component for desktops
- */
-const SectionDesktop = {
-  padding: "calc(var(--lem) * 2) calc(var(--lem) * 10)"
-};
-
-/**
  * Styles the component container
  */
 const Section = styled(_Section)(props => ({
@@ -119,19 +103,21 @@ const Section = styled(_Section)(props => ({
   alignItems: "start",
 
   [`${Media.mobile}`]: {
+    ...props.theme.padding.mobile,
     ...SectionMobile
   },
 
   [`${Media.tablet}`]: {
+    ...props.theme.padding.tablet,
     ...SectionTablet
   },
 
   [`${Media.laptop}`]: {
-    ...SectionLaptop
+    ...props.theme.padding.laptop
   },
 
   [`${Media.desktop}`]: {
-    ...SectionDesktop
+    ...props.theme.padding.desktop
   },
 
   "& .Logo": {
