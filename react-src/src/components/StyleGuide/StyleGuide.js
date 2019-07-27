@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
 import {
   modularScale,
@@ -328,13 +327,14 @@ const StyleGuide = props => {
         link={theme.links.default}
       >
         <div className="Text">
-          Colors don't exist alone yet in pairs, like black on white. All color
-          pairs have a contrast ratio set for perfect readability.
+          Colors don't exist alone &mdash; they exist in pairs &mdash; like
+          black on white. Color pairs must have a high contrast ratio set for
+          perfect readability.
         </div>
         <ul className="Details">
           <li>Name: {name}</li>
           <li>Contrast ratio: {contrast}</li>
-          <li>Meets guidelines: {meetsContrastItems}</li>
+          <li>Meets readability guidelines: {meetsContrastItems}</li>
         </ul>
       </TextBox>
     );
@@ -357,8 +357,9 @@ const StyleGuide = props => {
         link={theme.links.default}
       >
         <div className="Text">
-          Hello, I'm a designer and developer creating user interfaces and
-          experiences for the web.
+          This is a free Google font where the site title text 'Ioan Chivu'
+          doesn't reads like 'Loan Chivu' &mdash; as with the majority of other
+          free Google fonts.
         </div>
         <ul className="Details">
           <li>Name: {name}</li>
@@ -419,7 +420,7 @@ const StyleGuide = props => {
         link={value}
       >
         <div className="Text">
-          <a href="#" title="link">
+          <a href="#links" title="link">
             This is the {name} link style. No decoration just on hover.
           </a>
         </div>
@@ -447,9 +448,9 @@ const StyleGuide = props => {
         link={theme.links.default}
       >
         <div className="Text">
-          This is the default text. With a high contrast background and a modern
-          typeface with extra letter spacing it should look electric, vibrant,
-          energizing on all displays.
+          This is the default text. It serves to display the site title,
+          description, categories and a few links. It's not meant to display
+          long texts but headlines.
         </div>
         <ul className="Details">
           <li>Name: {name}</li>
@@ -531,7 +532,7 @@ const StyleGuide = props => {
    * Creates styleguide entries
    */
   const styleguideEntries = menu.map((item, index) => {
-    const { id, name, url, content } = item;
+    const { id, name, content } = item;
 
     return (
       <ItemsContainer

@@ -2,7 +2,7 @@ import React from "react";
 import { modularScale } from "polished";
 import { FiSun, FiGrid, FiChevronUp, FiChevronDown } from "react-icons/fi";
 
-import { useLocalStorage, usePrefersDarkMode, Media } from "../../hooks";
+import { useLocalStorage, usePrefersDarkMode } from "../../hooks";
 
 /**
  * Icons
