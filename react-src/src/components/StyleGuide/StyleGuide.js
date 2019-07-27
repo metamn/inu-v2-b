@@ -64,6 +64,7 @@ const Container = styled("div")(props => ({
     gridTemplateAreas: `
       "logo menu"
 	  ". menu"
+	  "intro intro"
       "content content"`,
 
     "& .Logo": {
@@ -72,6 +73,10 @@ const Container = styled("div")(props => ({
 
     "& .Menu": {
       gridArea: "menu"
+    },
+
+    "& .Intro": {
+      gridArea: "intro"
     },
 
     "& .StyleguideEntries": {
@@ -98,6 +103,22 @@ const Menu = styled("ul")(props => ({
 const MenuItem = styled("li")(props => ({
   marginBottom: "var(--lem)",
   borderBottom: "1px solid"
+}));
+
+/**
+ * Styles the intro
+ */
+const Intro = styled("div")(props => ({
+  marginTop: "var(--lem)",
+
+  "& p + p": {
+    marginTop: "var(--lem)"
+  },
+
+  "& a": {
+    ...props.theme.colorPairs.default,
+    ...props.theme.links.default
+  }
 }));
 
 /**
@@ -155,9 +176,9 @@ const ItemContainer = styled("div")(props => ({
  */
 const Circle = styled("span")(props => ({
   display: "flex",
-  width: "calc(var(--lem) * 3)",
-  height: "calc(var(--lem) * 3)",
-  borderRadius: "calc(var(--lem) * 3)",
+  width: "calc(var(--lem) * 6)",
+  height: "calc(var(--lem) * 6)",
+  borderRadius: "calc(var(--lem) * 6)",
   backgroundColor: props.color,
   border: props.color === props.current ? "1px solid" : "none"
 }));
@@ -238,7 +259,7 @@ const StyleGuide = props => {
     return (
       <ItemContainer className="ItemContainer Icon" key={index}>
         <div className="Text">
-          <Icon>{value}</Icon>
+          <Icon sizeMultiplier={3}>{value}</Icon>
         </div>
         <div className="Details">
           <p>{name}</p>
@@ -538,7 +559,22 @@ const StyleGuide = props => {
         <TypographicGrid />
         <Container className="StyleGuide" theme={theme}>
           <Logo {...siteSettings} description="Styleguide" />
+
+          <Intro className="Intro" theme={theme}>
+            <p>
+              This is the living styleguide accompanying the site{" "}
+              <a href="http://inu.ro" title="http://inu.ro">
+                http://inu.ro
+              </a>
+            </p>
+            <p>
+              Changes made to this styleguide are automatically reflected in the
+              site design.
+            </p>
+          </Intro>
+
           <Menu className="Menu">{menuItems}</Menu>
+
           <StyleguideEntries className="StyleguideEntries">
             {styleguideEntries}
           </StyleguideEntries>
