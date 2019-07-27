@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { stringify } from "flatted";
 
 import { Media, useTheme } from "../../hooks";
 
@@ -151,12 +152,13 @@ const Slider = props => {
 
           const ref = slidesRef.current;
           const slideWidth = ref.clientWidth;
-          ref.scrollBy({
+
+          ref.scrollTo({
             left: slideWidth * random,
             top: 0,
             behavior: "smooth"
           });
-        }, 2500);
+        }, 5000);
       } else {
         clearInterval(interval);
       }
