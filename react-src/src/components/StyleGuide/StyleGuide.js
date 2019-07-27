@@ -16,6 +16,7 @@ import Meta from "../Meta";
 import Logo from "../Logo";
 import Icon from "../Icon";
 import Link from "../Link";
+import { Section as _Section } from "../SemanticHTML";
 
 /**
  * Defines the prop types
@@ -61,7 +62,9 @@ const Container = styled("div")(props => ({
 /**
  * Styles the menu container
  */
-const Menu = styled("ul")(props => ({}));
+const Menu = styled("ul")(props => ({
+  margin: "var(--lem) 0"
+}));
 
 /**
  * Styles the menu items
@@ -76,24 +79,28 @@ const StyleguideEntries = styled("div")(props => ({}));
 /**
  * Styles the items container
  */
-const ItemsContainer = styled("div")(props => ({
+const ItemsContainer = styled(_Section)(props => ({
   display: "flex",
-  flexWrap: "wrap",
+  flexDirection: "column",
+  marginBottom: "var(--lem)",
 
-  "> *": {
-    marginRight: "calc(var(--lem) * 2)",
-    marginBottom: "calc(var(--lem) * 2)"
+  "& .title": {
+    display: "flex",
+    borderBottom: "1px solid",
+    margin: "var(--lem) 0"
+  },
+
+  "& .content": {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-between"
   }
 }));
 
 /**
  * Styles the item container
  */
-const ItemContainer = styled("div")(props => ({
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center"
-}));
+const ItemContainer = styled("div")(props => ({}));
 
 /**
  * Styles the color circle
@@ -113,25 +120,28 @@ const Circle = styled("span")(props => ({
 const TextBox = styled("div")(props => ({
   ...props.fonts,
 
+  width: "100%",
   maxWidth: "calc(var(--lem) * 25)",
   border: "1px solid",
+  wordWrap: "break-word",
+  marginBottom: "var(--lem)",
 
   "& a": {
     ...props.link
   },
 
-  "& .text": {
+  "& .Text": {
     ...props.colors,
     ...props.fonts,
     ...props.textStyle,
     padding: "var(--lem)"
   },
 
-  "& .with-scale": {
+  "& .withScale": {
     fontSize: props.scale ? modularScale(props.scale) : "inherit"
   },
 
-  "& .details": {
+  "& .Details": {
     padding: "var(--lem)",
     borderTop: "1px solid"
   }
@@ -177,7 +187,7 @@ const StyleGuide = props => {
     const value = icons[name];
 
     return (
-      <ItemContainer key={index}>
+      <ItemContainer className="ItemContainer" key={index}>
         <div className="text">
           <Icon>{value}</Icon>
         </div>
@@ -196,7 +206,7 @@ const StyleGuide = props => {
     const src = `${themeUri}/${value}`;
 
     return (
-      <ItemContainer key={index}>
+      <ItemContainer className="ItemContainer" key={index}>
         <img src={src} alt="cursor" />
         <div className="details">
           <p>{name}</p>
@@ -214,9 +224,9 @@ const StyleGuide = props => {
     const { backgroundColor } = currentColors;
 
     return (
-      <ItemContainer key={index} className="color">
-        <Circle className="circle" color={value} current={backgroundColor} />
-        <span className="text">{name}</span>
+      <ItemContainer key={index} className="ItemContainer Color">
+        <Circle className="Circle" color={value} current={backgroundColor} />
+        <span className="Text">{name}</span>
       </ItemContainer>
     );
   });
@@ -238,6 +248,7 @@ const StyleGuide = props => {
 
     return (
       <TextBox
+        className="TextBox"
         key={index}
         name={name}
         colors={theme.colorPairs[name]}
@@ -245,11 +256,11 @@ const StyleGuide = props => {
         textStyle={theme.textStyles.default}
         link={theme.links.default}
       >
-        <div className="text">
+        <div className="Text">
           Colors don't exist alone yet in pairs, like black on white. All color
           pairs have a contrast ratio set for perfect readability.
         </div>
-        <div className="details">
+        <div className="Details">
           <p>Name: {name}</p>
           <p>Contrast ratio: {contrast}</p>
           <p>Meets guidelines: {meetsContrastItems}</p>
@@ -266,6 +277,7 @@ const StyleGuide = props => {
 
     return (
       <TextBox
+        className="TextBox"
         key={index}
         name={name}
         colors={theme.colorPairs.default}
@@ -273,11 +285,11 @@ const StyleGuide = props => {
         textStyle={theme.textStyles.default}
         link={theme.links.default}
       >
-        <div className="text">
+        <div className="Text">
           Hello, I'm a designer and developer creating user interfaces and
           experiences for the web.
         </div>
-        <div className="details">
+        <div className="Details">
           <p>Name: {name}</p>
           <p>Font family: {fontFamily}</p>
         </div>
@@ -293,6 +305,7 @@ const StyleGuide = props => {
 
     return (
       <TextBox
+        className="TextBox"
         key={index}
         name={name}
         colors={theme.colorPairs.default}
@@ -301,7 +314,7 @@ const StyleGuide = props => {
         scale={value}
         link={theme.links.default}
       >
-        <div className="text with-scale">
+        <div className="Text withScale">
           Typographic grid and scale. Different font sizes based on the{" "}
           <a
             href="https://polished.js.org/docs/#modularscale"
@@ -310,7 +323,7 @@ const StyleGuide = props => {
             Modular Scale.
           </a>
         </div>
-        <div className="details">
+        <div className="Details">
           <p>Name: {name}</p>
           <p>Modular scale: {value}</p>
         </div>
@@ -326,6 +339,7 @@ const StyleGuide = props => {
 
     return (
       <TextBox
+        className="TextBox"
         key={index}
         name={name}
         colors={theme.colorPairs.default}
@@ -333,12 +347,12 @@ const StyleGuide = props => {
         textStyle={theme.textStyles.default}
         link={value}
       >
-        <div className="text">
+        <div className="Text">
           <a href="#" title="link">
             This is the {name} link style. No decoration just on hover.
           </a>
         </div>
-        <div className="details">
+        <div className="Details">
           <p>Name: {name}</p>
         </div>
       </TextBox>
@@ -353,6 +367,7 @@ const StyleGuide = props => {
 
     return (
       <TextBox
+        className="TextBox"
         key={`test-${index}`}
         name={name}
         colors={theme.colorPairs.default}
@@ -360,12 +375,12 @@ const StyleGuide = props => {
         textStyle={value}
         link={theme.links.default}
       >
-        <div className="text">
+        <div className="Text">
           This is the default text. With a high contrast background and a modern
           typeface with extra letter spacing it should look electric, vibrant,
           energizing on all displays.
         </div>
-        <div className="details">
+        <div className="Details">
           <p>Name: {name}</p>
         </div>
       </TextBox>
@@ -448,8 +463,14 @@ const StyleGuide = props => {
     const { id, name, url, content } = item;
 
     return (
-      <ItemsContainer id={id} className={name} key={index}>
-        {content}
+      <ItemsContainer
+        id={id}
+        className={name}
+        key={index}
+        title={name}
+        theme={theme}
+      >
+        <div className="content">{content}</div>
       </ItemsContainer>
     );
   });
