@@ -76,7 +76,7 @@ const Section = styled(_Section)(props => ({
 }));
 
 /**
- * Animates the slides for the slideshow
+ * Animates the slides for the slideshow.
  */
 const SlideshowAnimation = keyframes`
 0% {
@@ -97,7 +97,9 @@ const SlideshowAnimation = keyframes`
 `;
 
 /**
- * The animated slides container
+ * The animated slides container.
+ *
+ * `keyframes` needs to be used with `css`
  */
 const SectionAnimated = styled(Section)(
   props => css`
@@ -110,7 +112,7 @@ const SectionAnimated = styled(Section)(
 /**
  * Creates a context to pass the click on slide.
  */
-const SlideClickContext = React.createContext({});
+const SliderContext = React.createContext({});
 
 /**
  * Displays the slider.
@@ -150,6 +152,8 @@ const Slider = props => {
    * Detecting end of scroll: https://stackoverflow.com/questions/19005348/how-to-check-if-the-scrollbar-has-reached-at-the-end-of-div
    */
   const slideClickHandler = () => {
+    if (isSlideShowActive) return;
+
     const ref = slidesRef.current;
     const slideWidth = ref.clientWidth;
     const sliderPosition = ref.scrollLeft;
@@ -201,7 +205,12 @@ const Slider = props => {
   );
 
   return (
-    <SlideClickContext.Provider value={slideClickHandler}>
+    <SliderContext.Provider
+      value={{
+        slideClickHandler: slideClickHandler,
+        isSlideShowActive: isSlideShowActive
+      }}
+    >
       {isSlideShowActive ? (
         <SectionAnimated className="Slider" title="Slider" theme={theme}>
           <Slides ref={slidesRef} activeImage={activeImage} {...props} />
@@ -211,7 +220,7 @@ const Slider = props => {
           <Slides ref={slidesRef} activeImage={activeImage} {...props} />
         </Section>
       )}
-    </SlideClickContext.Provider>
+    </SliderContext.Provider>
   );
 };
 
@@ -222,5 +231,5 @@ export default Slider;
 export {
   propTypes as SliderPropTypes,
   defaultProps as SliderDefaultProps,
-  SlideClickContext
+  SliderContext
 };

@@ -38,7 +38,11 @@ const propTypes = {
   /**
    * The image index. Passed to the click handler.
    */
-  index: PropTypes.number
+  index: PropTypes.number,
+  /**
+   * The cursor type.
+   */
+  cursor: PropTypes.oneOf(["default", "pointer", "custom"])
 };
 
 /**
@@ -50,18 +54,22 @@ const defaultProps = {
   width: null,
   height: null,
   placeholder: PlaceholderImageDefaultProps,
-  index: 1
+  index: 1,
+  cursor: "custom"
 };
 
 /**
  * Styles the image
  */
 const Img = styled("img")(props => ({
-  ...props.theme.cursors.brutalistCursor2,
   width: "100%",
   height: "auto",
   maxWidth: props.width ? `${props.width}px` : "100%",
-  maxHeight: props.height ? `${props.height}px` : "auto"
+  maxHeight: props.height ? `${props.height}px` : "auto",
+  cursor:
+    props.cursor === "custom"
+      ? props.theme.cursors.brutalistCursor2.cursor
+      : props.cursor
 }));
 
 /**
@@ -71,7 +79,7 @@ const Image = props => {
   /**
    * Loads image properties
    */
-  const { src, alt, width, height, placeholder, index } = props;
+  const { src, alt, width, height, placeholder, index, cursor } = props;
 
   /**
    * Creates a placeholder image.
@@ -105,6 +113,7 @@ const Image = props => {
       alt={alt}
       width={width}
       height={height}
+      cursor={cursor}
       theme={theme}
       onClick={() =>
         typeof thumbClickHandler === "function"

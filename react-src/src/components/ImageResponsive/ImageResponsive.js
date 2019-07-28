@@ -6,7 +6,7 @@ import ProgressiveImage from "react-progressive-image";
 import { Breakpoints, Media } from "../../hooks";
 import { ImagePropTypes, ImageDefaultProps } from "../Image";
 import { createPlaceholderImageUrl } from "../PlaceholderImage";
-import { SlideClickContext } from "../Slider";
+import { SliderContext } from "../Slider";
 
 /**
  * Defines the prop types
@@ -63,7 +63,11 @@ const Img = styled("img")(props => ({
   opacity: props.isLoading ? "0.3" : "1",
   width: "100%",
   height: "auto",
-  cursor: "pointer",
+
+  cursor:
+    props.cursor === "custom"
+      ? props.theme.cursors.brutalistCursor2.cursor
+      : props.cursor,
 
   [`${Media.mobile}`]: {
     /**
@@ -179,7 +183,12 @@ const ImageResponsive = props => {
    *
    * This is a special extension to the component to suit this project.
    */
-  const slideClickHandler = useContext(SlideClickContext);
+  const { slideClickHandler, isSlideShowActive } = useContext(SliderContext);
+
+  /**
+   * Decides the cursor type
+   */
+  const cursor = isSlideShowActive ? "default" : "pointer";
 
   /**
    * Puts together a progressive image.
@@ -208,6 +217,7 @@ const ImageResponsive = props => {
               ? slideClickHandler(index)
               : null
           }
+          cursor={cursor}
         />
       )}
     </ProgressiveImage>
@@ -232,6 +242,7 @@ const ImageResponsive = props => {
           ? slideClickHandler(index)
           : null
       }
+      cursor={cursor}
     />
   );
 
