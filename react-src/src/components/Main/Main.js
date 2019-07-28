@@ -41,7 +41,7 @@ const propTypes = {
  * Defines the default props
  */
 const defaultProps = {
-  defaultMenuItem: "1",
+  defaultMenuItem: process.env.NODE_ENV === "development" ? "1" : "17",
   defaultMenuSwitcherIconState: false,
   defaultContentDisplayMode: "slider",
   defaultPage: PagesDefaultProps,
