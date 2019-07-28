@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
-import { stringify } from "flatted";
+import styled, { keyframes, css } from "styled-components";
 
 import { Media, useTheme } from "../../hooks";
 
@@ -57,12 +56,10 @@ const defaultProps = {
  * Styles the component container
  */
 const Section = styled(_Section)(props => ({
-  [`${Media.mobile}`]: {
-    height: "calc(100vh - var(--lem) * 10)",
-    display: "flex",
-    alignItems: "center",
-    width: `calc(100vw - ${props.theme.spacing.left.mobile} * 2)`
-  },
+  height: "calc(100vh - var(--lem) * 10)",
+  display: "flex",
+  alignItems: "center",
+  width: `calc(100vw - ${props.theme.spacing.left.mobile} * 2)`,
 
   [`${Media.tablet}`]: {
     alignItems: "start",
@@ -78,6 +75,41 @@ const Section = styled(_Section)(props => ({
   }
 }));
 
+/**
+ * Animates the slides for the slideshow
+ */
+const SlideshowAnimation = keyframes`
+0% {
+	opacity: 0
+}
+5% {
+	opacity: 0
+}
+10% {
+	opacity: 1
+}
+90% {
+	opacity: 1
+}
+100% {
+	opacity: 0
+}
+`;
+
+/**
+ * The animated slides container
+ */
+const SectionAnimated = styled(Section)(
+  props => css`
+    animation: ${SlideshowAnimation};
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+  `
+);
+
+/**
+ * Creates a context to pass the click on slide.
+ */
 const SlideClickContext = React.createContext({});
 
 /**
@@ -158,7 +190,7 @@ const Slider = props => {
             top: 0,
             behavior: "smooth"
           });
-        }, 5000);
+        }, 10000);
       } else {
         clearInterval(interval);
       }
@@ -170,9 +202,15 @@ const Slider = props => {
 
   return (
     <SlideClickContext.Provider value={slideClickHandler}>
-      <Section className="Slider" title="Slider" theme={theme}>
-        <Slides ref={slidesRef} activeImage={activeImage} {...props} />
-      </Section>
+      {isSlideShowActive ? (
+        <SectionAnimated className="Slider" title="Slider" theme={theme}>
+          <Slides ref={slidesRef} activeImage={activeImage} {...props} />
+        </SectionAnimated>
+      ) : (
+        <Section className="Slider" title="Slider" theme={theme}>
+          <Slides ref={slidesRef} activeImage={activeImage} {...props} />
+        </Section>
+      )}
     </SlideClickContext.Provider>
   );
 };
