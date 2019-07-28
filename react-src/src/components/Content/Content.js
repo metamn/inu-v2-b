@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
@@ -37,6 +37,14 @@ const propTypes = {
    */
   setActiveContentDisplayMode: PropTypes.func,
   /**
+   * The active image
+   */
+  activeImage: PropTypes.number,
+  /**
+   * The active image setter
+   */
+  setActiveImage: PropTypes.func,
+  /**
    * The featured images.
    *
    * For some reasons the PostsPropTypes.edges cannot be used here ..
@@ -51,11 +59,7 @@ const propTypes = {
   /**
    * The default content switcher icon
    */
-  defaultContentSwitcherIcon: PropTypes.string,
-  /**
-   * The default active image (slide and thumb)
-   */
-  defaultImage: PropTypes.number
+  defaultContentSwitcherIcon: PropTypes.string
 };
 
 /**
@@ -67,10 +71,13 @@ const defaultProps = {
   setActiveContentDisplayMode: () => {
     console.log("Set active display mode");
   },
+  activeImage: 0,
+  setActiveImage: () => {
+    console.log("Set active image");
+  },
   edgesWithFeaturedImage: Array(1).fill({ node: PostDefaultProps }),
   contactPageContent: "Contact page content",
-  defaultContentSwitcherIcon: "Contet switcher icon",
-  defaultImage: 0
+  defaultContentSwitcherIcon: "Contet switcher icon"
 };
 
 /**
@@ -100,16 +107,12 @@ const Content = props => {
     activeMenuItem,
     activeContentDisplayMode,
     setActiveContentDisplayMode,
+    activeImage,
+    setActiveImage,
     edgesWithFeaturedImage,
     contactPageContent,
-    defaultContentSwitcherIcon,
-    defaultImage
+    defaultContentSwitcherIcon
   } = props;
-
-  /**
-   * Sets up state to mark the active image (thumb, or slide)
-   */
-  const [activeImage, setActiveImage] = useState(defaultImage);
 
   /**
    * Decides if there is a slideshow

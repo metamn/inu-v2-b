@@ -30,7 +30,11 @@ const propTypes = {
   /**
    * The categories
    */
-  categories: PropTypes.shape(CategoriesPropTypes)
+  categories: PropTypes.shape(CategoriesPropTypes),
+  /**
+   * The default active image (slide and thumb)
+   */
+  defaultImage: PropTypes.number
 };
 
 /**
@@ -41,7 +45,8 @@ const defaultProps = {
   defaultMenuSwitcherIconState: false,
   defaultContentDisplayMode: "slider",
   defaultPage: PagesDefaultProps,
-  categories: CategoriesDefaultProps
+  categories: CategoriesDefaultProps,
+  defaultImage: 0
 };
 
 /**
@@ -67,13 +72,19 @@ const Main = props => {
     defaultMenuSwitcherIconState,
     defaultContentDisplayMode,
     defaultPage,
-    categories
+    categories,
+    defaultImage
   } = props;
 
   /**
    * Sets up state for the active menu item
    */
   const [activeMenuItem, setActiveMenuItem] = useState(defaultMenuItem);
+
+  /**
+   * Sets up state to mark the active image (thumb, or slide)
+   */
+  const [activeImage, setActiveImage] = useState(defaultImage);
 
   /**
    * Sets up state for the menu switcher icon
@@ -98,6 +109,7 @@ const Main = props => {
     setActiveMenuItem(index);
     setActiveContentDisplayMode(getDisplayMode(index));
     setMenuSwitcherIconState(!menuSwitcherIconState);
+    setActiveImage(defaultImage);
   };
 
   /**
@@ -161,6 +173,8 @@ const Main = props => {
           setActiveContentDisplayMode={setActiveContentDisplayMode}
           edgesWithFeaturedImage={edgesWithFeaturedImage}
           contactPageContent={contactPageContent}
+          activeImage={activeImage}
+          setActiveImage={setActiveImage}
         />
       </MainContext.Provider>
     </>

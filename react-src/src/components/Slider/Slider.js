@@ -79,21 +79,21 @@ const Section = styled(_Section)(props => ({
  * Animates the slides for the slideshow.
  */
 const SlideshowAnimation = keyframes`
-0% {
-	opacity: 0
-}
-5% {
-	opacity: 0
-}
-10% {
-	opacity: 1
-}
-90% {
-	opacity: 1
-}
-100% {
-	opacity: 0
-}
+	0% {
+		opacity: 0
+	}
+	5% {
+		opacity: 0
+	}
+	10% {
+		opacity: 1
+	}
+	90% {
+		opacity: 1
+	}
+	100% {
+		opacity: 0
+	}
 `;
 
 /**
@@ -136,6 +136,7 @@ const Slider = props => {
       if (slidesRef && slidesRef.current) {
         const ref = slidesRef.current;
         const slideWidth = ref.clientWidth;
+
         ref.scrollBy({
           left: slideWidth * activeImage,
           top: 0,
