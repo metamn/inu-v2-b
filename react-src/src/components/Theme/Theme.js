@@ -25,21 +25,23 @@ const icons = {
     pointer;
  * ```
  */
-const cursors = {
-  light: {
-    brutalistCursor2: {
-      image: "brutalist_line_SVGicon_cursor2.png",
-      cursor: `url("/react-wp/wp-content/themes/inu-v2/brutalist_line_SVGicon_cursor2.png") 31 0, pointer`,
-      url: `url("/react-wp/wp-content/themes/inu-v2/brutalist_line_SVGicon_cursor2.png") 31 0, pointer`
+const cursors = themeUri => {
+  return {
+    light: {
+      brutalistCursor2: {
+        image: "brutalist_line_SVGicon_cursor2.png",
+        cursor: `url("${themeUri}/brutalist_line_SVGicon_cursor2.png") 31 0, pointer`,
+        url: `url("${themeUri}/brutalist_line_SVGicon_cursor2.png") 31 0, pointer`
+      }
+    },
+    dark: {
+      brutalistCursor2: {
+        image: "brutalist_line_SVGicon_cursor2-black.png",
+        cursor: `url("${themeUri}/brutalist_line_SVGicon_cursor2-black.png") 31 0, pointer`,
+        url: `url("${themeUri}/brutalist_line_SVGicon_cursor2-black.png") 31 0, pointer`
+      }
     }
-  },
-  dark: {
-    brutalistCursor2: {
-      image: "brutalist_line_SVGicon_cursor2-black.png",
-      cursor: `url("/react-wp/wp-content/themes/inu-v2/brutalist_line_SVGicon_cursor2-black.png") 31 0, pointer`,
-      url: `url("/react-wp/wp-content/themes/inu-v2/brutalist_line_SVGicon_cursor2-black.png") 31 0, pointer`
-    }
-  }
+  };
 };
 
 /**
@@ -196,6 +198,22 @@ const getColorScheme = colorScheme =>
   colorScheme === "light" ? colorSchemes.light : colorSchemes.dark;
 
 /**
+ * Get theme URI
+ */
+const getThemeUri = () => {
+  const prefix = process.env.NODE_ENV === "development" ? "/react-wp" : "";
+  return prefix + "/wp-content/themes/inu-v2-b";
+};
+
+/**
+ * Returns the cursors
+ */
+const getCursors = props => {
+  const { themeUri, colorScheme } = props;
+  return cursors(themeUri)[colorScheme];
+};
+
+/**
  * Returns a complete theme with colors, fonts etc
  *
  * @param  String colorScheme The name of the color scheme
@@ -203,6 +221,7 @@ const getColorScheme = colorScheme =>
  */
 const getTheme = colorScheme => {
   const colors = getColorScheme(colorScheme);
+  const themeUri = getThemeUri();
 
   return {
     colors: colors,
@@ -211,11 +230,10 @@ const getTheme = colorScheme => {
     textStyles: textStyles,
     links: links,
     icons: icons,
-    cursors: cursors[colorScheme],
+    cursors: getCursors({ themeUri: themeUri, colorScheme: colorScheme }),
     spacing: spacing,
     padding: padding(spacing),
-    /** Temporary, we'll have to get from the database */
-    themeUri: "wp-content/themes/inu-v2-a"
+    themeUri: themeUri
   };
 };
 
