@@ -27,7 +27,7 @@ const propTypes = {
 const defaultProps = {
   id: "1",
   categoryId: 1,
-  name: "Category"
+  name: "/ / / / / / / /"
 };
 
 /**

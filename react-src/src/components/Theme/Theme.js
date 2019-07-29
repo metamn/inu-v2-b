@@ -45,6 +45,15 @@ const cursors = themeUri => {
 };
 
 /**
+ * Images
+ */
+const images = themeUri => {
+  return {
+    default: `${themeUri}/default-image.png`
+  };
+};
+
+/**
  * Color definitions
  */
 const colors = {
@@ -262,6 +271,7 @@ const getTheme = colorScheme => {
     spacing: spacing,
     padding: padding(spacing),
     sizing: sizing,
+    images: images(themeUri),
     themeUri: themeUri
   };
 };

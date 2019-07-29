@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import gql from "graphql-tag";
 
+import { useTheme } from "../../hooks";
+
 import Image from "../Image";
 import ImageResponsive from "../ImageResponsive";
 
@@ -50,51 +52,47 @@ const propTypes = {
  * Defines the default props
  */
 const defaultProps = {
-  featuredImageTitle: "Featured image",
+  featuredImageTitle: "Loading image ...",
   featuredImageType: "large",
   index: 1,
   featuredImage: {
     id: "cG9zdDoxMQ==",
-    sourceUrl: "http://localhost/react-wp/wp-content/uploads/2019/05/Bg.jpeg",
+    sourceUrl: "<THEME_URI>/default-image.png",
     mediaDetails: {
-      file: "2019/05/Bg.jpeg",
-      height: 1152,
-      width: 2048,
+      file: "default-image.png",
+      height: 732,
+      width: 1316,
       sizes: [
         {
-          file: "Bg-150x150.jpeg",
+          file: "default-image-150x150.png",
           height: "150",
-          mimeType: "image/jpeg",
+          mimeType: "image/png",
           name: "thumbnail",
-          sourceUrl:
-            "http://localhost/react-wp/wp-content/uploads/2019/05/Bg-150x150.jpeg",
+          sourceUrl: "<THEME_URI>/default-image-150x150.png",
           width: "150"
         },
         {
-          file: "Bg-300x169.jpeg",
-          height: "169",
-          mimeType: "image/jpeg",
+          file: "default-image-300x167.png",
+          height: "167",
+          mimeType: "image/png",
           name: "medium",
-          sourceUrl:
-            "http://localhost/react-wp/wp-content/uploads/2019/05/Bg-300x169.jpeg",
+          sourceUrl: "<THEME_URI>/default-image-300x167.png",
           width: "300"
         },
         {
-          file: "Bg-768x432.jpeg",
-          height: "432",
-          mimeType: "image/jpeg",
-          name: "medium_large",
-          sourceUrl:
-            "http://localhost/react-wp/wp-content/uploads/2019/05/Bg-768x432.jpeg",
+          file: "default-image-786x427.png",
+          height: "427",
+          mimeType: "image/png",
+          name: "medium",
+          sourceUrl: "<THEME_URI>/default-image-768x427.png",
           width: "768"
         },
         {
-          file: "Bg-1024x576.jpeg",
-          height: "576",
-          mimeType: "image/jpeg",
-          name: "large",
-          sourceUrl:
-            "http://localhost/react-wp/wp-content/uploads/2019/05/Bg-1024x576.jpeg",
+          file: "default-image-1024x570.png",
+          height: "570",
+          mimeType: "image/png",
+          name: "medium",
+          sourceUrl: "<THEME_URI>/default-image-1024x570.png",
           width: "1024"
         }
       ]
@@ -136,11 +134,14 @@ const Container = styled("div")(props => ({}));
  * Creates a large, responsive image
  */
 const responsiveImage = props => {
-  const { featuredImageTitle, featuredImage, index } = props;
+  const { featuredImageTitle, featuredImage, index, theme } = props;
   const { sourceUrl, mediaDetails } = featuredImage;
   const { sizes } = mediaDetails;
   const { width } = mediaDetails;
 
+  /**
+   * Sets up the responsive image.
+   */
   let srcSet = sizes.map(item => `${item.sourceUrl} ${item.width}w`);
   srcSet.push(`${sourceUrl} ${width}w`);
 
@@ -152,9 +153,16 @@ const responsiveImage = props => {
   let srcSetWidths = sizes.map(item => item.width);
   srcSetWidths.push(width.toString());
 
+  /**
+   * Sets up the default responsive image
+   */
+  const { themeUri } = theme;
+  const newSourceUrl = sourceUrl.replace("<THEME_URI>", themeUri);
+  srcSet = srcSet.toString().replace("<THEME_URI>", themeUri);
+
   return (
     <ImageResponsive
-      src={sourceUrl}
+      src={newSourceUrl}
       srcSet={srcSet.toString()}
       sizes={srcSetSizes.toString()}
       srcSetWidths={srcSetWidths}
@@ -190,15 +198,23 @@ const thumbnailImage = props => {
  * Displays the post featured image
  */
 const PostFeaturedImage = props => {
+  /**
+   * Loads image type
+   */
   const { featuredImageType } = props;
+
+  /**
+   * Loads theme
+   */
+  const { theme } = useTheme();
 
   /**
    * Either returns a simple image (thumbnail) or a large, responsive image.
    */
   const image =
     featuredImageType === "large"
-      ? responsiveImage(props)
-      : thumbnailImage(props);
+      ? responsiveImage({ ...props, theme })
+      : thumbnailImage({ ...props, theme });
 
   return <Container className="PostFeaturedImage">{image}</Container>;
 };

@@ -41,7 +41,7 @@ const propTypes = {
  * Defines the default props
  */
 const defaultProps = {
-  defaultMenuItem: process.env.NODE_ENV === "development" ? "1" : "17",
+  defaultMenuItem: "0",
   defaultMenuSwitcherIconState: false,
   defaultContentDisplayMode: "slider",
   defaultPage: PagesDefaultProps,
@@ -80,6 +80,7 @@ const Main = props => {
    * Sets up state for the active menu item
    */
   const [activeMenuItem, setActiveMenuItem] = useState(defaultMenuItem);
+  console.log("activeMenuItem:" + activeMenuItem);
 
   /**
    * Sets up state to mark the active image (thumb, or slide)

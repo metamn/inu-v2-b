@@ -191,8 +191,6 @@ const Slider = props => {
           const ref = slidesRef.current;
           const slideWidth = ref.clientWidth;
 
-          console.log("random:" + random);
-
           ref.scrollTo({
             left: slideWidth * random,
             top: 0,
