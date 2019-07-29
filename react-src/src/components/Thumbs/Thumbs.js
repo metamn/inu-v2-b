@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
+import { useTheme } from "../../hooks";
+
 import Thumb from "../Thumb";
 import { PostsPropTypes, PostsDefaultProps } from "../Posts";
 
@@ -31,6 +33,7 @@ const defaultProps = {
  * Styles the component container
  */
 const Container = styled("div")(props => ({
+  ...props.theme.colorPairs.default,
   display: "flex",
   flexWrap: "wrap"
 }));
@@ -43,6 +46,11 @@ const Thumbs = props => {
    * Loads the props
    */
   const { edges, activeImage } = props;
+
+  /**
+   * Loads theme
+   */
+  const { theme } = useTheme();
 
   /**
    * Returns the thumbs. The active thumb is marked.
@@ -60,7 +68,11 @@ const Thumbs = props => {
     );
   });
 
-  return <Container className="Thumbs">{thumbs}</Container>;
+  return (
+    <Container className="Thumbs" theme={theme}>
+      {thumbs}
+    </Container>
+  );
 };
 
 Thumbs.propTypes = propTypes;

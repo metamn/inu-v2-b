@@ -78,7 +78,7 @@ const SectionMobile = {
  * Styles the component for tablets
  */
 const SectionTablet = props => ({
-  height: "100vh",
+  minHeight: "100vh",
 
   gridTemplateColumns: props.theme.sizing.home.gridTemplateColumns.tablet,
   gridTemplateRows: "auto",

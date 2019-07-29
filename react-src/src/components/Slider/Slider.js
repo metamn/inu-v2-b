@@ -56,6 +56,8 @@ const defaultProps = {
  * Styles the component container
  */
 const Section = styled(_Section)(props => ({
+  ...props.theme.colorPairs.default,
+
   height: "calc(100vh - var(--lem) * 10)",
   display: "flex",
   alignItems: "center",
