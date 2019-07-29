@@ -77,34 +77,13 @@ const Section = styled(_Section)(props => ({
 }));
 
 /**
- * Animates the slides for the slideshow.
- */
-const SlideshowAnimation = keyframes`
-	0% {
-		opacity: 0
-	}
-	5% {
-		opacity: 0
-	}
-	10% {
-		opacity: 1
-	}
-	90% {
-		opacity: 1
-	}
-	100% {
-		opacity: 0
-	}
-`;
-
-/**
- * The animated slides container.
+ * The animated slideshow container.
  *
  * `keyframes` needs to be used with `css`
  */
-const SectionAnimated = styled(Section)(
+const SlideshowAnimated = styled(Section)(
   props => css`
-    animation: ${SlideshowAnimation};
+    animation: ${props.theme.animations.fadeInSlideshow};
     animation-duration: 10s;
     animation-iteration-count: infinite;
   `
@@ -214,9 +193,9 @@ const Slider = props => {
       }}
     >
       {isSlideShowActive ? (
-        <SectionAnimated className="Slider" title="Slider" theme={theme}>
+        <SlideshowAnimated className="Slider" title="Slider" theme={theme}>
           <Slides ref={slidesRef} activeImage={activeImage} {...props} />
-        </SectionAnimated>
+        </SlideshowAnimated>
       ) : (
         <Section className="Slider" title="Slider" theme={theme}>
           <Slides ref={slidesRef} activeImage={activeImage} {...props} />

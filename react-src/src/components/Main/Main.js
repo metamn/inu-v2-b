@@ -80,7 +80,6 @@ const Main = props => {
    * Sets up state for the active menu item
    */
   const [activeMenuItem, setActiveMenuItem] = useState(defaultMenuItem);
-  console.log("activeMenuItem:" + activeMenuItem);
 
   /**
    * Sets up state to mark the active image (thumb, or slide)

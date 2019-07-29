@@ -52,47 +52,47 @@ const propTypes = {
  * Defines the default props
  */
 const defaultProps = {
-  featuredImageTitle: "Loading image ...",
+  featuredImageTitle: "",
   featuredImageType: "large",
   index: 1,
   featuredImage: {
     id: "cG9zdDoxMQ==",
-    sourceUrl: "<THEME_URI>/default-image.png",
+    sourceUrl: "<THEME_URI>/default-image<COLOR_SCHEME>.png",
     mediaDetails: {
       file: "default-image.png",
       height: 732,
       width: 1316,
       sizes: [
         {
-          file: "default-image-150x150.png",
+          file: "default-image-150x150<COLOR_SCHEME>.png",
           height: "150",
           mimeType: "image/png",
           name: "thumbnail",
-          sourceUrl: "<THEME_URI>/default-image-150x150.png",
+          sourceUrl: "<THEME_URI>/default-image-150x150<COLOR_SCHEME>.png",
           width: "150"
         },
         {
-          file: "default-image-300x167.png",
+          file: "default-image-300x167<COLOR_SCHEME>.png",
           height: "167",
           mimeType: "image/png",
           name: "medium",
-          sourceUrl: "<THEME_URI>/default-image-300x167.png",
+          sourceUrl: "<THEME_URI>/default-image-300x167<COLOR_SCHEME>.png",
           width: "300"
         },
         {
-          file: "default-image-786x427.png",
+          file: "default-image-786x427<COLOR_SCHEME>.png",
           height: "427",
           mimeType: "image/png",
           name: "medium",
-          sourceUrl: "<THEME_URI>/default-image-768x427.png",
+          sourceUrl: "<THEME_URI>/default-image-768x427<COLOR_SCHEME>.png",
           width: "768"
         },
         {
-          file: "default-image-1024x570.png",
+          file: "default-image-1024x570<COLOR_SCHEME>.png",
           height: "570",
           mimeType: "image/png",
           name: "medium",
-          sourceUrl: "<THEME_URI>/default-image-1024x570.png",
+          sourceUrl: "<THEME_URI>/default-image-1024x570<COLOR_SCHEME>.png",
           width: "1024"
         }
       ]
@@ -134,7 +134,13 @@ const Container = styled("div")(props => ({}));
  * Creates a large, responsive image
  */
 const responsiveImage = props => {
-  const { featuredImageTitle, featuredImage, index, theme } = props;
+  const {
+    featuredImageTitle,
+    featuredImage,
+    index,
+    theme,
+    colorScheme
+  } = props;
   const { sourceUrl, mediaDetails } = featuredImage;
   const { sizes } = mediaDetails;
   const { width } = mediaDetails;
@@ -157,8 +163,20 @@ const responsiveImage = props => {
    * Sets up the default responsive image
    */
   const { themeUri } = theme;
-  const newSourceUrl = sourceUrl.replace("<THEME_URI>", themeUri);
+  let newSourceUrl = sourceUrl.replace("<THEME_URI>", themeUri);
   srcSet = srcSet.toString().replace("<THEME_URI>", themeUri);
+
+  newSourceUrl =
+    colorScheme === "dark"
+      ? newSourceUrl.replace("<COLOR_SCHEME>", "-black")
+      : newSourceUrl.replace("<COLOR_SCHEME>", "");
+
+  srcSet =
+    colorScheme === "dark"
+      ? srcSet.replace("<COLOR_SCHEME>", "-black")
+      : srcSet.replace("<COLOR_SCHEME>", "");
+
+  console.log("newSourceUrl:" + newSourceUrl);
 
   return (
     <ImageResponsive
@@ -206,15 +224,15 @@ const PostFeaturedImage = props => {
   /**
    * Loads theme
    */
-  const { theme } = useTheme();
+  const { theme, colorScheme } = useTheme();
 
   /**
    * Either returns a simple image (thumbnail) or a large, responsive image.
    */
   const image =
     featuredImageType === "large"
-      ? responsiveImage({ ...props, theme })
-      : thumbnailImage({ ...props, theme });
+      ? responsiveImage({ ...props, theme, colorScheme })
+      : thumbnailImage({ ...props, theme, colorScheme });
 
   return <Container className="PostFeaturedImage">{image}</Container>;
 };

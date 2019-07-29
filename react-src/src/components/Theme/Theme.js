@@ -1,8 +1,50 @@
 import React from "react";
 import { modularScale } from "polished";
+import { keyframes } from "styled-components";
 import { FiSun, FiGrid, FiChevronUp, FiChevronDown } from "react-icons/fi";
 
 import { useLocalStorage, usePrefersDarkMode } from "../../hooks";
+
+/**
+ * Animation for fading in the slideshow
+ */
+const fadeInSlideshow = keyframes`
+	0% {
+		opacity: 0
+	}
+	5% {
+		opacity: 0
+	}
+	10% {
+		opacity: 1
+	}
+	90% {
+		opacity: 1
+	}
+	100% {
+		opacity: 0
+	}
+ `;
+
+/**
+ * Animation for fading in the slider at first page load
+ */
+const fadeInSlider = keyframes`
+ 	0% {
+ 		opacity: 0
+ 	}
+ 	100% {
+ 		opacity: 1
+ 	}
+  `;
+
+/**
+ * Animations
+ */
+const animations = {
+  fadeInSlider: fadeInSlider,
+  fadeInSlideshow: fadeInSlideshow
+};
 
 /**
  * Icons
@@ -238,7 +280,10 @@ const getColorScheme = colorScheme =>
  * Get theme URI
  */
 const getThemeUri = () => {
-  const prefix = process.env.NODE_ENV === "development" ? "/react-wp" : "";
+  const prefix =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost/react-wp"
+      : "http://inu.ro";
   return prefix + "/wp-content/themes/inu-v2-b";
 };
 
@@ -272,6 +317,7 @@ const getTheme = colorScheme => {
     padding: padding(spacing),
     sizing: sizing,
     images: images(themeUri),
+    animations: animations,
     themeUri: themeUri
   };
 };

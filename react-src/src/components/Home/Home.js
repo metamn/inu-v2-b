@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import WebFont from "webfontloader";
 //import { stringify } from "flatted";
 
@@ -147,6 +147,18 @@ const Section = styled(_Section)(props => ({
 }));
 
 /**
+ * The animated home container.
+ *
+ * `keyframes` needs to be used with `css`
+ */
+const HomeAnimated = styled(Section)(
+  props => css`
+    animation: ${props.theme.animations.fadeInSlider};
+    animation-duration: 4s;
+  `
+);
+
+/**
  * Styles the theme switcher icon
  */
 const Icon = styled(_Icon)(props => ({
@@ -219,7 +231,7 @@ const Home = props => {
           displayVerticalRhytm={false}
           displayHorizontalRhytm={false}
         />
-        <Section className="Home" title="Home" theme={theme}>
+        <HomeAnimated className="Home" title="Home" theme={theme}>
           <Icon
             className="ThemeSwitcherIcon"
             sizeMultiplier={1}
@@ -229,7 +241,7 @@ const Home = props => {
           </Icon>
           <Logo {...siteSettings} />
           <Main categories={categories} />
-        </Section>
+        </HomeAnimated>
       </ThemeContext.Provider>
     </>
   );
