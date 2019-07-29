@@ -169,6 +169,10 @@ A short overview of the major steps and tasks done. It is completely based on [T
 
 ### The new site performance
 
+> ![New site performance, Lighthouse](./react-src/docs/inu-new-lighthouse.png)
+
+> ![New site performance, WebPageTest](./react-src/docs/inu-new-webpagetest.png)
+
 tbd.
 
 ## Changelog
