@@ -46,6 +46,10 @@ const Container = styled("div")(props => ({
 
   [`${Media.desktop}`]: {
     minWidth: `calc(100vw - ${props.theme.spacing.left.desktop} * 2)`
+  },
+
+  "& + .Slide": {
+    marginLeft: "calc(var(--lem) * 2)"
   }
 }));
 
