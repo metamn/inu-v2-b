@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 import { CategoriesPropTypes, CategoriesDefaultProps } from "../Categories";
@@ -124,7 +124,18 @@ const Main = props => {
   };
 
   /**
-   * Loads from the database.
+   * Makes the first category the active menu item.
+   */
+  useEffect(
+    () => {
+      const firstCategoryId = categories.edges[0].node.categoryId.toString();
+      setActiveMenuItem(firstCategoryId);
+    },
+    [categories.edges]
+  );
+
+  /**
+   * Loads posts from the database.
    *
    * They can't be conditionally queried due to hook rules
    */
