@@ -154,7 +154,7 @@ const Section = styled(_Section)(props => ({
 const HomeAnimated = styled(Section)(
   props => css`
     animation: ${props.theme.animations.fadeInSlider};
-    animation-duration: 4s;
+    animation-duration: 0s;
   `
 );
 

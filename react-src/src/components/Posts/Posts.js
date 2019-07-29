@@ -36,7 +36,7 @@ const propTypes = {
 const defaultProps = {
   edges: Array(1).fill({ node: PostDefaultProps }),
   variables: {
-    categoryId: 1,
+    categoryId: 0,
     first: 50
   }
 };

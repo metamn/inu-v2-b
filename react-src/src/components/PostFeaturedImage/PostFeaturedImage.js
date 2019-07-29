@@ -163,20 +163,18 @@ const responsiveImage = props => {
    * Sets up the default responsive image
    */
   const { themeUri } = theme;
-  let newSourceUrl = sourceUrl.replace("<THEME_URI>", themeUri);
-  srcSet = srcSet.toString().replace("<THEME_URI>", themeUri);
+  let newSourceUrl = sourceUrl.replace(/<THEME_URI>/g, themeUri);
+  srcSet = srcSet.toString().replace(/<THEME_URI>/g, themeUri);
 
   newSourceUrl =
     colorScheme === "dark"
-      ? newSourceUrl.replace("<COLOR_SCHEME>", "-black")
-      : newSourceUrl.replace("<COLOR_SCHEME>", "");
+      ? newSourceUrl.replace(/<COLOR_SCHEME>/g, "-black")
+      : newSourceUrl.replace(/<COLOR_SCHEME>/g, "");
 
   srcSet =
     colorScheme === "dark"
-      ? srcSet.replace("<COLOR_SCHEME>", "-black")
-      : srcSet.replace("<COLOR_SCHEME>", "");
-
-  console.log("newSourceUrl:" + newSourceUrl);
+      ? srcSet.replace(/<COLOR_SCHEME>/g, "-black")
+      : srcSet.replace(/<COLOR_SCHEME>/g, "");
 
   return (
     <ImageResponsive
