@@ -66,7 +66,6 @@ const SectionMobile = {
   minHeight: "100vh",
 
   gridTemplateColumns: "calc(var(--lem) * 3) auto",
-  gridTemplateRows: "calc(var(--lem) * 2) 1fr auto calc(var(--lem) * 2)",
   gridTemplateAreas: `
     "logo logo"
     "menudd menudd"
@@ -81,7 +80,6 @@ const SectionTablet = props => ({
   minHeight: "100vh",
 
   gridTemplateColumns: props.theme.sizing.home.gridTemplateColumns.tablet,
-  gridTemplateRows: "auto",
   gridTemplateAreas: `
     "logo menudd contentswi themeswi ."
     "content content content content content"`

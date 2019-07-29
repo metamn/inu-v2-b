@@ -58,7 +58,6 @@ const defaultProps = {
 const Section = styled(_Section)(props => ({
   ...props.theme.colorPairs.default,
 
-  height: "calc(100vh - var(--lem) * 10)",
   display: "flex",
   alignItems: "center",
   width: `calc(100vw - ${props.theme.spacing.left.mobile} * 2)`,
