@@ -27,10 +27,23 @@ const fadeInSlideshow = keyframes`
  `;
 
 /**
+ * Animation for fading in the homepage
+ */
+const fadeInPage = keyframes`
+ 	0% {
+ 		opacity: 0
+ 	}
+ 	100% {
+ 		opacity: 1
+ 	}
+  `;
+
+/**
  * Animations
  */
 const animations = {
-  fadeInSlideshow: fadeInSlideshow
+  fadeInSlideshow: fadeInSlideshow,
+  fadeInPage: fadeInPage
 };
 
 /**

@@ -201,10 +201,9 @@ const Slider = props => {
   /**
    * Checks if the first category is loaded.
    *
-   * If not, the slider will be hidden
+   * If not, the slider will be hidden to avoid flicking
    */
   const isFisrtsCategoryLoaded = activeMenuItem !== "0";
-  console.log("isFisrtsCategoryLoaded:" + isFisrtsCategoryLoaded);
 
   return (
     <SliderContext.Provider
