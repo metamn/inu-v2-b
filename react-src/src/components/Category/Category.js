@@ -25,8 +25,8 @@ const propTypes = {
  * Defines the default props.
  */
 const defaultProps = {
-  id: "1",
-  categoryId: 1,
+  id: "0",
+  categoryId: 0,
   name: "/ / / / / / / /"
 };
 

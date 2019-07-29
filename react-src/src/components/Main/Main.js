@@ -133,6 +133,7 @@ const Main = props => {
     },
     [categories.edges]
   );
+  console.log("activeMenuItem:" + activeMenuItem);
 
   /**
    * Loads posts from the database.

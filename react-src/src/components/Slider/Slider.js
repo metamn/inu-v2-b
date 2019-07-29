@@ -36,7 +36,11 @@ const propTypes = {
   slidesRef: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.shape({ current: PropTypes.instanceOf(Slides) })
-  ])
+  ]),
+  /**
+   * The active menu item
+   */
+  activeMenuItem: PropTypes.number
 };
 
 /**
@@ -49,7 +53,8 @@ const defaultProps = {
     console.log("Active image setter");
   },
   isSlideShowActive: false,
-  slidesRef: null
+  slidesRef: null,
+  activeMenuItem: "0"
 };
 
 /**
@@ -61,6 +66,8 @@ const Section = styled(_Section)(props => ({
   display: "flex",
   alignItems: "center",
   width: `calc(100vw - ${props.theme.spacing.left.mobile} * 2)`,
+
+  visibility: props.isFisrtsCategoryLoaded ? "visible" : "hidden",
 
   [`${Media.tablet}`]: {
     alignItems: "start",
@@ -100,7 +107,13 @@ const SliderContext = React.createContext({});
  * @see https://developers.google.com/web/updates/2018/07/css-scroll-snap
  */
 const Slider = props => {
-  const { edges, activeImage, slidesRef, isSlideShowActive } = props;
+  const {
+    edges,
+    activeImage,
+    slidesRef,
+    isSlideShowActive,
+    activeMenuItem
+  } = props;
   const { theme } = useTheme();
 
   /**
@@ -185,6 +198,14 @@ const Slider = props => {
     [activeImage, isSlideShowActive, numberOfSlides, slidesRef]
   );
 
+  /**
+   * Checks if the first category is loaded.
+   *
+   * If not, the slider will be hidden
+   */
+  const isFisrtsCategoryLoaded = activeMenuItem !== "0";
+  console.log("isFisrtsCategoryLoaded:" + isFisrtsCategoryLoaded);
+
   return (
     <SliderContext.Provider
       value={{
@@ -197,7 +218,12 @@ const Slider = props => {
           <Slides ref={slidesRef} activeImage={activeImage} {...props} />
         </SlideshowAnimated>
       ) : (
-        <Section className="Slider" title="Slider" theme={theme}>
+        <Section
+          className="Slider"
+          title="Slider"
+          theme={theme}
+          isFisrtsCategoryLoaded={isFisrtsCategoryLoaded}
+        >
           <Slides ref={slidesRef} activeImage={activeImage} {...props} />
         </Section>
       )}

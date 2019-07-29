@@ -147,18 +147,6 @@ const Section = styled(_Section)(props => ({
 }));
 
 /**
- * The animated home container.
- *
- * `keyframes` needs to be used with `css`
- */
-const HomeAnimated = styled(Section)(
-  props => css`
-    animation: ${props.theme.animations.fadeInSlider};
-    animation-duration: 0s;
-  `
-);
-
-/**
  * Styles the theme switcher icon
  */
 const Icon = styled(_Icon)(props => ({
@@ -231,7 +219,7 @@ const Home = props => {
           displayVerticalRhytm={false}
           displayHorizontalRhytm={false}
         />
-        <HomeAnimated className="Home" title="Home" theme={theme}>
+        <Section className="Home" title="Home" theme={theme}>
           <Icon
             className="ThemeSwitcherIcon"
             sizeMultiplier={1}
@@ -241,7 +229,7 @@ const Home = props => {
           </Icon>
           <Logo {...siteSettings} />
           <Main categories={categories} />
-        </HomeAnimated>
+        </Section>
       </ThemeContext.Provider>
     </>
   );

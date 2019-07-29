@@ -66,7 +66,7 @@ const propTypes = {
  * Defines the default props
  */
 const defaultProps = {
-  activeMenuItem: "1",
+  activeMenuItem: "0",
   activeContentDisplayMode: "slider",
   setActiveContentDisplayMode: () => {
     console.log("Set active display mode");
@@ -209,6 +209,7 @@ const Content = props => {
             setActiveImage={setActiveImage}
             isSlideShowActive={isSlideShowActive}
             slidesRef={slidesRef}
+            activeMenuItem={activeMenuItem}
           />
         );
     }

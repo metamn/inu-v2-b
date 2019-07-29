@@ -128,7 +128,9 @@ const queryFragment = {
 /**
  * Styles the component container
  */
-const Container = styled("div")(props => ({}));
+const Container = styled("div")(props => ({
+  visibility: props.isLoading ? "hidden" : "visible"
+}));
 
 /**
  * Creates a large, responsive image
@@ -176,17 +178,25 @@ const responsiveImage = props => {
       ? srcSet.replace(/<COLOR_SCHEME>/g, "-black")
       : srcSet.replace(/<COLOR_SCHEME>/g, "");
 
-  return (
-    <ImageResponsive
-      src={newSourceUrl}
-      srcSet={srcSet.toString()}
-      sizes={srcSetSizes.toString()}
-      srcSetWidths={srcSetWidths}
-      alt={featuredImageTitle}
-      index={index}
-      delay={0}
-    />
-  );
+  /**
+   * Checks if the image is still loading
+   */
+  const isLoading = newSourceUrl.indexOf("default-image") !== -1;
+
+  return {
+    image: (
+      <ImageResponsive
+        src={newSourceUrl}
+        srcSet={srcSet.toString()}
+        sizes={srcSetSizes.toString()}
+        srcSetWidths={srcSetWidths}
+        alt={featuredImageTitle}
+        index={index}
+        delay={0}
+      />
+    ),
+    isLoading: isLoading
+  };
 };
 
 /**
@@ -199,15 +209,23 @@ const thumbnailImage = props => {
   const thumbnail = sizes.filter(size => size.name === "thumbnail");
   const { sourceUrl, width, height } = thumbnail[0];
 
-  return (
-    <Image
-      src={sourceUrl}
-      alt={featuredImageTitle}
-      width={width}
-      height={height}
-      index={index}
-    />
-  );
+  /**
+   * Checks if the image is still loading
+   */
+  const isLoading = sourceUrl.indexOf("default-image") !== -1;
+
+  return {
+    image: (
+      <Image
+        src={sourceUrl}
+        alt={featuredImageTitle}
+        width={width}
+        height={height}
+        index={index}
+      />
+    ),
+    isLoading: isLoading
+  };
 };
 
 /**
@@ -227,12 +245,16 @@ const PostFeaturedImage = props => {
   /**
    * Either returns a simple image (thumbnail) or a large, responsive image.
    */
-  const image =
+  const { image, isLoading } =
     featuredImageType === "large"
       ? responsiveImage({ ...props, theme, colorScheme })
       : thumbnailImage({ ...props, theme, colorScheme });
 
-  return <Container className="PostFeaturedImage">{image}</Container>;
+  return (
+    <Container className="PostFeaturedImage" isLoading={isLoading}>
+      {image}
+    </Container>
+  );
 };
 
 PostFeaturedImage.propTypes = propTypes;

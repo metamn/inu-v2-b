@@ -27,22 +27,9 @@ const fadeInSlideshow = keyframes`
  `;
 
 /**
- * Animation for fading in the slider at first page load
- */
-const fadeInSlider = keyframes`
- 	0% {
- 		opacity: 0
- 	}
- 	100% {
- 		opacity: 1
- 	}
-  `;
-
-/**
  * Animations
  */
 const animations = {
-  fadeInSlider: fadeInSlider,
   fadeInSlideshow: fadeInSlideshow
 };
 
