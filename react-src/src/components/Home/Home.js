@@ -77,20 +77,26 @@ const SectionMobile = {
 /**
  * Styles the component for tablets
  */
-const SectionTablet = {
+const SectionTablet = props => ({
   height: "100vh",
 
-  gridTemplateColumns:
-    "calc(var(--lem) * 10) calc(var(--lem) * 15) calc(var(--lem) * 3) calc(var(--lem) * 3) auto",
-  gridTemplateRows: "1fr auto",
+  gridTemplateColumns: props.theme.sizing.home.gridTemplateColumns.tablet,
+  gridTemplateRows: "auto",
   gridTemplateAreas: `
     "logo menudd contentswi themeswi ."
-    "content content content content content"`,
+    "content content content content content"`
+});
+
+/**
+ * Styles the component for laptops
+ */
+const SectionLaptop = props => ({
+  gridTemplateColumns: props.theme.sizing.home.gridTemplateColumns.laptop,
 
   "& .Slider, .Thumbs, .Contact": {
     marginTop: "calc(var(--lem) * 2)"
   }
-};
+});
 
 /**
  * Styles the component container
@@ -109,11 +115,12 @@ const Section = styled(_Section)(props => ({
 
   [`${Media.tablet}`]: {
     ...props.theme.padding.tablet,
-    ...SectionTablet
+    ...SectionTablet(props)
   },
 
   [`${Media.laptop}`]: {
-    ...props.theme.padding.laptop
+    ...props.theme.padding.laptop,
+    ...SectionLaptop(props)
   },
 
   [`${Media.desktop}`]: {

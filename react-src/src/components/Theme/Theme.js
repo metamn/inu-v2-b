@@ -189,6 +189,34 @@ const padding = spacing => {
 };
 
 /**
+ * Sizing
+ */
+const sizing = {
+  home: {
+    gridTemplateColumns: {
+      tablet:
+        "calc(var(--lem) * 15) calc(var(--lem) * 15) calc(var(--lem) * 3) calc(var(--lem) * 3) auto",
+      laptop:
+        "calc(var(--lem) * 10) calc(var(--lem) * 15) calc(var(--lem) * 3) calc(var(--lem) * 3) auto"
+    }
+  },
+  logo: {
+    width: {
+      tablet: "calc(var(--lem) * 15)",
+      laptop: "calc(var(--lem) * 7)"
+    }
+  },
+  line: {
+    transform: {
+      tablet:
+        "rotate(-65deg) translateY(calc(var(--lem) * 6)) translateX(calc(var(--lem) * 6))",
+      laptop:
+        "rotate(-65deg) translateY(calc(var(--lem) * 2)) translateX(calc(var(--lem) * 4))"
+    }
+  }
+};
+
+/**
  * Returns a color scheme
  *
  * @param  String colorScheme The name of the color scheme
@@ -233,6 +261,7 @@ const getTheme = colorScheme => {
     cursors: getCursors({ themeUri: themeUri, colorScheme: colorScheme }),
     spacing: spacing,
     padding: padding(spacing),
+    sizing: sizing,
     themeUri: themeUri
   };
 };
