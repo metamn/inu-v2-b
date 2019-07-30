@@ -48,9 +48,12 @@ const Container = styled("div")(props => ({
     minWidth: `calc(100vw - ${props.theme.spacing.left.desktop} * 2)`
   },
 
-  "& + .Slide": {
-    marginLeft: "calc(var(--lem) * 2)"
-  }
+  /**
+   * The active image is calculated using the slide width: `const slideWidth = ref.clientWidth;`
+   * This means `padding` should be used instead of `margin` ...
+   * And all slides must have equal size, ie you can't do `.Slide + .Slide` declaration.
+   */
+  paddingRight: "calc(var(--lem) * 2)"
 }));
 
 /**

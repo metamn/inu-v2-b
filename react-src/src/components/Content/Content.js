@@ -167,7 +167,7 @@ const Content = props => {
       const slideWidth = ref.clientWidth;
       const sliderPosition = ref.scrollLeft;
 
-      setActiveImage(sliderPosition / slideWidth);
+      setActiveImage(Math.floor(sliderPosition / slideWidth));
     }
   };
 
@@ -184,6 +184,8 @@ const Content = props => {
     setActiveImage(index);
     setActiveContentDisplayMode("slider");
   };
+
+  console.log("activeImage:" + activeImage);
 
   /**
    * Decides which content to be displayed.
