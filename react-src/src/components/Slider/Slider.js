@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import styled, { keyframes, css } from "styled-components";
+import styled, { css } from "styled-components";
 
 import { Media, useTheme } from "../../hooks";
 
@@ -40,7 +40,7 @@ const propTypes = {
   /**
    * The active menu item
    */
-  activeMenuItem: PropTypes.number
+  activeMenuItem: PropTypes.string
 };
 
 /**
