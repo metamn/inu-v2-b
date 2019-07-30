@@ -185,8 +185,6 @@ const Content = props => {
     setActiveContentDisplayMode("slider");
   };
 
-  console.log("activeImage:" + activeImage);
-
   /**
    * Decides which content to be displayed.
    */

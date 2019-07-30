@@ -68,9 +68,14 @@ const Thumbs = props => {
     );
   });
 
+  /**
+   * Checks if the thumbs are still loading
+   */
+  const isLoading = edges[0].node.id === "1";
+
   return (
     <Container className="Thumbs" theme={theme}>
-      {thumbs}
+      {isLoading ? "Loading ...." : thumbs}
     </Container>
   );
 };
