@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
+import smoothscroll from "smoothscroll-polyfill";
 
 import { Media, useTheme } from "../../hooks";
 
@@ -85,10 +86,7 @@ const Section = styled(_Section)(props => ({
 /**
  * The animated slider container.
  *
- * Useful for the thumb-to-slider transition.
- * For categories with lots of images 0.5s might be not enough;
- * For categories with less images 0.5s is good enough.
- * This can be later enhanced to be dynamic.
+ * Useful for hiding / easing the image loading effect.
  *
  * `keyframes` needs to be used with `css`
  */
@@ -118,6 +116,13 @@ const SlideshowAnimated = styled(Section)(
 const SliderContext = React.createContext({});
 
 /**
+ * Smooth scroll polyfill. For Edge and co.
+ *
+ * @see https://github.com/iamdustan/smoothscroll
+ */
+smoothscroll.polyfill();
+
+/**
  * Displays the slider.
  *
  * @see https://developers.google.com/web/updates/2018/07/css-scroll-snap
@@ -133,15 +138,16 @@ const Slider = props => {
 
   const { theme } = useTheme();
 
-  console.log("Slider");
-
   /**
    * Calculates the number of slides
    */
   const numberOfSlides = edges.length;
 
   /**
-   * Scrolls the slider to the active image
+   * Scrolls the slider to the active image.
+   *
+   * `behavior: "smooth"` works only in Firefox.
+   * On other browsers (Chrome) is very ugly on large amount of slides like in our case.
    */
   useEffect(
     () => {
@@ -151,8 +157,7 @@ const Slider = props => {
 
         ref.scrollBy({
           left: slideWidth * activeImage,
-          top: 0,
-          behavior: "smooth"
+          top: 0
         });
       }
     },
@@ -204,8 +209,7 @@ const Slider = props => {
 
           ref.scrollTo({
             left: slideWidth * random,
-            top: 0,
-            behavior: "smooth"
+            top: 0
           });
         }, 10000);
       } else {
