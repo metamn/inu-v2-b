@@ -39,11 +39,27 @@ const fadeInPage = keyframes`
   `;
 
 /**
+ * Animation for fading in the slider
+ */
+const fadeInSlider = keyframes`
+   	0% {
+   		opacity: 0
+   	}
+	90% {
+   		opacity: 0
+   	}
+   	100% {
+   		opacity: 1
+   	}
+    `;
+
+/**
  * Animations
  */
 const animations = {
   fadeInSlideshow: fadeInSlideshow,
-  fadeInPage: fadeInPage
+  fadeInPage: fadeInPage,
+  fadeInSlider: fadeInSlider
 };
 
 /**

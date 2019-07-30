@@ -35,7 +35,8 @@ const defaultProps = {
 const Container = styled("div")(props => ({
   ...props.theme.colorPairs.default,
   display: "flex",
-  flexWrap: "wrap"
+  flexWrap: "wrap",
+  opacity: props.isLoading ? "0.3" : "1"
 }));
 
 /**
@@ -74,8 +75,8 @@ const Thumbs = props => {
   const isLoading = edges[0].node.id === "1";
 
   return (
-    <Container className="Thumbs" theme={theme}>
-      {isLoading ? "Loading ...." : thumbs}
+    <Container className="Thumbs" theme={theme} isLoading={isLoading}>
+      {thumbs}
     </Container>
   );
 };

@@ -84,6 +84,23 @@ const Section = styled(_Section)(props => ({
 }));
 
 /**
+ * The animated slider container.
+ *
+ * Useful for the thumb-to-slider transition.
+ * For categories with lots of images 0.5s might be not enough;
+ * For categories with less images 0.5s is good enough.
+ * This can be later enhanced to be dynamic.
+ *
+ * `keyframes` needs to be used with `css`
+ */
+const SliderAnimated = styled(Section)(
+  props => css`
+    animation: ${props.theme.animations.fadeInSlider};
+    animation-duration: 0.5s;
+  `
+);
+
+/**
  * The animated slideshow container.
  *
  * `keyframes` needs to be used with `css`
@@ -114,7 +131,10 @@ const Slider = props => {
     isSlideShowActive,
     activeMenuItem
   } = props;
+
   const { theme } = useTheme();
+
+  console.log("Slider");
 
   /**
    * Calculates the number of slides
@@ -217,14 +237,14 @@ const Slider = props => {
           <Slides ref={slidesRef} activeImage={activeImage} {...props} />
         </SlideshowAnimated>
       ) : (
-        <Section
+        <SliderAnimated
           className="Slider"
           title="Slider"
           theme={theme}
           isFisrtsCategoryLoaded={isFisrtsCategoryLoaded}
         >
           <Slides ref={slidesRef} activeImage={activeImage} {...props} />
-        </Section>
+        </SliderAnimated>
       )}
     </SliderContext.Provider>
   );
