@@ -65,7 +65,7 @@ const defaultProps = {
 const SectionMobile = {
   minHeight: "100vh",
 
-  gridTemplateColumns: "calc(var(--lem) * 3) auto",
+  gridTemplateColumns: "calc(var(--lem) * 3) 1fr",
   gridTemplateAreas: `
     "logo logo"
     "menudd menudd"

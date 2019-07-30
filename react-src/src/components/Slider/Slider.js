@@ -62,24 +62,23 @@ const defaultProps = {
  */
 const Section = styled(_Section)(props => ({
   ...props.theme.colorPairs.default,
-
-  display: "flex",
-  alignItems: "center",
-  width: `calc(100vw - ${props.theme.spacing.left.mobile} * 2)`,
-
   visibility: props.isFisrtsCategoryLoaded ? "visible" : "hidden",
+
+  [`${Media.mobile}`]: {
+    width: `calc(100vw - ${props.theme.spacing.left.mobile} * 2 + var(--lem))`
+  },
 
   [`${Media.tablet}`]: {
     alignItems: "start",
-    width: `calc(100vw - ${props.theme.spacing.left.tablet} * 2)`
+    width: `calc(100vw - ${props.theme.spacing.left.tablet} * 2  + var(--lem))`
   },
 
   [`${Media.laptop}`]: {
-    width: `calc(100vw - ${props.theme.spacing.left.laptop} * 2)`
+    width: `calc(100vw - ${props.theme.spacing.left.laptop} * 2  + var(--lem))`
   },
 
   [`${Media.desktop}`]: {
-    width: `calc(100vw - ${props.theme.spacing.left.desktop} * 2)`
+    width: `calc(100vw - ${props.theme.spacing.left.desktop} * 2  + var(--lem))`
   }
 }));
 

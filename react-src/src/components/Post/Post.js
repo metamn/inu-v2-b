@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import gql from "graphql-tag";
 
+import { Media, useTheme } from "../../hooks";
+
 import PostFeaturedImage, {
   PostFeaturedImagePropTypes,
   PostFeaturedImageDefaultProps
@@ -68,8 +70,10 @@ const Article = styled(_Article)(props => ({}));
 const Post = props => {
   const { title } = props;
 
+  const { theme } = useTheme();
+
   return (
-    <Article className="Post" title={title}>
+    <Article className="Post" title={title} theme={theme}>
       <PostFeaturedImage featuredImageTitle={title} {...props} />
     </Article>
   );
