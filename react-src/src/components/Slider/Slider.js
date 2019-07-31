@@ -126,6 +126,7 @@ smoothscroll.polyfill();
  * Displays the slider.
  *
  * @see https://developers.google.com/web/updates/2018/07/css-scroll-snap
+ * @see https://nolanlawson.com/2019/02/10/building-a-modern-carousel-with-css-scroll-snap-smooth-scrolling-and-pinch-zoom/
  */
 const Slider = props => {
   const {

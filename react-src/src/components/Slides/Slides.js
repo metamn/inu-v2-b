@@ -32,19 +32,28 @@ const defaultProps = {
  * Styles the component container
  */
 const Container = styled("div")(props => ({
-  /* snap mandatory on horizontal axis  */
-  scrollSnapType: "x mandatory",
-
   overflowX: "scroll",
   overflowY: "hidden",
 
   display: "flex",
   alignItems: "center",
 
+  "@supports (scroll-snap-align: start)": {
+    /* modern scroll snap points */
+    scrollSnapType: "x mandatory"
+  },
+
+  "@supports not (scroll-snap-align: start)": {
+    /* old scroll snap points spec */
+    scrollSnapType: "mandatory",
+    scrollSnapDestination: "0% center",
+    scrollSnapPointsX: "repeat(100%)"
+  },
+
   /**
    * Enable Safari touch scrolling physics which is needed for scroll snap
    */
-  "-webkit-overflow-scrolling": "touch",
+  //"-webkit-overflow-scrolling": "touch",
 
   /**
    * Hide scrollbar
