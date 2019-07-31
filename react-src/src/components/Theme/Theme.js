@@ -1,8 +1,66 @@
 import React from "react";
 import { modularScale } from "polished";
+import { keyframes } from "styled-components";
 import { FiSun, FiGrid, FiChevronUp, FiChevronDown } from "react-icons/fi";
 
 import { useLocalStorage, usePrefersDarkMode } from "../../hooks";
+
+/**
+ * Animation for fading in the slideshow
+ */
+const fadeInSlideshow = keyframes`
+	0% {
+		opacity: 0
+	}
+	5% {
+		opacity: 0
+	}
+	10% {
+		opacity: 1
+	}
+	90% {
+		opacity: 1
+	}
+	100% {
+		opacity: 0
+	}
+ `;
+
+/**
+ * Animation for fading in the homepage
+ */
+const fadeInPage = keyframes`
+ 	0% {
+ 		opacity: 0
+ 	}
+ 	100% {
+ 		opacity: 1
+ 	}
+  `;
+
+/**
+ * Animation for fading in the slider
+ */
+const fadeInSlider = keyframes`
+   	0% {
+   		opacity: 0
+   	}
+	90% {
+   		opacity: 0
+   	}
+   	100% {
+   		opacity: 1;
+   	}
+    `;
+
+/**
+ * Animations
+ */
+const animations = {
+  fadeInSlideshow: fadeInSlideshow,
+  fadeInPage: fadeInPage,
+  fadeInSlider: fadeInSlider
+};
 
 /**
  * Icons
@@ -41,6 +99,15 @@ const cursors = themeUri => {
         url: `url("${themeUri}/brutalist_line_SVGicon_cursor2-black.png") 31 0, pointer`
       }
     }
+  };
+};
+
+/**
+ * Images
+ */
+const images = themeUri => {
+  return {
+    default: `${themeUri}/default-image.png`
   };
 };
 
@@ -189,6 +256,34 @@ const padding = spacing => {
 };
 
 /**
+ * Sizing
+ */
+const sizing = {
+  home: {
+    gridTemplateColumns: {
+      tablet:
+        "calc(var(--lem) * 15) calc(var(--lem) * 15) calc(var(--lem) * 3) calc(var(--lem) * 3) auto",
+      laptop:
+        "calc(var(--lem) * 10) calc(var(--lem) * 15) calc(var(--lem) * 3) calc(var(--lem) * 3) auto"
+    }
+  },
+  logo: {
+    width: {
+      tablet: "calc(var(--lem) * 15)",
+      laptop: "calc(var(--lem) * 7)"
+    }
+  },
+  line: {
+    transform: {
+      tablet:
+        "rotate(-65deg) translateY(calc(var(--lem) * 6)) translateX(calc(var(--lem) * 6))",
+      laptop:
+        "rotate(-65deg) translateY(calc(var(--lem) * 2)) translateX(calc(var(--lem) * 4))"
+    }
+  }
+};
+
+/**
  * Returns a color scheme
  *
  * @param  String colorScheme The name of the color scheme
@@ -201,7 +296,10 @@ const getColorScheme = colorScheme =>
  * Get theme URI
  */
 const getThemeUri = () => {
-  const prefix = process.env.NODE_ENV === "development" ? "/react-wp" : "";
+  const prefix =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost/react-wp"
+      : "http://inu.ro";
   return prefix + "/wp-content/themes/inu-v2-b";
 };
 
@@ -233,6 +331,9 @@ const getTheme = colorScheme => {
     cursors: getCursors({ themeUri: themeUri, colorScheme: colorScheme }),
     spacing: spacing,
     padding: padding(spacing),
+    sizing: sizing,
+    images: images(themeUri),
+    animations: animations,
     themeUri: themeUri
   };
 };

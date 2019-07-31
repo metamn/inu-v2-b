@@ -30,23 +30,44 @@ const defaultProps = {
  * Styles the component container
  */
 const Container = styled("div")(props => ({
+  width: "100%",
   scrollSnapAlign: "center",
+  scrollSnapCoordinate: "0% 0%",
 
+  /**
+   * We need `min-width` here; simple `width` does not stretches the container
+   */
   [`${Media.mobile}`]: {
-    minWidth: `calc(100vw - ${props.theme.spacing.left.mobile} * 2)`
+    minWidth: `calc(100vw - ${
+      props.theme.spacing.left.mobile
+    } * 2 + var(--lem))`
   },
 
   [`${Media.tablet}`]: {
-    minWidth: `calc(100vw - ${props.theme.spacing.left.tablet} * 2)`
+    minWidth: `calc(100vw - ${
+      props.theme.spacing.left.tablet
+    } * 2  + var(--lem))`
   },
 
   [`${Media.laptop}`]: {
-    minWidth: `calc(100vw - ${props.theme.spacing.left.laptop} * 2)`
+    minWidth: `calc(100vw - ${
+      props.theme.spacing.left.laptop
+    } * 2  + var(--lem))`
   },
 
   [`${Media.desktop}`]: {
-    minWidth: `calc(100vw - ${props.theme.spacing.left.desktop} * 2)`
-  }
+    minWidth: `calc(100vw - ${
+      props.theme.spacing.left.desktop
+    } * 2  + var(--lem))`
+  },
+
+  /**
+   * The active image is calculated using the slide width obtained by `ref.clientWidth;`
+   * `clientWidth` deals with `padding` and ignores `margin`
+   *
+   * All slides must have equal size, ie you can't set padding on `.Slide + .Slide`.
+   */
+  paddingRight: "var(--lem)"
 }));
 
 /**

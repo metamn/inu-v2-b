@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { Media } from "../../hooks";
+import { useTheme, Media } from "../../hooks";
 
 import { SettingsPropTypes, SettingsDefaultProps } from "../Settings";
 import Link from "../Link";
@@ -36,11 +36,15 @@ const Header = styled("header")(props => ({
   [`${Media.tablet}`]: {
     flexDirection: "row",
     flexWrap: "wrap",
-    width: "calc(var(--lem) * 7)",
+    width: props.theme.sizing.logo.width.tablet,
 
     "& .Description": {
       marginTop: "calc(var(--lem) / 1)"
     }
+  },
+
+  [`${Media.laptop}`]: {
+    width: props.theme.sizing.logo.width.laptop
   }
 }));
 
@@ -52,7 +56,9 @@ const Title = styled("h1")(props => ({}));
 /**
  * Styles the description
  */
-const Description = styled("h2")(props => ({}));
+const Description = styled("h2")(props => ({
+  width: "100%"
+}));
 
 /**
  * Styles the line
@@ -63,8 +69,11 @@ const Line = styled("div")(props => ({
     width: "calc(var(--lem) * 8)",
     height: "var(--lem)",
     borderBottom: "1px solid",
-    transform:
-      "rotate(-65deg) translateY(calc(var(--lem) * 2)) translateX(calc(var(--lem)*4))"
+    transform: props.theme.sizing.line.transform.tablet,
+
+    [`${Media.laptop}`]: {
+      transform: props.theme.sizing.line.transform.laptop
+    }
   }
 }));
 
@@ -77,15 +86,20 @@ const Logo = props => {
    */
   const { title, url, description } = props;
 
+  /**
+   * Loads theme
+   */
+  const { theme } = useTheme();
+
   return (
-    <Header className="Logo">
+    <Header className="Logo" theme={theme}>
       <Title className="Title">
         <Link url={url} title={title}>
           {title}
         </Link>
       </Title>
       <Description className="Description">{description}</Description>
-      <Line className="Line" />
+      <Line className="Line" theme={theme} />
     </Header>
   );
 };
