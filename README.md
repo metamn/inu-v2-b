@@ -7,6 +7,7 @@ A photo portfolio theme with React and WordPress.
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
+
 - [Prerequisites](#prerequisites)
 - [Requirements](#requirements)
 - [Deliverables](#deliverables)
@@ -23,12 +24,14 @@ A photo portfolio theme with React and WordPress.
   - [Performance - v0.0.6](#performance---v006)
   - [Best practices checklist - v0.0.7](#best-practices-checklist---v007)
   - [Documentation - v0.0.8](#documentation---v008)
+  - [Live Test - v0.0.9](#live-test---v009)
 - [Results](#results)
   - [The old site look](#the-old-site-look)
   - [The new site look](#the-new-site-look)
   - [The old site performance](#the-old-site-performance)
   - [The new site performance](#the-new-site-performance)
 - [Changelog](#changelog)
+  - [[0.1.0] - 2019-08-01](#010---2019-08-01)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -192,3 +195,9 @@ See screenshots below with results.
 > ![New site performance, WebPageTest](./react-src/docs/inu-new-webpagetest.png)
 
 ## Changelog
+
+All changes to the project are documented here using the [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) format and [semantic versioning](https://semver.org/spec/v2.0.0.html).
+
+### [0.1.0] - 2019-08-01
+
+This is the first official release.
