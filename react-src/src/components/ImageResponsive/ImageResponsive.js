@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import ProgressiveImage from "react-progressive-image";
 
-import { Breakpoints, Media } from "../../hooks";
+import { Breakpoints, Media, useTheme } from "../../hooks";
+
 import { ImagePropTypes, ImageDefaultProps } from "../Image";
 import { createPlaceholderImageUrl } from "../PlaceholderImage";
 import { SliderContext } from "../Slider";
@@ -61,25 +62,29 @@ const defaultProps = {
  */
 const Img = styled("img")(props => ({
   opacity: props.isLoading ? "0.3" : "1",
-  width: "100%",
-  height: "auto",
 
   cursor:
     props.cursor === "custom"
       ? props.theme.cursors.brutalistCursor2.cursor
       : props.cursor,
 
+  width: "auto",
+  maxHeight: "70vh",
+
   [`${Media.mobile}`]: {
-    /**
-     * Stretches the image to the full viewport width
-     */
-    width: "auto",
-    maxWidth: "calc(100vw - var(--lem) * 2)"
+    maxWidth: `calc(100vw - ${props.theme.spacing.left.mobile} * 2)`
   },
 
   [`${Media.tablet}`]: {
-    width: "auto",
-    maxHeight: "70vh"
+    maxWidth: `calc(100vw - ${props.theme.spacing.left.tablet} * 2)`
+  },
+
+  [`${Media.laptop}`]: {
+    maxWidth: `calc(100vw - ${props.theme.spacing.left.laptop} * 2)`
+  },
+
+  [`${Media.desktop}`]: {
+    maxWidth: `calc(100vw - ${props.theme.spacing.left.desktop} * 2)`
   }
 }));
 
@@ -157,6 +162,8 @@ const ImageResponsive = props => {
     index
   } = props;
 
+  const { theme } = useTheme();
+
   /**
    * Creates a placeholder image.
    */
@@ -212,6 +219,7 @@ const ImageResponsive = props => {
           sizes={srcSetData.sizes !== "" ? srcSetData.sizes : null}
           isLoading={loading}
           responsiveWidths={responsiveWidths}
+          theme={theme}
           onClick={() =>
             typeof slideClickHandler === "function"
               ? slideClickHandler(index)

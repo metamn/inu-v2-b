@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
+import { useTheme } from "../../hooks";
+
 import Thumb from "../Thumb";
 import { PostsPropTypes, PostsDefaultProps } from "../Posts";
 
@@ -31,8 +33,10 @@ const defaultProps = {
  * Styles the component container
  */
 const Container = styled("div")(props => ({
+  ...props.theme.colorPairs.default,
   display: "flex",
-  flexWrap: "wrap"
+  flexWrap: "wrap",
+  opacity: props.isLoading ? "0.3" : "1"
 }));
 
 /**
@@ -43,6 +47,11 @@ const Thumbs = props => {
    * Loads the props
    */
   const { edges, activeImage } = props;
+
+  /**
+   * Loads theme
+   */
+  const { theme } = useTheme();
 
   /**
    * Returns the thumbs. The active thumb is marked.
@@ -60,7 +69,16 @@ const Thumbs = props => {
     );
   });
 
-  return <Container className="Thumbs">{thumbs}</Container>;
+  /**
+   * Checks if the thumbs are still loading
+   */
+  const isLoading = edges[0].node.id === "1";
+
+  return (
+    <Container className="Thumbs" theme={theme} isLoading={isLoading}>
+      {thumbs}
+    </Container>
+  );
 };
 
 Thumbs.propTypes = propTypes;

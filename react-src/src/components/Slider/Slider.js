@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import styled, { keyframes, css } from "styled-components";
+import styled, { css } from "styled-components";
+import smoothscroll from "smoothscroll-polyfill";
 
 import { Media, useTheme } from "../../hooks";
 
@@ -36,7 +37,11 @@ const propTypes = {
   slidesRef: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.shape({ current: PropTypes.instanceOf(Slides) })
-  ])
+  ]),
+  /**
+   * The active menu item
+   */
+  activeMenuItem: PropTypes.string
 };
 
 /**
@@ -49,61 +54,57 @@ const defaultProps = {
     console.log("Active image setter");
   },
   isSlideShowActive: false,
-  slidesRef: null
+  slidesRef: null,
+  activeMenuItem: "0"
 };
 
 /**
  * Styles the component container
  */
 const Section = styled(_Section)(props => ({
-  height: "calc(100vh - var(--lem) * 10)",
-  display: "flex",
-  alignItems: "center",
-  width: `calc(100vw - ${props.theme.spacing.left.mobile} * 2)`,
+  ...props.theme.colorPairs.default,
+  visibility: props.isFisrtsCategoryLoaded ? "visible" : "hidden",
+
+  [`${Media.mobile}`]: {
+    width: `calc(100vw - ${props.theme.spacing.left.mobile} * 2 + var(--lem))`
+  },
 
   [`${Media.tablet}`]: {
     alignItems: "start",
-    width: `calc(100vw - ${props.theme.spacing.left.tablet} * 2)`
+    width: `calc(100vw - ${props.theme.spacing.left.tablet} * 2  + var(--lem))`
   },
 
   [`${Media.laptop}`]: {
-    width: `calc(100vw - ${props.theme.spacing.left.laptop} * 2)`
+    width: `calc(100vw - ${props.theme.spacing.left.laptop} * 2  + var(--lem))`
   },
 
   [`${Media.desktop}`]: {
-    width: `calc(100vw - ${props.theme.spacing.left.desktop} * 2)`
+    width: `calc(100vw - ${props.theme.spacing.left.desktop} * 2  + var(--lem))`
   }
 }));
 
 /**
- * Animates the slides for the slideshow.
- */
-const SlideshowAnimation = keyframes`
-	0% {
-		opacity: 0
-	}
-	5% {
-		opacity: 0
-	}
-	10% {
-		opacity: 1
-	}
-	90% {
-		opacity: 1
-	}
-	100% {
-		opacity: 0
-	}
-`;
-
-/**
- * The animated slides container.
+ * The animated slider container.
+ *
+ * Useful for hiding / easing the image loading effect.
  *
  * `keyframes` needs to be used with `css`
  */
-const SectionAnimated = styled(Section)(
+const SliderAnimated = styled(Section)(
   props => css`
-    animation: ${SlideshowAnimation};
+    animation: ${props.theme.animations.fadeInSlider};
+    animation-duration: 0.5s;
+  `
+);
+
+/**
+ * The animated slideshow container.
+ *
+ * `keyframes` needs to be used with `css`
+ */
+const SlideshowAnimated = styled(Section)(
+  props => css`
+    animation: ${props.theme.animations.fadeInSlideshow};
     animation-duration: 10s;
     animation-iteration-count: infinite;
   `
@@ -115,12 +116,30 @@ const SectionAnimated = styled(Section)(
 const SliderContext = React.createContext({});
 
 /**
+ * Smooth scroll polyfill. For Edge and co.
+ *
+ * @see https://github.com/iamdustan/smoothscroll
+ */
+smoothscroll.polyfill();
+
+/**
  * Displays the slider.
  *
  * @see https://developers.google.com/web/updates/2018/07/css-scroll-snap
+ * @see https://nolanlawson.com/2019/02/10/building-a-modern-carousel-with-css-scroll-snap-smooth-scrolling-and-pinch-zoom/
+ * @see https://www.grapecity.com/blogs/using-css-scroll-snap-points
+ *
+ * Safari / iOS bug: https://stackoverflow.com/questions/52989070/css-scroll-snap-visual-glitches-on-ios-when-programmatically-setting-style-on
  */
 const Slider = props => {
-  const { edges, activeImage, slidesRef, isSlideShowActive } = props;
+  const {
+    edges,
+    activeImage,
+    slidesRef,
+    isSlideShowActive,
+    activeMenuItem
+  } = props;
+
   const { theme } = useTheme();
 
   /**
@@ -129,7 +148,11 @@ const Slider = props => {
   const numberOfSlides = edges.length;
 
   /**
-   * Scrolls the slider to the active image
+   * Scrolls the slider to the active image.
+   *
+   * `behavior: "smooth"` works only in Firefox.
+   * On other browsers (Chrome) is very ugly on large amount of slides like in our case.
+   * So it is skipped here ...
    */
   useEffect(
     () => {
@@ -139,8 +162,7 @@ const Slider = props => {
 
         ref.scrollBy({
           left: slideWidth * activeImage,
-          top: 0,
-          behavior: "smooth"
+          top: 0
         });
       }
     },
@@ -192,8 +214,7 @@ const Slider = props => {
 
           ref.scrollTo({
             left: slideWidth * random,
-            top: 0,
-            behavior: "smooth"
+            top: 0
           });
         }, 10000);
       } else {
@@ -205,6 +226,13 @@ const Slider = props => {
     [activeImage, isSlideShowActive, numberOfSlides, slidesRef]
   );
 
+  /**
+   * Checks if the first category is loaded.
+   *
+   * If not, the slider will be hidden to avoid flicking
+   */
+  const isFisrtsCategoryLoaded = activeMenuItem !== "0";
+
   return (
     <SliderContext.Provider
       value={{
@@ -213,13 +241,18 @@ const Slider = props => {
       }}
     >
       {isSlideShowActive ? (
-        <SectionAnimated className="Slider" title="Slider" theme={theme}>
+        <SlideshowAnimated className="Slider" title="Slider" theme={theme}>
           <Slides ref={slidesRef} activeImage={activeImage} {...props} />
-        </SectionAnimated>
+        </SlideshowAnimated>
       ) : (
-        <Section className="Slider" title="Slider" theme={theme}>
+        <SliderAnimated
+          className="Slider"
+          title="Slider"
+          theme={theme}
+          isFisrtsCategoryLoaded={isFisrtsCategoryLoaded}
+        >
           <Slides ref={slidesRef} activeImage={activeImage} {...props} />
-        </Section>
+        </SliderAnimated>
       )}
     </SliderContext.Provider>
   );
