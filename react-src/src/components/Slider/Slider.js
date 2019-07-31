@@ -148,6 +148,7 @@ const Slider = props => {
    *
    * `behavior: "smooth"` works only in Firefox.
    * On other browsers (Chrome) is very ugly on large amount of slides like in our case.
+   * So it is skipped here ...
    */
   useEffect(
     () => {
