@@ -30,6 +30,7 @@ A photo portfolio theme with React and WordPress.
   - [The new site look](#the-new-site-look)
   - [The old site performance](#the-old-site-performance)
   - [The new site performance](#the-new-site-performance)
+- [Known issues](#known-issues)
 - [Changelog](#changelog)
   - [[0.1.0] - 2019-08-01](#010---2019-08-01)
 
@@ -55,9 +56,9 @@ The slider on mobile screens was confusing: on click the slide disappeared and t
 ## Deliverables
 
 - The new site: http://inu.ro
-- The component guide and the API documentation: http://metamn.io/inu-v2-b-storybook
-- The styleguide: http://inu.ro/styleguide
 - The source code: https://github.com/metamn/inu-v2-b
+- The styleguide: http://inu.ro/styleguide
+- The component guide and the API documentation: http://metamn.io/inu-v2-b-storybook (Currently not working due to a [Storybook bug](#known-issues))
 
 ## Features
 
@@ -193,6 +194,11 @@ See screenshots below with results.
 > ![New site performance, Lighthouse](./react-src/docs/inu-new-lighthouse.png)
 
 > ![New site performance, WebPageTest](./react-src/docs/inu-new-webpagetest.png)
+
+## Known issues
+
+- Safari / iOS scroll bug: https://github.com/metamn/inu-v2-b/issues/24
+- Storybook filled issue: https://github.com/metamn/inu-v2-b/issues/26
 
 ## Changelog
 
