@@ -32,6 +32,7 @@ const defaultProps = {
 const Container = styled("div")(props => ({
   width: "100%",
   scrollSnapAlign: "center",
+  scrollSnapCoordinate: "0% 0%",
 
   /**
    * We need `min-width` here; simple `width` does not stretches the container

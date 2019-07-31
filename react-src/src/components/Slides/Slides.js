@@ -51,9 +51,10 @@ const Container = styled("div")(props => ({
   },
 
   /**
-   * Enable Safari touch scrolling physics which is needed for scroll snap
+   * Enable Safari / iOS touch scrolling physics which is needed for scroll snap.
+   * Without this scroll is impossible on iOS
    */
-  //"-webkit-overflow-scrolling": "touch",
+  "-webkit-overflow-scrolling": "touch",
 
   /**
    * Hide scrollbar

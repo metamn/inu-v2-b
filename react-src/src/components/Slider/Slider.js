@@ -127,6 +127,9 @@ smoothscroll.polyfill();
  *
  * @see https://developers.google.com/web/updates/2018/07/css-scroll-snap
  * @see https://nolanlawson.com/2019/02/10/building-a-modern-carousel-with-css-scroll-snap-smooth-scrolling-and-pinch-zoom/
+ * @see https://www.grapecity.com/blogs/using-css-scroll-snap-points
+ *
+ * Safari / iOS bug: https://stackoverflow.com/questions/52989070/css-scroll-snap-visual-glitches-on-ios-when-programmatically-setting-style-on
  */
 const Slider = props => {
   const {
