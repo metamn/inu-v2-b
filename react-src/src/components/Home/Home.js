@@ -66,6 +66,8 @@ const SectionMobile = {
   minHeight: "100vh",
 
   gridTemplateColumns: "calc(var(--lem) * 3) 1fr",
+  gridTemplateRows:
+    "calc(var(--lem) * 2) calc(var(--lem) * 4) auto calc(var(--lem) * 2)",
   gridTemplateAreas: `
     "logo logo"
     "menudd menudd"
@@ -80,6 +82,7 @@ const SectionTablet = props => ({
   minHeight: "100vh",
 
   gridTemplateColumns: props.theme.sizing.home.gridTemplateColumns.tablet,
+  gridTemplateRows: "auto",
   gridTemplateAreas: `
     "logo menudd contentswi themeswi ."
     "content content content content content"`
@@ -142,7 +145,8 @@ const Section = styled(_Section)(props => ({
   },
 
   "& .Slider, .Thumbs, .Contact": {
-    gridArea: "content"
+    gridArea: "content",
+    alignSelf: "center"
   }
 }));
 
