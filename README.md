@@ -141,7 +141,25 @@ A short overview of the major steps and tasks done. It is completely based on [T
 ### Live Test - [v0.0.9](https://github.com/metamn/inu-v2-b/tree/v0.0.9-test)
 
 1. Testing live on multiple devices and browsers.
+
+```
+| Device / OS | iOS *| Android *| Ubuntu *| Windows *| MacOS *|
+---------------------------------------------------------------
+| Phone       | [1]  | 🆗       | n/a     | n/a      | n/a     |
+| Tablet      | [1]  | 🆗       | n/a     | n/a      | n/a     |
+| Desktop     | ?    | n/a      | 🆗      | ...      | ...     |
+
+[1] The slider flicks on touch scroll. This is an [official bug](https://github.com/metamn/inu-v2-b/issues/24)
+
+* iOS browsers: Safari
+* Android browsers: Chrome
+* Ubuntu browsers: Firefox, Chrome, Opera
+* Windows browsers:
+```
+
 2. Re-testing for best practices.
+
+See screenshots below with results.
 
 ## Results
 
