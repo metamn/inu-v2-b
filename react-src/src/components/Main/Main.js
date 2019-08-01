@@ -104,9 +104,10 @@ const Main = props => {
    * Manages the click on a menu item
    */
   const menuItemClickHandler = index => {
-    if (index === activeMenuItem) return;
+    if (index !== activeMenuItem) {
+      setActiveMenuItem(index);
+    }
 
-    setActiveMenuItem(index);
     setActiveContentDisplayMode(getDisplayMode(index));
     setMenuSwitcherIconState(!menuSwitcherIconState);
     setActiveImage(defaultImage);
