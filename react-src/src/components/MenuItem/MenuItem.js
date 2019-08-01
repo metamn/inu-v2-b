@@ -46,7 +46,12 @@ const Container = styled("li")(props => ({
       : props.theme.cursors.brutalistCursor2.url,
 
   "&:hover": {
-    textDecoration: props.status === "activeUntoggled" ? "none" : "line-through"
+    textDecoration:
+      props.status === "activeUntoggled"
+        ? "none"
+        : props.status === "active"
+        ? "none"
+        : "line-through"
   }
 }));
 
