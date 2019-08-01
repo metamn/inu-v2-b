@@ -58,6 +58,7 @@ The slider on mobile screens was confusing: on click the slide disappeared and t
 - The source code: https://github.com/metamn/inu-v2-b
 - The styleguide: http://inu.ro/styleguide
 - The component guide and the API documentation: http://metamn.io/inu-v2-b-storybook (Currently not working due to a [Storybook bug](#known-issues))
+- A blog post: http://metamn.io/react/thoughts-on-react-after-the-first-commercial-project/
 
 ## Features
 
