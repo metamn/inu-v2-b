@@ -7,7 +7,6 @@ A photo portfolio theme with React and WordPress.
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
 - [Prerequisites](#prerequisites)
 - [Requirements](#requirements)
 - [Deliverables](#deliverables)
@@ -151,14 +150,17 @@ A short overview of the major steps and tasks done. It is completely based on [T
 ---------------------------------------------------------------
 | Phone       | [1]  | 🆗       | n/a     | n/a      | n/a     |
 | Tablet      | [1]  | 🆗       | n/a     | n/a      | n/a     |
-| Desktop     | ?    | n/a      | 🆗      | ...      | ...     |
+| Desktop     | n/a  | n/a      | 🆗      | [2]      | ...     |
 
 [1] The slider flicks on touch scroll. This is an [official bug](https://github.com/metamn/inu-v2-b/issues/24)
 
+[2] Doesn't works at all in Internet Explorer.
+
+🆗 Works in:
 * iOS browsers: Safari
 * Android browsers: Chrome
 * Ubuntu browsers: Firefox, Chrome, Opera
-* Windows browsers:
+* Windows browsers: Chrome, Firefox, Edge
 ```
 
 2. Re-testing for best practices.
