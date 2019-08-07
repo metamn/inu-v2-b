@@ -5,13 +5,15 @@ import Content from "./Content";
 import description from "./Content.md";
 
 storiesOf("Content", module)
-  .add("With default props", () => <Content />, {
+  .add("Overview", () => <Content />, {
     notes: { markdown: description }
   })
-  .add(
-    "With slider",
-    () => <Content activeContentDisplayMode="slider" activeMenuItem="1" />,
-    {
-      notes: { markdown: description }
-    }
-  );
+  .add("With thumbs", () => <Content activeContentDisplayMode="thumbs" />, {
+    notes: { markdown: description }
+  })
+  .add("With page", () => <Content activeContentDisplayMode="page" />, {
+    notes: { markdown: description }
+  })
+  .add("With blank", () => <Content activeContentDisplayMode="blank" />, {
+    notes: { markdown: description }
+  });

@@ -179,9 +179,14 @@ const responsiveImage = props => {
       : srcSet.replace(/<COLOR_SCHEME>/g, "");
 
   /**
-   * Checks if the image is still loading
+   * Checks if the image is still loading.
+   *
+   * The loading image is never displayed since it flicks after the load.
+   *
+   * // TODO: fix this!
    */
-  const isLoading = newSourceUrl.indexOf("default-image") !== -1;
+  //const isLoading = newSourceUrl.indexOf("default-image") !== -1;
+  const isLoading = false;
 
   return {
     image: (
