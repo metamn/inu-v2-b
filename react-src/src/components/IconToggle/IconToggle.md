@@ -27,7 +27,9 @@ The component performs the following tasks:
 </details>
 
 <details>
-	<summary>###Displays two icons which can be toggled
+	<summary>###Displays two icons which can be toggled.
+
+The toggle click handler should come from a parent component.
 
 </summary>
 * Derives the state of the icons

@@ -5,7 +5,7 @@ import Theme from "./Theme";
 import description from "./Theme.md";
 
 const ThemeStory = () => {
-  const { starterTheme, setCurrentThemeSaved } = Theme();
+  const { starterTheme } = Theme();
   const code = JSON.stringify(starterTheme, null, 2);
   return (
     <>

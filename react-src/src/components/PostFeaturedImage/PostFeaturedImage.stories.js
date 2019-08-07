@@ -5,7 +5,7 @@ import PostFeaturedImage from "./PostFeaturedImage";
 import description from "./PostFeaturedImage.md";
 
 storiesOf("PostFeaturedImage", module)
-  .add("With no props (large as default)", () => <PostFeaturedImage />, {
+  .add("Large (default)", () => <PostFeaturedImage />, {
     notes: { markdown: description }
   })
   .add(

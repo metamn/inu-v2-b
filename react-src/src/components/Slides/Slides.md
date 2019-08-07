@@ -1,7 +1,8 @@
 The component performs the following tasks:
 
 <details>
-	<summary>###Enable Safari touch scrolling physics which is needed for scroll snap
+	<summary>###Enable Safari / iOS touch scrolling physics which is needed for scroll snap.
+Without this scroll is impossible on iOS
 
 </summary>
 </details>

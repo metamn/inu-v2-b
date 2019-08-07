@@ -14,6 +14,8 @@ The component performs the following tasks:
 
 * The categories
 
+* The default active image (slide and thumb)
+
 </details>
 
 <details>
@@ -40,7 +42,7 @@ A reusable helper for setting the active display mode.
 	<summary>###Displays and manages the interactions of the menu and the content
 
 </summary>
-* Loads from the database.
+* Loads posts from the database.
 
 They can't be conditionally queried due to hook rules
 

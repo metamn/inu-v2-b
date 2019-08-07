@@ -26,5 +26,9 @@ The component performs the following tasks:
 </summary>
 * Returns the thumbs. The active thumb is marked.
 
+* Checks if the thumbs are still loading
+
+// TODO: Fix this!
+
 </details>
 
