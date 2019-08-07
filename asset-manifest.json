@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.js": "/react-wp/wp-content/themes/inu-v2-b/main.01e0d0ed37ea14d838b1.bundle.js",
+    "main.js.map": "/react-wp/wp-content/themes/inu-v2-b/main.01e0d0ed37ea14d838b1.bundle.js.map",
+    "runtime~main.js": "/react-wp/wp-content/themes/inu-v2-b/runtime~main.01e0d0ed37ea14d838b1.bundle.js",
+    "runtime~main.js.map": "/react-wp/wp-content/themes/inu-v2-b/runtime~main.01e0d0ed37ea14d838b1.bundle.js.map",
+    "vendors~main.css": "/react-wp/wp-content/themes/inu-v2-b/vendors~main.css",
+    "vendors~main.js": "/react-wp/wp-content/themes/inu-v2-b/vendors~main.01e0d0ed37ea14d838b1.bundle.js",
+    "vendors~main.css.map": "/react-wp/wp-content/themes/inu-v2-b/vendors~main.css.map",
+    "vendors~main.js.map": "/react-wp/wp-content/themes/inu-v2-b/vendors~main.01e0d0ed37ea14d838b1.bundle.js.map",
+    "iframe.html": "/react-wp/wp-content/themes/inu-v2-b/iframe.html",
+    "precache-manifest.f29283b2e2ce8094a1c2279c16345667.js": "/react-wp/wp-content/themes/inu-v2-b/precache-manifest.f29283b2e2ce8094a1c2279c16345667.js",
+    "service-worker.js": "/react-wp/wp-content/themes/inu-v2-b/service-worker.js"
+  }
+}
