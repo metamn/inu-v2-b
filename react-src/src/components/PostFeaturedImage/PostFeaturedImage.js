@@ -182,11 +182,8 @@ const responsiveImage = props => {
    * Checks if the image is still loading.
    *
    * The loading image is never displayed since it flicks after the load.
-   *
-   * // TODO: fix this!
    */
-  //const isLoading = newSourceUrl.indexOf("default-image") !== -1;
-  const isLoading = false;
+  const isLoading = newSourceUrl.indexOf("default-image") !== -1;
 
   return {
     image: (
@@ -233,11 +230,8 @@ const thumbnailImage = props => {
 
   /**
    * Checks if the image is still loading
-   *
-   * // TODO: fix this!
    */
-  //const isLoading = sourceUrl.indexOf("default-image") !== -1;
-  const isLoading = false;
+  const isLoading = sourceUrl.indexOf("default-image") !== -1;
 
   return {
     image: (
