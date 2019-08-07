@@ -18,6 +18,15 @@ addDecorator(story => (
   <ApolloProvider client={apolloClient}>{story()}</ApolloProvider>
 ));
 
+// Theme decorator
+import { switchThemeFrom } from "../src/components/Theme";
+import { ThemeContext } from "../src/components/Home";
+const starterTheme = switchThemeFrom("dark");
+
+addDecorator(story => (
+  <ThemeContext.Provider value={starterTheme}>{story()}</ThemeContext.Provider>
+));
+
 // General settings
 addParameters({
   options: {

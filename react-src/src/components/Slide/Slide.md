@@ -1,6 +1,15 @@
 The component performs the following tasks:
 
 <details>
+	<summary>###The active image is calculated using the slide width obtained by `ref.clientWidth;`
+`clientWidth` deals with `padding` and ignores `margin`
+
+All slides must have equal size, ie you can't set padding on `.Slide + .Slide`.
+
+</summary>
+</details>
+
+<details>
 	<summary>###Defines the prop types
 
 </summary>

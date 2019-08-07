@@ -23,6 +23,7 @@ const defaultProps = {
 /**
  * Sets up the document `<head>`
  *
+ * Returns a list of meta tags and links. For the complete list of possible items
  * @see https://gist.github.com/kevinSuttle/1997924
  */
 const Meta = props => {

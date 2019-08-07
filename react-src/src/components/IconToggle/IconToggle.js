@@ -46,7 +46,9 @@ const Container = styled("div")(props => ({
 }));
 
 /**
- * Displays two icons which can be toggled
+ * Displays two icons which can be toggled.
+ *
+ * The toggle click handler should come from a parent component.
  */
 const IconToggle = props => {
   const { icon1, icon2, status, toggled } = props;
@@ -60,12 +62,12 @@ const IconToggle = props => {
   /**
    * Removes the icon click handler
    */
-  const clickHandler = () => {};
+  const iconClickHandler = () => {};
 
   return (
     <Container className="IconToggle" status={status} {...props}>
-      <Icon {...icon1} status={icon1Status} clickHandler={clickHandler} />
-      <Icon {...icon2} status={icon2Status} clickHandler={clickHandler} />
+      <Icon {...icon1} status={icon1Status} clickHandler={iconClickHandler} />
+      <Icon {...icon2} status={icon2Status} clickHandler={iconClickHandler} />
     </Container>
   );
 };

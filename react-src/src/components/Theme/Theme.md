@@ -1,27 +1,31 @@
 The component performs the following tasks:
 
 <details>
-	<summary>###Temporary, we'll have to get from the database
+	<summary>###Animation for fading in the slideshow
+
+</summary>
+</details>
+
+<details>
+	<summary>###Animation for fading in the homepage
+
+</summary>
+</details>
+
+<details>
+	<summary>###Animation for fading in the slider
+
+</summary>
+</details>
+
+<details>
+	<summary>###Animations
 
 </summary>
 </details>
 
 <details>
 	<summary>###Icons
-
-</summary>
-</details>
-
-<details>
-	<summary>###Cursors
-
-Usage:
-
-```
-cursor: url("/react-wp/wp-content/themes/inu-v2/brutalist_line_SVGicon_cursor2.png")
-      31 0,
-    pointer;
-```
 
 </summary>
 </details>
@@ -71,6 +75,32 @@ NOTE:  When changing font also the `WebFont.load` has to be updated
 </details>
 
 <details>
+	<summary>###Sizing
+
+</summary>
+</details>
+
+<details>
+	<summary>###Cursors
+
+Usage:
+
+```
+cursor: url("/react-wp/wp-content/themes/inu-v2/brutalist_line_SVGicon_cursor2.png")
+      31 0,
+    pointer;
+```
+
+</summary>
+</details>
+
+<details>
+	<summary>###Images
+
+</summary>
+</details>
+
+<details>
 	<summary>###Color pairs.
 
 Colors come in pairs. And with an accessible contrast ratio.
@@ -80,7 +110,25 @@ We don't set a single color, we always set a pair of colors, one for the backgro
 </details>
 
 <details>
+	<summary>###Padding
+
+</summary>
+</details>
+
+<details>
 	<summary>###Returns a color scheme
+
+</summary>
+</details>
+
+<details>
+	<summary>###Get theme URI
+
+</summary>
+</details>
+
+<details>
+	<summary>###Returns the cursors
 
 </summary>
 </details>

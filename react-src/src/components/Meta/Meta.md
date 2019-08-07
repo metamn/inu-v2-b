@@ -15,6 +15,8 @@ The component performs the following tasks:
 <details>
 	<summary>###Sets up the document `<head>`
 
+Returns a list of meta tags and links. For the complete list of possible items
+
 </summary>
 </details>
 

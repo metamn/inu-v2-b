@@ -46,8 +46,6 @@ const propTypes = {
   setActiveImage: PropTypes.func,
   /**
    * The featured images.
-   *
-   * For some reasons the PostsPropTypes.edges cannot be used here ..
    */
   edgesWithFeaturedImage: PropTypes.arrayOf(
     PropTypes.shape({ node: PropTypes.shape(PostPropTypes) })

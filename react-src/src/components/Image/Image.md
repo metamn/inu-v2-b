@@ -16,6 +16,8 @@ The component performs the following tasks:
 
 * The image index. Passed to the click handler.
 
+* The cursor type.
+
 </details>
 
 <details>

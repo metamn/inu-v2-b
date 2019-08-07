@@ -245,6 +245,7 @@ const ImageResponsive = props => {
       height={height}
       isLoading={isLoading}
       responsiveWidths={responsiveWidths}
+      theme={theme}
       onClick={() =>
         typeof slideClickHandler === "function"
           ? slideClickHandler(index)

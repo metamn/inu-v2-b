@@ -36,19 +36,25 @@ The component performs the following tasks:
 	<summary>###Creates a large, responsive image
 
 </summary>
+* Sets up the responsive image.
+
+* Checks if the image is still loading.
+
+The loading image is never displayed since it flicks after the load.
+
 </details>
 
 <details>
 	<summary>###Creates a thumbnail image
 
 </summary>
+* Checks if the image is still loading
+
 </details>
 
 <details>
 	<summary>###Displays the post featured image
 
 </summary>
-* Either returns a simple image (thumbnail) or a large, responsive image.
-
 </details>
 

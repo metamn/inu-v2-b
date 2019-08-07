@@ -84,7 +84,7 @@ const Section = styled(_Section)(props => ({
 }));
 
 /**
- * The animated slider container.
+ * Animates the slider container.
  *
  * Useful for hiding / easing the image loading effect.
  *
@@ -98,7 +98,7 @@ const SliderAnimated = styled(Section)(
 );
 
 /**
- * The animated slideshow container.
+ * Animates the container for the slideshow.
  *
  * `keyframes` needs to be used with `css`
  */

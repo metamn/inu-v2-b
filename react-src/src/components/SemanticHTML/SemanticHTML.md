@@ -15,6 +15,8 @@ Usually a string, but it can be a link too.
 * The element children.
 Without children there is no use of this component.
 
+* The element id.
+
 </details>
 
 <details>

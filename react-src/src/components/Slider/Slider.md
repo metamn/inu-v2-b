@@ -12,6 +12,8 @@ The component performs the following tasks:
 
 * The reference to slides.
 
+* The active menu item
+
 </details>
 
 <details>
@@ -27,10 +29,38 @@ The component performs the following tasks:
 </details>
 
 <details>
+	<summary>###Animates the slider container.
+
+Useful for hiding / easing the image loading effect.
+
+`keyframes` needs to be used with `css`
+
+</summary>
+</details>
+
+<details>
+	<summary>###Animates the container for the slideshow.
+
+`keyframes` needs to be used with `css`
+
+</summary>
+</details>
+
+<details>
+	<summary>###Creates a context to pass the click on slide.
+
+</summary>
+</details>
+
+<details>
 	<summary>###Displays the slider.
 
 </summary>
 * Calculates the number of slides
+
+* Checks if the first category is loaded.
+
+If not, the slider will be hidden to avoid flicking
 
 * Manages the click on a slide
 

@@ -21,15 +21,15 @@ The component performs the following tasks:
 
 * Sets the active display mode
 
-* The featured images.
+* The active image
 
-For some reasons the PostsPropTypes.edges cannot be used here ..
+* The active image setter
+
+* The featured images.
 
 * The contact page content
 
 * The default content switcher icon
-
-* The default active image (slide and thumb)
 
 </details>
 

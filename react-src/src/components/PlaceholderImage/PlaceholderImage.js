@@ -62,7 +62,13 @@ const createPlaceholderImageUrl = props => {
  * Displays a placeholder image
  */
 const PlaceholderImage = props => {
-  return <Container className="PlaceholderImage">PlaceholderImage</Container>;
+  const src = createPlaceholderImageUrl(props);
+
+  return (
+    <Container className="PlaceholderImage">
+      <img src={src} alt="Placeholder" />
+    </Container>
+  );
 };
 
 PlaceholderImage.propTypes = propTypes;

@@ -4,8 +4,6 @@ The component performs the following tasks:
 	<summary>###Defines the prop types
 
 </summary>
-* The desired color scheme
-
 </details>
 
 <details>
@@ -16,6 +14,30 @@ The component performs the following tasks:
 
 <details>
 	<summary>###Styles the component container
+
+</summary>
+</details>
+
+<details>
+	<summary>###Styles the menu container
+
+</summary>
+</details>
+
+<details>
+	<summary>###Styles the menu items
+
+</summary>
+</details>
+
+<details>
+	<summary>###Styles the intro
+
+</summary>
+</details>
+
+<details>
+	<summary>###Styles the styleguide entries container
 
 </summary>
 </details>
@@ -71,6 +93,12 @@ The component performs the following tasks:
 * Displays the text styles
 
 * Displays the menu
+
+* Creates menu items
+
+* Creates styleguide entries
+
+* Loads site settings from the database
 
 </details>
 

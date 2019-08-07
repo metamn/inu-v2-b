@@ -57,7 +57,7 @@ The slider on mobile screens was confusing: on click the slide disappeared and t
 - The new site: http://inu.ro
 - The source code: https://github.com/metamn/inu-v2-b
 - The styleguide: http://inu.ro/styleguide
-- The component guide and the API documentation: http://metamn.io/inu-v2-b-storybook (Currently not working due to a [Storybook bug](#known-issues))
+- The component guide and the API documentation: http://metamn.io/inu-v2-b/
 - A blog post: http://metamn.io/react/thoughts-on-react-after-the-first-commercial-project/
 
 ## Features
@@ -201,11 +201,16 @@ See screenshots below with results.
 ## Known issues
 
 - Safari / iOS scroll bug: https://github.com/metamn/inu-v2-b/issues/24
-- Storybook filled issue: https://github.com/metamn/inu-v2-b/issues/26
 
 ## Changelog
 
 All changes to the project are documented here using the [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) format and [semantic versioning](https://semver.org/spec/v2.0.0.html).
+
+### [0.1.1] - 2019-08-06
+
+#### Fixed
+
+- Storybook issue https://github.com/metamn/inu-v2-b/issues/26
 
 ### [0.1.0] - 2019-08-01
 

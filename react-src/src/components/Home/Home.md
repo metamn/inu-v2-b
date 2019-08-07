@@ -25,25 +25,15 @@ The component performs the following tasks:
 </details>
 
 <details>
-	<summary>###Styles the component for tablets
-
-</summary>
-</details>
-
-<details>
-	<summary>###Styles the component for laptops
-
-</summary>
-</details>
-
-<details>
-	<summary>###Styles the component for desktops
-
-</summary>
-</details>
-
-<details>
 	<summary>###Styles the component container
+
+</summary>
+</details>
+
+<details>
+	<summary>###Animates the home container.
+
+`keyframes` needs to be used with `css`
 
 </summary>
 </details>
@@ -56,6 +46,18 @@ The component performs the following tasks:
 
 <details>
 	<summary>###Creates a theme context
+
+</summary>
+</details>
+
+<details>
+	<summary>###Styles the component for tablets
+
+</summary>
+</details>
+
+<details>
+	<summary>###Styles the component for laptops
 
 </summary>
 </details>

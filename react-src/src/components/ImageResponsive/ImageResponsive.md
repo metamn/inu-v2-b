@@ -1,12 +1,6 @@
 The component performs the following tasks:
 
 <details>
-	<summary>###Stretches the image to the full viewport width
-
-</summary>
-</details>
-
-<details>
 	<summary>###Defines the prop types
 
 </summary>
@@ -61,9 +55,7 @@ Let's say on tablet initially the `beat-home-mobile_desktop.png` of 622px width 
 
 * Sets a responsive width for each breakpoint to avoid image flicking
 
-* Manages click on image via Context
-
-This is a special extension to the component to suit this project.
+* Decides the cursor type
 
 * Puts together a progressive image.
 
