@@ -50,7 +50,7 @@ const defaultProps = {
 };
 
 /**
- * Creates a context for the component.
+ * Creates a context for the click handlers.
  */
 const MainContext = React.createContext({});
 

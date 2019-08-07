@@ -31,7 +31,7 @@ The component performs the following tasks:
 </details>
 
 <details>
-	<summary>###The animated home container.
+	<summary>###Animates the home container.
 
 `keyframes` needs to be used with `css`
 

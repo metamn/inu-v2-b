@@ -151,7 +151,7 @@ const Section = styled(_Section)(props => ({
 }));
 
 /**
- * The animated home container.
+ * Animates the home container.
  *
  * `keyframes` needs to be used with `css`
  */

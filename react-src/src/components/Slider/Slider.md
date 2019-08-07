@@ -29,7 +29,7 @@ The component performs the following tasks:
 </details>
 
 <details>
-	<summary>###The animated slider container.
+	<summary>###Animates the slider container.
 
 Useful for hiding / easing the image loading effect.
 
@@ -39,7 +39,7 @@ Useful for hiding / easing the image loading effect.
 </details>
 
 <details>
-	<summary>###The animated slideshow container.
+	<summary>###Animates the container for the slideshow.
 
 `keyframes` needs to be used with `css`
 

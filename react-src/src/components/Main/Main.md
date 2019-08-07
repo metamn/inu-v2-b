@@ -25,7 +25,7 @@ The component performs the following tasks:
 </details>
 
 <details>
-	<summary>###Creates a context for the component.
+	<summary>###Creates a context for the click handlers.
 
 </summary>
 </details>

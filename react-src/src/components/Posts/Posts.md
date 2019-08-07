@@ -1,13 +1,13 @@
 The component performs the following tasks:
 
 <details>
-	<summary>###The category from where the posts are loaded
+	<summary>###Defines the category from where the posts are loaded
 
 </summary>
 </details>
 
 <details>
-	<summary>###How many posts to load? Max. 100 (hard coded in WPGraphQL)
+	<summary>###Defines how many posts to load. (Max. 100, hard coded in WPGraphQL)
 
 </summary>
 </details>

@@ -20,11 +20,11 @@ const propTypes = {
    */
   variables: PropTypes.shape({
     /**
-     * The category from where the posts are loaded
+     * Defines the category from where the posts are loaded
      */
     category: PropTypes.number,
     /**
-     * How many posts to load? Max. 100 (hard coded in WPGraphQL)
+     * Defines how many posts to load. (Max. 100, hard coded in WPGraphQL)
      */
     first: PropTypes.number
   })
