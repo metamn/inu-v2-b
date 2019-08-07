@@ -8,7 +8,7 @@ storiesOf("SemanticHTML", module).add(
   "Overview",
   () => (
     <Section elementName="section" title="Section">
-      Section
+      Section - a Semantic HTML5 element
     </Section>
   ),
   {

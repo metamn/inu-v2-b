@@ -208,21 +208,41 @@ const responsiveImage = props => {
  * Creates a thumbnail image
  */
 const thumbnailImage = props => {
-  const { featuredImageTitle, featuredImage, index } = props;
+  const {
+    featuredImageTitle,
+    featuredImage,
+    index,
+    theme,
+    colorScheme
+  } = props;
   const { mediaDetails } = featuredImage;
   const { sizes } = mediaDetails;
   const thumbnail = sizes.filter(size => size.name === "thumbnail");
   const { sourceUrl, width, height } = thumbnail[0];
 
   /**
-   * Checks if the image is still loading
+   * Sets up the default responsive image
    */
-  const isLoading = sourceUrl.indexOf("default-image") !== -1;
+  const { themeUri } = theme;
+  let newSourceUrl = sourceUrl.replace(/<THEME_URI>/g, themeUri);
+
+  newSourceUrl =
+    colorScheme === "dark"
+      ? newSourceUrl.replace(/<COLOR_SCHEME>/g, "-black")
+      : newSourceUrl.replace(/<COLOR_SCHEME>/g, "");
+
+  /**
+   * Checks if the image is still loading
+   *
+   * // TODO: fix this!
+   */
+  //const isLoading = sourceUrl.indexOf("default-image") !== -1;
+  const isLoading = false;
 
   return {
     image: (
       <Image
-        src={sourceUrl}
+        src={newSourceUrl}
         alt={featuredImageTitle}
         width={width}
         height={height}

@@ -47,7 +47,7 @@ const queryFragment = {
  * Returns nothing. Used only for its propTypes (and methods).
  */
 const Page = props => {
-  return null;
+  return "Returns nothing. Used only for its PropTypes.";
 };
 
 Page.propTypes = propTypes;

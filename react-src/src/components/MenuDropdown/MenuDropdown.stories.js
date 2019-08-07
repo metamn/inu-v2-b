@@ -4,6 +4,10 @@ import { storiesOf } from "@storybook/react";
 import MenuDropdown from "./MenuDropdown";
 import description from "./MenuDropdown.md";
 
-storiesOf("MenuDropdown", module).add("Overview", () => <MenuDropdown />, {
-  notes: { markdown: description }
-});
+storiesOf("MenuDropdown", module)
+  .add("Overview", () => <MenuDropdown />, {
+    notes: { markdown: description }
+  })
+  .add("Toggled", () => <MenuDropdown toggled={true} />, {
+    notes: { markdown: description }
+  });
