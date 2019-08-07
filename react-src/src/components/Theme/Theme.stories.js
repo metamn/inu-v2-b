@@ -9,7 +9,7 @@ const ThemeStory = () => {
   const code = JSON.stringify(starterTheme, null, 2);
   return (
     <>
-      <p>Loads Theme from the database</p>
+      <p>Creates a theme and makes it available for all the components.</p>
       <pre>
         <code>{code}</code>
       </pre>

@@ -8,7 +8,18 @@ storiesOf("SemanticHTML", module).add(
   "Overview",
   () => (
     <Section elementName="section" title="Section">
-      Section - a Semantic HTML5 element
+      Displays a "section", "article", "aside", "nav" Semantic HTML5 element.
+      For example:
+      <pre>
+        <code>
+          {`
+			<section>
+				<h3 class="title sc-jTzLTM gLmtYF">Section</h3>
+				Displays a "section" Semantic HTML5 element
+			</section>
+			`}
+        </code>
+      </pre>
     </Section>
   ),
   {
