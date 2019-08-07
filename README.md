@@ -31,6 +31,7 @@ A photo portfolio theme with React and WordPress.
   - [The new site performance](#the-new-site-performance)
 - [Known issues](#known-issues)
 - [Changelog](#changelog)
+  - [[0.1.1] - 2019-08-06](#011---2019-08-01)
   - [[0.1.0] - 2019-08-01](#010---2019-08-01)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
