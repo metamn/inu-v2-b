@@ -66,7 +66,7 @@ const PlaceholderImage = props => {
 
   return (
     <Container className="PlaceholderImage">
-      <img src={src} alt="Placeholder image" />
+      <img src={src} alt="Placeholder" />
     </Container>
   );
 };

@@ -1,9 +1,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 
-import PlaceholderImage, {
-  createPlaceholderImageUrl
-} from "./PlaceholderImage";
+import PlaceholderImage from "./PlaceholderImage";
 import description from "./PlaceholderImage.md";
 
 storiesOf("PlaceholderImage", module).add(

@@ -14,7 +14,6 @@ const defaultProps = {
   index: 1,
   featuredImageTitle: "Featured image",
   featuredImageType: "large",
-  index: 1,
   featuredImage: {
     id: "YXR0YWNobWVudDozMw==",
     sourceUrl: "http://www.inu.ro/wp-content/uploads/2012/06/bogdan1.jpg",
