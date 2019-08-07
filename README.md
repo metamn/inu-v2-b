@@ -201,11 +201,16 @@ See screenshots below with results.
 ## Known issues
 
 - Safari / iOS scroll bug: https://github.com/metamn/inu-v2-b/issues/24
-- Storybook filled issue: https://github.com/metamn/inu-v2-b/issues/26
 
 ## Changelog
 
 All changes to the project are documented here using the [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) format and [semantic versioning](https://semver.org/spec/v2.0.0.html).
+
+### [0.1.1] - 2019-08-06
+
+#### Fixed
+
+- Storybook issue https://github.com/metamn/inu-v2-b/issues/26
 
 ### [0.1.0] - 2019-08-01
 
