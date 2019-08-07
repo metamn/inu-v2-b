@@ -28,7 +28,5 @@ The component performs the following tasks:
 
 * Checks if the thumbs are still loading
 
-// TODO: Fix this!
-
 </details>
 

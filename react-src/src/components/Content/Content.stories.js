@@ -6,7 +6,7 @@ import description from "./Content.md";
 
 /**
  * Displays a real image.
- * The default image is not displayed so we can't use it here...
+ * The default image will have visibility set to 0 so we can't use it here...
  */
 const defaultProps = {
   id: "1",

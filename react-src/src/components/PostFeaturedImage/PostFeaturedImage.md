@@ -42,8 +42,6 @@ The component performs the following tasks:
 
 The loading image is never displayed since it flicks after the load.
 
-// TODO: fix this!
-
 </details>
 
 <details>
@@ -51,8 +49,6 @@ The loading image is never displayed since it flicks after the load.
 
 </summary>
 * Checks if the image is still loading
-
-// TODO: fix this!
 
 </details>
 
