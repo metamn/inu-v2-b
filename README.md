@@ -78,7 +78,7 @@ The following features were added:
 
 - React Single Page Application with function components and hooks.
 - WordPress theming with [create-react-wptheme](https://github.com/devloco/create-react-wptheme)
-- GraphQL with [WP GraphQL](https://www.wpgraphql.com/) and [react-apollo-hooks](https://github.com/trojanowski/react-apollo-hooks)
+- GraphQL with [WP GraphQL](https://www.wpgraphql.com/) and [@apollo/react-hooks](https://www.apollographql.com/docs/tutorial/queries/#the-usequery-hook)
 - [styled-components](https://www.styled-components.com/) for styling.
 - Prop types for static type checking.
 - Query fragments.
@@ -206,6 +206,14 @@ See screenshots below with results.
 ## Changelog
 
 All changes to the project are documented here using the [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) format and [semantic versioning](https://semver.org/spec/v2.0.0.html).
+
+### [0.1.2] - 2019-08-xx
+
+### Added
+
+### Changed
+
+- `react-apollo-hooks` to `@apollo/react-hooks`
 
 ### [0.1.1] - 2019-08-06
 
