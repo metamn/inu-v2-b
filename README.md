@@ -215,6 +215,10 @@ All changes to the project are documented here using the [Keep a Changelog](http
 
 - `react-apollo-hooks` to `@apollo/react-hooks`
 
+### Fixed
+
+- Grouping images into '/images'. See https://github.com/metamn/inu-v2-b/issues/31
+
 ### [0.1.1] - 2019-08-06
 
 #### Fixed
