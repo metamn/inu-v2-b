@@ -32,7 +32,7 @@ const useData = (defaultValues, query, filter, variables = {}) => {
   const { data, error, loading } = useQuery(query, variables);
 
   /**
-   * Returns default data while loading from the database
+   * Returns default data while real data is loaded from the database
    */
   if (loading) {
     return defaultValues;

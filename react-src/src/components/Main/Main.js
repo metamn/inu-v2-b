@@ -77,7 +77,7 @@ const Main = props => {
   } = props;
 
   /**
-   * Sets up state for the active menu item
+   * Sets up state to mark the active menu item
    */
   const [activeMenuItem, setActiveMenuItem] = useState(defaultMenuItem);
 
@@ -127,18 +127,13 @@ const Main = props => {
   /**
    * Makes the first category the active menu item.
    */
-  useEffect(
-    () => {
-      const firstCategoryId = categories.edges[0].node.categoryId.toString();
-      setActiveMenuItem(firstCategoryId);
-    },
-    [categories.edges]
-  );
+  useEffect(() => {
+    const firstCategoryId = categories.edges[0].node.categoryId.toString();
+    setActiveMenuItem(firstCategoryId);
+  }, [categories.edges]);
 
   /**
    * Loads posts from the database.
-   *
-   * They can't be conditionally queried due to hook rules
    */
   const posts = Posts({
     variables: { category: Number(activeMenuItem), first: 100 }

@@ -169,6 +169,12 @@ A short overview of the major steps and tasks done. It is completely based on [T
 
 See screenshots below with results.
 
+### Performance - [v0.1.2](https://github.com/metamn/inu-v2-b/tree/v0.1.2-performance)
+
+Implement best practices (continuously collected) to enhance performance. Such:
+
+1. Wrap all business logic into a [`UseEffect`](https://overreacted.io/writing-resilient-components/#dont-stop-the-data-flow-in-side-effects)
+
 ## Results
 
 ### The old site look
