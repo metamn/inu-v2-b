@@ -222,9 +222,15 @@ ReactDOM.render(
 [1] - Theme must be switchable for the whole site.
 [2] - This status has nothing to do with theming and logo managed in `Home`.
 [3] - If moved down to `Menu` the `Content` won't have access to it.
-[4] - On menu item click in `Main` we have to reset the active image. Every new category should start with the first image. Originally was moved down to `Content` then had to be lifted up. See https://github.com/metamn/inu-v2-b/tree/v0.0.3-interaction
+[4] - Originally was moved down to `Content` then had to be lifted up. See https://github.com/metamn/inu-v2-b/tree/v0.0.3-interaction
 [5] - It needs to be set both on menu item click and menu switcher click. All these are handled in `Main`
 ```
+
+Next:
+
+- loading data with hooks
+- the number of re-renders (especially with contexts)
+- suspense for non-data components
 
 ## Results
 
