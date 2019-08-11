@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 import smoothscroll from "smoothscroll-polyfill";
@@ -145,7 +145,7 @@ const Slider = props => {
   /**
    * Calculates the number of slides
    */
-  const numberOfSlides = edges.length;
+  const numberOfSlides = useMemo(() => edges.length);
 
   /**
    * Scrolls the slider to the active image.
@@ -154,20 +154,17 @@ const Slider = props => {
    * On other browsers (Chrome) is very ugly on large amount of slides like in our case.
    * So it is skipped here ...
    */
-  useEffect(
-    () => {
-      if (slidesRef && slidesRef.current) {
-        const ref = slidesRef.current;
-        const slideWidth = ref.clientWidth;
+  useEffect(() => {
+    if (slidesRef && slidesRef.current) {
+      const ref = slidesRef.current;
+      const slideWidth = ref.clientWidth;
 
-        ref.scrollBy({
-          left: slideWidth * activeImage,
-          top: 0
-        });
-      }
-    },
-    [activeImage, slidesRef]
-  );
+      ref.scrollBy({
+        left: slideWidth * activeImage,
+        top: 0
+      });
+    }
+  }, [activeImage, slidesRef]);
 
   /**
    * Manages the click on a slide
@@ -196,35 +193,32 @@ const Slider = props => {
    *
    * Images are randomized during the autoslide.
    */
-  useEffect(
-    () => {
-      let interval = null;
+  useEffect(() => {
+    let interval = null;
 
-      if (isSlideShowActive) {
-        interval = setInterval(() => {
-          const slideNumbers = Array.from(Array(numberOfSlides).keys()).filter(
-            i => i !== activeImage
-          );
+    if (isSlideShowActive) {
+      interval = setInterval(() => {
+        const slideNumbers = Array.from(Array(numberOfSlides).keys()).filter(
+          i => i !== activeImage
+        );
 
-          const random =
-            slideNumbers[Math.floor(Math.random() * slideNumbers.length)];
+        const random =
+          slideNumbers[Math.floor(Math.random() * slideNumbers.length)];
 
-          const ref = slidesRef.current;
-          const slideWidth = ref.clientWidth;
+        const ref = slidesRef.current;
+        const slideWidth = ref.clientWidth;
 
-          ref.scrollTo({
-            left: slideWidth * random,
-            top: 0
-          });
-        }, 10000);
-      } else {
-        clearInterval(interval);
-      }
+        ref.scrollTo({
+          left: slideWidth * random,
+          top: 0
+        });
+      }, 10000);
+    } else {
+      clearInterval(interval);
+    }
 
-      return () => clearInterval(interval);
-    },
-    [activeImage, isSlideShowActive, numberOfSlides, slidesRef]
-  );
+    return () => clearInterval(interval);
+  }, [activeImage, isSlideShowActive, numberOfSlides, slidesRef]);
 
   /**
    * Checks if the first category is loaded.
