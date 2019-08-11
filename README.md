@@ -175,12 +175,13 @@ Implement best practices (continuously collected) to enhance performance. Such:
 
 1. Wrap all business logic into a [`UseEffect`](https://overreacted.io/writing-resilient-components/#dont-stop-the-data-flow-in-side-effects)
 
-   - In this app there is only a very few business logic.
+   - In this app there is only a few lines of business logic code.
 
 2. Wrap expensive function calls into [`useMemo`](https://overreacted.io/writing-resilient-components/#dont-stop-the-data-flow-in-rendering)
    - It only applies to functions not containing other hooks. More exactly to non-database function calls.
    - Sometimes the number of re-renders is the same as without `useMemo` or `useCallback` ... See comment in `Menu.js`
-   - You can't trick / reduce the number of props with `useContext`
+   - You can't trick / reduce the number of props with `useContext`. If there is an `useContext` inside an `useMemo` the function name will be added to the array of dependencies
+   - It seems `useMemo` is not an elixir you can throw to a badly designed app and wait for a miracle. It helps only in small, isolated, specific cases which will add up eventually.
 
 ## Results
 
