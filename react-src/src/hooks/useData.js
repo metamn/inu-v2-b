@@ -43,6 +43,7 @@ const useData = (defaultValues, query, filter, variables = {}) => {
    */
   if (error) {
     console.log("useQuery error:" + error);
+    return;
   }
 
   /**
