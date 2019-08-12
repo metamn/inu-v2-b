@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import gql from "graphql-tag";
 
-import { useData, useQuery } from "../../hooks";
+import { useData } from "../../hooks";
 
 /**
  * Defines the prop types
@@ -47,7 +47,6 @@ const query = gql`
  * Loads site settings from the database
  */
 const Settings = props => {
-  console.log("Settings");
   return useData(props, query, "generalSettings");
 };
 
