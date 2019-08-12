@@ -246,7 +246,7 @@ const StyleGuide = props => {
     links,
     icons,
     cursors,
-    themeUri
+    imageUri
   } = theme;
 
   /**
@@ -273,7 +273,7 @@ const StyleGuide = props => {
   const cursorList = Object.keys(cursors).map((name, index) => {
     const value = cursors[name];
     const { image } = value;
-    const src = `${themeUri}/${image}`;
+    const src = `${imageUri}/${image}`;
 
     return (
       <ItemContainer className="ItemContainer Cursor" key={index}>
@@ -555,8 +555,8 @@ const StyleGuide = props => {
   return (
     <>
       <Reset />
-      <Meta {...siteSettings} description="Styleguide" />
       <ThemeContext.Provider value={starterTheme}>
+        <Meta {...siteSettings} description="Styleguide" />
         <TypographicGrid />
         <Container className="StyleGuide" theme={theme}>
           <Logo {...siteSettings} description="Styleguide" />

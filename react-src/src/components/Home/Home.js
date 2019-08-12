@@ -229,8 +229,8 @@ const Home = props => {
   return (
     <>
       <Reset />
-      <Meta {...siteSettings} />
       <ThemeContext.Provider value={activeTheme}>
+        <Meta {...siteSettings} />
         <TypographicGrid
           displayVerticalRhytm={false}
           displayHorizontalRhytm={false}

@@ -1,6 +1,8 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 
+import { useTheme } from "../../hooks";
+
 import { SettingsPropTypes, SettingsDefaultProps } from "../Settings";
 
 /**
@@ -29,6 +31,13 @@ const defaultProps = {
 const Meta = props => {
   const { title, description, url } = props;
 
+  const { theme } = useTheme();
+  const { imageUri } = theme;
+
+  const favicon = `${imageUri}/favicon.ico`;
+  const favicon32 = `${imageUri}/favicon-32x32.png`;
+  const faviconApple = `${imageUri}/apple-touch-icon.png`;
+
   return (
     <Helmet>
       <title>{title}</title>
@@ -39,9 +48,9 @@ const Meta = props => {
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-status-bar-style" content="black" />
       <link rel="canonical" href={url} />
-      <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-      <link rel="icon" type="image/png" href="/favicon-32x32.png" />
-      <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+      <link rel="icon" type="image/x-icon" href={favicon} />
+      <link rel="icon" type="image/png" href={favicon32} />
+      <link rel="apple-touch-icon" href={faviconApple} />
     </Helmet>
   );
 };

@@ -83,20 +83,20 @@ const icons = {
     pointer;
  * ```
  */
-const cursors = themeUri => {
+const cursors = imageUri => {
   return {
     light: {
       brutalistCursor2: {
         image: "brutalist_line_SVGicon_cursor2.png",
-        cursor: `url("${themeUri}/brutalist_line_SVGicon_cursor2.png") 31 0, pointer`,
-        url: `url("${themeUri}/brutalist_line_SVGicon_cursor2.png") 31 0, pointer`
+        cursor: `url("${imageUri}/brutalist_line_SVGicon_cursor2.png") 31 0, pointer`,
+        url: `url("${imageUri}/brutalist_line_SVGicon_cursor2.png") 31 0, pointer`
       }
     },
     dark: {
       brutalistCursor2: {
         image: "brutalist_line_SVGicon_cursor2-black.png",
-        cursor: `url("${themeUri}/brutalist_line_SVGicon_cursor2-black.png") 31 0, pointer`,
-        url: `url("${themeUri}/brutalist_line_SVGicon_cursor2-black.png") 31 0, pointer`
+        cursor: `url("${imageUri}/brutalist_line_SVGicon_cursor2-black.png") 31 0, pointer`,
+        url: `url("${imageUri}/brutalist_line_SVGicon_cursor2-black.png") 31 0, pointer`
       }
     }
   };
@@ -105,9 +105,9 @@ const cursors = themeUri => {
 /**
  * Images
  */
-const images = themeUri => {
+const images = imageUri => {
   return {
-    default: `${themeUri}/default-image.png`
+    default: `${imageUri}/default-image.png`
   };
 };
 
@@ -307,8 +307,8 @@ const getThemeUri = () => {
  * Returns the cursors
  */
 const getCursors = props => {
-  const { themeUri, colorScheme } = props;
-  return cursors(themeUri)[colorScheme];
+  const { imageUri, colorScheme } = props;
+  return cursors(imageUri)[colorScheme];
 };
 
 /**
@@ -320,6 +320,8 @@ const getCursors = props => {
 const getTheme = colorScheme => {
   const colors = getColorScheme(colorScheme);
   const themeUri = getThemeUri();
+  const imagesFolder = "images";
+  const imageUri = `${themeUri}/${imagesFolder}`;
 
   return {
     colors: colors,
@@ -328,13 +330,15 @@ const getTheme = colorScheme => {
     textStyles: textStyles,
     links: links,
     icons: icons,
-    cursors: getCursors({ themeUri: themeUri, colorScheme: colorScheme }),
+    cursors: getCursors({ imageUri: imageUri, colorScheme: colorScheme }),
     spacing: spacing,
     padding: padding(spacing),
     sizing: sizing,
-    images: images(themeUri),
+    images: images(imageUri),
     animations: animations,
-    themeUri: themeUri
+    themeUri: themeUri,
+    imageUri: imageUri,
+    imagesFolder: imagesFolder
   };
 };
 
