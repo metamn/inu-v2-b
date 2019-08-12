@@ -1,4 +1,4 @@
-export { useQuery, useLoadMore } from "./useQuery";
+export { useQuery } from "./useQuery";
 export { default as useData } from "./useData";
 export { Breakpoints, Media, useMedia } from "./useMedia";
 export { default as useTheme } from "./useTheme";

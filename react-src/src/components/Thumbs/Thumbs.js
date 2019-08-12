@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
@@ -56,18 +56,22 @@ const Thumbs = props => {
   /**
    * Returns the thumbs. The active thumb is marked.
    */
-  const thumbs = edges.map((data, index) => {
-    const isActive = index === activeImage;
+  const thumbs = useMemo(
+    () =>
+      edges.map((data, index) => {
+        const isActive = index === activeImage;
 
-    return (
-      <Thumb
-        isActive={isActive}
-        key={`thumb-${index}`}
-        post={data.node}
-        index={index}
-      />
-    );
-  });
+        return (
+          <Thumb
+            isActive={isActive}
+            key={`thumb-${index}`}
+            post={data.node}
+            index={index}
+          />
+        );
+      }),
+    [activeImage, edges]
+  );
 
   /**
    * Checks if the thumbs are still loading

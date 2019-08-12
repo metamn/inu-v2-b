@@ -11,7 +11,7 @@ import "@storybook/addon-console";
 import { withInfo } from "@storybook/addon-info";
 
 // The Apollo decorator
-import { ApolloProvider } from "react-apollo-hooks";
+import { ApolloProvider } from "@apollo/react-hooks";
 import apolloClient from "../src/apolloClient";
 
 addDecorator(story => (

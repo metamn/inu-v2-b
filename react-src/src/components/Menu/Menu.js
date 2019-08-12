@@ -94,7 +94,10 @@ const Menu = props => {
   } = props;
 
   /**
-   * Displays categories as menu items
+   * Displays categories as menu items.
+   *
+   * Tried to refactor it with useMemo, useCallback ...
+   * ... after done the `createMenuItems` function was called the same amount of times as before
    */
   const categoriesAsMenuItems = createMenuItems({
     menuItems: categories.edges.map(edge => categoryToMenuItem(edge.node)),

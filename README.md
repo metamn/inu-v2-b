@@ -78,7 +78,7 @@ The following features were added:
 
 - React Single Page Application with function components and hooks.
 - WordPress theming with [create-react-wptheme](https://github.com/devloco/create-react-wptheme)
-- GraphQL with [WP GraphQL](https://www.wpgraphql.com/) and [react-apollo-hooks](https://github.com/trojanowski/react-apollo-hooks)
+- GraphQL with [WP GraphQL](https://www.wpgraphql.com/) and [@apollo/react-hooks](https://www.apollographql.com/docs/tutorial/queries/#the-usequery-hook)
 - [styled-components](https://www.styled-components.com/) for styling.
 - Prop types for static type checking.
 - Query fragments.
@@ -169,6 +169,73 @@ A short overview of the major steps and tasks done. It is completely based on [T
 
 See screenshots below with results.
 
+### Performance - [v0.1.2](https://github.com/metamn/inu-v2-b/tree/v0.1.2-performance)
+
+Implement best practices (continuously collected) to enhance performance. Such:
+
+1. Wrap all business logic into a [`UseEffect`](https://overreacted.io/writing-resilient-components/#dont-stop-the-data-flow-in-side-effects)
+
+   - In this app there is only a few lines of business logic code.
+
+2. Wrap expensive function calls into [`useMemo`](https://overreacted.io/writing-resilient-components/#dont-stop-the-data-flow-in-rendering)
+
+   - It only applies to functions not containing other hooks. More exactly to non-database function calls.
+   - Sometimes the number of re-renders is the same as without `useMemo` or `useCallback` ... See comment in `Menu.js`
+   - You can't trick / reduce the number of props with `useContext`. If there is an `useContext` inside an `useMemo` the function name will be added to the array of dependencies
+   - It seems `useMemo` is not an elixir you can throw to a badly designed app and wait for a miracle. It helps only in small, isolated, specific cases which will add up eventually.
+
+3. Stress-test the whole app: https://overreacted.io/writing-resilient-components/#principle-3-no-component-is-a-singleton
+
+This was working all fine:
+
+```React
+ReactDOM.render(
+  <>
+    <MyApp />
+	<MyApp />
+  </>,
+  document.getElementById('root')
+);
+```
+
+4. Avoid making a local state global: https://overreacted.io/writing-resilient-components/#principle-4-keep-the-local-state-isolated
+
+```
+| State                    | Home component | Other comps using the state |
+---------------------------------------------------------------------------
+| activeTheme              | Home           | Many, with `useContext`     |
+| activeMenuItem           | Main           | Menu, Content (All child)   |
+| activeImage              | Main           | Content (Thumbs, Slider)    |
+| menuSwitcherIconState    | Main           | Menu, MenuDropdown          |
+| activeContentDisplayMode | Main           | Content (Thumbs)            |
+```
+
+```
+| State                    | Can be lifted up?         | Can be moved down ?      |
+-----------------------------------------------------------------------------------
+| activeTheme              | n/a                       | No. See [1]              |
+| activeMenuItem           | Doesn't worth it. See[2]  | No. See [3]              |
+| activeImage              | Doesn't worth it. See[2]  | No. See [4]              |
+| menuSwitcherIconState    | Doesn't worth it. See[2]  | No. See [5]              |
+| activeContentDisplayMode | Doesn't worth it. See[2]  | No. See [5]              |
+
+[1] - Theme must be switchable for the whole site.
+[2] - This status has nothing to do with theming and logo managed in `Home`.
+[3] - If moved down to `Menu` the `Content` won't have access to it.
+[4] - Originally was moved down to `Content` then had to be lifted up. See https://github.com/metamn/inu-v2-b/tree/v0.0.3-interaction
+[5] - It needs to be set both on menu item click and menu switcher click. All these are handled in `Main`
+```
+
+5. Reduce re-renders
+
+Couldn't manage it. All examples [1](https://www.robinwieruch.de/react-hooks-fetch-data/) [2](https://itnext.io/usefetch-react-custom-hook-for-fetch-api-with-suspense-and-concurrent-mode-in-mind-1d3ba9250e0) are using the async / axios way which isn't compatible with the `useQuery` approach from Apollo where a `loading` result is immediately returned - which cannot be memoized, set as state etc ...
+
+Still to research ... the solution lies somewhere in `apolloClient` / `<ApolloProvider>`
+
+6. Suspense
+
+The functionality is already implemented either by displaying default data (Site info, Categories) or with the fade in technique (Content) and works pretty well ...
+
 ## Results
 
 ### The old site look
@@ -206,6 +273,20 @@ See screenshots below with results.
 ## Changelog
 
 All changes to the project are documented here using the [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) format and [semantic versioning](https://semver.org/spec/v2.0.0.html).
+
+### [0.1.2] - 2019-08-12
+
+#### Added
+
+- A few memoizations where they were appropiate.
+
+#### Changed
+
+- `react-apollo-hooks` to `@apollo/react-hooks`
+
+#### Fixed
+
+- Grouping images into '/images'. See https://github.com/metamn/inu-v2-b/issues/31
 
 ### [0.1.1] - 2019-08-06
 

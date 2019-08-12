@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import ProgressiveImage from "react-progressive-image";
@@ -177,13 +177,16 @@ const ImageResponsive = props => {
   /**
    * Sets a responsive width for each breakpoint to avoid image flicking
    */
-  const responsiveWidths =
-    srcSetWidths === null
-      ? null
-      : createWidths({
-          responsiveWidths: srcSetWidths,
-          breakpoints: Breakpoints
-        });
+  const responsiveWidths = useMemo(
+    () =>
+      srcSetWidths === null
+        ? null
+        : createWidths({
+            responsiveWidths: srcSetWidths,
+            breakpoints: Breakpoints
+          }),
+    [srcSetWidths]
+  );
 
   /**
    * Manages click on image via Context

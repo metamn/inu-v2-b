@@ -164,9 +164,9 @@ const responsiveImage = props => {
   /**
    * Sets up the default responsive image
    */
-  const { themeUri } = theme;
-  let newSourceUrl = sourceUrl.replace(/<THEME_URI>/g, themeUri);
-  srcSet = srcSet.toString().replace(/<THEME_URI>/g, themeUri);
+  const { imageUri } = theme;
+  let newSourceUrl = sourceUrl.replace(/<THEME_URI>/g, imageUri);
+  srcSet = srcSet.toString().replace(/<THEME_URI>/g, imageUri);
 
   newSourceUrl =
     colorScheme === "dark"
@@ -220,8 +220,8 @@ const thumbnailImage = props => {
   /**
    * Sets up the default responsive image
    */
-  const { themeUri } = theme;
-  let newSourceUrl = sourceUrl.replace(/<THEME_URI>/g, themeUri);
+  const { imageUri } = theme;
+  let newSourceUrl = sourceUrl.replace(/<THEME_URI>/g, imageUri);
 
   newSourceUrl =
     colorScheme === "dark"

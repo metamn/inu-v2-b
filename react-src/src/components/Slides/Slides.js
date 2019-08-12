@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
@@ -65,15 +65,19 @@ const Slides = React.forwardRef((props, ref) => {
   /**
    * Prepares the slides
    */
-  const slides = edges.map((data, index) => {
-    const isActive = index === activeImage;
+  const slides = useMemo(
+    () =>
+      edges.map((data, index) => {
+        const isActive = index === activeImage;
 
-    return (
-      <Slide isActive={isActive} key={`slide-${index}`}>
-        <Post {...data.node} index={index} />
-      </Slide>
-    );
-  });
+        return (
+          <Slide isActive={isActive} key={`slide-${index}`}>
+            <Post {...data.node} index={index} />
+          </Slide>
+        );
+      }),
+    [activeImage, edges]
+  );
 
   return (
     <Container className="Slides" ref={ref}>
