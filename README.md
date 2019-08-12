@@ -31,6 +31,7 @@ A photo portfolio theme with React and WordPress.
   - [The new site performance](#the-new-site-performance)
 - [Known issues](#known-issues)
 - [Changelog](#changelog)
+  - [[0.1.2] - 2019-08-12](#012---2019-08-12)
   - [[0.1.1] - 2019-08-06](#011---2019-08-06)
   - [[0.1.0] - 2019-08-01](#010---2019-08-01)
 
@@ -175,56 +176,11 @@ Implement best practices (continuously collected) to enhance performance. Such:
 
 1. Wrap all business logic into a [`UseEffect`](https://overreacted.io/writing-resilient-components/#dont-stop-the-data-flow-in-side-effects)
 
-   - In this app there is only a few lines of business logic code.
-
 2. Wrap expensive function calls into [`useMemo`](https://overreacted.io/writing-resilient-components/#dont-stop-the-data-flow-in-rendering)
-
-   - It only applies to functions not containing other hooks. More exactly to non-database function calls.
-   - Sometimes the number of re-renders is the same as without `useMemo` or `useCallback` ... See comment in `Menu.js`
-   - You can't trick / reduce the number of props with `useContext`. If there is an `useContext` inside an `useMemo` the function name will be added to the array of dependencies
-   - It seems `useMemo` is not an elixir you can throw to a badly designed app and wait for a miracle. It helps only in small, isolated, specific cases which will add up eventually.
 
 3. Stress-test the whole app: https://overreacted.io/writing-resilient-components/#principle-3-no-component-is-a-singleton
 
-This was working all fine:
-
-```React
-ReactDOM.render(
-  <>
-    <MyApp />
-	<MyApp />
-  </>,
-  document.getElementById('root')
-);
-```
-
 4. Avoid making a local state global: https://overreacted.io/writing-resilient-components/#principle-4-keep-the-local-state-isolated
-
-```
-| State                    | Home component | Other comps using the state |
----------------------------------------------------------------------------
-| activeTheme              | Home           | Many, with `useContext`     |
-| activeMenuItem           | Main           | Menu, Content (All child)   |
-| activeImage              | Main           | Content (Thumbs, Slider)    |
-| menuSwitcherIconState    | Main           | Menu, MenuDropdown          |
-| activeContentDisplayMode | Main           | Content (Thumbs)            |
-```
-
-```
-| State                    | Can be lifted up?         | Can be moved down ?      |
------------------------------------------------------------------------------------
-| activeTheme              | n/a                       | No. See [1]              |
-| activeMenuItem           | Doesn't worth it. See[2]  | No. See [3]              |
-| activeImage              | Doesn't worth it. See[2]  | No. See [4]              |
-| menuSwitcherIconState    | Doesn't worth it. See[2]  | No. See [5]              |
-| activeContentDisplayMode | Doesn't worth it. See[2]  | No. See [5]              |
-
-[1] - Theme must be switchable for the whole site.
-[2] - This status has nothing to do with theming and logo managed in `Home`.
-[3] - If moved down to `Menu` the `Content` won't have access to it.
-[4] - Originally was moved down to `Content` then had to be lifted up. See https://github.com/metamn/inu-v2-b/tree/v0.0.3-interaction
-[5] - It needs to be set both on menu item click and menu switcher click. All these are handled in `Main`
-```
 
 5. Reduce re-renders
 
