@@ -145,7 +145,7 @@ const Slider = props => {
   /**
    * Calculates the number of slides
    */
-  const numberOfSlides = useMemo(() => edges.length);
+  const numberOfSlides = useMemo(() => edges.length, [edges.length]);
 
   /**
    * Scrolls the slider to the active image.

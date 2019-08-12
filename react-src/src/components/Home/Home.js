@@ -200,11 +200,6 @@ const Home = props => {
   const [activeTheme, setActiveTheme] = useState(starterTheme);
 
   /**
-   * Loads site settings from the database
-   */
-  const siteSettings = Settings(settings);
-
-  /**
    * Switches the theme.
    * Saves the new theme into the local storage
    */
@@ -220,6 +215,11 @@ const Home = props => {
   const { theme } = activeTheme;
   const { icons } = theme;
   const sunIcon = icons.sun ? icons.sun : defaultThemeSwitcherIcon;
+
+  /**
+   * Loads site settings from the database
+   */
+  const siteSettings = Settings(settings);
 
   /**
    * Loads categories from the database

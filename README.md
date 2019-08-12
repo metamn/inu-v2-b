@@ -226,11 +226,15 @@ ReactDOM.render(
 [5] - It needs to be set both on menu item click and menu switcher click. All these are handled in `Main`
 ```
 
-Next:
+5. Reduce re-renders
 
-- loading data with hooks
-- the number of re-renders (especially with contexts)
-- suspense for non-data components
+Couldn't manage it. All examples [1](https://www.robinwieruch.de/react-hooks-fetch-data/) [2](https://itnext.io/usefetch-react-custom-hook-for-fetch-api-with-suspense-and-concurrent-mode-in-mind-1d3ba9250e0) are using the async / axios way which isn't compatible with the `useQuery` approach from Apollo where a `loading` result is immediately returned - which cannot be memoized, set as state etc ...
+
+Still to research ... the solution lies somewhere in `apolloClient` / `<ApolloProvider>`
+
+6. Suspense
+
+The functionality is already implemented either by displaying default data (Site info, Categories) or with the fade in technique (Content) and works pretty well ...
 
 ## Results
 
@@ -270,15 +274,17 @@ Next:
 
 All changes to the project are documented here using the [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) format and [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
-### [0.1.2] - 2019-08-xx
+### [0.1.2] - 2019-08-12
 
-### Added
+#### Added
 
-### Changed
+- A few memoizations where they were appropiate.
+
+#### Changed
 
 - `react-apollo-hooks` to `@apollo/react-hooks`
 
-### Fixed
+#### Fixed
 
 - Grouping images into '/images'. See https://github.com/metamn/inu-v2-b/issues/31
 
