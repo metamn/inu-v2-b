@@ -192,6 +192,29 @@ Still to research ... the solution lies somewhere in `apolloClient` / `<ApolloPr
 
 The functionality is already implemented either by displaying default data (Site info, Categories) or with the fade in technique (Content) and works pretty well ...
 
+### Performance - [v0.1.3](https://github.com/metamn/inu-v2-b/tree/v0.1.3-performance)
+
+React.memo:
+
+- Reset: ok
+- TypographicGrid: ok
+- Meta: n/a
+- Icon: n/a
+- IconToggle: n/a
+- Contact: n/a
+- Content: n/a
+- Link: ok
+- Logo: ok
+- Menu: ok
+- MenuDropdown: n/a
+- MenuItem: n/a
+- Post: webpack error on fragments
+- PostFeaturedImage: same error
+- Slide: n/a
+- Slides: n/a
+- Thumb: n/a
+- Thumbs: renders once only ... it has useMemo()
+
 ## Results
 
 ### The old site look

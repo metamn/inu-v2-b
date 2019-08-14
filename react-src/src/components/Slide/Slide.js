@@ -37,27 +37,19 @@ const Container = styled("div")(props => ({
    * We need `min-width` here; simple `width` does not stretches the container
    */
   [`${Media.mobile}`]: {
-    minWidth: `calc(100vw - ${
-      props.theme.spacing.left.mobile
-    } * 2 + var(--lem))`
+    minWidth: `calc(100vw - ${props.theme.spacing.left.mobile} * 2 + var(--lem))`
   },
 
   [`${Media.tablet}`]: {
-    minWidth: `calc(100vw - ${
-      props.theme.spacing.left.tablet
-    } * 2  + var(--lem))`
+    minWidth: `calc(100vw - ${props.theme.spacing.left.tablet} * 2  + var(--lem))`
   },
 
   [`${Media.laptop}`]: {
-    minWidth: `calc(100vw - ${
-      props.theme.spacing.left.laptop
-    } * 2  + var(--lem))`
+    minWidth: `calc(100vw - ${props.theme.spacing.left.laptop} * 2  + var(--lem))`
   },
 
   [`${Media.desktop}`]: {
-    minWidth: `calc(100vw - ${
-      props.theme.spacing.left.desktop
-    } * 2  + var(--lem))`
+    minWidth: `calc(100vw - ${props.theme.spacing.left.desktop} * 2  + var(--lem))`
   },
 
   /**

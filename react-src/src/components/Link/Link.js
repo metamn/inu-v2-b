@@ -47,6 +47,8 @@ const Link = props => {
   const { url, title, children } = props;
   const { theme } = useTheme();
 
+  console.log("Link");
+
   return (
     <Container className="link" href={url} title={title} theme={theme}>
       {children}
@@ -57,4 +59,4 @@ const Link = props => {
 Link.propTypes = propTypes;
 Link.defaultProps = defaultProps;
 
-export default Link;
+export default React.memo(Link);

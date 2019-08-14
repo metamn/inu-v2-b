@@ -93,6 +93,8 @@ const Menu = props => {
     contact
   } = props;
 
+  console.log("Menu");
+
   /**
    * Displays categories as menu items.
    *

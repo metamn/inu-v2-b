@@ -86,6 +86,8 @@ const Logo = props => {
    */
   const { title, url, description } = props;
 
+  console.log("Logo");
+
   /**
    * Loads theme
    */
@@ -107,5 +109,5 @@ const Logo = props => {
 Logo.propTypes = propTypes;
 Logo.defaultProps = defaultProps;
 
-export default Logo;
+export default React.memo(Logo);
 export { propTypes, defaultProps };

@@ -162,4 +162,4 @@ const TypographicGrid = props => {
 TypographicGrid.propTypes = propTypes;
 TypographicGrid.defaultProps = defaultProps;
 
-export default TypographicGrid;
+export default React.memo(TypographicGrid);
