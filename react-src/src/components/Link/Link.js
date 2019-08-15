@@ -47,8 +47,6 @@ const Link = props => {
   const { url, title, children } = props;
   const { theme } = useTheme();
 
-  console.log("Link");
-
   return (
     <Container className="link" href={url} title={title} theme={theme}>
       {children}

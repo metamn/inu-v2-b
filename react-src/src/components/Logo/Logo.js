@@ -86,8 +86,6 @@ const Logo = props => {
    */
   const { title, url, description } = props;
 
-  console.log("Logo");
-
   /**
    * Loads theme
    */

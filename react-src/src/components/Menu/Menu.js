@@ -93,8 +93,6 @@ const Menu = props => {
     contact
   } = props;
 
-  console.log("Menu");
-
   /**
    * Displays categories as menu items.
    *
@@ -131,5 +129,5 @@ const Menu = props => {
 Menu.propTypes = propTypes;
 Menu.defaultProps = defaultProps;
 
-export default Menu;
+export default React.memo(Menu);
 export { propTypes, defaultProps };

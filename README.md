@@ -194,26 +194,29 @@ The functionality is already implemented either by displaying default data (Site
 
 ### Performance - [v0.1.3](https://github.com/metamn/inu-v2-b/tree/v0.1.3-performance)
 
-React.memo:
+1. React.memo()
 
-- Reset: ok
-- TypographicGrid: ok
-- Meta: n/a
-- Icon: n/a
-- IconToggle: n/a
-- Contact: n/a
-- Content: n/a
-- Link: ok
-- Logo: ok
-- Menu: ok
-- MenuDropdown: n/a
-- MenuItem: n/a
-- Post: webpack error on fragments
-- PostFeaturedImage: same error
-- Slide: n/a
-- Slides: n/a
-- Thumb: n/a
-- Thumbs: renders once only ... it has useMemo()
+- Inspired by: https://dmitripavlutin.com/use-react-memo-wisely/
+- Rules:
+
+  1. It can be used only with function components (which render something)
+  2. It's useful only for components which have static props
+
+     - Like `<Logo>`, `<Reset>`, `<TypographicGrid>`, ... &mdash; they always have the same props and render the same results (aka _Pure Functional Components_)
+     - Unlike `<Icon>`, `<MenuItem>`, ... &mdash; where props are dynamic, many times are based on a state, and each render / some of the renders are always different.
+
+  3. It should be used for components which renders often
+  4. ... And are medium to big size
+
+Components containg a GraphQL fragment cannot be memoized due to a Webpack error (Post, PostFeaturedImage)
+
+Only the following components were suitable to be memoized:
+
+- Reset
+- TypographicGrid
+- Link
+- Logo
+- Menu
 
 ## Results
 
