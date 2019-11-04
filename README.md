@@ -210,13 +210,7 @@ The functionality is already implemented either by displaying default data (Site
 
 Components containg a GraphQL fragment cannot be memoized due to a Webpack error (Post, PostFeaturedImage)
 
-Only the following components were suitable to be memoized:
-
-- Reset
-- TypographicGrid
-- Link
-- Logo
-- Menu
+Only the following components were suitable to be memoized: `Reset`, `TypographicGrid`, `Link`, `Logo` and `Menu`. Of them only `Menu` satisfies rule 4.
 
 ## Results
 
